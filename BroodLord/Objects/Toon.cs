@@ -52,7 +52,7 @@ namespace Objects
 
         public void Draw(SpriteBatch sb, Texture2D texture)
         {
-            sb.Draw(texture, position, Color.White);
+            sb.Draw(texture, new Vector2(position.X - (texture.Width * 0.5f), position.Y - texture.Height), Color.White);
         }
 
         public Guid GetId()
