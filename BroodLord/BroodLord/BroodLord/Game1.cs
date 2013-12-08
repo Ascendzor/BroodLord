@@ -61,6 +61,11 @@ namespace BroodLord
         {
             input.Update();
 
+            foreach (Guid key in allToons.Keys)
+            {
+                allToons[key].Update();
+            }
+
             dude.Update();
 
             base.Update(gameTime);
