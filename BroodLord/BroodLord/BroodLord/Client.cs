@@ -19,14 +19,17 @@ namespace BroodLord
         public Client()
         {
             port = 41337;
-            client = new TcpClient("192.168.1.123", port);
-            stream = client.GetStream();
+            Console.WriteLine("ADSA");
+            client = new TcpClient("192.168.1.121", port);
+            Console.WriteLine("ADSA");
 
             new Thread(ReceiveEvent).Start();
+
         }
 
         public void ReceiveEvent()
         {
+            stream = client.GetStream();
             byte[] bytes = new byte[1024];
             Event leEvent = null;
             try
