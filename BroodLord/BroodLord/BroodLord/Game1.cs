@@ -61,6 +61,8 @@ namespace BroodLord
         {
             input.Update();
 
+            dude.Update();
+
             base.Update(gameTime);
         }
 
