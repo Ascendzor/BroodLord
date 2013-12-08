@@ -20,6 +20,12 @@ namespace Objects
         private float movementSpeed;
         private Vector2 goalPosition;
 
+        public Vector2 Position
+        {
+            get { return position; }
+            set { position = value; }
+        }
+
         public Toon(Vector2 position, string textureKey)
         {
             this.id = Guid.NewGuid();
