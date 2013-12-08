@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework.Input;
 using Objects;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace BroodLord
 {
@@ -13,6 +14,7 @@ namespace BroodLord
         private MouseState oldState;
         private Toon dude;
         private Client client;
+        
 
         public Input(Toon dude, Client client)
         {
@@ -21,14 +23,14 @@ namespace BroodLord
             this.client = client;
         }
 
-        public void Update()
+        public void Update(GraphicsDevice gd)
         {
             MouseState nowState = Mouse.GetState();
             if (oldState.LeftButton != ButtonState.Pressed)
             {
                 if (nowState.LeftButton == ButtonState.Pressed)
                 {
-                    Vector2 clickPosition = new Vector2(nowState.X, nowState.Y);
+                    Vector2 clickPosition = new Vector2(nowState.X - gd.Viewport.Width - dude.Position.X, nowState.Y - gd.Viewport.Height + dude.Position.Y);
                     Event LeftClickEvent = new Event(dude.GetId(), clickPosition);
                     dude.ReceiveEvent(LeftClickEvent);
                     client.SendEvent(LeftClickEvent);

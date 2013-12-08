@@ -66,7 +66,7 @@ namespace BroodLord
 
         protected override void Update(GameTime gameTime)
         {
-            input.Update();
+            input.Update(graphics.GraphicsDevice);
 
             foreach (Guid key in allToons.Keys)
             {
