@@ -30,6 +30,7 @@ namespace Objects
 
         public Matrix getTransformation(GraphicsDevice gd)
         {
+
             return Matrix.CreateTranslation(new Vector3(-position.X, -position.Y, 0)) *
                             Matrix.CreateTranslation(new Vector3(gd.Viewport.Width * 0.5f, gd.Viewport.Height * 0.5f, 0));
         }

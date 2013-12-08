@@ -30,7 +30,9 @@ namespace BroodLord
             {
                 if (nowState.LeftButton == ButtonState.Pressed)
                 {
-                    Vector2 clickPosition = new Vector2(nowState.X - gd.Viewport.Width - dude.Position.X, nowState.Y - gd.Viewport.Height + dude.Position.Y);
+                    Vector2 clickPosition = new Vector2(nowState.X - (gd.Viewport.Width * 0.5f), nowState.Y - (gd.Viewport.Height * 0.5f));
+                    clickPosition = dude.Position + clickPosition;
+                    Console.WriteLine(clickPosition);
                     Event LeftClickEvent = new Event(dude.GetId(), clickPosition);
                     dude.ReceiveEvent(LeftClickEvent);
                     client.SendEvent(LeftClickEvent);
