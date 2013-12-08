@@ -38,7 +38,7 @@ namespace Server
                 NetworkStream stream = listener.AcceptTcpClient().GetStream();
                 streams.Add(stream);
                 Console.WriteLine("connected");
-                Listen(stream);
+                new Thread(() => Listen(stream)).Start();
             }
         }
 
@@ -62,6 +62,7 @@ namespace Server
             }
             catch (Exception e)
             {
+                Console.WriteLine(e);
                 Console.WriteLine("something died :( Server=>Listen(NetworkStream)");
             }
         }
@@ -69,11 +70,12 @@ namespace Server
         public void Broadcast(Event leEvent)
         {
             MemoryStream ms = new MemoryStream();
+            new BinaryFormatter().Serialize(ms, leEvent);
+
+            byte[] bytes = ms.ToArray();
+
             foreach (NetworkStream ns in streams)
             {
-                new BinaryFormatter().Serialize(ms, leEvent);
-
-                byte[] bytes = ms.ToArray();
                 ns.Write(bytes, 0, bytes.Length);
 
                 Console.WriteLine("Sent Message");
