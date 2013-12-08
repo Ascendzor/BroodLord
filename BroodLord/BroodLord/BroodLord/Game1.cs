@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using Objects;
 
 namespace BroodLord
 {
@@ -15,6 +16,13 @@ namespace BroodLord
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+        Client client;
+        Input input;
+        Toon dude;
+
+        public static Dictionary<string, Texture2D> findTexture;
+        public static Dictionary<Guid, Toon> allToons;
 
         public Game1()
         {
@@ -24,6 +32,16 @@ namespace BroodLord
 
         protected override void Initialize()
         {
+            findTexture = new Dictionary<string, Texture2D>();
+            findTexture.Add("link", Content.Load<Texture2D>("link"));
+            allToons = new Dictionary<Guid, Toon>();
+
+            client = new Client();
+            dude = new Toon(new Vector2(100, 100), "link");
+            input = new Input(dude, client);
+
+            IsMouseVisible = true;
+
             base.Initialize();
         }
 
@@ -38,12 +56,18 @@ namespace BroodLord
 
         protected override void Update(GameTime gameTime)
         {
+            input.Update();
+
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            spriteBatch.Begin();
+            dude.Draw(spriteBatch, findTexture["link"]);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
