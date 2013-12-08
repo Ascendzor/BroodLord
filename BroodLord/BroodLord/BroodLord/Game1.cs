@@ -66,7 +66,13 @@ namespace BroodLord
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
+
+            foreach (Guid key in allToons.Keys)
+            {
+                allToons[key].Draw(spriteBatch, findTexture["link"]);
+            }
             dude.Draw(spriteBatch, findTexture["link"]);
+
             spriteBatch.End();
 
             base.Draw(gameTime);
