@@ -11,9 +11,9 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Objects;
 
-namespace BroodLord
+namespace Objects
 {
-    class MapThing
+    public class MapThing
     {
         // can be collidable
         // can be interactable

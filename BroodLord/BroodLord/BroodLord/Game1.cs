@@ -23,7 +23,6 @@ namespace BroodLord
         Camera camera;
         Map map;
 
-        public static Dictionary<string, Texture2D> findTexture;
         public static Dictionary<Guid, Toon> allToons;
 
         public static GraphicsDevice graphicsDevice;
@@ -36,17 +35,24 @@ namespace BroodLord
 
         protected override void Initialize()
         {
-            findTexture = new Dictionary<string, Texture2D>();
-            findTexture.Add("link", Content.Load<Texture2D>("link"));
-            findTexture.Add("tree", Content.Load<Texture2D>("tree"));
+            Data.findTexture = new Dictionary<string, Texture2D>();
+            Data.findTexture.Add("link", Content.Load<Texture2D>("link"));
+            Data.findTexture.Add("tree", Content.Load<Texture2D>("tree"));
+
+            for(int x = 1;x<9;x++)
+                Data.findTexture.Add("snow"+x, Content.Load<Texture2D>("snow" + x));
 
             allToons = new Dictionary<Guid, Toon>();
            
             client = new Client();
-            dude = new Toon(new Vector2(100, 100), "link");
+            map = new Map(this.Content, 84,20);
+            dude = new Toon(new Vector2(100, 100), "link",map);
             input = new Input(dude, client);
             camera = new Camera();
-            map = new Map(this.Content, true);
+
+            Tree bob = new Tree(new Vector2(200, 200), "tree", map);
+            Tree bob1 = new Tree(new Vector2(400, 450), "tree", map);
+            Tree bob2 = new Tree(new Vector2(500, 200), "tree", map);
 
             graphicsDevice = graphics.GraphicsDevice;
             IsMouseVisible = true;
@@ -78,6 +84,7 @@ namespace BroodLord
             }
 
             dude.Update();
+            dude.CheckGrid();
 
             camera.update(dude.Position);
 
@@ -96,12 +103,12 @@ namespace BroodLord
                         null,
                         camera.getTransformation(graphics.GraphicsDevice));
 
-            foreach (Guid key in allToons.Keys)
+            
+            foreach (Guid key in allToons.Keys) //probably shoudlnt be here, Currently here for testing but also a bigger problem. Note: How to draw other players without using grid system? by ZacJ
             {
-                allToons[key].Draw(spriteBatch, findTexture["link"]);
+                allToons[key].Draw(spriteBatch);
             }
-            dude.Draw(spriteBatch, findTexture["link"]);
-
+            
             map.Draw(spriteBatch);
 
             spriteBatch.End();

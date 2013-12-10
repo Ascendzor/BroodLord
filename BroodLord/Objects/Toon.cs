@@ -12,18 +12,25 @@ using Microsoft.Xna.Framework.Media;
 namespace Objects
 {
     [Serializable()]
-    public class Toon
+    public class Toon : GameObject
     {
-        private Guid id;
-        private Vector2 position;
-        public string textureKey;
+
+        
         private float movementSpeed;
         private Vector2 goalPosition;
 
-        public Vector2 Position
+        public Toon(Vector2 position, string textureKey,Map map)
         {
-            get { return position; }
-            set { position = value; }
+            this.id = Guid.NewGuid();
+            this.position = position;
+            this.textureKey = textureKey;
+            this.movementSpeed = 10;
+            this.goalPosition = position;
+            this.map = map;
+            xTileCoord = (int)position.X / map.GetTileSize();
+            yTileCoord = (int)position.Y / map.GetTileSize();
+
+            map.GetTile(xTileCoord, yTileCoord).GetObjects().Add(this);
         }
 
         public Toon(Vector2 position, string textureKey)
@@ -46,18 +53,30 @@ namespace Objects
             if (moveDirection.Length() > 10)
             {
                 moveDirection.Normalize();
+                
                 position += moveDirection * movementSpeed;
+                
+            }
+            
+        }
+        public void CheckGrid()
+        {
+            if (position.X < 0 || position.X > map.GetMapSize()*map.GetTileSize() || position.Y < 0 || position.Y > map.GetMapSize()*map.GetTileSize())//temp escape stopping code
+            {
+                position = new Vector2(50, 50);
+            }
+
+            int xNewCoords = (int)position.X / map.GetTileSize();
+            int yNewCoords = (int)position.Y / map.GetTileSize();
+
+            if (xTileCoord != xNewCoords || yTileCoord != yNewCoords)
+            {
+                map.GetTile(xTileCoord, yTileCoord).GetObjects().Remove(this);
+                map.GetTile(xNewCoords, yNewCoords).GetObjects().Add(this);
+                xTileCoord = xNewCoords;
+                yTileCoord = yNewCoords;
             }
         }
-
-        public void Draw(SpriteBatch sb, Texture2D texture)
-        {
-            sb.Draw(texture, new Vector2(position.X - (texture.Width * 0.5f), position.Y - texture.Height), Color.White);
-        }
-
-        public Guid GetId()
-        {
-            return id;
-        }
+        
     }
 }

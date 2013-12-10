@@ -110,8 +110,6 @@
     <Compile Include="Camera.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="Input.cs" />
-    <Compile Include="Map.cs" />
-    <Compile Include="MapThing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />

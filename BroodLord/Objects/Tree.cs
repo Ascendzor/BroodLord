@@ -7,20 +7,19 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Objects
 {
-    class Tree
+    public class Tree : GameObject
     {
-        private Vector2 position;
-        public string textureKey;
-
-        public Tree(Vector2 position, string textureKey)
+        
+        public Tree(Vector2 position, string textureKey,Map map)
         {
             this.position = position;
             this.textureKey = textureKey;
-        }
+            this.map = map;
 
-        public void Draw(SpriteBatch sb, Texture2D texture)
-        {
-            sb.Draw(texture, new Vector2(position.X - (texture.Width * 0.5f), position.Y - texture.Height), Color.White);
+            xTileCoord = (int)position.X / map.GetTileSize();
+            yTileCoord = (int)position.Y / map.GetTileSize();
+
+            map.GetTile(xTileCoord, yTileCoord).GetObjects().Add(this);
         }
     }
 }
