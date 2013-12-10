@@ -19,9 +19,7 @@ namespace BroodLord
         public Client()
         {
             port = 41337;
-            Console.WriteLine("ADSA");
-            client = new TcpClient("192.168.1.30", port);
-            Console.WriteLine("ADSA");
+            client = new TcpClient("127.0.0.1", port);
 
             new Thread(ReceiveEvent).Start();
 
@@ -37,7 +35,6 @@ namespace BroodLord
                 while (true)
                 {
                     stream.Read(bytes, 0, bytes.Length);
-                    Console.WriteLine("received event from server");
                     MemoryStream memStream = new MemoryStream();
                     memStream.Write(bytes, 0, bytes.Length);
                     memStream.Seek(0, SeekOrigin.Begin);
@@ -50,7 +47,7 @@ namespace BroodLord
                     Game1.allToons[leEvent.id].ReceiveEvent(leEvent);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Console.WriteLine("something died :( Server=>Listen(NetworkStream)");
             }
@@ -65,10 +62,9 @@ namespace BroodLord
 
                 byte[] bytes = ms.ToArray();
                 stream.Write(bytes, 0, bytes.Length);
-                Console.WriteLine("wrote");
                 ms.Close();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Console.WriteLine("something died :( Client=>SendEvent(Event)");
             }

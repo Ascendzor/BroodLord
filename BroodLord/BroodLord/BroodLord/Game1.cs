@@ -21,9 +21,7 @@ namespace BroodLord
         Input input;
         Toon dude;
         Camera camera;
-
-        //tree
-        Texture2D leTree;
+        Map map;
 
         public static Dictionary<string, Texture2D> findTexture;
         public static Dictionary<Guid, Toon> allToons;
@@ -39,15 +37,14 @@ namespace BroodLord
             findTexture = new Dictionary<string, Texture2D>();
             findTexture.Add("link", Content.Load<Texture2D>("link"));
             allToons = new Dictionary<Guid, Toon>();
-            //treee
-            leTree = Content.Load<Texture2D>("tree");
-
+           
             Console.WriteLine("ASD");
             client = new Client();
             Console.WriteLine("ASD");
             dude = new Toon(new Vector2(100, 100), "link");
             input = new Input(dude, client);
             camera = new Camera();
+            map = new Map(this.Content, true);
 
             IsMouseVisible = true;
 
@@ -97,7 +94,8 @@ namespace BroodLord
                 allToons[key].Draw(spriteBatch, findTexture["link"]);
             }
             dude.Draw(spriteBatch, findTexture["link"]);
-            spriteBatch.Draw(leTree, new Vector2(0, 0), Color.White);
+
+            map.Draw(spriteBatch);
 
             spriteBatch.End();
 
