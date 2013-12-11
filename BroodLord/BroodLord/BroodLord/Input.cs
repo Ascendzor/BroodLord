@@ -43,7 +43,6 @@ namespace BroodLord
                 {
                     Vector2 clickPosition = new Vector2(nowState.X - (Game1.graphicsDevice.Viewport.Width * 0.5f), nowState.Y - (Game1.graphicsDevice.Viewport.Height * 0.5f));
                     clickPosition = dude.Position + clickPosition;
-                    Console.WriteLine(clickPosition);
                     Event LeftClickEvent = new Event(dude.GetId(), clickPosition);
                     dude.ReceiveEvent(LeftClickEvent);
                     client.SendEvent(LeftClickEvent);
