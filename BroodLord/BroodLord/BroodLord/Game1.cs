@@ -40,9 +40,7 @@ namespace BroodLord
             findTexture.Add("link", Content.Load<Texture2D>("link"));
             allToons = new Dictionary<Guid, Toon>();
            
-            Console.WriteLine("ASD");
             client = new Client();
-            Console.WriteLine("ASD");
             dude = new Toon(new Vector2(100, 100), "link");
             input = new Input(dude, client);
             camera = new Camera();
