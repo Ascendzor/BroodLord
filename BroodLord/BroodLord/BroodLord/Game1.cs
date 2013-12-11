@@ -46,13 +46,13 @@ namespace BroodLord
            
             client = new Client();
             map = new Map(this.Content, 84,20);
-            dude = new Toon(new Vector2(100, 100), "link",map);
+            dude = new Toon(new Vector2(100, 100), "link",map,28);
             input = new Input(dude, client);
             camera = new Camera();
 
-            Tree bob = new Tree(new Vector2(200, 200), "tree", map);
-            Tree bob1 = new Tree(new Vector2(400, 450), "tree", map);
-            Tree bob2 = new Tree(new Vector2(500, 200), "tree", map);
+            Tree bob = new Tree(new Vector2(200, 200), "tree", map, 56);
+            Tree bob1 = new Tree(new Vector2(400, 450), "tree", map, 56);
+            Tree bob2 = new Tree(new Vector2(500, 200), "tree", map, 56);
 
             graphicsDevice = graphics.GraphicsDevice;
             IsMouseVisible = true;

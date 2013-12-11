@@ -19,6 +19,7 @@ namespace Objects
         protected int xTileCoord;
         protected int yTileCoord;
         protected Map map;
+        protected int colRadius;
 
         public Vector2 Position
         {
@@ -35,6 +36,11 @@ namespace Objects
         public Guid GetId()
         {
             return id;
+        }
+
+        public int GetColRadius()
+        {
+            return colRadius;
         }
 
         public void Draw(SpriteBatch sb)
