@@ -20,7 +20,7 @@ namespace BroodLord
         {
             port = 41337;
             Console.WriteLine("ADSA");
-            client = new TcpClient("192.168.1.30", port);
+            client = new TcpClient("127.0.0.1", port);
             Console.WriteLine("ADSA");
 
             new Thread(ReceiveEvent).Start();

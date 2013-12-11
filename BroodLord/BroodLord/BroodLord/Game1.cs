@@ -28,6 +28,8 @@ namespace BroodLord
         public static Dictionary<string, Texture2D> findTexture;
         public static Dictionary<Guid, Toon> allToons;
 
+        public static GraphicsDevice graphicsDevice;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -49,6 +51,7 @@ namespace BroodLord
             input = new Input(dude, client);
             camera = new Camera();
 
+            graphicsDevice = graphics.GraphicsDevice;
             IsMouseVisible = true;
 
 
@@ -66,7 +69,7 @@ namespace BroodLord
 
         protected override void Update(GameTime gameTime)
         {
-            input.Update(graphics.GraphicsDevice);
+            input.Update();
 
             foreach (Guid key in allToons.Keys)
             {
