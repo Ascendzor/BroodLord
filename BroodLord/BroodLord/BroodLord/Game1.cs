@@ -38,6 +38,8 @@ namespace BroodLord
         {
             findTexture = new Dictionary<string, Texture2D>();
             findTexture.Add("link", Content.Load<Texture2D>("link"));
+            findTexture.Add("tree", Content.Load<Texture2D>("tree"));
+
             allToons = new Dictionary<Guid, Toon>();
            
             client = new Client();
@@ -49,6 +51,10 @@ namespace BroodLord
             graphicsDevice = graphics.GraphicsDevice;
             IsMouseVisible = true;
 
+            graphics.IsFullScreen = false;
+            graphics.PreferredBackBufferWidth = 1280;
+            graphics.PreferredBackBufferHeight = 720;
+            graphics.ApplyChanges();
 
             base.Initialize();
         }

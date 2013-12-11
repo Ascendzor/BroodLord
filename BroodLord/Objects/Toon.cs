@@ -16,7 +16,7 @@ namespace Objects
     {
         private Guid id;
         private Vector2 position;
-        private string textureKey;
+        public string textureKey;
         private float movementSpeed;
         private Vector2 goalPosition;
 
