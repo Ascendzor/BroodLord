@@ -14,7 +14,10 @@ namespace Objects
     public class Data
     {
         public static Dictionary<string, Texture2D> findTexture;
-
+        public static int toonRadius = 28;
+        public static int treeRadius = 56;
+        public static int tileSize = 84;
+        public static int mapSize = 20;
         /*
          * 
          * Some Notes

@@ -19,7 +19,6 @@ namespace Objects
         //attack radius 84 which means grid is 84 by 84
         //collision radius 28 of toon
 
-        private List<MapThing> mapThings;
         private ContentManager Content;
        
         private Tile[,] Tiles = new Tile[20,20];
@@ -30,7 +29,6 @@ namespace Objects
             this.mapSize = mapSize;
             this.tileSize = tileSize;
             this.Content = Content;
-            mapThings = new List<MapThing>();
             for(int x = 0; x<Tiles.GetLength(0);x++)
                 for (int y = 0; y < Tiles.GetLength(1); y++)
                 {
@@ -64,10 +62,6 @@ namespace Objects
                 {
                     Tiles[x,y].Draw(sb,new Vector2(x*tileSize,y*tileSize));
                 }
-            foreach (MapThing mt in mapThings)
-            {
-                mt.Draw(sb);
-            }
         } 
 
     }

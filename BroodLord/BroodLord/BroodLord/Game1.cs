@@ -40,19 +40,19 @@ namespace BroodLord
             Data.findTexture.Add("tree", Content.Load<Texture2D>("tree"));
 
             for(int x = 1;x<9;x++)
-                Data.findTexture.Add("snow"+x, Content.Load<Texture2D>("snow" + x));
+                Data.findTexture.Add("snow" + x, Content.Load<Texture2D>("snow" + x));
 
             allToons = new Dictionary<Guid, Toon>();
-           
-            client = new Client();
-            map = new Map(this.Content, 84,20);
-            dude = new Toon(new Vector2(100, 100), "link",map,28);
+
+            map = new Map(this.Content, Data.tileSize, Data.mapSize);
+            client = new Client(map);
+            dude = new Toon(new Vector2(100, 100), "link", map);
             input = new Input(dude, client);
             camera = new Camera();
 
-            Tree bob = new Tree(new Vector2(200, 200), "tree", map, 56);
-            Tree bob1 = new Tree(new Vector2(400, 450), "tree", map, 56);
-            Tree bob2 = new Tree(new Vector2(500, 200), "tree", map, 56);
+            Tree bob = new Tree(new Vector2(200, 200), "tree", map);
+            Tree bob1 = new Tree(new Vector2(400, 450), "tree", map);
+            Tree bob2 = new Tree(new Vector2(500, 200), "tree", map);
 
             graphicsDevice = graphics.GraphicsDevice;
             IsMouseVisible = true;
@@ -85,6 +85,7 @@ namespace BroodLord
 
             dude.Update();
             dude.CheckGrid();
+            dude.CheckCol();
 
             camera.update(dude.Position);
 

@@ -19,7 +19,7 @@ namespace Objects
         private float movementSpeed;
         private Vector2 goalPosition;
 
-        public Toon(Vector2 position, string textureKey,Map map)
+        public Toon(Vector2 position, string textureKey, Map map)
         {
             this.id = Guid.NewGuid();
             this.position = position;
@@ -27,19 +27,12 @@ namespace Objects
             this.movementSpeed = 10;
             this.goalPosition = position;
             this.map = map;
+            colRadius = Data.toonRadius;
+
             xTileCoord = (int)position.X / map.GetTileSize();
             yTileCoord = (int)position.Y / map.GetTileSize();
 
             map.GetTile(xTileCoord, yTileCoord).GetObjects().Add(this);
-        }
-
-        public Toon(Vector2 position, string textureKey)
-        {
-            this.id = Guid.NewGuid();
-            this.position = position;
-            this.textureKey = textureKey;
-            this.movementSpeed = 10;
-            this.goalPosition = position;
         }
 
         public void ReceiveEvent(Event leEvent)
@@ -76,6 +69,35 @@ namespace Objects
                 xTileCoord = xNewCoords;
                 yTileCoord = yNewCoords;
             }
+        }
+
+        public void CheckCol()
+        {
+            for(int x =-1; x<2;x++)
+                for (int y = -1; y < 2; y++)
+                {
+                    int xTile = xTileCoord + x;
+                    int yTile = yTileCoord + y;
+
+                    if(xTile > 0 && xTile < map.GetMapSize() && yTile > 0 && yTile < map.GetMapSize())
+                    {
+                        foreach (GameObject gameobject in map.GetTile(xTile, yTile).GetObjects())
+                        {
+                            if (id != gameobject.GetId())
+                            {
+                                Vector2 midDir = position - gameobject.Position;
+                                int totRadius = colRadius + gameobject.GetColRadius();
+                                float midLen = midDir.Length();
+                                if (midLen < totRadius)
+                                {
+                                    float distanceToMove = totRadius - midLen;
+                                    midDir.Normalize();
+                                    position += midDir * distanceToMove;
+                                }
+                            }
+                        }
+                    }
+                }
         }
         
     }

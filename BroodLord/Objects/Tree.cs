@@ -10,7 +10,7 @@ namespace Objects
     public class Tree : GameObject
     {
         
-        public Tree(Vector2 position, string textureKey,Map map,int colRadius)
+        public Tree(Vector2 position, string textureKey,Map map)
         {
             this.position = position;
             this.textureKey = textureKey;
@@ -21,7 +21,7 @@ namespace Objects
 
             map.GetTile(xTileCoord, yTileCoord).GetObjects().Add(this);
 
-            this.colRadius = colRadius;
+            colRadius = Data.treeRadius;
         }
     }
 }
