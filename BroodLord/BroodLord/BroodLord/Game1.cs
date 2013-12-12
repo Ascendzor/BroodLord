@@ -109,8 +109,8 @@ namespace BroodLord
             {
                 allToons[key].Draw(spriteBatch);
             }
-            
-            map.Draw(spriteBatch);
+
+            map.Draw(spriteBatch, 5, dude.GetGridCoordX(), dude.GetGridCoordY());
 
             spriteBatch.End();
 

@@ -54,13 +54,26 @@ namespace Objects
             return tileSize;
         }
 
+        public void Draw(SpriteBatch sb, int size, int xCenter, int yCenter)
+        {
+            //draw ground
+            for (int x = -size; x <= size; x++)
+                for (int y = -size; y < size; y++)
+                {
+                    if (xCenter + x > 0 && xCenter + x < mapSize && yCenter + y > 0 && yCenter + y < mapSize)
+                    {
+                        Tiles[xCenter + x, yCenter + y].Draw(sb, new Vector2((xCenter + x) * tileSize, (yCenter + y) * tileSize));
+                    }
+                }
+        }
+
         public void Draw(SpriteBatch sb)
         {
             //draw ground
             for (int x = 0; x < Tiles.GetLength(0); x++)
                 for (int y = 0; y < Tiles.GetLength(1); y++)
                 {
-                    Tiles[x,y].Draw(sb,new Vector2(x*tileSize,y*tileSize));
+                    Tiles[x, y].Draw(sb, new Vector2(x * tileSize, y * tileSize));
                 }
         } 
 

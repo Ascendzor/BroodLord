@@ -20,6 +20,7 @@ namespace Objects
         protected int yTileCoord;
         protected Map map;
         protected int colRadius;
+        protected bool collidable;
 
         public Vector2 Position
         {
@@ -33,6 +34,16 @@ namespace Objects
             set { textureKey = value; }
         }
 
+        public int GetGridCoordX()
+        {
+            return xTileCoord;
+        }
+
+        public int GetGridCoordY()
+        {
+            return yTileCoord;
+        }
+
         public Guid GetId()
         {
             return id;
@@ -41,6 +52,11 @@ namespace Objects
         public int GetColRadius()
         {
             return colRadius;
+        }
+
+        public bool IsCollidable()
+        {
+            return collidable;
         }
 
         public void Draw(SpriteBatch sb)
