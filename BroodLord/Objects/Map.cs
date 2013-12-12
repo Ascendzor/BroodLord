@@ -64,10 +64,6 @@ namespace Objects
                 {
                     Tiles[x,y].Draw(sb,new Vector2(x*tileSize,y*tileSize));
                 }
-            foreach (MapThing mt in mapThings)
-            {
-                mt.Draw(sb);
-            }
         } 
 
     }

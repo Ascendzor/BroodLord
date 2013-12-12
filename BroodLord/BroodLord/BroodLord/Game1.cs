@@ -43,10 +43,10 @@ namespace BroodLord
                 Data.findTexture.Add("snow"+x, Content.Load<Texture2D>("snow" + x));
 
             allToons = new Dictionary<Guid, Toon>();
-           
-            client = new Client();
-            map = new Map(this.Content, 84,20);
-            dude = new Toon(new Vector2(100, 100), "link",map);
+
+            map = new Map(this.Content, 84, 20);
+            client = new Client(map);
+            dude = new Toon(new Vector2(100, 100), "link", map);
             input = new Input(dude, client);
             camera = new Camera();
 

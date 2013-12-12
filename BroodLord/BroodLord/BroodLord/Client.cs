@@ -15,13 +15,16 @@ namespace BroodLord
         int port;
         private TcpClient client;
         private NetworkStream stream;
+        private Map map;
 
-        public Client()
+        public Client(Map map)
         {
             port = 41337;
             client = new TcpClient("127.0.0.1", port);
 
             new Thread(ReceiveEvent).Start();
+
+            this.map = map;
         }
 
         public void ReceiveEvent()
@@ -41,7 +44,7 @@ namespace BroodLord
 
                     if (!Game1.allToons.ContainsKey(leEvent.id))
                     {
-                        Game1.allToons.Add(leEvent.id, new Toon(new Microsoft.Xna.Framework.Vector2(100, 100), "link"));
+                        Game1.allToons.Add(leEvent.id, new Toon(new Microsoft.Xna.Framework.Vector2(100, 100), "link", map));
                     }
                     Game1.allToons[leEvent.id].ReceiveEvent(leEvent);
                 }

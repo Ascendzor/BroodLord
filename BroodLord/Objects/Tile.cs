@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -39,7 +38,7 @@ namespace Objects
             {
                 gameObject.Draw(sb);
             }
-            sb.Draw(Data.findTexture[textureKey], new Vector2(position.X - (Data.findTexture[textureKey].Width * 0.5f), position.Y - Data.findTexture[textureKey].Height), Color.White);
+            sb.Draw(Data.findTexture[textureKey], new Rectangle((int)position.X, (int)position.Y, Data.findTexture[textureKey].Width, Data.findTexture[textureKey].Height), null, Color.White, 0, Vector2.One, SpriteEffects.None, 0.99999f);
         }
     }
 }

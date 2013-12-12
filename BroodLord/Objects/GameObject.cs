@@ -39,7 +39,8 @@ namespace Objects
 
         public void Draw(SpriteBatch sb)
         {
-            sb.Draw(Data.findTexture[textureKey], new Vector2(position.X - (Data.findTexture[textureKey].Width * 0.5f), position.Y - Data.findTexture[textureKey].Height), Color.White);
+            Console.WriteLine(position.Y / (map.GetMapSize() * map.GetTileSize()));
+            sb.Draw(Data.findTexture[textureKey], new Rectangle((int)(position.X - (Data.findTexture[textureKey].Width * 0.5f)), (int)(position.Y - Data.findTexture[textureKey].Height), Data.findTexture[textureKey].Width, Data.findTexture[textureKey].Height), null, Color.White, 0, Vector2.One, SpriteEffects.None, 1-(position.Y / (map.GetMapSize() * map.GetTileSize())));
         }
     }
 }
