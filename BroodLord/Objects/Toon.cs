@@ -14,8 +14,6 @@ namespace Objects
     [Serializable()]
     public class Toon : GameObject
     {
-
-        
         private float movementSpeed;
         private Vector2 goalPosition;
 
@@ -33,6 +31,7 @@ namespace Objects
             yTileCoord = (int)position.Y / map.GetTileSize();
 
             map.GetTile(xTileCoord, yTileCoord).GetObjects().Add(this);
+            collidable = false;
         }
 
         public void ReceiveEvent(Event leEvent)
@@ -52,6 +51,7 @@ namespace Objects
             }
             
         }
+
         public void CheckGrid()
         {
             if (position.X < 0 || position.X > map.GetMapSize()*map.GetTileSize() || position.Y < 0 || position.Y > map.GetMapSize()*map.GetTileSize())//temp escape stopping code
@@ -83,7 +83,7 @@ namespace Objects
                     {
                         foreach (GameObject gameobject in map.GetTile(xTile, yTile).GetObjects())
                         {
-                            if (id != gameobject.GetId())
+                            if (gameobject.IsCollidable())
                             {
                                 Vector2 midDir = position - gameobject.Position;
                                 int totRadius = colRadius + gameobject.GetColRadius();
