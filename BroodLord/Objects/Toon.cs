@@ -30,7 +30,6 @@ namespace Objects
             xTileCoord = (int)position.X / map.GetTileSize();
             yTileCoord = (int)position.Y / map.GetTileSize();
 
-            map.GetTile(xTileCoord, yTileCoord).GetObjects().Add(this);
             collidable = false;
         }
 
