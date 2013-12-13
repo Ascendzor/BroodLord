@@ -60,7 +60,7 @@ namespace Objects
             for (int x = -size; x <= size; x++)
                 for (int y = -size; y < size; y++)
                 {
-                    if (xCenter + x > 0 && xCenter + x < mapSize && yCenter + y > 0 && yCenter + y < mapSize)
+                    if (xCenter + x >= 0 && xCenter + x < mapSize && yCenter + y >= 0 && yCenter + y < mapSize)
                     {
                         Tiles[xCenter + x, yCenter + y].Draw(sb, new Vector2((xCenter + x) * tileSize, (yCenter + y) * tileSize));
                     }
