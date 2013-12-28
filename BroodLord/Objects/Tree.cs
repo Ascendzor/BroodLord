@@ -22,7 +22,7 @@ namespace Objects
             map.GetTile(xTileCoord, yTileCoord).GetObjects().Add(this);
 
             colRadius = Data.treeRadius;
-            collidable = true;
+            isCollidable = true;
         }
     }
 }

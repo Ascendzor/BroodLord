@@ -38,6 +38,7 @@ namespace BroodLord
             Data.findTexture = new Dictionary<string, Texture2D>();
             Data.findTexture.Add("link", Content.Load<Texture2D>("link"));
             Data.findTexture.Add("tree", Content.Load<Texture2D>("tree"));
+            Data.findTexture.Add("rock", Content.Load<Texture2D>("rock"));
 
             for(int x = 1;x<9;x++)
                 Data.findTexture.Add("snow" + x, Content.Load<Texture2D>("snow" + x));
@@ -54,6 +55,8 @@ namespace BroodLord
             Tree bob1 = new Tree(new Vector2(400, 450), "tree", map);
             Tree bob2 = new Tree(new Vector2(500, 200), "tree", map);
 
+            Rock rock = new Rock(new Vector2(700, 800), map);
+
             graphicsDevice = graphics.GraphicsDevice;
             IsMouseVisible = true;
 
@@ -62,16 +65,9 @@ namespace BroodLord
             graphics.PreferredBackBufferHeight = 720;
             graphics.ApplyChanges();
 
-            base.Initialize();
-        }
-
-        protected override void LoadContent()
-        {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-        }
 
-        protected override void UnloadContent()
-        {
+            base.Initialize();
         }
 
         protected override void Update(GameTime gameTime)

@@ -20,7 +20,7 @@ namespace Objects
         protected int yTileCoord;
         protected Map map;
         protected int colRadius;
-        protected bool collidable;
+        protected bool isCollidable;
 
         public Vector2 Position
         {
@@ -56,7 +56,7 @@ namespace Objects
 
         public bool IsCollidable()
         {
-            return collidable;
+            return isCollidable;
         }
 
         public void Draw(SpriteBatch sb)

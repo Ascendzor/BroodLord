@@ -32,7 +32,7 @@ namespace Objects
             xTileCoord = (int)position.X / map.GetTileSize();
             yTileCoord = (int)position.Y / map.GetTileSize();
 
-            collidable = false;
+            isCollidable = false;
         }
 
         public void ReceiveEvent(Event leEvent)
