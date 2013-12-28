@@ -77,6 +77,7 @@ namespace BroodLord
             foreach (Guid key in allToons.Keys)
             {
                 allToons[key].Update();
+                allToons[key].CheckGrid();
             }
 
             dude.Update();
