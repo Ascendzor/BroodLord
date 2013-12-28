@@ -85,7 +85,6 @@ namespace BroodLord
 
             dude.Update();
             dude.CheckGrid();
-            dude.CheckCol();
 
             camera.update(dude.Position);
 

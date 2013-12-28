@@ -8,6 +8,8 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using System.Diagnostics;
+
 
 namespace Objects
 {
@@ -44,8 +46,12 @@ namespace Objects
             if (moveDirection.Length() > 10)
             {
                 moveDirection.Normalize();
-                
-                position += moveDirection * movementSpeed;
+
+                Vector2 newPos = position + moveDirection * movementSpeed;
+
+                newPos = CheckCol(newPos);
+
+                position = newPos;
                 
             }
             
@@ -70,7 +76,7 @@ namespace Objects
             }
         }
 
-        public void CheckCol()
+        public Vector2 CheckCol(Vector2 newPos)
         {
             for(int x =-1; x<2;x++)
                 for (int y = -1; y < 2; y++)
@@ -80,23 +86,40 @@ namespace Objects
 
                     if(xTile > 0 && xTile < map.GetMapSize() && yTile > 0 && yTile < map.GetMapSize())
                     {
-                        foreach (GameObject gameobject in map.GetTile(xTile, yTile).GetObjects())
+                        foreach (GameObject gameObject in map.GetTile(xTile, yTile).GetObjects())
                         {
-                            if (gameobject.IsCollidable())
+                            if (gameObject.IsCollidable())
                             {
-                                Vector2 midDir = position - gameobject.Position;
-                                int totRadius = colRadius + gameobject.GetColRadius();
+                                if ((position.X > gameObject.Position.X - gameObject.GetColRadius() && position.X < gameObject.Position.X + gameObject.GetColRadius()) ||
+                                    (newPos.X > gameObject.Position.X - gameObject.GetColRadius() && newPos.X < gameObject.Position.X + gameObject.GetColRadius()))
+                                {
+                                    float a = position.Y - gameObject.Position.Y;
+                                    float b = newPos.Y - gameObject.Position.Y;
+
+                                    if (a / Math.Abs(a) + b / Math.Abs(b) == 0)
+                                    {
+                                        newPos.Y += 1.1f * -b;
+                                    }
+                                }
+
+                                /*
+                                Vector2 midDir = position - gameObject.Position;
+                                int totRadius = colRadius + gameObject.GetColRadius();
                                 float midLen = midDir.Length();
                                 if (midLen < totRadius)
                                 {
                                     float distanceToMove = totRadius - midLen;
                                     midDir.Normalize();
                                     position += midDir * distanceToMove;
-                                }
+                                }*/
+                                
+
+                                
                             }
                         }
                     }
                 }
+            return newPos;
         }
         
     }
