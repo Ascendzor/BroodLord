@@ -55,6 +55,8 @@ namespace BroodLord
             Tree bob1 = new Tree(new Vector2(400, 450), "tree", map);
             Tree bob2 = new Tree(new Vector2(500, 200), "tree", map);
 
+            Rock rock = new Rock(new Vector2(700, 800), map);
+
             graphicsDevice = graphics.GraphicsDevice;
             IsMouseVisible = true;
 

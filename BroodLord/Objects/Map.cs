@@ -16,9 +16,6 @@ namespace Objects
 {
     public class Map
     {
-        //attack radius 84 which means grid is 84 by 84
-        //collision radius 28 of toon
-
         private ContentManager Content;
        
         private Tile[,] Tiles = new Tile[20,20];

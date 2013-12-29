@@ -21,7 +21,6 @@ namespace Objects
         protected Map map;
         protected int colRadius;
         protected bool isCollidable;
-        protected bool isLootable;
 
         public Vector2 Position
         {
@@ -58,11 +57,6 @@ namespace Objects
         public bool IsCollidable()
         {
             return isCollidable;
-        }
-
-        public bool IsLootable()
-        {
-            return isLootable;
         }
 
         public void Draw(SpriteBatch sb)
