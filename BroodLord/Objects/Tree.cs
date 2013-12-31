@@ -7,10 +7,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Objects
 {
-    public class Tree : GameObject
+    public class Tree : Doodad
     {
-        
-        public Tree(Vector2 position, string textureKey,Map map)
+        public Tree(Vector2 position, string textureKey, Map map)
         {
             this.position = position;
             this.textureKey = textureKey;
@@ -21,8 +20,7 @@ namespace Objects
 
             map.GetTile(xTileCoord, yTileCoord).GetObjects().Add(this);
 
-            colRadius = Data.treeRadius;
-            isCollidable = true;
+            collisionWidth = Data.treeRadius;
         }
     }
 }

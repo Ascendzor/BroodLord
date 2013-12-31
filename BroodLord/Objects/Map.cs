@@ -38,15 +38,18 @@ namespace Objects
             }
         }
 
-        public List<Tile> getRenderedTiles()
+        public List<Tile> GetRenderedTiles(int xCenter, int yCenter)
         {
             List<Tile> renderedTiles = new List<Tile>();
-
+            
             for (int x = -renderWidth; x <= renderWidth; x++)
             {
                 for (int y = -renderWidth; y < renderWidth; y++)
                 {
-                    renderedTiles.Add(tiles[x, y]);
+                    if (xCenter + x >= 0 && xCenter + x < mapSize && yCenter + y >= 0 && yCenter + y < mapSize)
+                    {
+                        renderedTiles.Add(tiles[xCenter + x, yCenter + y]);
+                    }
                 }
             }
 

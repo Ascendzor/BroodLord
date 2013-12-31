@@ -13,14 +13,12 @@ namespace Objects
 {
     public class GameObject
     {
+        protected Map map;
         protected Vector2 position;
         protected string textureKey;
         protected Guid id;
-        protected int xTileCoord;
+        protected int xTileCoord; 
         protected int yTileCoord;
-        protected Map map;
-        protected int colRadius;
-        protected bool isCollidable;
 
         public Vector2 Position
         {
@@ -47,16 +45,6 @@ namespace Objects
         public Guid GetId()
         {
             return id;
-        }
-
-        public int GetColRadius()
-        {
-            return colRadius;
-        }
-
-        public bool IsCollidable()
-        {
-            return isCollidable;
         }
 
         public void Draw(SpriteBatch sb)

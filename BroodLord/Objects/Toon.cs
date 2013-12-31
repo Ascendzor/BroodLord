@@ -27,12 +27,9 @@ namespace Objects
             this.movementSpeed = 10;
             this.goalPosition = position;
             this.map = map;
-            colRadius = Data.toonRadius;
 
             xTileCoord = (int)position.X / map.GetTileSize();
             yTileCoord = (int)position.Y / map.GetTileSize();
-
-            isCollidable = false;
         }
 
         public void ReceiveEvent(Event leEvent)
@@ -86,41 +83,34 @@ namespace Objects
 
                     if(xTile > 0 && xTile < map.GetMapSize() && yTile > 0 && yTile < map.GetMapSize())
                     {
-                        foreach (GameObject gameObject in map.GetTile(xTile, yTile).GetObjects())
+                        foreach (Doodad gameObject in map.GetTile(xTile, yTile).GetDoodads())
                         {
-                            if (gameObject.IsCollidable())
+                            if ((position.X > gameObject.Position.X - gameObject.GetCollisionWidth() && position.X < gameObject.Position.X + gameObject.GetCollisionWidth()) ||
+                                (newPos.X > gameObject.Position.X - gameObject.GetCollisionWidth() && newPos.X < gameObject.Position.X + gameObject.GetCollisionWidth()))
                             {
-                                if ((position.X > gameObject.Position.X - gameObject.GetColRadius() && position.X < gameObject.Position.X + gameObject.GetColRadius()) ||
-                                    (newPos.X > gameObject.Position.X - gameObject.GetColRadius() && newPos.X < gameObject.Position.X + gameObject.GetColRadius()))
-                                {
-                                    float a = position.Y - gameObject.Position.Y;
-                                    float b = newPos.Y - gameObject.Position.Y;
+                                float a = position.Y - gameObject.Position.Y;
+                                float b = newPos.Y - gameObject.Position.Y;
 
-                                    if (a / Math.Abs(a) + b / Math.Abs(b) == 0)
-                                    {
-                                        newPos.Y += 1.1f * -b;
-                                    }
+                                if (a / Math.Abs(a) + b / Math.Abs(b) == 0)
+                                {
+                                    newPos.Y += 1.1f * -b;
                                 }
-
-                                /*
-                                Vector2 midDir = position - gameObject.Position;
-                                int totRadius = colRadius + gameObject.GetColRadius();
-                                float midLen = midDir.Length();
-                                if (midLen < totRadius)
-                                {
-                                    float distanceToMove = totRadius - midLen;
-                                    midDir.Normalize();
-                                    position += midDir * distanceToMove;
-                                }*/
-                                
-
-                                
                             }
+
+                            /*
+                            Vector2 midDir = position - gameObject.Position;
+                            int totRadius = colRadius + gameObject.GetColRadius();
+                            float midLen = midDir.Length();
+                            if (midLen < totRadius)
+                            {
+                                float distanceToMove = totRadius - midLen;
+                                midDir.Normalize();
+                                position += midDir * distanceToMove;
+                            }*/
                         }
                     }
                 }
             return newPos;
         }
-        
     }
 }

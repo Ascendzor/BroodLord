@@ -33,6 +33,20 @@ namespace Objects
             return gameObjects;
         }
 
+        public List<Doodad> GetDoodads()
+        {
+            List<Doodad> doodads = new List<Doodad>();
+            foreach (GameObject doodad in gameObjects)
+            {
+                if (doodad is Doodad)
+                {
+                    doodads.Add(doodad as Doodad);
+                }
+            }
+
+            return doodads;
+        }
+
         public void Draw(SpriteBatch sb, Vector2 position)
         {
             foreach (GameObject gameObject in gameObjects)

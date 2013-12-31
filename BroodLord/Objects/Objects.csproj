@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data.cs" />
+    <Compile Include="Doodad.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="Event.cs" />
     <Compile Include="Item.cs" />
