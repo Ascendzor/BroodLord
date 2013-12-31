@@ -40,7 +40,7 @@ namespace Objects
             {
                 if (doodad is Doodad)
                 {
-                    doodads.Add(doodad as Doodad);
+                    doodads.Add((Doodad)doodad);
                 }
             }
 
