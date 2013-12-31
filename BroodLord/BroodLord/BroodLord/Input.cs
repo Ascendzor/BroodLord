@@ -62,7 +62,13 @@ namespace BroodLord
             List<Tile> tiles = map.GetRenderedTiles(dude.GetGridCoordX(), dude.GetGridCoordY());
             foreach (Tile tile in tiles)
             {
-                
+                foreach (Doodad doodad in tile.GetDoodads())
+                {
+                    if (doodad.GetHitbox().Contains((int)clickPosition.X, (int)clickPosition.Y))
+                    {
+                        Console.WriteLine("position: " + doodad.Position);
+                    }
+                }
             }
 
             Event LeftClickEvent = new Event(dude.GetId(), clickPosition);

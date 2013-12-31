@@ -7,10 +7,8 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Objects
 {
-    public class Item
+    public class Loot : GameObject
     {
-        protected Map map;
-        protected Vector2 position;
         protected string textureKeyOnGround;
         protected string textureKeyInBag;
         protected bool onGround;
@@ -19,11 +17,11 @@ namespace Objects
         {
             if (onGround)
             {
-                sb.Draw(Data.findTexture[textureKeyOnGround], position, Color.White);
+                sb.Draw(Data.FindTexture[textureKeyOnGround], position, Color.White);
             }
             else
             {
-                //draw the rock 
+                //dude is holding the rock
             }
         }
     }

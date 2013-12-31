@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Objects
 {
-    public class Rock : Item
+    public class Rock : Loot
     {
         public Rock(Vector2 position, Map map)
         {

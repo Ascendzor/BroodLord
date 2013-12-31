@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -17,14 +15,14 @@ namespace Objects
     public class Tile
     {
         private List<GameObject> gameObjects;
-        private List<Item> items;
+        private List<Loot> items;
 
         string textureKey;
 
         public Tile(string textureKey)
         {
             gameObjects = new List<GameObject>();
-            items = new List<Item>();
+            items = new List<Loot>();
             this.textureKey = textureKey;
         }
 
@@ -53,14 +51,15 @@ namespace Objects
             {
                 gameObject.Draw(sb);
             }
-            foreach (Item item in items)
+            foreach (Loot item in items)
             {
                 item.Draw(sb);
             }
-            sb.Draw(Data.findTexture[textureKey], new Rectangle((int)position.X, (int)position.Y, Data.findTexture[textureKey].Width, Data.findTexture[textureKey].Height), null, Color.White, 0, Vector2.One, SpriteEffects.None, 0.99999f);
+
+            sb.Draw(Data.FindTexture[textureKey], new Rectangle((int)position.X, (int)position.Y, Data.FindTexture[textureKey].Width, Data.FindTexture[textureKey].Height), null, Color.White, 0, Vector2.One, SpriteEffects.None, 0.99999f);
         }
 
-        public void InsertThing(Item item)
+        public void InsertThing(Loot item)
         {
             items.Add(item);
         }

@@ -35,17 +35,18 @@ namespace BroodLord
 
         protected override void Initialize()
         {
-            Data.findTexture = new Dictionary<string, Texture2D>();
-            Data.findTexture.Add("link", Content.Load<Texture2D>("link"));
-            Data.findTexture.Add("tree", Content.Load<Texture2D>("tree"));
-            Data.findTexture.Add("rock", Content.Load<Texture2D>("rock"));
+            Data.FindTexture = new Dictionary<string, Texture2D>();
+            Data.FindTexture.Add("link", Content.Load<Texture2D>("link"));
+            Data.FindTexture.Add("tree", Content.Load<Texture2D>("tree"));
+            Data.FindTexture.Add("rock", Content.Load<Texture2D>("rock"));
+            Data.FindTexture.Add("treeOutline", Content.Load<Texture2D>("treeOutline"));
 
             for(int x = 1;x<9;x++)
-                Data.findTexture.Add("snow" + x, Content.Load<Texture2D>("snow" + x));
+                Data.FindTexture.Add("snow" + x, Content.Load<Texture2D>("snow" + x));
 
             allToons = new Dictionary<Guid, Toon>();
 
-            map = new Map(Data.tileSize, Data.mapSize, 5); //the renderWidth should be dynamic to the resolution
+            map = new Map(Data.TileSize, Data.MapSize, 5); //the renderWidth should be dynamic to the resolution
             client = new Client(map);
             dude = new Toon(new Vector2(100, 100), "link", map);
             input = new Input(dude, client, map);

@@ -17,6 +17,7 @@ namespace Objects
         protected Vector2 position;
         protected string textureKey;
         protected Guid id;
+        protected Vector2 origin;
         protected int xTileCoord; 
         protected int yTileCoord;
 
@@ -47,10 +48,8 @@ namespace Objects
             return id;
         }
 
-        public void Draw(SpriteBatch sb)
+        public virtual void Draw(SpriteBatch sb)
         {
-            Console.WriteLine(position.Y / (map.GetMapSize() * map.GetTileSize()));
-            sb.Draw(Data.findTexture[textureKey], new Rectangle((int)(position.X - (Data.findTexture[textureKey].Width * 0.5f)), (int)(position.Y - Data.findTexture[textureKey].Height*.85), Data.findTexture[textureKey].Width, Data.findTexture[textureKey].Height), null, Color.White, 0, Vector2.One, SpriteEffects.None, 1-(position.Y / (map.GetMapSize() * map.GetTileSize())));
         }
     }
 }

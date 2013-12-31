@@ -14,7 +14,7 @@ using System.Diagnostics;
 namespace Objects
 {
     [Serializable()]
-    public class Toon : GameObject
+    public class Toon : Mob
     {
         private float movementSpeed;
         private Vector2 goalPosition;
@@ -27,6 +27,7 @@ namespace Objects
             this.movementSpeed = 10;
             this.goalPosition = position;
             this.map = map;
+            this.origin = new Vector2(Data.FindTexture[textureKey].Width / 2, Data.FindTexture[textureKey].Height * 0.85f);
 
             xTileCoord = (int)position.X / map.GetTileSize();
             yTileCoord = (int)position.Y / map.GetTileSize();
@@ -43,15 +44,10 @@ namespace Objects
             if (moveDirection.Length() > 10)
             {
                 moveDirection.Normalize();
-
                 Vector2 newPos = position + moveDirection * movementSpeed;
-
                 newPos = CheckCol(newPos);
-
-                position = newPos;
-                
+                position = newPos;   
             }
-            
         }
 
         public void CheckGrid()

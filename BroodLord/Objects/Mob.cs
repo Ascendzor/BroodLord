@@ -2,26 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 
 namespace Objects
 {
-    public class Doodad : GameObject
+    public class Mob : GameObject
     {
-        protected int collisionWidth;
-        protected Rectangle hitbox;
-
-        public int GetCollisionWidth()
-        {
-            return collisionWidth;
-        }
-
-        public Rectangle GetHitbox()
-        {
-            return hitbox;
-        }
-
         public override void Draw(SpriteBatch sb)
         {
             sb.Draw(Data.FindTexture[textureKey],
@@ -34,8 +21,6 @@ namespace Objects
                     origin,
                     SpriteEffects.None,
                     1 - (position.Y / (map.GetMapSize() * map.GetTileSize())));
-
-            sb.Draw(Data.FindTexture["treeOutline"], hitbox, Color.Blue);
         }
     }
 }

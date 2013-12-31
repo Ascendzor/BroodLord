@@ -48,8 +48,9 @@
     <Compile Include="Doodad.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="Event.cs" />
-    <Compile Include="Item.cs" />
+    <Compile Include="Loot.cs" />
     <Compile Include="Map.cs" />
+    <Compile Include="Mob.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rock.cs" />
     <Compile Include="Tile.cs" />
