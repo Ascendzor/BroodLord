@@ -45,10 +45,10 @@ namespace BroodLord
 
             allToons = new Dictionary<Guid, Toon>();
 
-            map = new Map(this.Content, Data.tileSize, Data.mapSize);
+            map = new Map(Data.tileSize, Data.mapSize, 5); //the renderWidth should be dynamic to the resolution
             client = new Client(map);
             dude = new Toon(new Vector2(100, 100), "link", map);
-            input = new Input(dude, client);
+            input = new Input(dude, client, map);
             camera = new Camera();
 
             Tree bob = new Tree(new Vector2(200, 200), "tree", map);
@@ -100,7 +100,7 @@ namespace BroodLord
                         null,
                         camera.getTransformation(graphics.GraphicsDevice));
 
-            map.Draw(spriteBatch, 5, dude.GetGridCoordX(), dude.GetGridCoordY());
+            map.Draw(spriteBatch, dude.GetGridCoordX(), dude.GetGridCoordY());
 
             spriteBatch.End();
 

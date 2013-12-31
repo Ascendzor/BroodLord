@@ -16,29 +16,46 @@ namespace Objects
 {
     public class Map
     {
-        private ContentManager Content;
-       
-        private Tile[,] Tiles = new Tile[20,20];
+        private Tile[,] tiles = new Tile[20,20];
         private int tileSize;
         private int mapSize;
-        public Map(ContentManager Content,int tileSize,int mapSize)
+        private int renderWidth;
+
+        public Map(int tileSize, int mapSize, int renderWidth)
         {
             this.mapSize = mapSize;
             this.tileSize = tileSize;
-            this.Content = Content;
-            for(int x = 0; x<Tiles.GetLength(0);x++)
-                for (int y = 0; y < Tiles.GetLength(1); y++)
+            this.renderWidth = renderWidth;
+
+            for (int x = 0; x < tiles.GetLength(0); x++)
+            {
+                for (int y = 0; y < tiles.GetLength(1); y++)
                 {
-                    int z = (x + y) / 5 +1;
-                    Tiles[x, y] = new Tile("snow" + z);
+                    int z = (x + y) / 5 + 1;
+                    tiles[x, y] = new Tile("snow" + z);
                     ///to be changed to dynamic
                 }
+            }
+        }
 
+        public List<Tile> getRenderedTiles()
+        {
+            List<Tile> renderedTiles = new List<Tile>();
+
+            for (int x = -renderWidth; x <= renderWidth; x++)
+            {
+                for (int y = -renderWidth; y < renderWidth; y++)
+                {
+                    renderedTiles.Add(tiles[x, y]);
+                }
+            }
+
+            return renderedTiles;
         }
 
         public Tile GetTile(int x, int y)
         {
-            return Tiles[x, y];
+            return tiles[x, y];
         }
 
         public int GetMapSize()
@@ -51,28 +68,19 @@ namespace Objects
             return tileSize;
         }
 
-        public void Draw(SpriteBatch sb, int size, int xCenter, int yCenter)
+        public void Draw(SpriteBatch sb, int xCenter, int yCenter)
         {
             //draw ground
-            for (int x = -size; x <= size; x++)
-                for (int y = -size; y < size; y++)
+            for (int x = -renderWidth; x <= renderWidth; x++)
+            {
+                for (int y = -renderWidth; y < renderWidth; y++)
                 {
                     if (xCenter + x >= 0 && xCenter + x < mapSize && yCenter + y >= 0 && yCenter + y < mapSize)
                     {
-                        Tiles[xCenter + x, yCenter + y].Draw(sb, new Vector2((xCenter + x) * tileSize, (yCenter + y) * tileSize));
+                        tiles[xCenter + x, yCenter + y].Draw(sb, new Vector2((xCenter + x) * tileSize, (yCenter + y) * tileSize));
                     }
                 }
+            }
         }
-
-        public void Draw(SpriteBatch sb)
-        {
-            //draw ground
-            for (int x = 0; x < Tiles.GetLength(0); x++)
-                for (int y = 0; y < Tiles.GetLength(1); y++)
-                {
-                    Tiles[x, y].Draw(sb, new Vector2(x * tileSize, y * tileSize));
-                }
-        } 
-
     }
 }
