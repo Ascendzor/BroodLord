@@ -100,12 +100,6 @@ namespace BroodLord
                         null,
                         camera.getTransformation(graphics.GraphicsDevice));
 
-            
-            foreach (Guid key in allToons.Keys) //probably shoudlnt be here, Currently here for testing but also a bigger problem. Note: How to draw other players without using grid system? by ZacJ
-            {
-                allToons[key].Draw(spriteBatch);
-            }
-
             map.Draw(spriteBatch, 5, dude.GetGridCoordX(), dude.GetGridCoordY());
 
             spriteBatch.End();
