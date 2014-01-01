@@ -18,6 +18,7 @@ namespace Objects
         protected string textureKey;
         protected Guid id;
         protected Vector2 origin;
+        protected Rectangle hitbox;
         protected int xTileCoord; 
         protected int yTileCoord;
 
@@ -31,6 +32,11 @@ namespace Objects
         {
             get { return textureKey; }
             set { textureKey = value; }
+        }
+
+        public Rectangle GetHitbox()
+        {
+            return hitbox;
         }
 
         public int GetGridCoordX()

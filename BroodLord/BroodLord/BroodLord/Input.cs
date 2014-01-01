@@ -62,11 +62,19 @@ namespace BroodLord
             List<Tile> tiles = map.GetRenderedTiles(dude.GetGridCoordX(), dude.GetGridCoordY());
             foreach (Tile tile in tiles)
             {
-                foreach (Doodad doodad in tile.GetDoodads())
+                foreach (GameObject gameObject in tile.GetObjects())
                 {
-                    if (doodad.GetHitbox().Contains((int)clickPosition.X, (int)clickPosition.Y))
+                    if (gameObject is Loot)
                     {
-                        Console.WriteLine("position: " + doodad.Position);
+                        Console.WriteLine("le loot");
+                    }
+                    if (gameObject.GetHitbox().Contains((int)clickPosition.X, (int)clickPosition.Y))
+                    {
+                        Event LeftClickEventz = new Event(dude.GetId(), gameObject.Position);
+                        dude.ReceiveEvent(LeftClickEventz);
+                        client.SendEvent(LeftClickEventz);
+                        Console.WriteLine("le click on le game object");
+                        return;
                     }
                 }
             }

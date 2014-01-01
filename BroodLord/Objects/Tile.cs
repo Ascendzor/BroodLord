@@ -15,14 +15,12 @@ namespace Objects
     public class Tile
     {
         private List<GameObject> gameObjects;
-        private List<Loot> items;
 
         string textureKey;
 
         public Tile(string textureKey)
         {
             gameObjects = new List<GameObject>();
-            items = new List<Loot>();
             this.textureKey = textureKey;
         }
 
@@ -51,17 +49,13 @@ namespace Objects
             {
                 gameObject.Draw(sb);
             }
-            foreach (Loot item in items)
-            {
-                item.Draw(sb);
-            }
 
             sb.Draw(Data.FindTexture[textureKey], new Rectangle((int)position.X, (int)position.Y, Data.FindTexture[textureKey].Width, Data.FindTexture[textureKey].Height), null, Color.White, 0, Vector2.One, SpriteEffects.None, 0.99999f);
         }
 
         public void InsertThing(Loot item)
         {
-            items.Add(item);
+            gameObjects.Add(item);
         }
     }
 }

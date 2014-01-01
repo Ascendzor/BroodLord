@@ -10,16 +10,10 @@ namespace Objects
     public class Doodad : GameObject
     {
         protected int collisionWidth;
-        protected Rectangle hitbox;
 
         public int GetCollisionWidth()
         {
             return collisionWidth;
-        }
-
-        public Rectangle GetHitbox()
-        {
-            return hitbox;
         }
 
         public override void Draw(SpriteBatch sb)

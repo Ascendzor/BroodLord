@@ -9,15 +9,24 @@ namespace Objects
 {
     public class Loot : GameObject
     {
-        protected string textureKeyOnGround;
         protected string textureKeyInBag;
         protected bool onGround;
 
-        public void Draw(SpriteBatch sb)
+        public override void Draw(SpriteBatch sb)
         {
             if (onGround)
             {
-                sb.Draw(Data.FindTexture[textureKeyOnGround], position, Color.White);
+                sb.Draw(Data.FindTexture[textureKey],
+                    new Rectangle((int)position.X,
+                        (int)position.Y,
+                        Data.FindTexture[textureKey].Width, Data.FindTexture[textureKey].Height),
+                    null,
+                    Color.White,
+                    0,   
+                    origin,
+                    SpriteEffects.None,
+                    1 - (position.Y / (map.GetMapSize() * map.GetTileSize())));
+                sb.Draw(Data.FindTexture["treeOutline"], hitbox, Color.Red);
             }
             else
             {
