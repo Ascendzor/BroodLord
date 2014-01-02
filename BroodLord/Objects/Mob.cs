@@ -13,6 +13,8 @@ namespace Objects
         protected Vector2 goalPosition;
         protected int interactRange;
         protected GameObject goalGameObject;
+        protected enum States {Idle, Moving, Fiddling}
+        protected States state;
 
         public void ReceiveEvent(Event leEvent)
         {
@@ -30,23 +32,32 @@ namespace Objects
 
         public void Update()
         {
-            //bad implementation I think but it's working
-            if (goalGameObject != null)
+            if (state == States.Moving)
             {
-                if ((position - goalGameObject.Position).Length() < interactRange)
+                Vector2 moveDirection = goalPosition - position;
+                if (moveDirection.Length() > 10)
                 {
-                    goalPosition = position;
+                    moveDirection.Normalize();
+                    Vector2 newPos = position + moveDirection * movementSpeed;
+                    newPos = CheckCol(newPos);
+                    position = newPos;
+                }
+                CheckGrid();
+
+                //if you are going to a gameObject and you are within interactRange then change state to that interaction of the state
+                if (goalGameObject != null)
+                {
+                    if ((position - goalGameObject.Position).Length() < interactRange)
+                    {
+                        Interact(goalGameObject);
+                        goalPosition = position;
+                    }
                 }
             }
-            Vector2 moveDirection = goalPosition - position;
-            if (moveDirection.Length() > 10)
+            else if (state == States.Fiddling)
             {
-                moveDirection.Normalize();
-                Vector2 newPos = position + moveDirection * movementSpeed;
-                newPos = CheckCol(newPos);
-                position = newPos;
+
             }
-            CheckGrid();
         }
 
         private void CheckGrid()
@@ -106,6 +117,11 @@ namespace Objects
                     }
                 }
             return newPos;
+        }
+
+        private void Interact(GameObject gameObject)
+        {
+            Console.WriteLine("interacting with: " + gameObject.Position);
         }
 
         public override void Draw(SpriteBatch sb)
