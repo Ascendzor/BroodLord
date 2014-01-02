@@ -13,7 +13,7 @@ namespace Objects
         protected Vector2 goalPosition;
         protected int interactRange;
         protected GameObject goalGameObject;
-        protected enum States {Idle, Moving, Fiddling}
+        protected enum States {Idle, Moving, TreeCutting, Attacking, Crafting}
         protected States state;
 
         public void ReceiveEvent(Event leEvent)
@@ -54,7 +54,7 @@ namespace Objects
                     }
                 }
             }
-            else if (state == States.Fiddling)
+            else if (state == States.TreeCutting)
             {
 
             }
