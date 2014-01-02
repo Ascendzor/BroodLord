@@ -41,6 +41,8 @@ namespace BroodLord
             Data.FindTexture.Add("rock", Content.Load<Texture2D>("rock"));
             Data.FindTexture.Add("treeOutline", Content.Load<Texture2D>("treeOutline"));
 
+            Data.FindGameObject = new Dictionary<Guid, GameObject>();
+
             for(int x = 1;x<9;x++)
                 Data.FindTexture.Add("snow" + x, Content.Load<Texture2D>("snow" + x));
 
@@ -57,6 +59,11 @@ namespace BroodLord
             Tree bob2 = new Tree(new Vector2(500, 200), "tree", map);
 
             Rock rock = new Rock(new Vector2(700, 800), map);
+
+            Data.FindGameObject.Add(bob.GetId(), bob);
+            Data.FindGameObject.Add(bob1.GetId(), bob1);
+            Data.FindGameObject.Add(bob2.GetId(), bob2);
+            Data.FindGameObject.Add(rock.GetId(), rock);
 
             graphicsDevice = graphics.GraphicsDevice;
             IsMouseVisible = true;
@@ -78,11 +85,9 @@ namespace BroodLord
             foreach (Guid key in allToons.Keys)
             {
                 allToons[key].Update();
-                allToons[key].CheckGrid();
             }
 
             dude.Update();
-            dude.CheckGrid();
 
             camera.update(dude.Position);
 

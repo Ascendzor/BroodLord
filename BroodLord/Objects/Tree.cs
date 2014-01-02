@@ -11,6 +11,7 @@ namespace Objects
     {
         public Tree(Vector2 position, string textureKey, Map map)
         {
+            this.id = Guid.NewGuid();
             this.position = position;
             this.textureKey = textureKey;
             this.map = map;

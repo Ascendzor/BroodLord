@@ -14,6 +14,7 @@ namespace Objects
     public class Data
     {
         public static Dictionary<string, Texture2D> FindTexture;
+        public static Dictionary<Guid, GameObject> FindGameObject;
         public static int ToonRadius = 28;
         public static int TreeRadius = 56;
         public static int TileSize = 84;

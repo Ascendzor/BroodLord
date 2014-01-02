@@ -11,6 +11,7 @@ namespace Objects
     {
         public Rock(Vector2 position, Map map)
         {
+            this.id = Guid.NewGuid();
             this.map = map;
             this.position = position;
             this.textureKey = "rock";

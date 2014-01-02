@@ -8,13 +8,15 @@ namespace Objects
     [Serializable()]
     public class Event
     {
-        public Guid id;
-        public object value;
+        public Guid Id;
+        public string Type;
+        public object Value;
 
-        public Event(Guid id, object value)
+        public Event(Guid id, string type, object value)
         {
-            this.id = id;
-            this.value = value;
+            this.Id = id;
+            this.Type = type;
+            this.Value = value;
         }
     }
 }

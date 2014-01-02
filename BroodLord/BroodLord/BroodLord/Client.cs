@@ -30,7 +30,7 @@ namespace BroodLord
         public void ReceiveEvent()
         {
             stream = client.GetStream();
-            byte[] bytes = new byte[1024];
+            byte[] bytes = new byte[2048];
             Event leEvent = null;
             try
             {
@@ -42,11 +42,11 @@ namespace BroodLord
                     memStream.Seek(0, SeekOrigin.Begin);
                     leEvent = (Event)new BinaryFormatter().Deserialize(memStream);
 
-                    if (!Game1.allToons.ContainsKey(leEvent.id))
+                    if (!Game1.allToons.ContainsKey(leEvent.Id))
                     {
-                        Game1.allToons.Add(leEvent.id, new Toon(new Microsoft.Xna.Framework.Vector2(100, 100), "link", map));
+                        Game1.allToons.Add(leEvent.Id, new Toon(new Microsoft.Xna.Framework.Vector2(100, 100), "link", map));
                     }
-                    Game1.allToons[leEvent.id].ReceiveEvent(leEvent);
+                    Game1.allToons[leEvent.Id].ReceiveEvent(leEvent);
                 }
             }
             catch (Exception)
@@ -61,12 +61,11 @@ namespace BroodLord
             try
             {
                 new BinaryFormatter().Serialize(ms, leEvent);
-
                 byte[] bytes = ms.ToArray();
                 stream.Write(bytes, 0, bytes.Length);
                 ms.Close();
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 Console.WriteLine("something died :( Client=>SendEvent(Event)");
             }

@@ -60,26 +60,25 @@ namespace BroodLord
             clickPosition = dude.Position + clickPosition;
 
             List<Tile> tiles = map.GetRenderedTiles(dude.GetGridCoordX(), dude.GetGridCoordY());
+
+
+            //NOT YET IMPLEMENTED: find all gameObjects that you have clicked on, find which one you are closest to the center of and click on that one, this allows you to click on something behind something else
             foreach (Tile tile in tiles)
             {
                 foreach (GameObject gameObject in tile.GetObjects())
                 {
-                    if (gameObject is Loot)
-                    {
-                        Console.WriteLine("le loot");
-                    }
+                    //if you clicked on a game object, go to that game object
                     if (gameObject.GetHitbox().Contains((int)clickPosition.X, (int)clickPosition.Y))
                     {
-                        Event LeftClickEventz = new Event(dude.GetId(), gameObject.Position);
+                        Event LeftClickEventz = new Event(dude.GetId(), "moveToGameObject", gameObject.GetId());
                         dude.ReceiveEvent(LeftClickEventz);
                         client.SendEvent(LeftClickEventz);
-                        Console.WriteLine("le click on le game object");
                         return;
                     }
                 }
             }
 
-            Event LeftClickEvent = new Event(dude.GetId(), clickPosition);
+            Event LeftClickEvent = new Event(dude.GetId(), "moveToPosition", clickPosition);
             dude.ReceiveEvent(LeftClickEvent);
             client.SendEvent(LeftClickEvent);
         }
