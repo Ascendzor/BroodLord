@@ -29,35 +29,31 @@ namespace Objects
                 goalPosition = (Vector2)leEvent.Value;
             }
         }
-
+        
+        //All non-event behaviour is handled in Update.
+        //This means basically only Moving is handled in Update.
+        //Check if the move is unnecessary (close enough to target)
+        //move and update the grid with where you have moved
         public void Update()
         {
-            if (state == States.Moving)
+            Vector2 moveDirection = goalPosition - position;
+            if (moveDirection.Length() < 10)
             {
-                Vector2 moveDirection = goalPosition - position;
-                if (moveDirection.Length() > 10)
+                return;
+            }
+            if (goalGameObject != null)
+            {
+                if ((position - goalGameObject.Position).Length() < interactRange)
                 {
-                    moveDirection.Normalize();
-                    Vector2 newPos = position + moveDirection * movementSpeed;
-                    newPos = CheckCol(newPos);
-                    position = newPos;
-                }
-                CheckGrid();
-
-                //if you are going to a gameObject and you are within interactRange then change state to that interaction of the state
-                if (goalGameObject != null)
-                {
-                    if ((position - goalGameObject.Position).Length() < interactRange)
-                    {
-                        Interact(goalGameObject);
-                        goalPosition = position;
-                    }
+                    return;
                 }
             }
-            else if (state == States.TreeCutting)
-            {
-
-            }
+            
+            moveDirection.Normalize();
+            Vector2 newPos = position + moveDirection * movementSpeed;
+            newPos = CheckCol(newPos);
+            position = newPos;
+            CheckGrid();
         }
 
         private void CheckGrid()
@@ -121,7 +117,17 @@ namespace Objects
 
         private void Interact(GameObject gameObject)
         {
-            Console.WriteLine("interacting with: " + gameObject.Position);
+            if (gameObject is Tree)
+            {
+                InteractWithTree((Tree)gameObject);
+            }
+        }
+
+        private void InteractWithTree(Tree tree)
+        {
+            state = States.TreeCutting;
+            //play the swing axe animation
+
         }
 
         public override void Draw(SpriteBatch sb)

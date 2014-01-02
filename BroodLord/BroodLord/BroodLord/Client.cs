@@ -30,7 +30,7 @@ namespace BroodLord
         public void ReceiveEvent()
         {
             stream = client.GetStream();
-            byte[] bytes = new byte[2048];
+            byte[] bytes = new byte[1024];
             Event leEvent = null;
             try
             {
