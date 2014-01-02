@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Objects;
 using System.Net.Sockets;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
 
-namespace BroodLord
+namespace Objects
 {
-    class Client
+    public class Client
     {
         int port;
         private TcpClient client;
@@ -42,11 +41,12 @@ namespace BroodLord
                     memStream.Seek(0, SeekOrigin.Begin);
                     leEvent = (Event)new BinaryFormatter().Deserialize(memStream);
 
-                    if (!Game1.allToons.ContainsKey(leEvent.Id))
+                    if (!Data.FindGameObject.ContainsKey(leEvent.Id))
                     {
-                        Game1.allToons.Add(leEvent.Id, new Toon(new Microsoft.Xna.Framework.Vector2(100, 100), "link", map));
+                        Console.WriteLine("test");
+                        new Toon(Guid.NewGuid(), new Microsoft.Xna.Framework.Vector2(100, 100), "link", map);
                     }
-                    Game1.allToons[leEvent.Id].ReceiveEvent(leEvent);
+                    Data.FindGameObject[leEvent.Id].ReceiveEvent(leEvent);
                 }
             }
             catch (Exception)

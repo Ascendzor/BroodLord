@@ -57,5 +57,9 @@ namespace Objects
         public virtual void Draw(SpriteBatch sb)
         {
         }
+
+        public virtual void ReceiveEvent(Event leEvent)
+        {
+        }
     }
 }

@@ -16,9 +16,9 @@ namespace Objects
     [Serializable()]
     public class Toon : Mob
     {
-        public Toon(Vector2 position, string textureKey, Map map)
+        public Toon(Guid id, Vector2 position, string textureKey, Map map)
         {
-            this.id = Guid.NewGuid();
+            this.id = id;
             this.position = position;
             this.textureKey = textureKey;
             this.movementSpeed = 10;
@@ -30,6 +30,8 @@ namespace Objects
 
             xTileCoord = (int)position.X / map.GetTileSize();
             yTileCoord = (int)position.Y / map.GetTileSize();
+
+            Data.AddGameObject(this);
         }
     }
 }

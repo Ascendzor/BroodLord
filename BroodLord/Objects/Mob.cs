@@ -16,7 +16,7 @@ namespace Objects
         protected enum States {Idle, Moving, TreeCutting, Attacking, Crafting}
         protected States state;
 
-        public void ReceiveEvent(Event leEvent)
+        public override void ReceiveEvent(Event leEvent)
         {
             if (leEvent.Type == "moveToGameObject")
             {
@@ -126,8 +126,8 @@ namespace Objects
         private void InteractWithTree(Tree tree)
         {
             state = States.TreeCutting;
+            //¿submit event?
             //play the swing axe animation
-
         }
 
         public override void Draw(SpriteBatch sb)

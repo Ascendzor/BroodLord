@@ -35,22 +35,22 @@ namespace BroodLord
 
         protected override void Initialize()
         {
+            Data.Initialize();
+
             Data.FindTexture = new Dictionary<string, Texture2D>();
             Data.FindTexture.Add("link", Content.Load<Texture2D>("link"));
             Data.FindTexture.Add("tree", Content.Load<Texture2D>("tree"));
             Data.FindTexture.Add("rock", Content.Load<Texture2D>("rock"));
             Data.FindTexture.Add("treeOutline", Content.Load<Texture2D>("treeOutline"));
 
-            Data.FindGameObject = new Dictionary<Guid, GameObject>();
-
-            for(int x = 1;x<9;x++)
+            for (int x = 1; x < 9; x++)
+            {
                 Data.FindTexture.Add("snow" + x, Content.Load<Texture2D>("snow" + x));
-
-            allToons = new Dictionary<Guid, Toon>();
+            }
 
             map = new Map(Data.TileSize, Data.MapSize, 5); //the renderWidth should be dynamic to the resolution
             client = new Client(map);
-            dude = new Toon(new Vector2(100, 100), "link", map);
+            dude = new Toon(Guid.NewGuid(), new Vector2(100, 100), "link", map);
             input = new Input(dude, client, map);
             camera = new Camera();
 
@@ -59,11 +59,6 @@ namespace BroodLord
             Tree bob2 = new Tree(new Vector2(500, 200), "tree", map);
 
             Rock rock = new Rock(new Vector2(700, 800), map);
-
-            Data.FindGameObject.Add(bob.GetId(), bob);
-            Data.FindGameObject.Add(bob1.GetId(), bob1);
-            Data.FindGameObject.Add(bob2.GetId(), bob2);
-            Data.FindGameObject.Add(rock.GetId(), rock);
 
             graphicsDevice = graphics.GraphicsDevice;
             IsMouseVisible = true;
@@ -82,12 +77,10 @@ namespace BroodLord
         {
             input.Update();
 
-            foreach (Guid key in allToons.Keys)
+            foreach (Mob mob in Data.FindMob.Values)
             {
-                allToons[key].Update();
+                mob.Update();
             }
-
-            dude.Update();
 
             camera.update(dude.Position);
 
