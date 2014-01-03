@@ -14,16 +14,16 @@ namespace BroodLord
         private MouseState oldState;
         private Toon dude;
         private Client client;
-        private Map map;
+        private Map Map;
 
         private Dictionary<Keys, Action> keyboardKeys;
 
-        public Input(Toon dude, Client client, Map map)
+        public Input(Toon dude, Client client, Map Map)
         {
             oldState = Mouse.GetState();
             this.dude = dude;
             this.client = client;
-            this.map = map;
+            this.Map = Map;
 
             this.keyboardKeys = new Dictionary<Keys, Action>();
         }
@@ -59,7 +59,7 @@ namespace BroodLord
             Vector2 clickPosition = new Vector2(nowState.X - (Game1.graphicsDevice.Viewport.Width * 0.5f), nowState.Y - (Game1.graphicsDevice.Viewport.Height * 0.5f));
             clickPosition = dude.Position + clickPosition;
 
-            List<Tile> tiles = map.GetRenderedTiles(dude.GetGridCoordX(), dude.GetGridCoordY());
+            List<Tile> tiles = Map.GetRenderedTiles(dude.GetGridCoordX(), dude.GetGridCoordY());
 
             //NOT YET IMPLEMENTED: find all gameObjects that you have clicked on, find which one you are closest to the center of and click on that one, this allows you to click on something behind something else
             foreach (Tile tile in tiles)

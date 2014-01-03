@@ -16,16 +16,16 @@ namespace Objects
 {
     public class Map
     {
-        private Tile[,] tiles = new Tile[20,20];
-        private int tileSize;
-        private int mapSize;
-        private int renderWidth;
+        private static Tile[,] tiles = new Tile[20, 20];
+        private static int tileSize;
+        private static int MapSize;
+        private static int renderWidth;
 
-        public Map(int tileSize, int mapSize, int renderWidth)
+        public static void Initialize(int _tileSize, int _MapSize, int _renderWidth)
         {
-            this.mapSize = mapSize;
-            this.tileSize = tileSize;
-            this.renderWidth = renderWidth;
+            MapSize = _MapSize;
+            tileSize = _tileSize;
+            renderWidth = _renderWidth;
 
             for (int x = 0; x < tiles.GetLength(0); x++)
             {
@@ -38,7 +38,7 @@ namespace Objects
             }
         }
 
-        public List<Tile> GetRenderedTiles(int xCenter, int yCenter)
+        public static List<Tile> GetRenderedTiles(int xCenter, int yCenter)
         {
             List<Tile> renderedTiles = new List<Tile>();
             
@@ -46,7 +46,7 @@ namespace Objects
             {
                 for (int y = -renderWidth; y < renderWidth; y++)
                 {
-                    if (xCenter + x >= 0 && xCenter + x < mapSize && yCenter + y >= 0 && yCenter + y < mapSize)
+                    if (xCenter + x >= 0 && xCenter + x < MapSize && yCenter + y >= 0 && yCenter + y < MapSize)
                     {
                         renderedTiles.Add(tiles[xCenter + x, yCenter + y]);
                     }
@@ -56,29 +56,29 @@ namespace Objects
             return renderedTiles;
         }
 
-        public Tile GetTile(int x, int y)
+        public static Tile GetTile(int x, int y)
         {
             return tiles[x, y];
         }
 
-        public int GetMapSize()
+        public static int GetMapSize()
         {
-            return mapSize;
+            return MapSize;
         }
 
-        public int GetTileSize()
+        public static int GetTileSize()
         {
             return tileSize;
         }
 
-        public void Draw(SpriteBatch sb, int xCenter, int yCenter)
+        public static void Draw(SpriteBatch sb, int xCenter, int yCenter)
         {
             //draw ground
             for (int x = -renderWidth; x <= renderWidth; x++)
             {
                 for (int y = -renderWidth; y < renderWidth; y++)
                 {
-                    if (xCenter + x >= 0 && xCenter + x < mapSize && yCenter + y >= 0 && yCenter + y < mapSize)
+                    if (xCenter + x >= 0 && xCenter + x < MapSize && yCenter + y >= 0 && yCenter + y < MapSize)
                     {
                         tiles[xCenter + x, yCenter + y].Draw(sb, new Vector2((xCenter + x) * tileSize, (yCenter + y) * tileSize));
                     }

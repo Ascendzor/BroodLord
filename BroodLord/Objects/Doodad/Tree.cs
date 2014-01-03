@@ -12,27 +12,32 @@ namespace Objects
         private int health;
         private bool isStump;
 
-        public Tree(Vector2 position, string textureKey, Map map, Client client)
+        public Tree(Vector2 position, string textureKey, Client client)
         {
             this.id = Guid.NewGuid();
             this.position = position;
             this.textureKey = textureKey;
-            this.map = map;
-            this.xTileCoord = (int)position.X / map.GetTileSize();
-            this.yTileCoord = (int)position.Y / map.GetTileSize();
+            this.Map = Map;
+            this.xTileCoord = (int)position.X / Map.GetTileSize();
+            this.yTileCoord = (int)position.Y / Map.GetTileSize();
             this.collisionWidth = Data.TreeRadius;
             this.origin = new Vector2(Data.FindTexture[textureKey].Width / 2, Data.FindTexture[textureKey].Height * 0.85f);
             this.hitbox = new Rectangle((int)(position.X - origin.X), (int)(position.Y - origin.Y), Data.FindTexture[textureKey].Width, Data.FindTexture[textureKey].Height);
             this.client = client;
             this.health = 999;
 
-            map.GetTile(xTileCoord, yTileCoord).GetObjects().Add(this);
+            Map.GetTile(xTileCoord, yTileCoord).GetObjects().Add(this);
 
             Data.AddGameObject(this);
         }
 
         public override void ReceiveEvent(Event leEvent)
         {
+            if (isStump)
+            {
+                return;
+            }
+
             if (leEvent is TookDamage)
             {
                 TookDamage td = (TookDamage)leEvent;
@@ -40,16 +45,23 @@ namespace Objects
 
                 if (health <= 0)
                 {
-                    Console.WriteLine("tree rip in peace");
                     isStump = true;
                     textureKey = "stump";
+
+                    DropLoot();
                 }
             }
         }
 
+        //made this into a method because it's going to changed a lot. This is just a proof of concept.
+        private void DropLoot()
+        {
+            new Wood(position + new Vector2(-20, 5));
+            new Wood(position + new Vector2(20, 20));
+        }
+
         public void GotChopped(Toon dude)
         {
-            Console.WriteLine("chopped by: " + dude.GetId());
             client.SendEvent(new TookDamage(id, dude.GetAttackDamage()));
         }
     }

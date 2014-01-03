@@ -64,18 +64,18 @@ namespace Objects
 
         private void CheckGrid()
         {
-            if (position.X < 0 || position.X > map.GetMapSize() * map.GetTileSize() || position.Y < 0 || position.Y > map.GetMapSize() * map.GetTileSize())//temp escape stopping code
+            if (position.X < 0 || position.X > Map.GetMapSize() * Map.GetTileSize() || position.Y < 0 || position.Y > Map.GetMapSize() * Map.GetTileSize())//temp escape stopping code
             {
                 position = new Vector2(50, 50);
             }
 
-            int xNewCoords = (int)position.X / map.GetTileSize();
-            int yNewCoords = (int)position.Y / map.GetTileSize();
+            int xNewCoords = (int)position.X / Map.GetTileSize();
+            int yNewCoords = (int)position.Y / Map.GetTileSize();
 
             if (xTileCoord != xNewCoords || yTileCoord != yNewCoords)
             {
-                map.GetTile(xTileCoord, yTileCoord).GetObjects().Remove(this);
-                map.GetTile(xNewCoords, yNewCoords).GetObjects().Add(this);
+                Map.GetTile(xTileCoord, yTileCoord).GetObjects().Remove(this);
+                Map.GetTile(xNewCoords, yNewCoords).GetObjects().Add(this);
                 xTileCoord = xNewCoords;
                 yTileCoord = yNewCoords;
             }
@@ -89,9 +89,9 @@ namespace Objects
                     int xTile = xTileCoord + x;
                     int yTile = yTileCoord + y;
 
-                    if (xTile > 0 && xTile < map.GetMapSize() && yTile > 0 && yTile < map.GetMapSize())
+                    if (xTile > 0 && xTile < Map.GetMapSize() && yTile > 0 && yTile < Map.GetMapSize())
                     {
-                        foreach (Doodad gameObject in map.GetTile(xTile, yTile).GetDoodads())
+                        foreach (Doodad gameObject in Map.GetTile(xTile, yTile).GetDoodads())
                         {
                             if ((position.X > gameObject.Position.X - gameObject.GetCollisionWidth() && position.X < gameObject.Position.X + gameObject.GetCollisionWidth()) ||
                                 (newPos.X > gameObject.Position.X - gameObject.GetCollisionWidth() && newPos.X < gameObject.Position.X + gameObject.GetCollisionWidth()))
@@ -137,7 +137,7 @@ namespace Objects
                     0,
                     origin,
                     SpriteEffects.None,
-                    1 - (position.Y / (map.GetMapSize() * map.GetTileSize())));
+                    1 - (position.Y / (Map.GetMapSize() * Map.GetTileSize())));
         }
     }
 }

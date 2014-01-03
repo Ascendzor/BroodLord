@@ -34,6 +34,7 @@ namespace Objects
             Data.FindTexture.Add("link", Content.Load<Texture2D>("link"));
             Data.FindTexture.Add("tree", Content.Load<Texture2D>("tree"));
             Data.FindTexture.Add("rock", Content.Load<Texture2D>("rock"));
+            Data.FindTexture.Add("wood", Content.Load<Texture2D>("wood"));
             Data.FindTexture.Add("treeOutline", Content.Load<Texture2D>("treeOutline"));
             Data.FindTexture.Add("stump", Content.Load<Texture2D>("stump"));
             for (int x = 1; x < 9; x++)

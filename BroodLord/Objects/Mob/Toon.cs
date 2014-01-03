@@ -20,22 +20,22 @@ namespace Objects
         private DateTime lastInteractionTimestamp;
         private DateTime offCooldown;
 
-        public Toon(Guid id, Vector2 position, string textureKey, Map map, Client client)
+        public Toon(Guid id, Vector2 position, string textureKey, Map Map, Client client)
         {
             this.id = id;
             this.position = position;
             this.textureKey = textureKey;
             this.movementSpeed = 10;
             this.goalPosition = position;
-            this.map = map;
+            this.Map = Map;
             this.origin = new Vector2(Data.FindTexture[textureKey].Width / 2, Data.FindTexture[textureKey].Height * 0.85f);
             this.interactRange = 100;
             this.client = client;
             this.attackDamage = 200;
             this.interactionCooldown = 1000;
 
-            xTileCoord = (int)position.X / map.GetTileSize();
-            yTileCoord = (int)position.Y / map.GetTileSize();
+            xTileCoord = (int)position.X / Map.GetTileSize();
+            yTileCoord = (int)position.Y / Map.GetTileSize();
 
             lastInteractionTimestamp = DateTime.Now;
 

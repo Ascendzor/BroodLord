@@ -21,7 +21,7 @@ namespace BroodLord
         Input input;
         Toon dude;
         Camera camera;
-        Map map;
+        Map Map;
 
         public static Dictionary<Guid, Toon> allToons;
 
@@ -37,17 +37,17 @@ namespace BroodLord
         {
             Data.Initialize(Content);
 
-            map = new Map(Data.TileSize, Data.MapSize, 5); //the renderWidth should be dynamic to the resolution
-            client = new Client(map);
-            dude = new Toon(Guid.NewGuid(), new Vector2(100, 100), "link", map, client);
-            input = new Input(dude, client, map);
+            Map.Initialize(Data.TileSize, Data.MapSize, 5); //the renderWidth should be dynamic to the resolution
+            client = new Client(Map);
+            dude = new Toon(Guid.NewGuid(), new Vector2(100, 100), "link", Map, client);
+            input = new Input(dude, client, Map);
             camera = new Camera();
 
-            Tree bob = new Tree(new Vector2(200, 200), "tree", map, client);
-            Tree bob1 = new Tree(new Vector2(400, 450), "tree", map, client);
-            Tree bob2 = new Tree(new Vector2(500, 200), "tree", map, client);
+            new Tree(new Vector2(200, 200), "tree", client);
+            new Tree(new Vector2(400, 450), "tree", client);
+            new Tree(new Vector2(500, 200), "tree", client);
 
-            Rock rock = new Rock(new Vector2(700, 800), map);
+            new Rock(new Vector2(700, 800), Map);
 
             graphicsDevice = graphics.GraphicsDevice;
             IsMouseVisible = true;
@@ -88,7 +88,7 @@ namespace BroodLord
                         null,
                         camera.getTransformation(graphics.GraphicsDevice));
 
-            map.Draw(spriteBatch, dude.GetGridCoordX(), dude.GetGridCoordY());
+            Map.Draw(spriteBatch, dude.GetGridCoordX(), dude.GetGridCoordY());
 
             spriteBatch.End();
 
