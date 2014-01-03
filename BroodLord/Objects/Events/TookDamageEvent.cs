@@ -8,9 +8,9 @@ namespace Objects
     [Serializable()]
     public class TookDamage : Event
     {
-        public int DamageTaken;
+        public double DamageTaken;
 
-        public TookDamage(Guid id, int damageTaken)
+        public TookDamage(Guid id, double damageTaken)
         {
             this.Id = id;
             this.DamageTaken = damageTaken;

@@ -13,7 +13,6 @@ namespace Objects
 {
     public class GameObject
     {
-        protected Map Map;
         protected Vector2 position;
         protected string textureKey;
         protected Guid id;

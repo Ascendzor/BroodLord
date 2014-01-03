@@ -9,10 +9,9 @@ namespace Objects
 {
     public class Rock : Loot
     {
-        public Rock(Vector2 position, Map Map)
+        public Rock(Vector2 position)
         {
             this.id = Guid.NewGuid();
-            this.Map = Map;
             this.position = position;
             this.textureKey = "rock";
             this.textureKeyInBag = "rockBag";

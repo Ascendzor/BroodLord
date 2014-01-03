@@ -14,16 +14,14 @@ namespace BroodLord
         private MouseState oldState;
         private Toon dude;
         private Client client;
-        private Map Map;
 
         private Dictionary<Keys, Action> keyboardKeys;
 
-        public Input(Toon dude, Client client, Map Map)
+        public Input(Toon dude, Client client)
         {
             oldState = Mouse.GetState();
             this.dude = dude;
             this.client = client;
-            this.Map = Map;
 
             this.keyboardKeys = new Dictionary<Keys, Action>();
         }

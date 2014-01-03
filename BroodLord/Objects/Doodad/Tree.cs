@@ -17,7 +17,6 @@ namespace Objects
             this.id = Guid.NewGuid();
             this.position = position;
             this.textureKey = textureKey;
-            this.Map = Map;
             this.xTileCoord = (int)position.X / Map.GetTileSize();
             this.yTileCoord = (int)position.Y / Map.GetTileSize();
             this.collisionWidth = Data.TreeRadius;
@@ -41,7 +40,7 @@ namespace Objects
             if (leEvent is TookDamage)
             {
                 TookDamage td = (TookDamage)leEvent;
-                health -= td.DamageTaken;
+                health -= (int)td.DamageTaken;
 
                 if (health <= 0)
                 {

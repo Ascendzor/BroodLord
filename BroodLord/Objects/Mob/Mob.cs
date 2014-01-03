@@ -15,6 +15,10 @@ namespace Objects
         protected GameObject goalGameObject;
         protected enum States {Idle, Moving, TreeCutting, Attacking, Crafting}
         protected States state;
+        protected double attackDamage;
+        protected double interactionCooldown;
+        protected DateTime lastInteractionTimestamp;
+        protected DateTime interactionOffCooldown;
 
         public override void ReceiveEvent(Event leEvent)
         {

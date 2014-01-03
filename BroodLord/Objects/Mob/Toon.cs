@@ -15,19 +15,13 @@ namespace Objects
     [Serializable()]
     public class Toon : Mob
     {
-        private int attackDamage;
-        private double interactionCooldown;
-        private DateTime lastInteractionTimestamp;
-        private DateTime offCooldown;
-
-        public Toon(Guid id, Vector2 position, string textureKey, Map Map, Client client)
+        public Toon(Guid id, Vector2 position, string textureKey, Client client)
         {
             this.id = id;
             this.position = position;
             this.textureKey = textureKey;
             this.movementSpeed = 10;
             this.goalPosition = position;
-            this.Map = Map;
             this.origin = new Vector2(Data.FindTexture[textureKey].Width / 2, Data.FindTexture[textureKey].Height * 0.85f);
             this.interactRange = 100;
             this.client = client;
@@ -38,13 +32,14 @@ namespace Objects
             yTileCoord = (int)position.Y / Map.GetTileSize();
 
             lastInteractionTimestamp = DateTime.Now;
+            interactionOffCooldown = DateTime.Now;
 
             Data.AddGameObject(this);
         }
 
         protected override void Interact(GameObject gameObject)
         {
-            if (DateTime.Now.CompareTo(offCooldown) == -1)
+            if (DateTime.Now.CompareTo(interactionOffCooldown) == -1)
             {
                 return;
             }
@@ -63,14 +58,14 @@ namespace Objects
 
         private void InteractWithTree(Tree tree)
         {
-            offCooldown = DateTime.Now.AddMilliseconds(interactionCooldown); //<--- this allows the interaction to define the cooldown, ie chopping may take longer than attacking
+            interactionOffCooldown = DateTime.Now.AddMilliseconds(interactionCooldown); //<--- this allows the interaction to define the cooldown, ie chopping may take longer than attacking
             base.Interact(tree);
             Console.WriteLine("Toon chopped");
             client.SendEvent(new ChopEvent(id));
             tree.GotChopped(this);
         }
 
-        public int GetAttackDamage()
+        public double GetAttackDamage()
         {
             return attackDamage;
         }

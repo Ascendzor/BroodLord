@@ -14,16 +14,13 @@ namespace Objects
         int port;
         private TcpClient client;
         private NetworkStream stream;
-        private Map Map;
 
-        public Client(Map Map)
+        public Client()
         {
             port = 41337;
             client = new TcpClient("127.0.0.1", port);
 
             new Thread(ReceiveEvent).Start();
-
-            this.Map = Map;
         }
 
         public void ReceiveEvent()
@@ -43,7 +40,7 @@ namespace Objects
 
                     if (!Data.FindGameObject.ContainsKey(leEvent.Id))
                     {
-                        new Toon(Guid.NewGuid(), new Microsoft.Xna.Framework.Vector2(100, 100), "link", Map, this);
+                        new Toon(Guid.NewGuid(), new Microsoft.Xna.Framework.Vector2(100, 100), "link", this);
                     }
                     Data.FindGameObject[leEvent.Id].ReceiveEvent(leEvent);
                 }

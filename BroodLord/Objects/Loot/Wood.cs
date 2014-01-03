@@ -11,7 +11,6 @@ namespace Objects
         public Wood(Vector2 position)
         {
             this.id = Guid.NewGuid();
-            this.Map = Map;
             this.position = position;
             this.textureKey = "wood";
             this.textureKeyInBag = "woodBag";

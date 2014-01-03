@@ -24,11 +24,6 @@ namespace Server
             streams = new List<NetworkStream>();
         }
 
-        public void Run()
-        {
-            ListenForNewConnections();
-        }
-
         public void ListenForNewConnections()
         {
             listener.Start();
@@ -80,10 +75,17 @@ namespace Server
             }
         }
 
+        private void Play()
+        {
+            
+        }
+
         static void Main(string[] args)
         {
             Server server = new Server();
-            server.Run();
+            new Thread(() => server.ListenForNewConnections()).Start();
+
+            server.Play();
         }
     }
 }

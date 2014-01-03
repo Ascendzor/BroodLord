@@ -21,7 +21,6 @@ namespace BroodLord
         Input input;
         Toon dude;
         Camera camera;
-        Map Map;
 
         public static Dictionary<Guid, Toon> allToons;
 
@@ -38,16 +37,16 @@ namespace BroodLord
             Data.Initialize(Content);
 
             Map.Initialize(Data.TileSize, Data.MapSize, 5); //the renderWidth should be dynamic to the resolution
-            client = new Client(Map);
-            dude = new Toon(Guid.NewGuid(), new Vector2(100, 100), "link", Map, client);
-            input = new Input(dude, client, Map);
+            client = new Client();
+            dude = new Toon(Guid.NewGuid(), new Vector2(100, 100), "link", client);
+            input = new Input(dude, client);
             camera = new Camera();
 
             new Tree(new Vector2(200, 200), "tree", client);
             new Tree(new Vector2(400, 450), "tree", client);
             new Tree(new Vector2(500, 200), "tree", client);
 
-            new Rock(new Vector2(700, 800), Map);
+            new Rock(new Vector2(700, 800));
 
             graphicsDevice = graphics.GraphicsDevice;
             IsMouseVisible = true;
