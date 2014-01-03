@@ -52,6 +52,7 @@ namespace Objects
 
         private void InteractWithTree(Tree tree)
         {
+            base.Interact(tree);
             Console.WriteLine("Toon chopped");
             client.SendEvent(new ChopEvent(id));
             tree.GotChopped(this);

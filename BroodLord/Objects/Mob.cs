@@ -31,6 +31,7 @@ namespace Objects
             }
             else if (leEvent is ChopEvent)
             {
+                //do chop animation
             }
         }
         
@@ -122,6 +123,7 @@ namespace Objects
 
         protected virtual void Interact(GameObject gameObject)
         {
+            //start cooldown
         }
 
         public override void Draw(SpriteBatch sb)
