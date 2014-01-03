@@ -10,13 +10,14 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using System.Diagnostics;
 
-
 namespace Objects
 {
     [Serializable()]
     public class Toon : Mob
     {
-        private int attackDamage = 100;
+        private int attackDamage;
+        private double interactionCooldown;
+        private DateTime lastInteractionTimestamp;
 
         public Toon(Guid id, Vector2 position, string textureKey, Map map, Client client)
         {
@@ -30,15 +31,24 @@ namespace Objects
             this.interactRange = 100;
             this.client = client;
             this.attackDamage = 100;
+            this.interactionCooldown = 1000;
 
             xTileCoord = (int)position.X / map.GetTileSize();
             yTileCoord = (int)position.Y / map.GetTileSize();
+
+            lastInteractionTimestamp = DateTime.Now;
 
             Data.AddGameObject(this);
         }
 
         protected override void Interact(GameObject gameObject)
         {
+            if ((DateTime.Now - lastInteractionTimestamp).TotalMilliseconds < interactionCooldown)
+            {
+                return;
+            }
+            lastInteractionTimestamp = DateTime.Now;
+
             base.Interact(gameObject);
 
             goalGameObject = null; //<-- this is to stop you from interacting every frame, this may be removed once a cooldown has been introduced
