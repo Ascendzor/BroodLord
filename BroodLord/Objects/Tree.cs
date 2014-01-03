@@ -47,7 +47,7 @@ namespace Objects
         public void GotChopped(Toon dude)
         {
             Console.WriteLine("chopped by: " + dude.GetId());
-            client.SendEvent(new TookDamage(id, 100)); //<-- this int value should be made off the Toons chop capabilities
+            client.SendEvent(new TookDamage(id, dude.GetAttackDamage()));
         }
     }
 }

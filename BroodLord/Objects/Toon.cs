@@ -16,6 +16,8 @@ namespace Objects
     [Serializable()]
     public class Toon : Mob
     {
+        private int attackDamage = 100;
+
         public Toon(Guid id, Vector2 position, string textureKey, Map map, Client client)
         {
             this.id = id;
@@ -27,6 +29,7 @@ namespace Objects
             this.origin = new Vector2(Data.FindTexture[textureKey].Width / 2, Data.FindTexture[textureKey].Height * 0.85f);
             this.interactRange = 100;
             this.client = client;
+            this.attackDamage = 100;
 
             xTileCoord = (int)position.X / map.GetTileSize();
             yTileCoord = (int)position.Y / map.GetTileSize();
@@ -52,6 +55,11 @@ namespace Objects
             Console.WriteLine("Toon chopped");
             client.SendEvent(new ChopEvent(id));
             tree.GotChopped(this);
+        }
+
+        public int GetAttackDamage()
+        {
+            return attackDamage;
         }
     }
 }
