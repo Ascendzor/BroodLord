@@ -23,12 +23,23 @@ namespace Objects
         public static int TileSize = 84;
         public static int MapSize = 20;
 
-        public static void Initialize()
+        public static void Initialize(ContentManager Content)
         {
             FindGameObject = new Dictionary<Guid, GameObject>();
             FindMob = new Dictionary<Guid, Mob>();
             FindLoot = new Dictionary<Guid, Loot>();
             FindDoodad = new Dictionary<Guid, Doodad>();
+
+            Data.FindTexture = new Dictionary<string, Texture2D>();
+            Data.FindTexture.Add("link", Content.Load<Texture2D>("link"));
+            Data.FindTexture.Add("tree", Content.Load<Texture2D>("tree"));
+            Data.FindTexture.Add("rock", Content.Load<Texture2D>("rock"));
+            Data.FindTexture.Add("treeOutline", Content.Load<Texture2D>("treeOutline"));
+            Data.FindTexture.Add("stump", Content.Load<Texture2D>("stump"));
+            for (int x = 1; x < 9; x++)
+            {
+                Data.FindTexture.Add("snow" + x, Content.Load<Texture2D>("snow" + x));
+            }
         }
 
         public static void AddGameObject(GameObject go)

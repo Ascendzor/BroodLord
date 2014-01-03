@@ -35,18 +35,7 @@ namespace BroodLord
 
         protected override void Initialize()
         {
-            Data.Initialize();
-
-            Data.FindTexture = new Dictionary<string, Texture2D>();
-            Data.FindTexture.Add("link", Content.Load<Texture2D>("link"));
-            Data.FindTexture.Add("tree", Content.Load<Texture2D>("tree"));
-            Data.FindTexture.Add("rock", Content.Load<Texture2D>("rock"));
-            Data.FindTexture.Add("treeOutline", Content.Load<Texture2D>("treeOutline"));
-
-            for (int x = 1; x < 9; x++)
-            {
-                Data.FindTexture.Add("snow" + x, Content.Load<Texture2D>("snow" + x));
-            }
+            Data.Initialize(Content);
 
             map = new Map(Data.TileSize, Data.MapSize, 5); //the renderWidth should be dynamic to the resolution
             client = new Client(map);

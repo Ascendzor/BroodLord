@@ -10,6 +10,7 @@ namespace Objects
     public class Tree : Doodad
     {
         private int health;
+        private bool isStump;
 
         public Tree(Vector2 position, string textureKey, Map map, Client client)
         {
@@ -40,6 +41,8 @@ namespace Objects
                 if (health <= 0)
                 {
                     Console.WriteLine("tree rip in peace");
+                    isStump = true;
+                    textureKey = "stump";
                 }
             }
         }

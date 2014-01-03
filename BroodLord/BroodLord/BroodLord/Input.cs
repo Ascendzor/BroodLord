@@ -70,7 +70,6 @@ namespace BroodLord
                     if (gameObject.GetHitbox().Contains((int)clickPosition.X, (int)clickPosition.Y))
                     {
                         Event LeftClickEventz = new MoveToGameObjectEvent(dude.GetId(), gameObject.GetId());
-                        dude.ReceiveEvent(LeftClickEventz);
                         client.SendEvent(LeftClickEventz);
                         return;
                     }
@@ -78,7 +77,6 @@ namespace BroodLord
             }
 
             Event LeftClickEvent = new MoveToPositionEvent(dude.GetId(), clickPosition);
-            dude.ReceiveEvent(LeftClickEvent);
             client.SendEvent(LeftClickEvent);
         }
     }
