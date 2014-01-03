@@ -18,6 +18,7 @@ namespace Objects
         private int attackDamage;
         private double interactionCooldown;
         private DateTime lastInteractionTimestamp;
+        private DateTime offCooldown;
 
         public Toon(Guid id, Vector2 position, string textureKey, Map map, Client client)
         {
@@ -30,7 +31,7 @@ namespace Objects
             this.origin = new Vector2(Data.FindTexture[textureKey].Width / 2, Data.FindTexture[textureKey].Height * 0.85f);
             this.interactRange = 100;
             this.client = client;
-            this.attackDamage = 100;
+            this.attackDamage = 200;
             this.interactionCooldown = 1000;
 
             xTileCoord = (int)position.X / map.GetTileSize();
@@ -43,7 +44,7 @@ namespace Objects
 
         protected override void Interact(GameObject gameObject)
         {
-            if ((DateTime.Now - lastInteractionTimestamp).TotalMilliseconds < interactionCooldown)
+            if (DateTime.Now.CompareTo(offCooldown) == -1)
             {
                 return;
             }
@@ -62,6 +63,7 @@ namespace Objects
 
         private void InteractWithTree(Tree tree)
         {
+            offCooldown = DateTime.Now.AddMilliseconds(interactionCooldown); //<--- this allows the interaction to define the cooldown, ie chopping may take longer than attacking
             base.Interact(tree);
             Console.WriteLine("Toon chopped");
             client.SendEvent(new ChopEvent(id));
