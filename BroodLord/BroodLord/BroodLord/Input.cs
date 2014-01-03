@@ -61,7 +61,6 @@ namespace BroodLord
 
             List<Tile> tiles = map.GetRenderedTiles(dude.GetGridCoordX(), dude.GetGridCoordY());
 
-
             //NOT YET IMPLEMENTED: find all gameObjects that you have clicked on, find which one you are closest to the center of and click on that one, this allows you to click on something behind something else
             foreach (Tile tile in tiles)
             {

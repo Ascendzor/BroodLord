@@ -29,6 +29,9 @@ namespace Objects
                 goalGameObject = Data.FindGameObject[mtgoe.GoalGameObject];
                 goalPosition = goalGameObject.Position;
             }
+            else if (leEvent is ChopEvent)
+            {
+            }
         }
         
         //All non-event behaviour is handled in Update.
@@ -46,6 +49,7 @@ namespace Objects
             {
                 if ((position - goalGameObject.Position).Length() < interactRange)
                 {
+                    Interact(goalGameObject);
                     return;
                 }
             }
@@ -116,19 +120,8 @@ namespace Objects
             return newPos;
         }
 
-        private void Interact(GameObject gameObject)
+        protected virtual void Interact(GameObject gameObject)
         {
-            if (gameObject is Tree)
-            {
-                InteractWithTree((Tree)gameObject);
-            }
-        }
-
-        private void InteractWithTree(Tree tree)
-        {
-            state = States.TreeCutting;
-            //¿submit event?
-            //play the swing axe animation
         }
 
         public override void Draw(SpriteBatch sb)

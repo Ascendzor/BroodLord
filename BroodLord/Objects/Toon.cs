@@ -33,5 +33,25 @@ namespace Objects
 
             Data.AddGameObject(this);
         }
+
+        protected override void Interact(GameObject gameObject)
+        {
+            base.Interact(gameObject);
+
+            goalGameObject = null; //<-- this is to stop you from interacting every frame, this may be removed once a cooldown has been introduced
+            goalPosition = position;
+
+            if (gameObject is Tree)
+            {
+                InteractWithTree((Tree)gameObject);
+            }
+        }
+
+        private void InteractWithTree(Tree tree)
+        {
+            Console.WriteLine("Toon chopped");
+            client.SendEvent(new ChopEvent(id));
+            tree.GotChopped(this);
+        }
     }
 }

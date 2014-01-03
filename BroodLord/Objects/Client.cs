@@ -43,7 +43,6 @@ namespace Objects
 
                     if (!Data.FindGameObject.ContainsKey(leEvent.Id))
                     {
-                        Console.WriteLine("test");
                         new Toon(Guid.NewGuid(), new Microsoft.Xna.Framework.Vector2(100, 100), "link", map, this);
                     }
                     Data.FindGameObject[leEvent.Id].ReceiveEvent(leEvent);

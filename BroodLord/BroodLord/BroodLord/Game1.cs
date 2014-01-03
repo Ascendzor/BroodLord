@@ -54,9 +54,9 @@ namespace BroodLord
             input = new Input(dude, client, map);
             camera = new Camera();
 
-            Tree bob = new Tree(new Vector2(200, 200), "tree", map);
-            Tree bob1 = new Tree(new Vector2(400, 450), "tree", map);
-            Tree bob2 = new Tree(new Vector2(500, 200), "tree", map);
+            Tree bob = new Tree(new Vector2(200, 200), "tree", map, client);
+            Tree bob1 = new Tree(new Vector2(400, 450), "tree", map, client);
+            Tree bob2 = new Tree(new Vector2(500, 200), "tree", map, client);
 
             Rock rock = new Rock(new Vector2(700, 800), map);
 
