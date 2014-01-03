@@ -70,7 +70,7 @@ namespace BroodLord
                     //if you clicked on a game object, go to that game object
                     if (gameObject.GetHitbox().Contains((int)clickPosition.X, (int)clickPosition.Y))
                     {
-                        Event LeftClickEventz = new Event(dude.GetId(), "moveToGameObject", gameObject.GetId());
+                        Event LeftClickEventz = new MoveToGameObjectEvent(dude.GetId(), gameObject.GetId());
                         dude.ReceiveEvent(LeftClickEventz);
                         client.SendEvent(LeftClickEventz);
                         return;
@@ -78,7 +78,7 @@ namespace BroodLord
                 }
             }
 
-            Event LeftClickEvent = new Event(dude.GetId(), "moveToPosition", clickPosition);
+            Event LeftClickEvent = new MoveToPositionEvent(dude.GetId(), clickPosition);
             dude.ReceiveEvent(LeftClickEvent);
             client.SendEvent(LeftClickEvent);
         }

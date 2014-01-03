@@ -9,14 +9,5 @@ namespace Objects
     public class Event
     {
         public Guid Id;
-        public string Type;
-        public object Value;
-
-        public Event(Guid id, string type, object value)
-        {
-            this.Id = id;
-            this.Type = type;
-            this.Value = value;
-        }
     }
 }

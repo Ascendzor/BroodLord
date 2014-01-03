@@ -18,15 +18,16 @@ namespace Objects
 
         public override void ReceiveEvent(Event leEvent)
         {
-            if (leEvent.Type == "moveToGameObject")
+            if (leEvent is MoveToPositionEvent)
             {
-                goalPosition = Data.FindGameObject[(Guid)leEvent.Value].Position;
-                goalGameObject = Data.FindGameObject[(Guid)leEvent.Value];
-            }
-            else if (leEvent.Type == "moveToPosition")
-            {
+                goalPosition = ((MoveToPositionEvent)leEvent).Position;
                 goalGameObject = null;
-                goalPosition = (Vector2)leEvent.Value;
+            }
+            else if (leEvent is MoveToGameObjectEvent)
+            {
+                MoveToGameObjectEvent mtgoe = (MoveToGameObjectEvent)leEvent;
+                goalGameObject = Data.FindGameObject[mtgoe.GoalGameObject];
+                goalPosition = goalGameObject.Position;
             }
         }
         

@@ -50,7 +50,7 @@ namespace BroodLord
 
             map = new Map(Data.TileSize, Data.MapSize, 5); //the renderWidth should be dynamic to the resolution
             client = new Client(map);
-            dude = new Toon(Guid.NewGuid(), new Vector2(100, 100), "link", map);
+            dude = new Toon(Guid.NewGuid(), new Vector2(100, 100), "link", map, client);
             input = new Input(dude, client, map);
             camera = new Camera();
 

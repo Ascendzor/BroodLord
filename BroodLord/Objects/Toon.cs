@@ -16,7 +16,7 @@ namespace Objects
     [Serializable()]
     public class Toon : Mob
     {
-        public Toon(Guid id, Vector2 position, string textureKey, Map map)
+        public Toon(Guid id, Vector2 position, string textureKey, Map map, Client client)
         {
             this.id = id;
             this.position = position;
@@ -26,7 +26,7 @@ namespace Objects
             this.map = map;
             this.origin = new Vector2(Data.FindTexture[textureKey].Width / 2, Data.FindTexture[textureKey].Height * 0.85f);
             this.interactRange = 100;
-            this.state = States.Moving;
+            this.client = client;
 
             xTileCoord = (int)position.X / map.GetTileSize();
             yTileCoord = (int)position.Y / map.GetTileSize();

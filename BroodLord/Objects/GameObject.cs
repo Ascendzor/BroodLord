@@ -21,6 +21,7 @@ namespace Objects
         protected Rectangle hitbox;
         protected int xTileCoord; 
         protected int yTileCoord;
+        protected Client client;
 
         public Vector2 Position
         {
