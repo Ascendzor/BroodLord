@@ -26,7 +26,9 @@ namespace Objects
             this.interactRange = 100;
             this.client = client;
             this.attackDamage = 200;
-            this.interactionCooldown = 1000;
+            this.interactionCooldown = 200;
+            this.inventory = new Dictionary<Guid, Loot>();
+            
 
             xTileCoord = (int)position.X / Map.GetTileSize();
             yTileCoord = (int)position.Y / Map.GetTileSize();
@@ -47,12 +49,28 @@ namespace Objects
 
             base.Interact(gameObject);
 
-            goalGameObject = null; //<-- this is to stop you from interacting every frame, this may be removed once a cooldown has been introduced
+            goalGameObject = null; //<-- this  is to stop you from interacting every frame, this may be removed once a cooldown has been introduced
             goalPosition = position;
 
             if (gameObject is Tree)
             {
                 InteractWithTree((Tree)gameObject);
+            }
+            else if (gameObject is Loot)
+            {
+                InteractWithLoot((Loot)gameObject);
+            }
+        }
+
+        private void InteractWithLoot(Loot loot)
+        {
+            if (loot.RemoveFromGround())
+                inventory.Add(loot.GetId(), loot);
+
+            Console.Write("\nInventory: ");
+            foreach (Loot l in inventory.Values)
+            {
+                Console.Write("(" + l.Quantity + ") " + l.GetType() + ", ");
             }
         }
 

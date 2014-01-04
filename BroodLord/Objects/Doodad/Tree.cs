@@ -46,7 +46,7 @@ namespace Objects
                 {
                     isStump = true;
                     textureKey = "stump";
-
+                    this.hitbox = Rectangle.Empty; //temporary code to allow you to pick up the wood
                     DropLoot();
                 }
             }

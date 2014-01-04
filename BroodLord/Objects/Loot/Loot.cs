@@ -11,6 +11,13 @@ namespace Objects
     {
         protected string textureKeyInBag;
         protected bool onGround;
+        protected int quantity;
+
+        public int Quantity
+        {
+            get { return quantity; }
+            set { quantity = value; }
+        }
 
         public override void Draw(SpriteBatch sb)
         {
@@ -32,6 +39,17 @@ namespace Objects
             {
                 //dude is holding the rock
             }
+        }
+
+        //Also needs to be removed from the tile, else its still at its position and interactiable
+        public bool RemoveFromGround()
+        {
+            if (onGround == true)
+            {
+                onGround = false;
+                return true;
+            }
+            else return false;
         }
     }
 }

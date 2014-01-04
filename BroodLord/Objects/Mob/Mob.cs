@@ -19,6 +19,7 @@ namespace Objects
         protected double interactionCooldown;
         protected DateTime lastInteractionTimestamp;
         protected DateTime interactionOffCooldown;
+        protected Dictionary<Guid, Loot> inventory;
 
         public override void ReceiveEvent(Event leEvent)
         {
