@@ -19,6 +19,7 @@ namespace Objects
         protected double interactionCooldown;
         protected DateTime lastInteractionTimestamp;
         protected DateTime interactionOffCooldown;
+        protected Dictionary<Guid, Loot> inventory;
 
         /*public Mob(Vector2 position, string textureKey, Guid id, Vector2 origin, Rectangle hitbox, Client client) //: base(position, textureKey, id, origin, hitbox, client)
         {
