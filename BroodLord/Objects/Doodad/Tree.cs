@@ -24,6 +24,7 @@ namespace Objects
             this.hitbox = new Rectangle((int)(position.X - origin.X), (int)(position.Y - origin.Y), Data.FindTexture[textureKey].Width, Data.FindTexture[textureKey].Height);
             this.client = client;
             this.health = 999;
+            this.isInteractable = true;
 
             Map.GetTile(xTileCoord, yTileCoord).GetObjects().Add(this);
             
@@ -46,7 +47,7 @@ namespace Objects
                 {
                     isStump = true;
                     textureKey = "stump";
-                    this.hitbox = Rectangle.Empty; //temporary code to allow you to pick up the wood
+                    this.isInteractable = false;
                     DropLoot();
                 }
             }

@@ -21,6 +21,7 @@ namespace Objects
         protected int xTileCoord; 
         protected int yTileCoord;
         protected Client client;
+        protected bool isInteractable;
 
         /*public GameObject(Vector2 position, string textureKey, Guid id, Vector2 origin, Rectangle hitbox,Client client)
         {
@@ -38,6 +39,11 @@ namespace Objects
 
             Map.InsertGameObject(this);
         }*/
+
+        public bool IsInteractable
+        {
+            get { return isInteractable; }
+        }
 
         public Vector2 Position
         {

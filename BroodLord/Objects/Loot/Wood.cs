@@ -8,8 +8,9 @@ namespace Objects
 {
     public class Wood : Loot
     {
-        public Wood(Vector2 position)
+        public Wood(Vector2 position) : base()
         {
+            
             this.id = Guid.NewGuid();
             this.position = position;
             this.textureKey = "wood";

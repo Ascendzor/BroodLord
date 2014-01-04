@@ -63,24 +63,8 @@ namespace Objects
             {
                 InteractWithObject((Loot)gameObject);
             }
-            else if (gameObject is Loot)
-            {
-                InteractWithLoot((Loot)gameObject);
-            }
         }
-
-        private void InteractWithLoot(Loot loot)
-        {
-            if (loot.RemoveFromGround())
-                inventory.Add(loot.GetId(), loot);
-
-            Console.Write("\nInventory: ");
-            foreach (Loot l in inventory.Values)
-            {
-                Console.Write("(" + l.Quantity + ") " + l.GetType() + ", ");
-            }
-        }
-
+        
         private void InteractWithObject(Tree tree)
         {
             interactionOffCooldown = DateTime.Now.AddMilliseconds(interactionCooldown); //<--- this allows the interaction to define the cooldown, ie chopping may take longer than attacking
@@ -109,7 +93,23 @@ namespace Objects
 
                 Loot lootedItem = Data.FindLoot[LLE.item];
 
-                //add gameobject to inventory
+                //If already contain same item type then stack (increase quantity)
+                bool added = false;
+                foreach (Loot loot in inventory.Values)
+                {
+                    if (lootedItem.GetType() == loot.GetType())
+                    {
+                        loot.Quantity += lootedItem.Quantity;
+                        added = true;
+                    }
+                }
+                if (!added) inventory.Add(lootedItem.GetId(), lootedItem);
+
+                Console.Write("\nInventory: ");
+                foreach (Loot l in inventory.Values)
+                {
+                    Console.Write("(" + l.Quantity + ") " + l.GetType() + ", ");
+                }
 
                 Map.RemoveGameObject(lootedItem);
             }

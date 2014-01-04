@@ -65,12 +65,15 @@ namespace BroodLord
             {
                 foreach (GameObject gameObject in tile.GetObjects())
                 {
-                    //if you clicked on a game object, go to that game object
-                    if (gameObject.GetHitbox().Contains((int)clickPosition.X, (int)clickPosition.Y))
+                    if (gameObject.IsInteractable)
                     {
-                        Event LeftClickEventz = new MoveToGameObjectEvent(dude.GetId(), gameObject.GetId());
-                        client.SendEvent(LeftClickEventz);
-                        return;
+                        //if you clicked on a game object, go to that game object
+                        if (gameObject.GetHitbox().Contains((int)clickPosition.X, (int)clickPosition.Y))
+                        {
+                            Event LeftClickEventz = new MoveToGameObjectEvent(dude.GetId(), gameObject.GetId());
+                            client.SendEvent(LeftClickEventz);
+                            return;
+                        }
                     }
                 }
             }

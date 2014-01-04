@@ -13,6 +13,14 @@ namespace Objects
         protected bool onGround;
         protected int quantity;
 
+        /// <summary>
+        /// All loot is interactable so define as true here
+        /// </summary>
+        public Loot()
+        {
+            this.isInteractable = true;
+        }
+
         public int Quantity
         {
             get { return quantity; }
@@ -48,15 +56,6 @@ namespace Objects
 
             }
         }
-        //Also needs to be removed from the tile, else its still at its position and interactiable
-        public bool RemoveFromGround()
-        {
-            if (onGround == true)
-            {
-                onGround = false;
-                return true;
-            }
-            else return false;
-        }
+
     }
 }
