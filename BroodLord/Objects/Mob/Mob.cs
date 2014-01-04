@@ -20,6 +20,11 @@ namespace Objects
         protected DateTime lastInteractionTimestamp;
         protected DateTime interactionOffCooldown;
 
+        /*public Mob(Vector2 position, string textureKey, Guid id, Vector2 origin, Rectangle hitbox, Client client) //: base(position, textureKey, id, origin, hitbox, client)
+        {
+
+        }*/
+
         public override void ReceiveEvent(Event leEvent)
         {
             if (leEvent is MoveToPositionEvent)
@@ -45,8 +50,9 @@ namespace Objects
         //move and update the grid with where you have moved
         public void Update()
         {
+            //goalPosition = new Vector2(500, 500);
             Vector2 moveDirection = goalPosition - position;
-            if (moveDirection.Length() < 10)
+            if (moveDirection.Length() <= 10)
             {
                 return;
             }
@@ -58,7 +64,7 @@ namespace Objects
                     return;
                 }
             }
-            
+
             moveDirection.Normalize();
             Vector2 newPos = position + moveDirection * movementSpeed;
             newPos = CheckCol(newPos);
@@ -72,9 +78,8 @@ namespace Objects
             {
                 position = new Vector2(50, 50);
             }
-
-            int xNewCoords = (int)position.X / Map.GetTileSize();
-            int yNewCoords = (int)position.Y / Map.GetTileSize();
+            int xNewCoords = (int)(position.X / Map.GetTileSize());
+            int yNewCoords = (int)(position.Y / Map.GetTileSize());
 
             if (xTileCoord != xNewCoords || yTileCoord != yNewCoords)
             {

@@ -85,5 +85,15 @@ namespace Objects
                 }
             }
         }
+
+        public static void RemoveGameObject(GameObject gameObject)
+        {
+            GetTile(gameObject.GetGridCoordX(), gameObject.GetGridCoordY()).RemoveObject(gameObject);
+        }
+
+        public static void InsertGameObject(GameObject gameObject)
+        {
+            GetTile(gameObject.GetGridCoordX(), gameObject.GetGridCoordY()).InsertObject(gameObject);
+        }
     }
 }

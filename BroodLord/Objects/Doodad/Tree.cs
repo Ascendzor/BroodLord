@@ -26,7 +26,7 @@ namespace Objects
             this.health = 999;
 
             Map.GetTile(xTileCoord, yTileCoord).GetObjects().Add(this);
-
+            
             Data.AddGameObject(this);
         }
 

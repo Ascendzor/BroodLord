@@ -53,9 +53,14 @@ namespace Objects
             sb.Draw(Data.FindTexture[textureKey], new Rectangle((int)position.X, (int)position.Y, Data.FindTexture[textureKey].Width, Data.FindTexture[textureKey].Height), null, Color.White, 0, Vector2.One, SpriteEffects.None, 0.99999f);
         }
 
-        public void InsertThing(Loot item)
+        public void InsertObject(GameObject item)
         {
             gameObjects.Add(item);
+        }
+
+        public void RemoveObject(GameObject gameObject)
+        {
+            gameObjects.Remove(gameObject);
         }
     }
 }

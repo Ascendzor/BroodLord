@@ -23,10 +23,11 @@ namespace Objects
             this.movementSpeed = 10;
             this.goalPosition = position;
             this.origin = new Vector2(Data.FindTexture[textureKey].Width / 2, Data.FindTexture[textureKey].Height * 0.85f);
-            this.interactRange = 100;
+            this.interactRange = Data.ToonInteractionRange;
             this.client = client;
             this.attackDamage = 200;
             this.interactionCooldown = 1000;
+            
 
             xTileCoord = (int)position.X / Map.GetTileSize();
             yTileCoord = (int)position.Y / Map.GetTileSize();
@@ -35,6 +36,8 @@ namespace Objects
             interactionOffCooldown = DateTime.Now;
 
             Data.AddGameObject(this);
+
+            Map.InsertGameObject(this);
         }
 
         protected override void Interact(GameObject gameObject)
@@ -52,11 +55,15 @@ namespace Objects
 
             if (gameObject is Tree)
             {
-                InteractWithTree((Tree)gameObject);
+                InteractWithObject((Tree)gameObject);
+            }
+            else if (gameObject is Loot)
+            {
+                InteractWithObject((Loot)gameObject);
             }
         }
 
-        private void InteractWithTree(Tree tree)
+        private void InteractWithObject(Tree tree)
         {
             interactionOffCooldown = DateTime.Now.AddMilliseconds(interactionCooldown); //<--- this allows the interaction to define the cooldown, ie chopping may take longer than attacking
             base.Interact(tree);
@@ -65,9 +72,29 @@ namespace Objects
             tree.GotChopped(this);
         }
 
+        private void InteractWithObject(Loot loot)
+        {
+            client.SendEvent(new LootedLootEvent(id, loot.GetId()));
+        }
+
         public double GetAttackDamage()
         {
             return attackDamage;
+        }
+
+        public override void ReceiveEvent(Event leEvent)
+        {
+            base.ReceiveEvent(leEvent);
+            if (leEvent is LootedLootEvent)
+            {
+                LootedLootEvent LLE = (LootedLootEvent)leEvent;
+
+                Loot lootedItem = Data.FindLoot[LLE.item];
+
+                //add gameobject to inventory
+
+                Map.RemoveGameObject(lootedItem);
+            }
         }
     }
 }
