@@ -7,8 +7,88 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Objects
 {
-    class Inventory
+    public class Inventory
     {
-        
+        protected List<Loot> items;
+        protected int inventorySize;
+
+        public int InventorySize
+        {
+            get { return inventorySize; }
+        }
+
+        public List<Loot> Items
+        {
+            get { return items; }
+        }
+
+        public Inventory()
+        {
+            items = new List<Loot>();
+            inventorySize = 1;
+        }
+
+        public bool addToInventory(Loot itemToAdd)
+        {
+            bool itemAddedToInventory = false;
+
+            // Try add item into empty slot
+            if (items.Count < inventorySize)
+            {
+                items.Add(itemToAdd);
+                itemAddedToInventory = true;
+            }
+            else Console.WriteLine(fullInventoryMessage());
+
+            printInventory();
+            return itemAddedToInventory;
+        }
+
+        public bool addToInventory(Loot itemToAdd, bool stackItem)
+        {
+            bool itemAddedToInventory = false;
+
+            // Try stack item
+            foreach (Loot loot in items)
+            {
+                if (itemToAdd.GetType() == loot.GetType())
+                {
+                    loot.Quantity += itemToAdd.Quantity;
+                    itemAddedToInventory = true;
+                }
+            }
+
+            // Try add item into empty slot
+            if (!itemAddedToInventory)
+            {
+                if (items.Count < inventorySize)
+                { 
+                    items.Add(itemToAdd);
+                    itemAddedToInventory = true;
+                }
+                else Console.WriteLine(fullInventoryMessage());
+            }
+
+            printInventory();
+            return itemAddedToInventory;
+        }
+
+        private String fullInventoryMessage()
+        {
+            return "Inventory is full!";
+        }
+
+        /// <summary>
+        /// for testing
+        /// </summary>
+        private void printInventory()
+        {
+            Console.Write("Inventory: ");
+            foreach (Loot l in items)
+            {
+                Console.Write("(" + l.Quantity + ") " + l.GetType() + ", ");
+            }
+            Console.WriteLine();
+        }
     }
 }

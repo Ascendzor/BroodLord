@@ -10,7 +10,7 @@ namespace Objects
     [Serializable()]
     public class Rock : Loot
     {
-        public Rock(Vector2 position)
+        public Rock(Vector2 position) :base()
         {
             this.id = Guid.NewGuid();
             this.position = position;

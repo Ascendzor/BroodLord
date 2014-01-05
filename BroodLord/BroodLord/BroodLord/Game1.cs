@@ -83,6 +83,8 @@ namespace BroodLord
 
             Map.Draw(spriteBatch, dude.GetGridCoordX(), dude.GetGridCoordY());
 
+
+
             spriteBatch.End();
 
             base.Draw(gameTime);

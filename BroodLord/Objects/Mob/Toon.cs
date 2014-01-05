@@ -27,7 +27,7 @@ namespace Objects
             this.attackDamage = 200;
             this.interactionCooldown = 1000;
             this.interactionCooldown = 200;
-            this.inventory = new Dictionary<Guid, Loot>();
+            this.inventory = new Inventory();
             
 
             xTileCoord = (int)position.X / Map.GetTileSize();
@@ -92,25 +92,10 @@ namespace Objects
 
                 Loot lootedItem = Data.FindLoot[LLE.item];
 
-                //If already contain same item type then stack (increase quantity)
-                bool added = false;
-                foreach (Loot loot in inventory.Values)
+                if (inventory.addToInventory(lootedItem, true))
                 {
-                    if (lootedItem.GetType() == loot.GetType())
-                    {
-                        loot.Quantity += lootedItem.Quantity;
-                        added = true;
-                    }
+                    Map.RemoveGameObject(lootedItem);
                 }
-                if (!added) inventory.Add(lootedItem.GetId(), lootedItem);
-
-                Console.Write("\nInventory: ");
-                foreach (Loot l in inventory.Values)
-                {
-                    Console.Write("(" + l.Quantity + ") " + l.GetType() + ", ");
-                }
-
-                Map.RemoveGameObject(lootedItem);
             }
         }
     }
