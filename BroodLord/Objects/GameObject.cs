@@ -83,7 +83,23 @@ namespace Objects
         {
         }
 
-        public virtual void ReceiveEvent(Event leEvent)
+        public virtual void ReceiveEvent(MoveToPositionEvent leEvent)
+        {
+        }
+
+        public virtual void ReceiveEvent(MoveToGameObjectEvent leEvent)
+        {
+        }
+
+        public virtual void ReceiveEvent(ChopEvent leEvent)
+        {
+        }
+
+        public virtual void ReceiveEvent(TookDamageEvent leEvent)
+        {
+        }
+
+        public virtual void ReceiveEvent(LootedLootEvent leEvent)
         {
         }
     }

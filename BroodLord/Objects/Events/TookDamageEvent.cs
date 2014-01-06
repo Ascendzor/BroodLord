@@ -6,11 +6,11 @@ using System.Text;
 namespace Objects
 {
     [Serializable()]
-    public class TookDamage : Event
+    public class TookDamageEvent : Event
     {
         public double DamageTaken;
 
-        public TookDamage(Guid id, double damageTaken)
+        public TookDamageEvent(Guid id, double damageTaken)
         {
             this.Id = id;
             this.DamageTaken = damageTaken;
