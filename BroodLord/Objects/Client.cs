@@ -32,7 +32,7 @@ namespace Objects
         public static void ReceiveEvent()
         {
             stream = client.GetStream();
-            byte[] bytes = new byte[4096];
+            byte[] bytes = new byte[1024];
             Event leEvent = null;
             try
             {
