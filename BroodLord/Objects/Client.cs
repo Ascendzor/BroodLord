@@ -32,10 +32,14 @@ namespace Objects
         public static void ReceiveEvent()
         {
             stream = client.GetStream();
+
             byte[] bytes = new byte[9001];
             Event leEvent = null;
             try
             {
+                //TODO: refactor this, RecieveEvent is doing more than it should
+                //NOTE: Ask Troy how this should be fixed
+
                 //first thing to receive is the data of the map
                 stream.Read(bytes, 0, bytes.Length);
                 MemoryStream mStream = new MemoryStream();
@@ -47,7 +51,8 @@ namespace Objects
                     Data.AddGameObject(go);
                 }
 
-                bytes = new byte[1024];
+                // 150 mb
+                bytes = new byte[5 * 1024 * 1024];
 
                 while (true)
                 {
