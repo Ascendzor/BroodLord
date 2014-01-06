@@ -60,7 +60,7 @@ namespace Objects
 
                     if (!Data.FindGameObject.ContainsKey(leEvent.Id))
                     {
-                        new Toon(Guid.NewGuid(), new Microsoft.Xna.Framework.Vector2(100, 100), "link");
+                        new Toon(leEvent.Id, new Microsoft.Xna.Framework.Vector2(100, 100), "link");
                     }
                     Data.FindGameObject[leEvent.Id].ReceiveEvent(leEvent);
                 }
