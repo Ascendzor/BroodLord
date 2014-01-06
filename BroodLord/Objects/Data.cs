@@ -31,6 +31,7 @@ namespace Objects
             FindDoodad = new Dictionary<Guid, Doodad>();
 
             Data.FindTexture = new Dictionary<string, Texture2D>();
+            
             Data.FindTexture.Add("link", Content.Load<Texture2D>("link"));
             Data.FindTexture.Add("tree", Content.Load<Texture2D>("tree"));
             Data.FindTexture.Add("rock", Content.Load<Texture2D>("rock"));
@@ -43,8 +44,17 @@ namespace Objects
             }
         }
 
+        public static void Initialize()
+        {
+            FindGameObject = new Dictionary<Guid, GameObject>();
+            FindMob = new Dictionary<Guid, Mob>();
+            FindLoot = new Dictionary<Guid, Loot>();
+            FindDoodad = new Dictionary<Guid, Doodad>();
+        }
+
         public static void AddGameObject(GameObject go)
         {
+            Map.InsertGameObject(go);
             FindGameObject.Add(go.GetId(), go);
 
             if (go is Mob)

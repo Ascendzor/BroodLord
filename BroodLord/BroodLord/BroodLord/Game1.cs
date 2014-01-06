@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Objects;
+using System.Threading;
 
 namespace BroodLord
 {
@@ -17,7 +18,6 @@ namespace BroodLord
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        Client client;
         Input input;
         Toon dude;
         Camera camera;
@@ -34,19 +34,14 @@ namespace BroodLord
 
         protected override void Initialize()
         {
+            Thread.Sleep(1000);
             Data.Initialize(Content);
-
             Map.Initialize(Data.TileSize, Data.MapSize, 5); //the renderWidth should be dynamic to the resolution
-            client = new Client();
-            dude = new Toon(Guid.NewGuid(), new Vector2(100, 100), "link", client);
-            input = new Input(dude, client);
+            Client.Initialize();
+            dude = new Toon(Guid.NewGuid(), new Vector2(100, 100), "link");
+            input = new Input(dude);
             camera = new Camera();
 
-            new Tree(new Vector2(200, 200), "tree", client);
-            new Tree(new Vector2(400, 450), "tree", client);
-            new Tree(new Vector2(500, 200), "tree", client);
-
-            new Rock(new Vector2(700, 800));
 
             graphicsDevice = graphics.GraphicsDevice;
             IsMouseVisible = true;

@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 
 namespace Objects
 {
+    [Serializable()]
     public class Mob : GameObject
     {
         protected float movementSpeed;
@@ -24,6 +25,13 @@ namespace Objects
         {
             if (leEvent is MoveToPositionEvent)
             {
+                Console.WriteLine("all game objects: ");
+                foreach (GameObject go in Data.FindGameObject.Values)
+                {
+                    Console.WriteLine(go);
+                }
+                Console.WriteLine("end of all game objects");
+
                 goalPosition = ((MoveToPositionEvent)leEvent).Position;
                 goalGameObject = null;
             }

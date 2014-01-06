@@ -31,9 +31,36 @@ namespace Server
             while (true)
             {
                 NetworkStream stream = listener.AcceptTcpClient().GetStream();
+                Console.WriteLine("found client");
+
+                //first thing is to send the map data to the new client
+                Console.WriteLine("Waiting to make sure the client is ready for the data");
+                Thread.Sleep(5000);
+                SendData(stream);
+                Console.WriteLine("data sent");
                 streams.Add(stream);
-                Console.WriteLine("connected");
+
                 new Thread(() => Listen(stream)).Start();
+            }
+        }
+
+        private void SendData(NetworkStream stream)
+        {
+            try
+            {
+                MemoryStream ms = new MemoryStream();
+                new BinaryFormatter().Serialize(ms, Data.FindGameObject.Values.ToList());
+
+                byte[] bytes = ms.ToArray();
+
+                stream.Write(bytes, 0, bytes.Length);
+
+                ms.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                Console.WriteLine("Server -> SendData(NetworkStream)");
             }
         }
 
@@ -75,17 +102,15 @@ namespace Server
             }
         }
 
-        private void Play()
-        {
-            
-        }
-
         static void Main(string[] args)
         {
+            //Environment is the Servers player ;)
+            Environment environment = new Environment();
+
             Server server = new Server();
             new Thread(() => server.ListenForNewConnections()).Start();
 
-            server.Play();
+            environment.Play();
         }
     }
 }

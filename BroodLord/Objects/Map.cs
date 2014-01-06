@@ -71,6 +71,11 @@ namespace Objects
             return tileSize;
         }
 
+        public static void InsertGameObject(GameObject go)
+        {
+            tiles[(int)go.GetGridCoordX(), (int)go.GetGridCoordY()].InsertGameObject(go);
+        }
+
         public static void Draw(SpriteBatch sb, int xCenter, int yCenter)
         {
             //draw ground

@@ -6,9 +6,10 @@ using Microsoft.Xna.Framework;
 
 namespace Objects
 {
+    [Serializable()]
     public class Cat : Mob
     {
-        public Cat(Guid id, Vector2 position, string textureKey, Client client)
+        public Cat(Guid id, Vector2 position, string textureKey)
         {
             this.id = id;
             this.position = position;
@@ -17,7 +18,6 @@ namespace Objects
             this.goalPosition = position;
             this.origin = new Vector2(Data.FindTexture[textureKey].Width / 2, Data.FindTexture[textureKey].Height * 0.85f);
             this.interactRange = 100;
-            this.client = client;
             this.attackDamage = 200;
             this.interactionCooldown = 1000;
 

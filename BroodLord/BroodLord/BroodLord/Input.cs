@@ -13,15 +13,13 @@ namespace BroodLord
     {
         private MouseState oldState;
         private Toon dude;
-        private Client client;
 
         private Dictionary<Keys, Action> keyboardKeys;
 
-        public Input(Toon dude, Client client)
+        public Input(Toon dude)
         {
             oldState = Mouse.GetState();
             this.dude = dude;
-            this.client = client;
 
             this.keyboardKeys = new Dictionary<Keys, Action>();
         }
@@ -68,14 +66,14 @@ namespace BroodLord
                     if (gameObject.GetHitbox().Contains((int)clickPosition.X, (int)clickPosition.Y))
                     {
                         Event LeftClickEventz = new MoveToGameObjectEvent(dude.GetId(), gameObject.GetId());
-                        client.SendEvent(LeftClickEventz);
+                        Client.SendEvent(LeftClickEventz);
                         return;
                     }
                 }
             }
 
             Event LeftClickEvent = new MoveToPositionEvent(dude.GetId(), clickPosition);
-            client.SendEvent(LeftClickEvent);
+            Client.SendEvent(LeftClickEvent);
         }
     }
 }

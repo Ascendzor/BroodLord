@@ -9,13 +9,14 @@ using System.Threading;
 
 namespace Objects
 {
+    [Serializable()]
     public class Client
     {
-        int port;
-        private TcpClient client;
-        private NetworkStream stream;
+        private static int port;
+        private static TcpClient client;
+        private static NetworkStream stream;
 
-        public Client()
+        public static void Initialize()
         {
             port = 41337;
             client = new TcpClient("127.0.0.1", port);
@@ -23,13 +24,32 @@ namespace Objects
             new Thread(ReceiveEvent).Start();
         }
 
-        public void ReceiveEvent()
+        public static NetworkStream getStream()
+        {
+            return stream;
+        }
+
+        public static void ReceiveEvent()
         {
             stream = client.GetStream();
-            byte[] bytes = new byte[1024];
+            byte[] bytes = new byte[4096];
             Event leEvent = null;
             try
             {
+                //first thing to receive is the data of the map
+                Console.WriteLine("waiting for the data");
+                stream.Read(bytes, 0, bytes.Length);
+                Console.WriteLine("got something");
+                MemoryStream mStream = new MemoryStream();
+                mStream.Write(bytes, 0, bytes.Length);
+                mStream.Seek(0, SeekOrigin.Begin);
+                List<GameObject> gos = (List<GameObject>)new BinaryFormatter().Deserialize(mStream);
+                foreach (GameObject go in gos)
+                {
+                    Data.AddGameObject(go);
+                }
+                Console.WriteLine("Data injected.");
+
                 while (true)
                 {
                     stream.Read(bytes, 0, bytes.Length);
@@ -40,18 +60,19 @@ namespace Objects
 
                     if (!Data.FindGameObject.ContainsKey(leEvent.Id))
                     {
-                        new Toon(Guid.NewGuid(), new Microsoft.Xna.Framework.Vector2(100, 100), "link", this);
+                        new Toon(Guid.NewGuid(), new Microsoft.Xna.Framework.Vector2(100, 100), "link");
                     }
                     Data.FindGameObject[leEvent.Id].ReceiveEvent(leEvent);
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                Console.WriteLine("something died :( Server=>Listen(NetworkStream)");
+                Console.WriteLine(e);
+                Console.WriteLine("something died :( Client=>ReceiveEvent)");
             }
         }
 
-        public void SendEvent(Event leEvent)
+        public static void SendEvent(Event leEvent)
         {
             MemoryStream ms = new MemoryStream();
             try

@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Objects
 {
+    [Serializable()]
     public class Doodad : GameObject
     {
         protected int collisionWidth;

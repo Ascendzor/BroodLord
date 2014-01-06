@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Objects
 {
+    [Serializable()]
     public class Tree : Doodad
     {
         private int health;
@@ -19,13 +20,12 @@ namespace Objects
             this.textureKey = textureKey;
             this.xTileCoord = (int)position.X / Map.GetTileSize();
             this.yTileCoord = (int)position.Y / Map.GetTileSize();
+            this.textureWidth = 256;
+            this.textureHeight = 256;
             this.collisionWidth = Data.TreeRadius;
-            this.origin = new Vector2(Data.FindTexture[textureKey].Width / 2, Data.FindTexture[textureKey].Height * 0.85f);
-            this.hitbox = new Rectangle((int)(position.X - origin.X), (int)(position.Y - origin.Y), Data.FindTexture[textureKey].Width, Data.FindTexture[textureKey].Height);
-            this.client = client;
+            this.origin = new Vector2(textureWidth/2, textureHeight * 0.85f);
+            this.hitbox = new Rectangle((int)(position.X - origin.X), (int)(position.Y - origin.Y), (int)textureWidth, (int)textureHeight);
             this.health = 999;
-
-            Map.GetTile(xTileCoord, yTileCoord).GetObjects().Add(this);
 
             Data.AddGameObject(this);
         }
@@ -44,6 +44,7 @@ namespace Objects
 
                 if (health <= 0)
                 {
+                    Console.WriteLine(id + " rip in peace");
                     isStump = true;
                     textureKey = "stump";
 
@@ -61,7 +62,7 @@ namespace Objects
 
         public void GotChopped(Toon dude)
         {
-            client.SendEvent(new TookDamage(id, dude.GetAttackDamage()));
+            Client.SendEvent(new TookDamage(id, dude.GetAttackDamage()));
         }
     }
 }

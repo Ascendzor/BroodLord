@@ -24,6 +24,11 @@ namespace Objects
             this.textureKey = textureKey;
         }
 
+        public void InsertGameObject(GameObject go)
+        {
+            gameObjects.Add(go);
+        }
+
         public List<GameObject> GetObjects()
         {
             return gameObjects;
@@ -51,11 +56,6 @@ namespace Objects
             }
 
             sb.Draw(Data.FindTexture[textureKey], new Rectangle((int)position.X, (int)position.Y, Data.FindTexture[textureKey].Width, Data.FindTexture[textureKey].Height), null, Color.White, 0, Vector2.One, SpriteEffects.None, 0.99999f);
-        }
-
-        public void InsertThing(Loot item)
-        {
-            gameObjects.Add(item);
         }
     }
 }

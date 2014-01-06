@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Objects
 {
+    [Serializable()]
     public class GameObject
     {
         protected Vector2 position;
@@ -20,7 +21,8 @@ namespace Objects
         protected Rectangle hitbox;
         protected int xTileCoord; 
         protected int yTileCoord;
-        protected Client client;
+        protected float textureWidth;
+        protected float textureHeight;
 
         public Vector2 Position
         {
