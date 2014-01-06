@@ -25,9 +25,14 @@ namespace Objects
         public Inventory()
         {
             items = new List<Loot>();
-            inventorySize = 1;
+            inventorySize = 2;
         }
 
+        /// <summary>
+        /// Attempt to add an item to inventory
+        /// </summary>
+        /// <param name="itemToAdd">Loot that is being picked up</param>
+        /// <returns>True if picked up else false (full inventory)</returns>
         public bool addToInventory(Loot itemToAdd)
         {
             bool itemAddedToInventory = false;
@@ -44,6 +49,11 @@ namespace Objects
             return itemAddedToInventory;
         }
 
+        /// <summary>
+        /// Attempt to add an item to inventory and stack it with existing items of same type
+        /// </summary>
+        /// <param name="itemToAdd">Loot that is being picked up</param>
+        /// <returns>True if picked up else false (full inventory)</returns>
         public bool addToInventory(Loot itemToAdd, bool stackItem)
         {
             bool itemAddedToInventory = false;
