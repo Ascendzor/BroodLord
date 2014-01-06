@@ -35,7 +35,6 @@ namespace Server
 
                 //first thing is to send the map data to the new client
                 Console.WriteLine("Waiting to make sure the client is ready for the data");
-                Thread.Sleep(1000);
                 SendData(stream);
                 Console.WriteLine("data sent");
                 streams.Add(stream);
