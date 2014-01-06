@@ -37,9 +37,8 @@ namespace Objects
             Event leEvent = null;
             try
             {
-                //TODO: refactor this, RecieveEvent is doing more than it should
+                //TODO: refactor this next block, RecieveEvent is doing more than it should
                 //NOTE: Ask Troy how this should be fixed
-
                 //first thing to receive is the data of the map
                 stream.Read(bytes, 0, bytes.Length);
                 MemoryStream mStream = new MemoryStream();
@@ -50,8 +49,8 @@ namespace Objects
                 {
                     Data.AddGameObject(go);
                 }
+                //end of ugly part that needs to be refactored
 
-                // 150 mb
                 bytes = new byte[5 * 1024 * 1024];
 
                 while (true)
