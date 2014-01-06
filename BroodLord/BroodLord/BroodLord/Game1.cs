@@ -43,7 +43,7 @@ namespace BroodLord
             dude = new Toon(Guid.NewGuid(), new Vector2(100, 100), "link");
             input = new Input(dude);
             camera = new Camera();
-            HUD = new HUD(this.Content, dude);
+            
 
 
             graphicsDevice = graphics.GraphicsDevice;
@@ -53,6 +53,7 @@ namespace BroodLord
             graphics.PreferredBackBufferWidth = 1280;
             graphics.PreferredBackBufferHeight = 720;
             graphics.ApplyChanges();
+            HUD = new HUD(this.Content, dude, graphics.PreferredBackBufferHeight / 2, graphics.PreferredBackBufferWidth / 2);
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
@@ -86,7 +87,7 @@ namespace BroodLord
 
             Map.Draw(spriteBatch, dude.GetGridCoordX(), dude.GetGridCoordY());
             
-            HUD.Draw(spriteBatch, graphics, camera.Position);
+            HUD.Draw(spriteBatch, camera.Position);
 
             spriteBatch.End();
 

@@ -45,7 +45,6 @@ namespace Objects
             }
             else Console.WriteLine(fullInventoryMessage());
 
-            printInventory();
             return itemAddedToInventory;
         }
 
@@ -79,26 +78,12 @@ namespace Objects
                 else Console.WriteLine(fullInventoryMessage());
             }
 
-            printInventory();
             return itemAddedToInventory;
         }
 
         private String fullInventoryMessage()
         {
             return "Inventory is full!";
-        }
-
-        /// <summary>
-        /// for testing
-        /// </summary>
-        private void printInventory()
-        {
-            Console.Write("Inventory: ");
-            foreach (Loot l in items)
-            {
-                Console.Write("(" + l.Quantity + ") " + l.GetType() + ", ");
-            }
-            Console.WriteLine();
         }
     }
 }
