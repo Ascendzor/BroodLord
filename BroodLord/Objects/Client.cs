@@ -32,7 +32,7 @@ namespace Objects
         public static void ReceiveEvent()
         {
             stream = client.GetStream();
-            byte[] bytes = new byte[1024];
+            byte[] bytes = new byte[9001];
             Event leEvent = null;
             try
             {
@@ -49,6 +49,8 @@ namespace Objects
                     Data.AddGameObject(go);
                 }
                 Console.WriteLine("Data injected.");
+
+                bytes = new byte[1024];
 
                 while (true)
                 {
