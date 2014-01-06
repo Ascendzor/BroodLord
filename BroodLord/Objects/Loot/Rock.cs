@@ -21,7 +21,10 @@ namespace Objects
             this.textureHeight = 55;
             this.origin = new Vector2(textureWidth / 2, textureHeight * 0.85f);
             this.hitbox = new Rectangle((int)(position.X - origin.X), (int)(position.Y - origin.Y), (int)textureWidth, (int)textureHeight);
+            this.quantity = 1;
 
+            xTileCoord = (int)position.X / Map.GetTileSize();
+            yTileCoord = (int)position.Y / Map.GetTileSize();
             Data.AddGameObject(this);
         }
     }

@@ -57,17 +57,21 @@ namespace BroodLord
 
             List<Tile> tiles = Map.GetRenderedTiles(dude.GetGridCoordX(), dude.GetGridCoordY());
 
-            //NOT YET IMPLEMENTED: find all gameObjects that you have clicked on, find which one you are closest to the center of and click on that one, this allows you to click on something behind something else
+            //NOT YET IMPLEMENTED: find all gameObjects that you have clicked on, find which one you are closest to 
+            //the center of and click on that one, this allows you to click on something behind something else
             foreach (Tile tile in tiles)
             {
                 foreach (GameObject gameObject in tile.GetObjects())
                 {
-                    //if you clicked on a game object, go to that game object
-                    if (gameObject.GetHitbox().Contains((int)clickPosition.X, (int)clickPosition.Y))
+                    if (gameObject.IsInteractable)
                     {
-                        Event LeftClickEventz = new MoveToGameObjectEvent(dude.GetId(), gameObject.GetId());
-                        Client.SendEvent(LeftClickEventz);
-                        return;
+                        //if you clicked on a game object, go to that game object
+                        if (gameObject.GetHitbox().Contains((int)clickPosition.X, (int)clickPosition.Y))
+                        {
+                            Event LeftClickEventz = new MoveToGameObjectEvent(dude.GetId(), gameObject.GetId());
+                            Client.SendEvent(LeftClickEventz);
+                            return;
+                        }
                     }
                 }
             }

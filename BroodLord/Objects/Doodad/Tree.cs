@@ -26,7 +26,7 @@ namespace Objects
             this.origin = new Vector2(textureWidth/2, textureHeight * 0.85f);
             this.hitbox = new Rectangle((int)(position.X - origin.X), (int)(position.Y - origin.Y), (int)textureWidth, (int)textureHeight);
             this.health = 999;
-
+            this.isInteractable = true;
             Data.AddGameObject(this);
         }
 
@@ -47,7 +47,7 @@ namespace Objects
                     Console.WriteLine(id + " rip in peace");
                     isStump = true;
                     textureKey = "stump";
-
+                    this.isInteractable = false;
                     DropLoot();
                 }
             }

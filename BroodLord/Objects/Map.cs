@@ -90,5 +90,10 @@ namespace Objects
                 }
             }
         }
+
+        public static void RemoveGameObject(GameObject gameObject)
+        {
+            GetTile(gameObject.GetGridCoordX(), gameObject.GetGridCoordY()).RemoveObject(gameObject);
+        }
     }
 }

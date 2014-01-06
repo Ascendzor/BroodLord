@@ -23,6 +23,29 @@ namespace Objects
         protected int yTileCoord;
         protected float textureWidth;
         protected float textureHeight;
+        protected bool isInteractable;
+
+        /*public GameObject(Vector2 position, string textureKey, Guid id, Vector2 origin, Rectangle hitbox,Client client)
+        {
+            this.position = position;
+            this.textureKey = textureKey;
+            this.id = id;    
+            this.origin = origin;
+            this.hitbox = hitbox;
+            this.client = client;
+
+            xTileCoord = (int)(position.X / Map.GetTileSize());
+            yTileCoord = (int)(position.Y / Map.GetTileSize());
+
+            Data.AddGameObject(this);
+
+            Map.InsertGameObject(this);
+        }*/
+
+        public bool IsInteractable
+        {
+            get { return isInteractable; }
+        }
 
         public Vector2 Position
         {

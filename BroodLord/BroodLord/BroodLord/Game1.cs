@@ -66,7 +66,6 @@ namespace BroodLord
             }
 
             camera.update(dude.Position);
-
             base.Update(gameTime);
         }
 

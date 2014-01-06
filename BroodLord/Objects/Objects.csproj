@@ -48,12 +48,14 @@
     <Compile Include="Client.cs" />
     <Compile Include="Data.cs" />
     <Compile Include="Doodad\Doodad.cs" />
+    <Compile Include="Events\LootedLootEvent.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="Events\Event.cs" />
     <Compile Include="Events\TookDamageEvent.cs" />
+    <Compile Include="Inventory\InvSlot.cs" />
+    <Compile Include="Inventory\Inventory.cs" />
     <Compile Include="Loot\Loot.cs" />
     <Compile Include="Map.cs" />
-    <Compile Include="Mob\Cat.cs" />
     <Compile Include="Mob\Mob.cs" />
     <Compile Include="Events\MoveToGameObjectEvent.cs" />
     <Compile Include="Events\MoveToPositionEvent.cs" />

@@ -19,9 +19,11 @@ namespace Objects
         public static Dictionary<Guid, Loot> FindLoot;
         public static Dictionary<Guid, Doodad> FindDoodad;
         public static int ToonRadius = 28;
+        public static int ToonInteractionRange = 100;
         public static int TreeRadius = 56;
         public static int TileSize = 84;
         public static int MapSize = 20;
+        
 
         public static void Initialize(ContentManager Content)
         {
@@ -56,7 +58,7 @@ namespace Objects
         {
             Map.InsertGameObject(go);
             FindGameObject.Add(go.GetId(), go);
-
+            
             if (go is Mob)
             {
                 FindMob.Add(go.GetId(), (Mob)go);
@@ -70,6 +72,7 @@ namespace Objects
                 FindDoodad.Add(go.GetId(), (Doodad)go);
             }
         }
+
         /*
          * 
          * Some Notes

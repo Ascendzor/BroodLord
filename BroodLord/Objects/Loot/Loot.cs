@@ -12,6 +12,21 @@ namespace Objects
     {
         protected string textureKeyInBag;
         protected bool onGround;
+        protected int quantity;
+
+        /// <summary>
+        /// All loot is interactable so define as true here
+        /// </summary>
+        public Loot()
+        {
+            this.isInteractable = true;
+        }
+
+        public int Quantity
+        {
+            get { return quantity; }
+            set { quantity = value; }
+        }
 
         public override void Draw(SpriteBatch sb)
         {
@@ -34,5 +49,14 @@ namespace Objects
                 //dude is holding the rock
             }
         }
+
+        public void HandleEvent(Event leEvent)
+        {
+            if (leEvent is LootedLootEvent)
+            {
+
+            }
+        }
+
     }
 }
