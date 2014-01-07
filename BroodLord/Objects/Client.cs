@@ -29,30 +29,40 @@ namespace Objects
             return stream;
         }
 
-        public static void ReceiveEvent()
+        /// <summary>
+        /// Update event that is run in a thread
+        /// </summary>
+        private static void ReceiveEvent()
         {
             stream = client.GetStream();
 
-            byte[] bytes = new byte[9001];
             Event leEvent = null;
             try
             {
-                //TODO: refactor this next block, RecieveEvent is doing more than it should
-                //NOTE: Ask Troy how this should be fixed
-                //first thing to receive is the data of the map
-                stream.Read(bytes, 0, bytes.Length);
+                // read the GameDataSizeMessage
                 MemoryStream mStream = new MemoryStream();
-                mStream.Write(bytes, 0, bytes.Length);
+                byte[] messageData =  new byte[Data.SizeOfNetEventPacket];
+                Console.WriteLine("Recieveing {0}", messageData.Length);
+                stream.Read(messageData, 0, messageData.Length);
+                mStream.Write(messageData, 0, messageData.Length);
+                mStream.Seek(0, SeekOrigin.Begin);
+                GameDataSizeMessage dataMessage = (GameDataSizeMessage)new BinaryFormatter().Deserialize(mStream);
+
+                // read the list of game objects
+                mStream = new MemoryStream();
+                messageData = new byte[dataMessage.sizeOfData];
+                stream.Read(messageData, 0, messageData.Length);
+                mStream.Write(messageData, 0, messageData.Length);
                 mStream.Seek(0, SeekOrigin.Begin);
                 List<GameObject> gos = (List<GameObject>)new BinaryFormatter().Deserialize(mStream);
+
+                // Update the game objects
                 foreach (GameObject go in gos)
                 {
                     Data.AddGameObject(go);
                 }
-                //end of ugly part that needs to be refactored
 
-                bytes = new byte[5 * 1024 * 1024];
-
+                byte[] bytes = new byte[1000000];
                 while (true)
                 {
                     stream.Read(bytes, 0, bytes.Length);

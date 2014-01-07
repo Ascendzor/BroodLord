@@ -59,6 +59,7 @@
     <Compile Include="Mob\Mob.cs" />
     <Compile Include="Events\MoveToGameObjectEvent.cs" />
     <Compile Include="Events\MoveToPositionEvent.cs" />
+    <Compile Include="GameDataSizeMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Loot\Rock.cs" />
     <Compile Include="Tile.cs" />
