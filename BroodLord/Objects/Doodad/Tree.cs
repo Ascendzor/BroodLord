@@ -30,16 +30,16 @@ namespace Objects
             Data.AddGameObject(this);
         }
 
-        public override void ReceiveEvent(Event leEvent)
+        public override void ReceiveEvent(TookDamageEvent leEvent)
         {
             if (isStump)
             {
                 return;
             }
 
-            if (leEvent is TookDamage)
+            if (leEvent is TookDamageEvent)
             {
-                TookDamage td = (TookDamage)leEvent;
+                TookDamageEvent td = (TookDamageEvent)leEvent;
                 health -= (int)td.DamageTaken;
 
                 if (health <= 0)
@@ -62,7 +62,7 @@ namespace Objects
 
         public void GotChopped(Toon dude)
         {
-            Client.SendEvent(new TookDamage(id, dude.GetAttackDamage()));
+            Client.SendEvent(new TookDamageEvent(id, dude.GetAttackDamage()));
         }
     }
 }

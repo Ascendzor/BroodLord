@@ -83,19 +83,16 @@ namespace Objects
             return attackDamage;
         }
 
-        public override void ReceiveEvent(Event leEvent)
+        public override void ReceiveEvent(LootedLootEvent leEvent)
         {
             base.ReceiveEvent(leEvent);
-            if (leEvent is LootedLootEvent)
+            LootedLootEvent LLE = (LootedLootEvent)leEvent;
+
+            Loot lootedItem = Data.FindLoot[LLE.item];
+
+            if (inventory.addToInventory(lootedItem, true))
             {
-                LootedLootEvent LLE = (LootedLootEvent)leEvent;
-
-                Loot lootedItem = Data.FindLoot[LLE.item];
-
-                if (inventory.addToInventory(lootedItem, true))
-                {
-                    Map.RemoveGameObject(lootedItem);
-                }
+                Map.RemoveGameObject(lootedItem);
             }
         }
     }

@@ -37,9 +37,7 @@ namespace Objects
             try
             {
                 //first thing to receive is the data of the map
-                Console.WriteLine("waiting for the data");
                 stream.Read(bytes, 0, bytes.Length);
-                Console.WriteLine("got something");
                 MemoryStream mStream = new MemoryStream();
                 mStream.Write(bytes, 0, bytes.Length);
                 mStream.Seek(0, SeekOrigin.Begin);
@@ -48,7 +46,6 @@ namespace Objects
                 {
                     Data.AddGameObject(go);
                 }
-                Console.WriteLine("Data injected.");
 
                 bytes = new byte[1024];
 
@@ -64,7 +61,9 @@ namespace Objects
                     {
                         new Toon(leEvent.Id, new Microsoft.Xna.Framework.Vector2(100, 100), "link");
                     }
-                    Data.FindGameObject[leEvent.Id].ReceiveEvent(leEvent);
+
+                    dynamic gameObject = Convert.ChangeType(leEvent, leEvent.GetType());
+                    Data.FindGameObject[leEvent.Id].ReceiveEvent(gameObject);
                 }
             }
             catch (Exception e)
