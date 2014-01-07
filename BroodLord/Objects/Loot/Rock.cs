@@ -10,9 +10,9 @@ namespace Objects
     [Serializable()]
     public class Rock : Loot
     {
-        public Rock(Vector2 position) :base()
+        public Rock(Guid id, Vector2 position) :base()
         {
-            this.id = Guid.NewGuid();
+            this.id = id;
             this.position = position;
             this.textureKey = "rock";
             this.textureKeyInBag = "rockBag";

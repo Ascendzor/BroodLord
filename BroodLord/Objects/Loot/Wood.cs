@@ -8,9 +8,9 @@ namespace Objects
     [Serializable()]
     public class Wood : Loot
     {
-        public Wood(Vector2 position) : base()
+        public Wood(Guid id, Vector2 position) : base()
         {
-            this.id = Guid.NewGuid();
+            this.id = id;
             this.position = position;
             this.textureKey = "wood";
             this.textureKeyInBag = "woodBag";

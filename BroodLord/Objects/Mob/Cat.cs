@@ -9,23 +9,14 @@ namespace Objects
     [Serializable()]
     public class Cat : Mob
     {
-        public Cat(Guid id, Vector2 position, string textureKey)
+        public Cat(Guid id, Vector2 position)
         {
             this.id = id;
             this.position = position;
-            this.textureKey = textureKey;
-            this.movementSpeed = 10;
-            this.goalPosition = position;
-            this.origin = new Vector2(Data.FindTexture[textureKey].Width / 2, Data.FindTexture[textureKey].Height * 0.85f);
-            this.interactRange = 100;
-            this.attackDamage = 200;
-            this.interactionCooldown = 1000;
-
-            xTileCoord = (int)position.X / Map.GetTileSize();
-            yTileCoord = (int)position.Y / Map.GetTileSize();
-
-            lastInteractionTimestamp = DateTime.Now;
-            interactionOffCooldown = DateTime.Now;
+            this.textureKey = "cat";
+            this.textureWidth = 197;
+            this.textureHeight = 240;
+            this.origin = new Vector2(textureWidth / 2, textureHeight * 0.85f);
 
             Data.AddGameObject(this);
         }

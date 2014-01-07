@@ -11,10 +11,6 @@ namespace Server
 {
     static class MapLoader
     {
-
-        //WTF
-        private static Client client;
-
         /// <summary>
         /// Loads the map from a .bmp
         /// 
@@ -38,12 +34,17 @@ namespace Server
                     System.Drawing.Color pixel = mapImage.GetPixel(x, y);
                     if (pixel.R == 255 && pixel.G == 0 && pixel.B == 0)
                     {
-                        new Tree(new Vector2(x * Data.TileSize, y * Data.TileSize), "tree", client);
+                        new Tree(Guid.NewGuid(), new Vector2(x * Data.TileSize, y * Data.TileSize), "tree");
                     }
                     if (pixel.R == 0 && pixel.G == 255 && pixel.B == 0)
                     {
-                        new Rock(new Vector2(x * Data.TileSize, y * Data.TileSize));
+                        new Rock(Guid.NewGuid(), new Vector2(x * Data.TileSize, y * Data.TileSize));
                     }
+                    if (pixel.R == 0 && pixel.G == 0 && pixel.B == 255)
+                    {
+                        new Cat(Guid.NewGuid(), new Vector2(x * Data.TileSize, y * Data.TileSize));
+                    }
+
                 }
             }
         }

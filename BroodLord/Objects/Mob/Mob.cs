@@ -22,7 +22,7 @@ namespace Objects
         protected DateTime interactionOffCooldown;
         protected Inventory inventory;
 
-        /*public Mob(Vector2 position, string textureKey, Guid id, Vector2 origin, Rectangle hitbox, Client client) //: base(position, textureKey, id, origin, hitbox, client)
+        /*public Mob(Vector2 position, string textureKey, Guid id, Vector2 origin, Rectangle hitbox) //: base(position, textureKey, id, origin, hitbox, client)
         {
 
         }*/

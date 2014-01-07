@@ -13,9 +13,9 @@ namespace Objects
         private int health;
         private bool isStump;
 
-        public Tree(Vector2 position, string textureKey, Client client)
+        public Tree(Guid id, Vector2 position, string textureKey)
         {
-            this.id = Guid.NewGuid();
+            this.id = id;
             this.position = position;
             this.textureKey = textureKey;
             this.xTileCoord = (int)position.X / Map.GetTileSize();
@@ -56,8 +56,8 @@ namespace Objects
         //made this into a method because it's going to changed a lot. This is just a proof of concept.
         private void DropLoot()
         {
-            new Wood(position + new Vector2(-20, 5));
-            new Wood(position + new Vector2(20, 20));
+            new Wood(Guid.NewGuid(), position + new Vector2(-20, 5));
+            new Wood(Guid.NewGuid(), position + new Vector2(20, 20));
         }
 
         public void GotChopped(Toon dude)

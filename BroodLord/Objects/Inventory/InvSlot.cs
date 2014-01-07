@@ -5,9 +5,9 @@ using System.Text;
 
 namespace Objects
 {
+    [Serializable()]
     class InvSlot
     {
         List<Loot> containedObjects;
-
     }
 }

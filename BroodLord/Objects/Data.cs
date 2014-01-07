@@ -40,6 +40,7 @@ namespace Objects
             Data.FindTexture.Add("tree", Content.Load<Texture2D>("tree"));
             Data.FindTexture.Add("rock", Content.Load<Texture2D>("rock"));
             Data.FindTexture.Add("wood", Content.Load<Texture2D>("wood"));
+            Data.FindTexture.Add("cat", Content.Load<Texture2D>("cat"));
             Data.FindTexture.Add("treeOutline", Content.Load<Texture2D>("treeOutline"));
             Data.FindTexture.Add("stump", Content.Load<Texture2D>("stump"));
             Data.FindTexture.Add("inventorySlots", Content.Load<Texture2D>("inventorySlots"));
