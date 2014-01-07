@@ -41,6 +41,11 @@ namespace Objects
             Map.InsertGameObject(this);
         }
 
+        public Inventory Inventory
+        {
+            get { return inventory; }
+        }
+
         protected override void Interact(GameObject gameObject)
         {
             if (DateTime.Now.CompareTo(interactionOffCooldown) == -1)

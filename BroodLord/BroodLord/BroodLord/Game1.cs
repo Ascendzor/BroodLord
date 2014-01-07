@@ -21,6 +21,8 @@ namespace BroodLord
         Input input;
         Toon dude;
         Camera camera;
+        HUD HUD;
+
 
         public static Dictionary<Guid, Toon> allToons;
 
@@ -41,6 +43,7 @@ namespace BroodLord
             dude = new Toon(Guid.NewGuid(), new Vector2(100, 100), "link");
             input = new Input(dude);
             camera = new Camera();
+            HUD = new HUD(this.Content, dude);
 
 
             graphicsDevice = graphics.GraphicsDevice;
@@ -82,8 +85,8 @@ namespace BroodLord
                         camera.getTransformation(graphics.GraphicsDevice));
 
             Map.Draw(spriteBatch, dude.GetGridCoordX(), dude.GetGridCoordY());
-
-
+            
+            HUD.Draw(spriteBatch, graphics, camera.Position);
 
             spriteBatch.End();
 
