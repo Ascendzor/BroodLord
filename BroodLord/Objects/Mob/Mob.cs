@@ -27,20 +27,20 @@ namespace Objects
 
         }*/
 
-        public override void ReceiveEvent(MoveToPositionEvent leEvent)
+        public void ReceiveEvent(MoveToPositionEvent leEvent)
         {
             goalPosition = leEvent.Position;
             goalGameObject = null;
         }
 
-        public override void ReceiveEvent(MoveToGameObjectEvent leEvent)
+        public void ReceiveEvent(MoveToGameObjectEvent leEvent)
         {
             MoveToGameObjectEvent mtgoe = (MoveToGameObjectEvent)leEvent;
             goalGameObject = Data.FindGameObject[mtgoe.GoalGameObject];
             goalPosition = goalGameObject.Position;
         }
 
-        public override void ReceiveEvent(ChopEvent leEvent)
+        public void ReceiveEvent(ChopEvent leEvent)
         {
         }
         

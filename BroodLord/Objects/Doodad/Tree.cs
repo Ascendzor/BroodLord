@@ -30,7 +30,7 @@ namespace Objects
             Data.AddGameObject(this);
         }
 
-        public override void ReceiveEvent(TookDamageEvent leEvent)
+        public void ReceiveEvent(TookDamageEvent leEvent)
         {
             if (isStump)
             {

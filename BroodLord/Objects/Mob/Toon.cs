@@ -88,9 +88,8 @@ namespace Objects
             return attackDamage;
         }
 
-        public override void ReceiveEvent(LootedLootEvent leEvent)
+        public void ReceiveEvent(LootedLootEvent leEvent)
         {
-            base.ReceiveEvent(leEvent);
             LootedLootEvent LLE = (LootedLootEvent)leEvent;
 
             Loot lootedItem = Data.FindLoot[LLE.item];

@@ -62,8 +62,9 @@ namespace Objects
                         new Toon(leEvent.Id, new Microsoft.Xna.Framework.Vector2(100, 100), "link");
                     }
 
-                    dynamic gameObject = Convert.ChangeType(leEvent, leEvent.GetType());
-                    Data.FindGameObject[leEvent.Id].ReceiveEvent(gameObject);
+                    dynamic dynamicEvent = Convert.ChangeType(leEvent, leEvent.GetType());
+                    dynamic gameObject = Data.FindGameObject[leEvent.Id];
+                    gameObject.ReceiveEvent(dynamicEvent);
                 }
             }
             catch (Exception e)
