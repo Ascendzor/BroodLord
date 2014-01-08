@@ -33,7 +33,7 @@ namespace Objects
         {
             stream = client.GetStream();
 
-            byte[] bytes = new byte[9001];
+            byte[] bytes = new byte[90010];
             Event leEvent = null;
             try
             {

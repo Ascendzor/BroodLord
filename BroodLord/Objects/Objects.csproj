@@ -56,6 +56,7 @@
     <Compile Include="Inventory\Inventory.cs" />
     <Compile Include="Loot\Loot.cs" />
     <Compile Include="Map.cs" />
+    <Compile Include="Mob\Cat.cs" />
     <Compile Include="Mob\Mob.cs" />
     <Compile Include="Events\MoveToGameObjectEvent.cs" />
     <Compile Include="Events\MoveToPositionEvent.cs" />

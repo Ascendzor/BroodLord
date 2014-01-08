@@ -40,6 +40,11 @@ namespace Server
                     {
                         new Rock(Guid.NewGuid(), new Vector2(x * Data.TileSize, y * Data.TileSize));
                     }
+                    if (pixel.R == 0 && pixel.G == 0 && pixel.B == 255)
+                    {
+                        new Cat(Guid.NewGuid(), new Vector2(x * Data.TileSize, y * Data.TileSize));
+                    }
+
                 }
             }
         }
