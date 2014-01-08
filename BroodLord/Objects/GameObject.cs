@@ -25,7 +25,7 @@ namespace Objects
         protected float textureHeight;
         protected bool isInteractable;
 
-        /*public GameObject(Vector2 position, string textureKey, Guid id, Vector2 origin, Rectangle hitbox,Client client)
+        /*public GameObject(Vector2 position, string textureKey, Guid id, Vector2 origin, Rectangle hitbox)
         {
             this.position = position;
             this.textureKey = textureKey;

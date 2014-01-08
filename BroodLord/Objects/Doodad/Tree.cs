@@ -13,7 +13,7 @@ namespace Objects
         private int health;
         private bool isStump;
 
-        public Tree(Guid id, Vector2 position, string textureKey, Client client)
+        public Tree(Guid id, Vector2 position, string textureKey)
         {
             this.id = id;
             this.position = position;
