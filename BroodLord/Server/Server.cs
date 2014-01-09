@@ -85,8 +85,7 @@ namespace Server
         /// <param name="stream"> stream which is associated with a client</param>
         public void Listen(NetworkStream stream)
         {
-            byte[] bytes = new byte[1024];
-            Event leEvent = null;
+            byte[] bytes = new byte[512];
             try
             {
                 while (true)
@@ -95,29 +94,18 @@ namespace Server
                     MemoryStream memStream = new MemoryStream();
                     memStream.Write(bytes, 0, bytes.Length);
                     memStream.Seek(0, SeekOrigin.Begin);
-                    leEvent = (Event)new BinaryFormatter().Deserialize(memStream);
-                    Broadcast(leEvent);
+
+                    foreach (NetworkStream ns in streams)
+                    {
+                        ns.Write(bytes, 0, bytes.Length);
+                        memStream.Close();
+                    }
                 }
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 Console.WriteLine("something died :( Server=>Listen(NetworkStream)");
-            }
-        }
-      
-        public void Broadcast(Event leEvent)
-        {
-            MemoryStream ms = new MemoryStream();
-            new BinaryFormatter().Serialize(ms, leEvent);
-
-            byte[] bytes = ms.ToArray();
-
-            foreach (NetworkStream ns in streams)
-            {
-                ns.Write(bytes, 0, bytes.Length);
-
-                ms.Close();
             }
         }
          

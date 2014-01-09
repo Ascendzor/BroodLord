@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Threading;
 
 namespace Objects
 {
@@ -41,27 +42,36 @@ namespace Objects
             {
                 TookDamageEvent td = (TookDamageEvent)leEvent;
                 health -= (int)td.DamageTaken;
-
-                if (health <= 0)
-                {
-                    Console.WriteLine(id + " rip in peace");
-                    isStump = true;
-                    textureKey = "stump";
-                    this.isInteractable = false;
-                    DropLoot();
-                }
             }
         }
 
-        //made this into a method because it's going to changed a lot. This is just a proof of concept.
-        private void DropLoot()
+        public void ReceiveEvent(SpawnWoodEvent leEvent)
         {
-            new Wood(Guid.NewGuid(), position + new Vector2(-20, 5));
-            new Wood(Guid.NewGuid(), position + new Vector2(20, 20));
+            Console.WriteLine("received wood");
+            new Wood(leEvent.WoodId, leEvent.Position);
+        }
+
+        public void ReceiveEvent(TreeRipEvent leEvent)
+        {
+            Console.WriteLine(id + " rip in peace");
+            isStump = true;
+            textureKey = "stump";
+            this.isInteractable = false;
         }
 
         public void GotChopped(Toon dude)
         {
+            if (health < dude.GetAttackDamage())
+            {
+                Client.SendEvent(new TreeRipEvent(id));
+                Client.SendEvent(new SpawnWoodEvent(id, Guid.NewGuid(), position + new Vector2(-20, 5)));
+                Client.SendEvent(new SpawnWoodEvent(id, Guid.NewGuid(), position + new Vector2(20, 20)));
+                Client.SendEvent(new SpawnWoodEvent(id, Guid.NewGuid(), position + new Vector2(50, 20)));
+                Client.SendEvent(new SpawnWoodEvent(id, Guid.NewGuid(), position + new Vector2(30, 20)));
+                Client.SendEvent(new SpawnWoodEvent(id, Guid.NewGuid(), position + new Vector2(40, 20)));
+                Client.SendEvent(new SpawnWoodEvent(id, Guid.NewGuid(), position + new Vector2(20, 40)));
+                return;
+            }
             Client.SendEvent(new TookDamageEvent(id, dude.GetAttackDamage()));
         }
     }

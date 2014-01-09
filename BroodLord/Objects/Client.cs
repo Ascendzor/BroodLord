@@ -62,7 +62,7 @@ namespace Objects
                     Data.AddGameObject(go);
                 }
 
-                byte[] bytes = new byte[1000000];
+                byte[] bytes = new byte[512];
                 while (true)
                 {
                     stream.Read(bytes, 0, bytes.Length);
@@ -95,6 +95,7 @@ namespace Objects
             {
                 new BinaryFormatter().Serialize(ms, leEvent);
                 byte[] bytes = ms.ToArray();
+                Console.WriteLine(bytes.Length);
                 stream.Write(bytes, 0, bytes.Length);
                 ms.Close();
             }
