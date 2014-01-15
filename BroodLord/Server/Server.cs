@@ -118,6 +118,7 @@ namespace Server
             Server server = new Server();
             new Thread(() => server.ListenForNewConnections()).Start();
 
+            Thread.Sleep(10000);
             environment.Play();
         }
     }

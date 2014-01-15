@@ -23,7 +23,6 @@ namespace BroodLord
         Camera camera;
         HUD HUD;
 
-
         public static Dictionary<Guid, Toon> allToons;
 
         public static GraphicsDevice graphicsDevice;
@@ -41,10 +40,9 @@ namespace BroodLord
             Map.Initialize(Data.TileSize, Data.MapSize, 5); //the renderWidth should be dynamic to the resolution
             Client.Initialize();
             dude = new Toon(Guid.NewGuid(), new Vector2(100, 100), "link");
+            Client.SendEvent(new SpawnToonEvent(dude.GetId()));
             input = new Input(dude);
             camera = new Camera();
-            
-
 
             graphicsDevice = graphics.GraphicsDevice;
             IsMouseVisible = true;

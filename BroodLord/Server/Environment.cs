@@ -10,7 +10,6 @@ namespace Server
 {
     class Environment
     {
-
         public Environment()
         {
             MapLoader.LoadMap(@"Assets/map.bmp");
@@ -18,6 +17,7 @@ namespace Server
 
         public void Play()
         {
+            Console.WriteLine("I am le playing");
         }
     }
 }

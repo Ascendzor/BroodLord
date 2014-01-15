@@ -71,14 +71,17 @@ namespace Objects
                     memStream.Seek(0, SeekOrigin.Begin);
                     leEvent = (Event)new BinaryFormatter().Deserialize(memStream);
 
-                    if (!Data.FindGameObject.ContainsKey(leEvent.Id))
+                    if (Data.FindGameObject.ContainsKey(leEvent.Id))
                     {
-                        new Toon(leEvent.Id, new Microsoft.Xna.Framework.Vector2(100, 100), "link");
+                        dynamic dynamicEvent = Convert.ChangeType(leEvent, leEvent.GetType());
+                        dynamic gameObject = Data.FindGameObject[leEvent.Id];
+                        gameObject.ReceiveEvent(dynamicEvent);
                     }
-
-                    dynamic dynamicEvent = Convert.ChangeType(leEvent, leEvent.GetType());
-                    dynamic gameObject = Data.FindGameObject[leEvent.Id];
-                    gameObject.ReceiveEvent(dynamicEvent);
+                    else
+                    {
+                        dynamic dynamicEvent = Convert.ChangeType(leEvent, leEvent.GetType());
+                        SpawnEventManager.HandleEvent(dynamicEvent);
+                    }
                 }
             }
             catch (Exception e)
