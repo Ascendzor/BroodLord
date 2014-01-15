@@ -88,10 +88,6 @@ namespace Objects
 
             foreach (string key in allTextures)
             {
-                foreach (string derp in Directory.GetFiles(@"../../../BroodLord/BroodLordContent"))
-                {
-                    Console.WriteLine(derp);
-                }
                 Image leImage = Image.FromFile(@"../../../BroodLord/BroodLordContent/" + key + ".png");
                 FindTextureSize.Add(key, new Vector2(leImage.Width, leImage.Height));
             }
