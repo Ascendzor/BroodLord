@@ -93,28 +93,17 @@ namespace Server
                     stream.Read(bytes, 0, bytes.Length);
                     MemoryStream memStream = new MemoryStream();
                     memStream.Write(bytes, 0, bytes.Length);
-                    memStream.Seek(0, SeekOrigin.Begin);
-
-                    BroadcastEvent((Event)new BinaryFormatter().Deserialize(memStream));
+                    memStream.Close();
+                    foreach (NetworkStream ns in streams)
+                    {
+                        ns.Write(bytes, 0, bytes.Length);
+                    }
                 }
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 Console.WriteLine("something died :( Server=>Listen(NetworkStream)");
-            }
-        }
-
-        //broadcasts an event
-        public void BroadcastEvent(Event leEvent)
-        {
-            MemoryStream ms = new MemoryStream();
-            new BinaryFormatter().Serialize(ms, leEvent);
-            byte[] bytes = ms.ToArray();
-            ms.Close();
-            foreach (NetworkStream ns in streams)
-            {
-                ns.Write(bytes, 0, bytes.Length);
             }
         }
 
