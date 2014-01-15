@@ -5,6 +5,7 @@ using System.Text;
 using Objects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using System.Threading;
 
 namespace Server
 {
@@ -18,9 +19,17 @@ namespace Server
         public void Play()
         {
             Console.WriteLine("I am le playing");
-            foreach (GameObject go in Data.FindGameObject.Values)
+
+            while (true)
             {
-                Console.WriteLine(go);
+                Thread.Sleep(1000);
+                foreach (GameObject go in Data.FindGameObject.Values)
+                {
+                    if (go is Toon)
+                    {
+                        Console.WriteLine(go);
+                    }
+                }
             }
         }
     }

@@ -22,13 +22,14 @@ namespace Objects
             this.textureKey = textureKey;
             this.movementSpeed = 10;
             this.goalPosition = position;
-            this.origin = new Vector2(Data.FindTexture[textureKey].Width / 2, Data.FindTexture[textureKey].Height * 0.85f);
+            this.textureWidth = 56;
+            this.textureHeight = 56;
+            this.origin = new Vector2(textureWidth / 2, textureHeight * 0.85f);
             this.interactRange = Data.ToonInteractionRange;
             this.attackDamage = 200;
             this.interactionCooldown = 1000;
             this.interactionCooldown = 200;
             this.inventory = new Inventory();
-            
 
             xTileCoord = (int)position.X / Map.GetTileSize();
             yTileCoord = (int)position.Y / Map.GetTileSize();

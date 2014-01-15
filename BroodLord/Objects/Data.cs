@@ -60,6 +60,10 @@ namespace Objects
 
         public static void AddGameObject(GameObject go)
         {
+            if (FindGameObject.ContainsKey(go.GetId()))
+            {
+                return;
+            }
             Map.InsertGameObject(go);
             FindGameObject.Add(go.GetId(), go);
             

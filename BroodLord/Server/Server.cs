@@ -95,11 +95,7 @@ namespace Server
                     memStream.Write(bytes, 0, bytes.Length);
                     memStream.Seek(0, SeekOrigin.Begin);
 
-                    foreach (NetworkStream ns in streams)
-                    {
-                        ns.Write(bytes, 0, bytes.Length);
-                        memStream.Close();
-                    }
+                    BroadcastEvent((Event)new BinaryFormatter().Deserialize(memStream));
                 }
             }
             catch (Exception e)
@@ -108,7 +104,19 @@ namespace Server
                 Console.WriteLine("something died :( Server=>Listen(NetworkStream)");
             }
         }
-         
+
+        //broadcasts an event
+        public void BroadcastEvent(Event leEvent)
+        {
+            MemoryStream ms = new MemoryStream();
+            new BinaryFormatter().Serialize(ms, leEvent);
+            byte[] bytes = ms.ToArray();
+            ms.Close();
+            foreach (NetworkStream ns in streams)
+            {
+                ns.Write(bytes, 0, bytes.Length);
+            }
+        }
 
         static void Main(string[] args)
         {
@@ -117,6 +125,8 @@ namespace Server
 
             Server server = new Server();
             new Thread(() => server.ListenForNewConnections()).Start();
+
+            Client.Initialize();
 
             //wait 10 seconds because I scared -Troy
             Thread.Sleep(5000);

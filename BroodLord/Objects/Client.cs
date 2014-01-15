@@ -55,17 +55,20 @@ namespace Objects
                 mStream.Write(messageData, 0, messageData.Length);
                 mStream.Seek(0, SeekOrigin.Begin);
                 List<GameObject> gos = (List<GameObject>)new BinaryFormatter().Deserialize(mStream);
-
+                Console.WriteLine(gos.Count);
+                Console.WriteLine("adding game objects from server");
                 // Update the game objects
                 foreach (GameObject go in gos)
                 {
                     Data.AddGameObject(go);
+                    Console.WriteLine("added: " + go);
                 }
 
                 byte[] bytes = new byte[512];
                 while (true)
                 {
                     stream.Read(bytes, 0, bytes.Length);
+                    Console.WriteLine("Received an event");
                     MemoryStream memStream = new MemoryStream();
                     memStream.Write(bytes, 0, bytes.Length);
                     memStream.Seek(0, SeekOrigin.Begin);
@@ -80,6 +83,7 @@ namespace Objects
                     }
                     else
                     {
+                        Console.WriteLine(leEvent.GetType());
                         dynamic dynamicEvent = Convert.ChangeType(leEvent, leEvent.GetType());
                         SpawnEventManager.HandleEvent(dynamicEvent);
                     }
@@ -97,6 +101,7 @@ namespace Objects
             MemoryStream ms = new MemoryStream();
             try
             {
+                Console.WriteLine(leEvent.GetType());
                 new BinaryFormatter().Serialize(ms, leEvent);
                 byte[] bytes = ms.ToArray();
                 Console.WriteLine(bytes.Length);
