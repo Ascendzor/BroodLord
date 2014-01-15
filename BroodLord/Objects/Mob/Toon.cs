@@ -22,9 +22,7 @@ namespace Objects
             this.textureKey = textureKey;
             this.movementSpeed = 10;
             this.goalPosition = position;
-            this.textureWidth = 56;
-            this.textureHeight = 56;
-            this.origin = new Vector2(textureWidth / 2, textureHeight * 0.85f);
+            this.origin = new Vector2(Data.GetTextureSize(textureKey).X / 2, Data.GetTextureSize(textureKey).Y * 0.85f);
             this.interactRange = Data.ToonInteractionRange;
             this.attackDamage = 200;
             this.interactionCooldown = 1000;

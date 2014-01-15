@@ -54,7 +54,6 @@ namespace BroodLord
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            Thread.Sleep(2000);
             Console.WriteLine("published SpawnToonEvent");
             Client.SendEvent(new SpawnToonEvent(dude.GetId()));
 

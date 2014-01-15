@@ -23,13 +23,6 @@ namespace Server
             while (true)
             {
                 Thread.Sleep(1000);
-                foreach (GameObject go in Data.FindGameObject.Values)
-                {
-                    if (go is Toon)
-                    {
-                        Console.WriteLine(go);
-                    }
-                }
             }
         }
     }

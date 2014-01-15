@@ -8,12 +8,16 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using System.Drawing;
+using System.IO;
 
 namespace Objects
 {
     public class Data
     {
+        private static List<string> allTextures;
         public static Dictionary<string, Texture2D> FindTexture;
+        public static Dictionary<string, Vector2> FindTextureSize;
         public static Dictionary<Guid, GameObject> FindGameObject;
         public static Dictionary<Guid, Mob> FindMob;
         public static Dictionary<Guid, Loot> FindLoot;
@@ -34,20 +38,42 @@ namespace Objects
             FindLoot = new Dictionary<Guid, Loot>();
             FindDoodad = new Dictionary<Guid, Doodad>();
 
-            Data.FindTexture = new Dictionary<string, Texture2D>();
-            
-            Data.FindTexture.Add("link", Content.Load<Texture2D>("link"));
-            Data.FindTexture.Add("tree", Content.Load<Texture2D>("tree"));
-            Data.FindTexture.Add("rock", Content.Load<Texture2D>("rock"));
-            Data.FindTexture.Add("wood", Content.Load<Texture2D>("wood"));
-            Data.FindTexture.Add("cat", Content.Load<Texture2D>("cat"));
-            Data.FindTexture.Add("treeOutline", Content.Load<Texture2D>("treeOutline"));
-            Data.FindTexture.Add("stump", Content.Load<Texture2D>("stump"));
-            Data.FindTexture.Add("inventorySlots", Content.Load<Texture2D>("inventorySlots"));
-            for (int x = 1; x < 9; x++)
+            FindTexture = new Dictionary<string, Texture2D>();
+
+            Data.InitializeAllTextures();
+
+            foreach (string textureKey in allTextures)
             {
-                Data.FindTexture.Add("snow" + x, Content.Load<Texture2D>("snow" + x));
+                FindTexture.Add(textureKey, Content.Load<Texture2D>(textureKey));
             }
+
+            FindTextureSize = new Dictionary<string, Vector2>();
+            foreach (string textureKey in FindTexture.Keys)
+            {
+                FindTextureSize.Add(textureKey, new Vector2(FindTexture[textureKey].Width, FindTexture[textureKey].Height));
+            }
+        }
+
+        private static void InitializeAllTextures()
+        {
+            allTextures = new List<string>();
+
+            allTextures.Add("link");
+            allTextures.Add("tree");
+            allTextures.Add("rock");
+            allTextures.Add("wood");
+            allTextures.Add("cat");
+            allTextures.Add("treeOutline");
+            allTextures.Add("stump");
+            allTextures.Add("inventorySlots");
+            allTextures.Add("snow1");
+            allTextures.Add("snow2");
+            allTextures.Add("snow3");
+            allTextures.Add("snow4");
+            allTextures.Add("snow5");
+            allTextures.Add("snow6");
+            allTextures.Add("snow7");
+            allTextures.Add("snow8");
         }
 
         public static void Initialize()
@@ -56,6 +82,24 @@ namespace Objects
             FindMob = new Dictionary<Guid, Mob>();
             FindLoot = new Dictionary<Guid, Loot>();
             FindDoodad = new Dictionary<Guid, Doodad>();
+
+            FindTextureSize = new Dictionary<string, Vector2>();
+            InitializeAllTextures();
+
+            foreach (string key in allTextures)
+            {
+                foreach (string derp in Directory.GetFiles(@"../../../BroodLord/BroodLordContent"))
+                {
+                    Console.WriteLine(derp);
+                }
+                Image leImage = Image.FromFile(@"../../../BroodLord/BroodLordContent/" + key + ".png");
+                FindTextureSize.Add(key, new Vector2(leImage.Width, leImage.Height));
+            }
+        }
+
+        public static Vector2 GetTextureSize(string textureKey)
+        {
+            return FindTextureSize[textureKey];
         }
 
         public static void AddGameObject(GameObject go)

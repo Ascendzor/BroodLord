@@ -109,7 +109,7 @@ namespace Server
 
         static void Main(string[] args)
         {
-            //Environment is the Servers player ;)
+            Data.Initialize();
             Environment environment = new Environment();
 
             Server server = new Server();
@@ -117,8 +117,6 @@ namespace Server
 
             Client.Initialize();
 
-            //wait 10 seconds because I scared -Troy
-            Thread.Sleep(1000);
             environment.Play();
         }
     }

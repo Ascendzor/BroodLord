@@ -14,9 +14,7 @@ namespace Objects
             this.id = id;
             this.position = position;
             this.textureKey = "cat";
-            this.textureWidth = 197;
-            this.textureHeight = 240;
-            this.origin = new Vector2(textureWidth / 2, textureHeight * 0.85f);
+            this.origin = new Vector2(Data.GetTextureSize(textureKey).X / 2, Data.GetTextureSize(textureKey).Y * 0.85f);
 
             Data.AddGameObject(this);
         }

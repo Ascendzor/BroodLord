@@ -24,7 +24,6 @@ namespace Server
         {
             System.Drawing.Bitmap mapImage = new System.Drawing.Bitmap(path);
 
-            Data.Initialize();
             Map.Initialize(Data.TileSize, Data.MapSize, 5);
 
             for (int y = 0; y < mapImage.Height; y++)
