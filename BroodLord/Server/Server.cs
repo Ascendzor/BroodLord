@@ -118,7 +118,7 @@ namespace Server
             Client.Initialize();
 
             //wait 10 seconds because I scared -Troy
-            Thread.Sleep(5000);
+            Thread.Sleep(1000);
             environment.Play();
         }
     }
