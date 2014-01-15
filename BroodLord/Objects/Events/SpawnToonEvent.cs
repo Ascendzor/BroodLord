@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Objects
 {
+    [Serializable()]
     public class SpawnToonEvent : Event
     {
         public SpawnToonEvent(Guid id)

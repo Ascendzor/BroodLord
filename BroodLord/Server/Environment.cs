@@ -18,6 +18,10 @@ namespace Server
         public void Play()
         {
             Console.WriteLine("I am le playing");
+            foreach (GameObject go in Data.FindGameObject.Values)
+            {
+                Console.WriteLine(go);
+            }
         }
     }
 }

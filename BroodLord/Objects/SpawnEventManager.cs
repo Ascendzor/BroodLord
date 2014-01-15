@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 
 namespace Objects
 {
+    [Serializable()]
     public class SpawnEventManager
     {
         public static void HandleEvent(SpawnToonEvent leEvent)

@@ -99,5 +99,11 @@ namespace Objects
                 Map.RemoveGameObject(lootedItem);
             }
         }
+
+        //when you publish a SpawnToonEvent you will receive it and this is you telling it to fuck off -Troy
+        public void ReceiveEvent(SpawnToonEvent leEvent)
+        {
+            return;
+        }
     }
 }

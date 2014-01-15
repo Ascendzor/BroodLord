@@ -40,7 +40,6 @@ namespace BroodLord
             Map.Initialize(Data.TileSize, Data.MapSize, 5); //the renderWidth should be dynamic to the resolution
             Client.Initialize();
             dude = new Toon(Guid.NewGuid(), new Vector2(100, 100), "link");
-            Client.SendEvent(new SpawnToonEvent(dude.GetId()));
             input = new Input(dude);
             camera = new Camera();
 
@@ -54,6 +53,9 @@ namespace BroodLord
             HUD = new HUD(this.Content, dude, graphics.PreferredBackBufferHeight / 2, graphics.PreferredBackBufferWidth / 2);
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            Thread.Sleep(1000);
+            Client.SendEvent(new SpawnToonEvent(dude.GetId()));
 
             base.Initialize();
         }

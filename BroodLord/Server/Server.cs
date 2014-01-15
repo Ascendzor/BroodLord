@@ -118,7 +118,8 @@ namespace Server
             Server server = new Server();
             new Thread(() => server.ListenForNewConnections()).Start();
 
-            Thread.Sleep(10000);
+            //wait 10 seconds because I scared -Troy
+            Thread.Sleep(5000);
             environment.Play();
         }
     }

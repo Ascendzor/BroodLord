@@ -70,8 +70,9 @@ namespace Objects
                     memStream.Write(bytes, 0, bytes.Length);
                     memStream.Seek(0, SeekOrigin.Begin);
                     leEvent = (Event)new BinaryFormatter().Deserialize(memStream);
-
-                    if (Data.FindGameObject.ContainsKey(leEvent.Id))
+                    
+                    //This is specific to spawning events, if we change SpawnEventManager to GlobalEventManager this will have to change -Troy
+                    if (Data.FindGameObject.ContainsKey(leEvent.Id)) 
                     {
                         dynamic dynamicEvent = Convert.ChangeType(leEvent, leEvent.GetType());
                         dynamic gameObject = Data.FindGameObject[leEvent.Id];
@@ -104,6 +105,7 @@ namespace Objects
             }
             catch (Exception e)
             {
+                Console.WriteLine(e);
                 Console.WriteLine("something died :( Client=>SendEvent(Event)");
             }
         }
