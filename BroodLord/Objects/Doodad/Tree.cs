@@ -57,11 +57,6 @@ namespace Objects
             {
                 Client.SendEvent(new TreeRipEvent(id));
                 Client.SendEvent(new SpawnWoodEvent(Guid.NewGuid(), position + new Vector2(-20, 5)));
-                Client.SendEvent(new SpawnWoodEvent(Guid.NewGuid(), position + new Vector2(20, 20)));
-                Client.SendEvent(new SpawnWoodEvent(Guid.NewGuid(), position + new Vector2(50, 20)));
-                Client.SendEvent(new SpawnWoodEvent(Guid.NewGuid(), position + new Vector2(30, 20)));
-                Client.SendEvent(new SpawnWoodEvent(Guid.NewGuid(), position + new Vector2(40, 20)));
-                Client.SendEvent(new SpawnWoodEvent(Guid.NewGuid(), position + new Vector2(20, 40)));
                 return;
             }
             Client.SendEvent(new TookDamageEvent(id, dude.GetAttackDamage()));
