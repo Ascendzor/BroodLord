@@ -22,6 +22,15 @@ namespace Server
 
             while (true)
             {
+                int count = 0;
+                foreach (GameObject go in Data.FindGameObject.Values)
+                {
+                    if (go is Wood)
+                    {
+                        count++;
+                    }
+                }
+                Console.WriteLine(count);
                 Thread.Sleep(1000);
             }
         }

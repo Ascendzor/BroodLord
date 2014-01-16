@@ -89,9 +89,7 @@ namespace Objects
 
         public void ReceiveEvent(LootedLootEvent leEvent)
         {
-            LootedLootEvent LLE = (LootedLootEvent)leEvent;
-
-            Loot lootedItem = Data.FindLoot[LLE.item];
+            Loot lootedItem = Data.FindLoot[leEvent.item];
 
             if (inventory.addToInventory(lootedItem, true))
             {

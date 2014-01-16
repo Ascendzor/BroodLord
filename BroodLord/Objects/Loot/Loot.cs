@@ -49,14 +49,5 @@ namespace Objects
                 //dude is holding the rock
             }
         }
-
-        public void HandleEvent(Event leEvent)
-        {
-            if (leEvent is LootedLootEvent)
-            {
-
-            }
-        }
-
     }
 }
