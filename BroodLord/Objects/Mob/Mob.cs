@@ -36,7 +36,6 @@ namespace Objects
         public void ReceiveEvent(MoveToGameObjectEvent leEvent)
         {
             goalGameObject = Map.GetGameObject(leEvent.GoalGameObject);
-            goalPosition = goalGameObject.Position;
         }
 
         public void ReceiveEvent(ChopEvent leEvent)
@@ -48,6 +47,10 @@ namespace Objects
         //Check if the move is unnecessary (close enough to target) before moving
         public void Update()
         {
+            if (goalGameObject != null)
+            {
+                goalPosition = goalGameObject.Position;
+            }
             Vector2 moveDirection = goalPosition - position;
             if (moveDirection.Length() <= 10)
             {
