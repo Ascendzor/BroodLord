@@ -41,7 +41,7 @@ namespace Objects
                     0,   
                     origin,
                     SpriteEffects.None,
-                    1 - (position.Y / (Map.GetMapSize() * Map.GetTileSize())));
+                    1 - (position.Y / (Map.GetMapSize() * Data.TileSize)));
                 sb.Draw(Data.FindTexture["treeOutline"], hitbox, Color.Red);
             }
             else

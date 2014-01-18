@@ -29,15 +29,13 @@ namespace Objects
             this.interactionCooldown = 200;
             this.inventory = new Inventory();
 
-            xTileCoord = (int)position.X / Map.GetTileSize();
-            yTileCoord = (int)position.Y / Map.GetTileSize();
+            xTileCoord = (int)position.X / Data.TileSize;
+            yTileCoord = (int)position.Y / Data.TileSize;
 
             lastInteractionTimestamp = DateTime.Now;
             interactionOffCooldown = DateTime.Now;
 
             Data.AddGameObject(this);
-
-            Map.InsertGameObject(this);
         }
 
         public Inventory Inventory

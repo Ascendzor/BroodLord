@@ -37,7 +37,7 @@ namespace BroodLord
         {
             Thread.Sleep(1000);
             Data.Initialize(Content);
-            Map.Initialize(Data.TileSize, Data.MapSize, 5); //the renderWidth should be dynamic to the resolution
+            Map.Initialize(Data.MapSize, 5); //the renderWidth should be dynamic to the resolution
             Client.Initialize();
             dude = new Toon(Guid.NewGuid(), new Vector2(100, 100), "link");
             input = new Input(dude);
@@ -69,6 +69,7 @@ namespace BroodLord
                 mob.Update();
             }
 
+            Map.Update();
             camera.update(dude.Position);
             base.Update(gameTime);
         }
@@ -85,7 +86,7 @@ namespace BroodLord
                         null,
                         camera.getTransformation(graphics.GraphicsDevice));
 
-            Map.Draw(spriteBatch, dude.GetGridCoordX(), dude.GetGridCoordY());
+            Map.Draw(spriteBatch, dude.Position);
             
             HUD.Draw(spriteBatch, camera.Position);
 

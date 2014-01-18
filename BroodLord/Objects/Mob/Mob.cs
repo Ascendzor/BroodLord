@@ -50,7 +50,6 @@ namespace Objects
         //move and update the grid with where you have moved
         public void Update()
         {
-            //goalPosition = new Vector2(500, 500);
             Vector2 moveDirection = goalPosition - position;
             if (moveDirection.Length() <= 10)
             {
@@ -68,26 +67,8 @@ namespace Objects
             moveDirection.Normalize();
             Vector2 newPos = position + moveDirection * movementSpeed;
             newPos = CheckCol(newPos);
+            oldPosition = new Vector2(position.X, position.Y);
             position = newPos;
-            CheckGrid();
-        }
-
-        private void CheckGrid()
-        {
-            if (position.X < 0 || position.X > Map.GetMapSize() * Map.GetTileSize() || position.Y < 0 || position.Y > Map.GetMapSize() * Map.GetTileSize())//temp escape stopping code
-            {
-                position = new Vector2(50, 50);
-            }
-            int xNewCoords = (int)(position.X / Map.GetTileSize());
-            int yNewCoords = (int)(position.Y / Map.GetTileSize());
-
-            if (xTileCoord != xNewCoords || yTileCoord != yNewCoords)
-            {
-                Map.GetTile(xTileCoord, yTileCoord).GetObjects().Remove(this);
-                Map.GetTile(xNewCoords, yNewCoords).GetObjects().Add(this);
-                xTileCoord = xNewCoords;
-                yTileCoord = yNewCoords;
-            }
         }
 
         private Vector2 CheckCol(Vector2 newPos)
@@ -146,7 +127,7 @@ namespace Objects
                     0,
                     origin,
                     SpriteEffects.None,
-                    1 - (position.Y / (Map.GetMapSize() * Map.GetTileSize())));
+                    1 - (position.Y / (Map.GetMapSize() * Data.TileSize)));
         }
     }
 }

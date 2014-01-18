@@ -14,30 +14,61 @@ namespace Objects
 {
     public class Tile
     {
-        private List<GameObject> gameObjects;
+        private Dictionary<Guid, GameObject> gameObjects;
+        private string textureKey;
+        private Rectangle area;
 
-        string textureKey;
-
-        public Tile(string textureKey)
+        public Tile(string textureKey, int positionX, int positionY)
         {
-            gameObjects = new List<GameObject>();
+            gameObjects = new Dictionary<Guid, GameObject>();
             this.textureKey = textureKey;
+            this.area = new Rectangle(positionX * Data.TileSize, positionY * Data.TileSize, Data.TileSize, Data.TileSize);
+        }
+
+        public void CheckGameObjects()
+        {
+            foreach (GameObject go in gameObjects.Values.ToList())
+            {
+                if (go is Mob)
+                {
+                    Mob mobGo = (Mob)go;
+                    Vector2 mobPosition = mobGo.Position;
+                    if (!area.Contains(new Point((int)mobPosition.X, (int)mobPosition.Y)))
+                    {
+                        Console.WriteLine("changed square ===========");
+                        Console.WriteLine("Mob changing: " + mobGo.Position);
+                        Console.WriteLine("square: " + area);
+                        RemoveObject(mobGo);
+                        Map.InsertGameObject(mobGo);
+                    }
+                }
+            }
         }
 
         public void InsertGameObject(GameObject go)
         {
-            gameObjects.Add(go);
+            gameObjects.Add(go.GetId(), go);
         }
 
-        public List<GameObject> GetObjects()
+        public GameObject GetGameObject(Guid id)
         {
-            return gameObjects;
+            if (gameObjects.ContainsKey(id))
+            {
+                return gameObjects[id];
+            }
+
+            return null;
+        }
+
+        public List<GameObject> GetGameObjects()
+        {
+            return gameObjects.Values.ToList();
         }
 
         public List<Doodad> GetDoodads()
         {
             List<Doodad> doodads = new List<Doodad>();
-            foreach (GameObject doodad in gameObjects)
+            foreach (GameObject doodad in gameObjects.Values)
             {
                 if (doodad is Doodad)
                 {
@@ -48,24 +79,19 @@ namespace Objects
             return doodads;
         }
 
-        public void Draw(SpriteBatch sb, Vector2 position)
+        public void Draw(SpriteBatch sb)
         {
-            foreach (GameObject gameObject in gameObjects)
+            foreach (GameObject gameObject in gameObjects.Values)
             {
                 gameObject.Draw(sb);
             }
 
-            sb.Draw(Data.FindTexture[textureKey], new Rectangle((int)position.X, (int)position.Y, Data.FindTexture[textureKey].Width, Data.FindTexture[textureKey].Height), null, Color.White, 0, Vector2.One, SpriteEffects.None, 0.99999f);
-        }
-
-        public void InsertObject(GameObject item)
-        {
-            gameObjects.Add(item);
+            sb.Draw(Data.FindTexture[textureKey], area, null, Color.White, 0, Vector2.One, SpriteEffects.None, 0.99999f);
         }
 
         public void RemoveObject(GameObject gameObject)
         {
-            gameObjects.Remove(gameObject);
+            gameObjects.Remove(gameObject.GetId());
         }
     }
 }

@@ -14,6 +14,7 @@ namespace Objects
     [Serializable()]
     public class GameObject
     {
+        protected Vector2 oldPosition;
         protected Vector2 position;
         protected string textureKey;
         protected Guid id;
@@ -32,8 +33,8 @@ namespace Objects
             this.hitbox = hitbox;
             this.client = client;
 
-            xTileCoord = (int)(position.X / Map.GetTileSize());
-            yTileCoord = (int)(position.Y / Map.GetTileSize());
+            xTileCoord = (int)(position.X / Data.TileSize);
+            yTileCoord = (int)(position.Y / Data.TileSize);
 
             Data.AddGameObject(this);
 
@@ -49,6 +50,12 @@ namespace Objects
         {
             get { return position; }
             set { position = value; }
+        }
+
+        public Vector2 OldPosition
+        {
+            get { return oldPosition; }
+            set { oldPosition = value; }
         }
 
         public string TextureKey

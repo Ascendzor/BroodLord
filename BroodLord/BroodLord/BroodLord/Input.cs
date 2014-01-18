@@ -55,13 +55,14 @@ namespace BroodLord
             Vector2 clickPosition = new Vector2(nowState.X - (Game1.graphicsDevice.Viewport.Width * 0.5f), nowState.Y - (Game1.graphicsDevice.Viewport.Height * 0.5f));
             clickPosition = dude.Position + clickPosition;
 
-            List<Tile> tiles = Map.GetRenderedTiles(dude.GetGridCoordX(), dude.GetGridCoordY());
+            List<Tile> tiles = Map.GetRenderedTiles(dude.Position);
 
             //NOT YET IMPLEMENTED: find all gameObjects that you have clicked on, find which one you are closest to 
             //the center of and click on that one, this allows you to click on something behind something else
             foreach (Tile tile in tiles)
             {
-                foreach (GameObject gameObject in tile.GetObjects())
+                Console.WriteLine("le tile");
+                foreach (GameObject gameObject in tile.GetGameObjects())
                 {
                     if (gameObject.IsInteractable)
                     {

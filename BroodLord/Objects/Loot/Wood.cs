@@ -19,8 +19,8 @@ namespace Objects
             this.hitbox = new Rectangle((int)(position.X - origin.X), (int)(position.Y - origin.Y), (int)Data.GetTextureSize(textureKey).X, (int)Data.GetTextureSize(textureKey).Y);
             this.quantity = 1;
 
-            xTileCoord = (int)position.X / Map.GetTileSize();
-            yTileCoord = (int)position.Y / Map.GetTileSize();
+            xTileCoord = (int)position.X / Data.TileSize;
+            yTileCoord = (int)position.Y / Data.TileSize;
             Data.AddGameObject(this);
         }
     }
