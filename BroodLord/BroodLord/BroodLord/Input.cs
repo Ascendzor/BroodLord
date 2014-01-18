@@ -61,7 +61,6 @@ namespace BroodLord
             //the center of and click on that one, this allows you to click on something behind something else
             foreach (Tile tile in tiles)
             {
-                Console.WriteLine("le tile");
                 foreach (GameObject gameObject in tile.GetGameObjects())
                 {
                     if (gameObject.IsInteractable)

@@ -35,9 +35,6 @@ namespace Objects
                     Vector2 mobPosition = mobGo.Position;
                     if (!area.Contains(new Point((int)mobPosition.X, (int)mobPosition.Y)))
                     {
-                        Console.WriteLine("changed square ===========");
-                        Console.WriteLine("Mob changing: " + mobGo.Position);
-                        Console.WriteLine("square: " + area);
                         RemoveObject(mobGo);
                         Map.InsertGameObject(mobGo);
                     }
