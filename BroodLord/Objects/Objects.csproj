@@ -45,8 +45,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bitmap.cs" />
-    <Compile Include="Bitmap_2.cs" />
     <Compile Include="Events\ChopEvent.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="Data.cs" />
