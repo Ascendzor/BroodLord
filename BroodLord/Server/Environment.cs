@@ -22,7 +22,27 @@ namespace Server
 
             while (true)
             {
-                Thread.Sleep(1000);
+                Map.Update();
+                foreach (Mob mob in Map.GetMobs())
+                {
+                    mob.Update();
+                }
+                foreach (Cat cat in Map.GetCats())
+                {
+                    if (cat.GetGoalGameObject() == null)
+                    {   
+                        foreach (Toon toon in Map.GetToons())
+                        {
+                            if ((cat.Position - toon.Position).Length() < 200)
+                            {
+                                Console.WriteLine("Event go! cat!");
+                                Client.SendEvent(new MoveToGameObjectEvent(cat.GetId(), toon.GetId()));
+                            }
+                        }
+                    }   
+                }
+
+                Thread.Sleep(16); //something like 65 fps
             }
         }
     }

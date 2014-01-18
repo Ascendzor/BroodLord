@@ -57,6 +57,10 @@ namespace Objects
             {
                 if ((position - goalGameObject.Position).Length() < interactRange)
                 {
+                    if (this is Cat)
+                    {
+                        Console.WriteLine("cat gotcha!");
+                    }
                     Interact(goalGameObject);
                     return;
                 }
@@ -91,6 +95,16 @@ namespace Objects
         protected virtual void Interact(GameObject gameObject)
         {
             //start cooldown
+        }
+
+        public GameObject GetGoalGameObject()
+        {
+            return goalGameObject;
+        }
+
+        public Vector2 GetGoalPosition()
+        {
+            return goalPosition;
         }
 
         public override void Draw(SpriteBatch sb)

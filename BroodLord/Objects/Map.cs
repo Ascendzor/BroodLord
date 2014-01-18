@@ -154,6 +154,34 @@ namespace Objects
             return allMobs;
         }
 
+        public static List<Cat> GetCats()
+        {
+            List<Cat> allCats = new List<Cat>();
+            foreach (Mob mob in GetMobs())
+            {
+                if (mob is Cat)
+                {
+                    allCats.Add((Cat)mob);
+                }
+            }
+
+            return allCats;
+        }
+
+        public static List<Toon> GetToons()
+        {
+            List<Toon> allToons = new List<Toon>();
+            foreach (Mob mob in GetMobs())
+            {
+                if (mob is Toon)
+                {
+                    allToons.Add((Toon)mob);
+                }
+            }
+
+            return allToons;
+        }
+
         public static Loot GetLoot(Guid id)
         {
             foreach (Tile tile in tiles)
