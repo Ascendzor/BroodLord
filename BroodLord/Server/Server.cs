@@ -5,6 +5,7 @@ using System.Text;
 using System.Net.Sockets;
 using System.Threading;
 using System.IO;
+using System.Net;
 using Objects;
 using System.Runtime.Serialization.Formatters.Binary;
 using Microsoft.Xna.Framework;
@@ -16,14 +17,28 @@ namespace Server
         int port;
         private List<NetworkStream> streams;
         private TcpListener listener;
+        private NetworkStream broadcastStream;
+
+        private List<Connection> connections;
 
         public Server()
         {
             port = 41337;
+
             listener = new TcpListener(port);
             streams = new List<NetworkStream>();
+            connections = new List<Connection>();
         }
 
+        /// <summary>
+        /// sends a connection message with the specified port number
+        /// </summary>
+        /// <param name="portNumber"></param>
+        /// <param name="stream"></param>
+        private void sendConnectionMessage(int portNumber, NetworkStream stream)
+        {
+
+        }
         /// <summary>
         /// accepts new clients and adds them the network streams list
         /// </summary>
@@ -31,16 +46,28 @@ namespace Server
         {
             listener.Start();
 
+
             while (true)
             {
-                NetworkStream stream = listener.AcceptTcpClient().GetStream();
-                Console.WriteLine("found client");
-                //first thing is to send the map data to the new client
-                SendData(stream);
-                Console.WriteLine("client connected");
-                streams.Add(stream);
-                // spawn a listening thread for the stream
-                new Thread(() => Listen(stream)).Start();
+                TcpClient client = listener.AcceptTcpClient();
+                //accept a connection for the new stream to broadcast to
+                NetworkStream outStream = client.GetStream(); //server broadcastStream
+                //get ip address of connection
+                IPAddress clientIP = ((IPEndPoint)client.Client.RemoteEndPoint).Address;
+
+                // open a input stream from the client
+                TcpClient serverClient = new TcpClient(clientIP.ToString(), 41338);
+                NetworkStream inStream = serverClient.GetStream();
+    
+
+                //add client to the client connections list.
+                connections.Add(new Connection(inStream, outStream));
+
+                //send the map data to the new client
+                sendMap(outStream);
+
+                new Thread(()=> listen()).Start();
+                Console.WriteLine("client connected from: {0}", clientIP);
             }
         }
 
@@ -48,7 +75,7 @@ namespace Server
         /// Send game data to the client.
         /// </summary>
         /// <param name="stream"> The network stream associated with the client </param>
-        private void SendData(NetworkStream stream)
+        private void sendMap(NetworkStream stream)
         {
             try
             {
@@ -69,7 +96,7 @@ namespace Server
 
                 //now send the game data
                 stream.Write(allGameData, 0, allGameData.Length);
-                Console.WriteLine("Sent the game data {0} bytes long", allGameData.Length);
+                Console.WriteLine("Sent the map {0} bytes long", allGameData.Length);
                 ms.Close();
             }
             catch (Exception e)
@@ -80,30 +107,61 @@ namespace Server
         }
 
         /// <summary>
-        /// Broadcast to clients continuously
+        /// runs continuously in a thread listening to the stream
         /// </summary>
-        /// <param name="stream"> stream which is associated with a client</param>
-        public void Listen(NetworkStream stream)
+        /// <param name="stream"> stream to listen on</param>
+        private void listen()
         {
-            byte[] bytes = new byte[512];
             try
             {
                 while (true)
                 {
-                    stream.Read(bytes, 0, bytes.Length);
-                    MemoryStream memStream = new MemoryStream();
-                    memStream.Write(bytes, 0, bytes.Length);
-                    memStream.Close();
-                    foreach (NetworkStream ns in streams)
+                    MemoryStream clientBroadcastStream = new MemoryStream();
+                    //read events from all clients and push them onto the broadcaststream
+                    byte[] messageBytes;
+                    foreach (var client in connections)
                     {
-                        ns.Write(bytes, 0, bytes.Length);
+                        //read datasizemessage
+                        GameDataSizeMessage message = Net.RecieveDataSizeMessage(client.InStream);
+                        MemoryStream temp = new MemoryStream();
+                        //push the datasize message on the clientbroadcaststream
+                        new BinaryFormatter().Serialize(temp, message);
+                        temp.WriteTo(clientBroadcastStream);
+
+                        //read next message
+                        messageBytes = new byte[message.SizeOfData];
+                        client.InStream.Read(messageBytes, 0, message.SizeOfData);
+                        //write the whole message to the clientbroadcaststream
+                        clientBroadcastStream.Write(messageBytes, 0, messageBytes.Length);
                     }
+                    broadcast(clientBroadcastStream);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        /// <summary>
+        /// Broadcast to all clients the contents of outStream
+        /// </summary>
+        /// <param name="stream"> stream which will be broadcasted to every connection </param>
+        private void broadcast(MemoryStream outStream)
+        {
+            try
+            {
+                //write the stream to every client
+                foreach (var client in connections)
+                {
+                    outStream.WriteTo(client.OutStream);
                 }
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 Console.WriteLine("something died :( Server=>Listen(NetworkStream)");
+                // this should throw something more informative
+                throw;
             }
         }
 
@@ -114,8 +172,6 @@ namespace Server
 
             Server server = new Server();
             new Thread(() => server.ListenForNewConnections()).Start();
-
-            Client.Initialize();
 
             environment.Play();
         }

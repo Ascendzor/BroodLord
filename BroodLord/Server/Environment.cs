@@ -30,7 +30,6 @@ namespace Server
                         count++;
                     }
                 }
-                Console.WriteLine(count);
                 Thread.Sleep(1000);
             }
         }

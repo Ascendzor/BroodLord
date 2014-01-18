@@ -13,69 +13,84 @@ namespace Objects
     public class Client
     {
         private static int port;
+        private static int outputPort;
+        private static Connection server;
         private static TcpClient client;
-        private static NetworkStream stream;
+        private static TcpListener serverListener;
 
         public static void Initialize()
         {
+            // port which the server will open a stream on
+            outputPort = 41338;
+            serverListener = new TcpListener(outputPort);
+            // server port
             port = 41337;
-            client = new TcpClient("127.0.0.1", port);
 
-            new Thread(ReceiveEvent).Start();
+            // send a connectionmessage to the server
+            client = new TcpClient("192.168.1.100", port); //server address here
+            NetworkStream outStream = client.GetStream();
+
+            // accept connection from server for input
+            serverListener.Start();
+            TcpClient serverClient = serverListener.AcceptTcpClient();
+            NetworkStream inStream = serverClient.GetStream();
+
+
+            //have in and outstream on server so start network event handler
+            server = new Connection(inStream, outStream);
+            new Thread(()=>receiveEvent(server.InStream)).Start();
+            Console.WriteLine("connected to the server");
         }
 
-        public static NetworkStream getStream()
+
+        /// <summary>
+        /// recieve the map from the client
+        /// note: recieve
+        /// </summary>
+        /// <param name="stream"></param>
+        private static void recieveMap(NetworkStream stream)
         {
-            return stream;
-        }
+            MemoryStream mStream = new MemoryStream();
+            // recieve a datamessage so we know how much to read from the network stream
+            int sizeofmap = Net.RecieveDataSizeMessage(stream).SizeOfData;
+            byte[] messageData = new byte[sizeofmap];
+            stream.Read(messageData, 0, messageData.Length);
+            mStream.Write(messageData, 0, messageData.Length);
+            mStream.Seek(0, SeekOrigin.Begin);
+            List<GameObject> gos = (List<GameObject>)new BinaryFormatter().Deserialize(mStream);
 
+            // Update the game objects
+            foreach (GameObject go in gos)
+            {
+                Data.AddGameObject(go);
+            }
+        }
         /// <summary>
         /// Update event that is run in a thread
         /// </summary>
-        private static void ReceiveEvent()
+        private static void receiveEvent( NetworkStream inStream )
         {
-            stream = client.GetStream();
-
+            Console.WriteLine("Should be recieving events");
             Event leEvent = null;
             try
             {
-                // read the GameDataSizeMessage
-                MemoryStream mStream = new MemoryStream();
-                byte[] messageData =  new byte[Data.SizeOfNetEventPacket];
-                Console.WriteLine("Recieveing {0}", messageData.Length);
-                stream.Read(messageData, 0, messageData.Length);
-                mStream.Write(messageData, 0, messageData.Length);
-                mStream.Seek(0, SeekOrigin.Begin);
-                GameDataSizeMessage dataMessage = (GameDataSizeMessage)new BinaryFormatter().Deserialize(mStream);
+                recieveMap(inStream);
+                Console.WriteLine("map recieved");
 
-                // read the list of game objects
-                mStream = new MemoryStream();
-                messageData = new byte[dataMessage.sizeOfData];
-                stream.Read(messageData, 0, messageData.Length);
-                mStream.Write(messageData, 0, messageData.Length);
-                mStream.Seek(0, SeekOrigin.Begin);
-                List<GameObject> gos = (List<GameObject>)new BinaryFormatter().Deserialize(mStream);
-                Console.WriteLine(gos.Count);
-                Console.WriteLine("adding game objects from server");
-                // Update the game objects
-                foreach (GameObject go in gos)
-                {
-                    Data.AddGameObject(go);
-                    Console.WriteLine("added: " + go);
-                }
-
-                byte[] bytes = new byte[512];
                 while (true)
                 {
-                    stream.Read(bytes, 0, bytes.Length);
-                    Console.WriteLine("Received an event");
+                    GameDataSizeMessage dataMessage = Net.RecieveDataSizeMessage(inStream);
+
+                    byte[] bytes = new byte[dataMessage.SizeOfData];
+
+                    inStream.Read(bytes, 0, bytes.Length);
                     MemoryStream memStream = new MemoryStream();
                     memStream.Write(bytes, 0, bytes.Length);
                     memStream.Seek(0, SeekOrigin.Begin);
                     leEvent = (Event)new BinaryFormatter().Deserialize(memStream);
-                    
-                    //This is specific to spawning events, if we change SpawnEventManager to GlobalEventManager this will have to change -Troy
-                    if (Data.FindGameObject.ContainsKey(leEvent.Id)) 
+                    memStream.Close();
+
+                    if (Data.FindGameObject.ContainsKey(leEvent.Id))
                     {
                         dynamic dynamicEvent = Convert.ChangeType(leEvent, leEvent.GetType());
                         dynamic gameObject = Data.FindGameObject[leEvent.Id];
@@ -83,7 +98,7 @@ namespace Objects
                     }
                     else
                     {
-                        Console.WriteLine(leEvent.GetType());
+                        Console.WriteLine("event: " + leEvent.GetType());
                         dynamic dynamicEvent = Convert.ChangeType(leEvent, leEvent.GetType());
                         SpawnEventManager.HandleEvent(dynamicEvent);
                     }
@@ -93,19 +108,22 @@ namespace Objects
             {
                 Console.WriteLine(e);
                 Console.WriteLine("something died :( Client=>ReceiveEvent)");
+                throw e;
             }
         }
 
+
         public static void SendEvent(Event leEvent)
         {
+
             MemoryStream ms = new MemoryStream();
             try
             {
-                Console.WriteLine(leEvent.GetType());
+                Console.WriteLine("sent: "  + leEvent.GetType());
                 new BinaryFormatter().Serialize(ms, leEvent);
                 byte[] bytes = ms.ToArray();
                 Console.WriteLine(bytes.Length);
-                stream.Write(bytes, 0, bytes.Length);
+                server.OutStream.Write(bytes, 0, bytes.Length);
                 ms.Close();
             }
             catch (Exception e)
