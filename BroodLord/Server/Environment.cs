@@ -23,17 +23,13 @@ namespace Server
             while (true)
             {
                 Map.Update();
-                foreach (Mob mob in Map.GetMobs())
-                {
-                    mob.Update();
-                }
                 foreach (Cat cat in Map.GetCats())
                 {
                     if (cat.GetGoalGameObject() == null)
                     {   
                         foreach (Toon toon in Map.GetToons())
                         {
-                            if ((cat.Position - toon.Position).Length() < 200)
+                            if ((cat.Position - toon.Position).Length() < 300)
                             {
                                 Console.WriteLine("Event go! cat!");
                                 Client.SendEvent(new MoveToGameObjectEvent(cat.GetId(), toon.GetId()));

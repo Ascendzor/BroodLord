@@ -29,11 +29,8 @@ namespace Objects
             this.interactionCooldown = 1000;
             this.interactionCooldown = 200;
             this.inventory = new Inventory();
+            this.health = 100;
 
-            xTileCoord = (int)position.X / Data.TileSize;
-            yTileCoord = (int)position.Y / Data.TileSize;
-
-            lastInteractionTimestamp = DateTime.Now;
             interactionOffCooldown = DateTime.Now;
 
             Map.InsertGameObject(this);
@@ -50,7 +47,6 @@ namespace Objects
             {
                 return;
             }
-            lastInteractionTimestamp = DateTime.Now;
 
             base.Interact(gameObject);
 
@@ -107,6 +103,16 @@ namespace Objects
         public void ReceiveEvent(SpawnToonEvent leEvent)
         {
             return;
+        }
+
+        public void ReceiveEvent(TookDamageEvent leEvent)
+        {
+            Console.WriteLine("I got smacked yo");
+            health -= (int)leEvent.DamageTaken;
+            if (health <= 0)
+            {
+                Console.WriteLine("I rip gg");
+            }
         }
     }
 }

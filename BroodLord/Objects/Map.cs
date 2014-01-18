@@ -40,7 +40,7 @@ namespace Objects
         {
             foreach (Tile tile in tiles)
             {
-                tile.CheckGameObjects();
+                tile.Update();
             }
         }
 
@@ -50,7 +50,7 @@ namespace Objects
             //BAD BAD IF STATEMENT, BE GONE, DAMN ARRAYS
             if (go.Position.X < 0 || go.Position.X > tiles.GetLength(0) * Data.TileSize || go.Position.Y < 0 || go.Position.Y > tiles.GetLength(1) * Data.TileSize)
             {
-                go.Position = new Vector2(100, 100);
+                go.Position = new Vector2(100, 100); //looks and feels horrible
             }
             tiles[(int)(go.Position.X / Data.TileSize), (int)(go.Position.Y / Data.TileSize)].InsertGameObject(go);
         }

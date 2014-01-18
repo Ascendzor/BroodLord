@@ -64,11 +64,6 @@ namespace BroodLord
         {
             input.Update();
 
-            foreach (Mob mob in Map.GetMobs())
-            {
-                mob.Update();
-            }
-
             Map.Update();
             camera.update(dude.Position);
             base.Update(gameTime);

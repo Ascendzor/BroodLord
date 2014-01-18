@@ -26,7 +26,20 @@ namespace Objects
             this.area = new Rectangle(positionX * Data.TileSize, positionY * Data.TileSize, Data.TileSize, Data.TileSize);
         }
 
-        public void CheckGameObjects()
+        public void Update()
+        {
+            foreach (GameObject go in gameObjects.Values.ToList())
+            {
+                if (go is Mob) //<-- this entire if might go and we might end up just updating GameObject, we'll see -Troy
+                {
+                    ((Mob)go).Update();
+                }
+            }
+
+            CheckGameObjects();
+        }
+
+        private void CheckGameObjects()
         {
             foreach (GameObject go in gameObjects.Values.ToList())
             {

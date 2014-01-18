@@ -18,9 +18,9 @@ namespace Objects
         protected States state;
         protected double attackDamage;
         protected double interactionCooldown;
-        protected DateTime lastInteractionTimestamp;
         protected DateTime interactionOffCooldown;
         protected Inventory inventory;
+        protected int health;
 
         /*public Mob(Vector2 position, string textureKey, Guid id, Vector2 origin, Rectangle hitbox) //: base(position, textureKey, id, origin, hitbox, client)
         {
@@ -60,10 +60,6 @@ namespace Objects
             {
                 if ((position - goalGameObject.Position).Length() < interactRange)
                 {
-                    if (this is Cat)
-                    {
-                        Console.WriteLine("cat gotcha!");
-                    }
                     Interact(goalGameObject);
                     return;
                 }
@@ -97,7 +93,6 @@ namespace Objects
 
         protected virtual void Interact(GameObject gameObject)
         {
-            //start cooldown
         }
 
         public GameObject GetGoalGameObject()

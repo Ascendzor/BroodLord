@@ -43,11 +43,8 @@ namespace Server
                     {
                         new Cat(Guid.NewGuid(), new Vector2(x * Data.TileSize, y * Data.TileSize));
                     }
-
                 }
             }
-
-            Cat leCat = new Cat(Guid.NewGuid(), new Vector2(1000, 300));
         }
     }
 }
