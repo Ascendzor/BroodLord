@@ -26,6 +26,7 @@ namespace Objects
             this.hitbox = new Rectangle((int)(position.X - origin.X), (int)(position.Y - origin.Y), (int)Data.GetTextureSize(textureKey).X, (int)Data.GetTextureSize(textureKey).Y);
             this.health = 999;
             this.isInteractable = true;
+
             Map.InsertGameObject(this);
         }
 
@@ -45,7 +46,6 @@ namespace Objects
 
         public void ReceiveEvent(TreeRipEvent leEvent)
         {
-            Console.WriteLine(id + " rip in peace");
             isStump = true;
             textureKey = "stump";
             this.isInteractable = false;

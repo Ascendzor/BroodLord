@@ -18,8 +18,6 @@ namespace Objects
         private static List<string> allTextures;
         public static Dictionary<string, Texture2D> FindTexture;
         public static Dictionary<string, Vector2> FindTextureSize;
-        public static Dictionary<Guid, Mob> FindMob;
-        public static Dictionary<Guid, Doodad> FindDoodad;
         public static int ToonRadius = 28;
         public static int ToonInteractionRange = 100;
         public static int TreeRadius = 56;
@@ -31,9 +29,6 @@ namespace Objects
 
         public static void Initialize(ContentManager Content)
         {
-            FindMob = new Dictionary<Guid, Mob>();
-            FindDoodad = new Dictionary<Guid, Doodad>();
-
             FindTexture = new Dictionary<string, Texture2D>();
 
             Data.InitializeAllTextures();
@@ -74,9 +69,6 @@ namespace Objects
 
         public static void Initialize()
         {
-            FindMob = new Dictionary<Guid, Mob>();
-            FindDoodad = new Dictionary<Guid, Doodad>();
-
             FindTextureSize = new Dictionary<string, Vector2>();
             InitializeAllTextures();
 

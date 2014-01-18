@@ -37,7 +37,7 @@ namespace BroodLord
         {
             Thread.Sleep(1000);
             Data.Initialize(Content);
-            Map.Initialize(Data.MapSize, 5); //the renderWidth should be dynamic to the resolution
+            Map.Initialize(5); //the renderWidth should be dynamic to the resolution
             Client.Initialize();
             dude = new Toon(Guid.NewGuid(), new Vector2(100, 100), "link");
             input = new Input(dude);

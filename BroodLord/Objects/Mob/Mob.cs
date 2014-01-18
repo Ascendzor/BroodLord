@@ -104,7 +104,7 @@ namespace Objects
                     0,
                     origin,
                     SpriteEffects.None,
-                    1 - (position.Y / (Map.GetMapSize() * Data.TileSize)));
+                    1 - (position.Y / (Data.MapSize * Data.TileSize)));
         }
     }
 }

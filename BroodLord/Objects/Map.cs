@@ -17,12 +17,10 @@ namespace Objects
     public class Map
     {
         private static Tile[,] tiles; //I wonder if there should be a TileManager class who we ask for everything tile-related¿ -Troy
-        private static int MapSize;
         private static int renderWidth;
 
-        public static void Initialize(int _MapSize, int _renderWidth)
+        public static void Initialize(int _renderWidth)
         {
-            MapSize = _MapSize;
             renderWidth = _renderWidth;
 
             tiles = new Tile[Data.MapSize, Data.MapSize];
@@ -92,7 +90,7 @@ namespace Objects
             {
                 for (int y = -renderWidth; y < renderWidth; y++)
                 {
-                    if (xCenter + x >= 0 && xCenter + x < MapSize && yCenter + y >= 0 && yCenter + y < MapSize)
+                    if (xCenter + x >= 0 && xCenter + x < Data.MapSize && yCenter + y >= 0 && yCenter + y < Data.MapSize)
                     {
                         renderedTiles.Add(tiles[xCenter + x, yCenter + y]);
                     }
@@ -113,7 +111,7 @@ namespace Objects
 
         public static int GetMapSize()
         {
-            return MapSize;
+            return Data.MapSize;
         }
 
         public static GameObject GetGameObject(Guid id)
