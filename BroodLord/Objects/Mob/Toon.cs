@@ -53,6 +53,7 @@ namespace Objects
             goalGameObject = null; //<-- this  is to stop you from interacting every frame, this may be removed once a cooldown has been introduced
             goalPosition = position;
 
+            //bad ifs, change it to be more dynamic
             if (gameObject is Tree)
             {
                 InteractWithObject((Tree)gameObject);
@@ -99,7 +100,7 @@ namespace Objects
             Map.RemoveGameObject(leEvent.Id);
         }
 
-        //when you publish a SpawnToonEvent you will receive it and this is you telling it to fuck off -Troy
+        //when you publish a SpawnToonEvent your dude will receive it and this is you telling it to fuck off -Troy
         public void ReceiveEvent(SpawnToonEvent leEvent)
         {
             return;

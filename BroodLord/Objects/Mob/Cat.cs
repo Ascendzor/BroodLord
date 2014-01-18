@@ -32,9 +32,9 @@ namespace Objects
                 return;
             }
 
-            goalGameObject = null; //<-- this  is to stop you from interacting every frame, this may be removed once a cooldown has been introduced
             goalPosition = position;
 
+            //bad, change it to be more dynamic!
             if (gameObject is Toon)
             {
                 InteractWithObject((Toon)gameObject);
