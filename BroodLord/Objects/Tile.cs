@@ -70,7 +70,7 @@ namespace Objects
         public List<Doodad> GetDoodads()
         {
             List<Doodad> doodads = new List<Doodad>();
-            foreach (GameObject doodad in gameObjects.Values)
+            foreach (GameObject doodad in gameObjects.Values.ToList())
             {
                 if (doodad is Doodad)
                 {
@@ -97,7 +97,7 @@ namespace Objects
 
         public void Draw(SpriteBatch sb)
         {
-            foreach (GameObject gameObject in gameObjects.Values)
+            foreach (GameObject gameObject in gameObjects.Values.ToList())
             {
                 gameObject.Draw(sb);
             }

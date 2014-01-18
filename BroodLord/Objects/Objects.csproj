@@ -60,10 +60,10 @@
     <Compile Include="Events\TookDamageEvent.cs" />
     <Compile Include="Inventory\InvSlot.cs" />
     <Compile Include="Inventory\Inventory.cs" />
-    <Compile Include="Loot\RockItem.cs" />
-    <Compile Include="Loot\WoodItem.cs" />
-    <Compile Include="Loot\Item.cs" />
-    <Compile Include="Loot\Loot.cs" />
+    <Compile Include="Lootems\RockItem.cs" />
+    <Compile Include="Lootems\WoodItem.cs" />
+    <Compile Include="Lootems\Item.cs" />
+    <Compile Include="Lootems\Loot.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="Mob\Cat.cs" />
     <Compile Include="Mob\Mob.cs" />
@@ -71,12 +71,12 @@
     <Compile Include="Events\MoveToPositionEvent.cs" />
     <Compile Include="GameDataSizeMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Loot\Rock.cs" />
+    <Compile Include="Lootems\RockLoot.cs" />
     <Compile Include="SpawnEventManager.cs" />
     <Compile Include="Tile.cs" />
     <Compile Include="Mob\Toon.cs" />
     <Compile Include="Doodad\Tree.cs" />
-    <Compile Include="Loot\Wood.cs" />
+    <Compile Include="Lootems\WoodLood.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

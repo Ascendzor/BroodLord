@@ -79,11 +79,11 @@ namespace Objects
         private void InteractWithObject(Loot loot)
         {
             //bad implementation but can be improved on later
-            if (loot is Rock)
+            if (loot is RockLoot)
             {
                 inventory.addToInventory(new RockItem(loot.GetId()), true);
             }
-            else if (loot is Wood)
+            else if (loot is WoodLoot)
             {
                 inventory.addToInventory(new WoodItem(loot.GetId()), true);
             }

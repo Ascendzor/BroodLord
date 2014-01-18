@@ -6,9 +6,9 @@ using Microsoft.Xna.Framework;
 namespace Objects
 {
     [Serializable()]
-    public class Wood : Loot
+    public class WoodLoot : Loot
     {
-        public Wood(Guid id, Vector2 position) : base()
+        public WoodLoot(Guid id, Vector2 position) : base()
         {
             this.id = id;
             this.position = position;

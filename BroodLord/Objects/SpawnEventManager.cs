@@ -17,7 +17,7 @@ namespace Objects
 
         public static void HandleEvent(SpawnWoodEvent leEvent)
         {
-            new Wood(leEvent.Id, leEvent.Position);
+            new WoodLoot(leEvent.Id, leEvent.Position);
         }
 
         public static void HandleEvent(LootedLootEvent leEvent)

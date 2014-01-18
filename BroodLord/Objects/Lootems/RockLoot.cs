@@ -8,9 +8,9 @@ using Microsoft.Xna.Framework.Graphics;
 namespace Objects
 {
     [Serializable()]
-    public class Rock : Loot
+    public class RockLoot : Loot
     {
-        public Rock(Guid id, Vector2 position) :base()
+        public RockLoot(Guid id, Vector2 position) :base()
         {
             this.id = id;
             this.position = position;
