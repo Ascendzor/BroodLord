@@ -16,7 +16,7 @@ namespace Objects
 {
     public class Map
     {
-        private static Tile[,] tiles = new Tile[20, 20]; //I wonder if there should be a TileManager class who we ask for everything tile-related¿ -Troy
+        private static Tile[,] tiles; //I wonder if there should be a TileManager class who we ask for everything tile-related¿ -Troy
         private static int MapSize;
         private static int renderWidth;
 
@@ -24,6 +24,8 @@ namespace Objects
         {
             MapSize = _MapSize;
             renderWidth = _renderWidth;
+
+            tiles = new Tile[Data.MapSize, Data.MapSize];
 
             for (int x = 0; x < tiles.GetLength(0); x++)
             {
@@ -38,13 +40,9 @@ namespace Objects
 
         public static void Update()
         {
-            //check if all of the mobs are in the correct tiles
-            for (int x = 0; x < tiles.GetLength(0); x++)
+            foreach (Tile tile in tiles)
             {
-                for (int y = 0; y < tiles.GetLength(1); y++)
-                {
-                    tiles[x, y].CheckGameObjects();
-                }
+                tile.CheckGameObjects();
             }
         }
 
@@ -70,7 +68,7 @@ namespace Objects
 
         public static void RemoveGameObject(GameObject gameObject)
         {
-            GetTile(gameObject.GetGridCoordX(), gameObject.GetGridCoordY()).RemoveObject(gameObject);
+            GetTile((int)gameObject.Position.X / Data.TileSize, (int)gameObject.Position.Y / Data.TileSize).RemoveObject(gameObject);
         }
 
         public static void RemoveGameObject(Guid id)
@@ -106,6 +104,10 @@ namespace Objects
 
         public static Tile GetTile(int x, int y)
         {
+            if (x < 0 || x >= Data.MapSize || y < 0 || y >= Data.MapSize)
+            {
+                return null;
+            }
             return tiles[x, y];
         }
 
@@ -165,6 +167,35 @@ namespace Objects
             }
 
             return null;
+        }
+
+        //this currently can only collide with adjacent tiles, should be more dynamic if we wanted bigger things
+        //this is also using interactable as collidable, may or may not want to keep it this way
+        public static List<Doodad> GetCollidableDoodads(GameObject go)
+        {
+            List<Doodad> collidableDoodads = new List<Doodad>();
+
+            int xTile = (int)go.Position.X / Data.TileSize;
+            int yTile = (int)go.Position.Y / Data.TileSize;
+
+            for (int x = (xTile-1); x < (xTile + 2); x++)
+            {
+                for (int y = (yTile-1); y < (yTile + 2); y++)
+                {
+                    if (GetTile(x, y) != null)
+                    {
+                        foreach (Doodad doodad in GetTile(x, y).GetDoodads())
+                        {
+                            if (doodad.IsInteractable)
+                            {
+                                collidableDoodads.Add(doodad);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return collidableDoodads;
         }
     }
 }

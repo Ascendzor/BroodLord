@@ -19,5 +19,10 @@ namespace Objects
         {
             new Wood(leEvent.Id, leEvent.Position);
         }
+
+        public static void HandleEvent(LootedLootEvent leEvent)
+        {
+            return;
+        }
     }
 }

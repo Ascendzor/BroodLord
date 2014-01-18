@@ -71,41 +71,20 @@ namespace Objects
 
         private Vector2 CheckCol(Vector2 newPos)
         {
-            for (int x = -1; x < 2; x++)
-                for (int y = -1; y < 2; y++)
+            foreach (Doodad doodad in Map.GetCollidableDoodads(this))
+            {
+                if ((position.X > doodad.Position.X - doodad.GetCollisionWidth() && position.X < doodad.Position.X + doodad.GetCollisionWidth()) ||
+                                (newPos.X > doodad.Position.X - doodad.GetCollisionWidth() && newPos.X < doodad.Position.X + doodad.GetCollisionWidth()))
                 {
-                    int xTile = xTileCoord + x;
-                    int yTile = yTileCoord + y;
+                    float a = position.Y - doodad.Position.Y;
+                    float b = newPos.Y - doodad.Position.Y;
 
-                    if (xTile > 0 && xTile < Map.GetMapSize() && yTile > 0 && yTile < Map.GetMapSize())
+                    if (a / Math.Abs(a) + b / Math.Abs(b) == 0)
                     {
-                        foreach (Doodad gameObject in Map.GetTile(xTile, yTile).GetDoodads())
-                        {
-                            if ((position.X > gameObject.Position.X - gameObject.GetCollisionWidth() && position.X < gameObject.Position.X + gameObject.GetCollisionWidth()) ||
-                                (newPos.X > gameObject.Position.X - gameObject.GetCollisionWidth() && newPos.X < gameObject.Position.X + gameObject.GetCollisionWidth()))
-                            {
-                                float a = position.Y - gameObject.Position.Y;
-                                float b = newPos.Y - gameObject.Position.Y;
-
-                                if (a / Math.Abs(a) + b / Math.Abs(b) == 0)
-                                {
-                                    newPos.Y += 1.1f * -b;
-                                }
-                            }
-
-                            /*
-                            Vector2 midDir = position - gameObject.Position;
-                            int totRadius = colRadius + gameObject.GetColRadius();
-                            float midLen = midDir.Length();
-                            if (midLen < totRadius)
-                            {
-                                float distanceToMove = totRadius - midLen;
-                                midDir.Normalize();
-                                position += midDir * distanceToMove;
-                            }*/
-                        }
+                        newPos.Y += 1.1f * -b;
                     }
                 }
+            }
             return newPos;
         }
 

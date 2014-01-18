@@ -10,8 +10,6 @@ namespace Objects
     [Serializable()]
     public class Loot : GameObject
     {
-        protected string textureKeyInBag;
-        protected bool onGround;
         protected int quantity;
 
         /// <summary>
@@ -30,24 +28,17 @@ namespace Objects
 
         public override void Draw(SpriteBatch sb)
         {
-            if (onGround)
-            {
-                sb.Draw(Data.FindTexture[textureKey],
-                    new Rectangle((int)position.X,
-                        (int)position.Y,
-                        Data.FindTexture[textureKey].Width, Data.FindTexture[textureKey].Height),
-                    null,
-                    Color.White,
-                    0,   
-                    origin,
-                    SpriteEffects.None,
-                    1 - (position.Y / (Map.GetMapSize() * Data.TileSize)));
-                sb.Draw(Data.FindTexture["treeOutline"], hitbox, Color.Red);
-            }
-            else
-            {
-                //dude is holding the rock
-            }
+            sb.Draw(Data.FindTexture[textureKey],
+                new Rectangle((int)position.X,
+                    (int)position.Y,
+                    Data.FindTexture[textureKey].Width, Data.FindTexture[textureKey].Height),
+                null,
+                Color.White,
+                0,   
+                origin,
+                SpriteEffects.None,
+                1 - (position.Y / (Map.GetMapSize() * Data.TileSize)));
+            sb.Draw(Data.FindTexture["treeOutline"], hitbox, Color.Red);
         }
 
         public void ReceiveEvent(LootedLootEvent lle)

@@ -88,6 +88,7 @@ namespace Objects
                 inventory.addToInventory(new WoodItem(loot.GetId()), true);
             }
 
+            Console.WriteLine("looting: " + loot.GetId());
             Client.SendEvent(new LootedLootEvent(loot.GetId()));
         }
 
