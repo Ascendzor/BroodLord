@@ -88,7 +88,7 @@ namespace Objects
                 inventory.addToInventory(new WoodItem(loot.GetId()), true);
             }
 
-            Client.SendEvent(new LootedLootEvent(id, loot.GetId()));
+            Client.SendEvent(new LootedLootEvent(loot.GetId()));
         }
 
         public double GetAttackDamage()
@@ -99,6 +99,7 @@ namespace Objects
         public void ReceiveEvent(LootedLootEvent leEvent)
         {
             //perform loot animation
+            Map.RemoveGameObject(leEvent.Id);
         }
 
         //when you publish a SpawnToonEvent you will receive it and this is you telling it to fuck off -Troy

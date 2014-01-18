@@ -49,5 +49,10 @@ namespace Objects
                 //dude is holding the rock
             }
         }
+
+        public void ReceiveEvent(LootedLootEvent lle)
+        {
+            Map.RemoveGameObject(this);
+        }
     }
 }

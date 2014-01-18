@@ -8,11 +8,9 @@ namespace Objects
     [Serializable()]
     public class LootedLootEvent : Event
     {
-        public Guid item;
-        public LootedLootEvent(Guid id, Guid item)
+        public LootedLootEvent(Guid id)
         {
             this.Id = id;
-            this.item = item;
         }
     }
 }

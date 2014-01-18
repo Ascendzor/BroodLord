@@ -73,6 +73,17 @@ namespace Objects
             GetTile(gameObject.GetGridCoordX(), gameObject.GetGridCoordY()).RemoveObject(gameObject);
         }
 
+        public static void RemoveGameObject(Guid id)
+        {
+            foreach (Tile tile in tiles)
+            {
+                if (tile.GetGameObject(id) != null)
+                {
+                    RemoveGameObject(tile.GetGameObject(id));
+                }
+            }
+        }
+
         public static List<Tile> GetRenderedTiles(Vector2 dudesPosition)
         {
             List<Tile> renderedTiles = new List<Tile>();
