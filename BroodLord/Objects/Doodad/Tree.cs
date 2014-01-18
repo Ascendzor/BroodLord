@@ -26,7 +26,7 @@ namespace Objects
             this.hitbox = new Rectangle((int)(position.X - origin.X), (int)(position.Y - origin.Y), (int)Data.GetTextureSize(textureKey).X, (int)Data.GetTextureSize(textureKey).Y);
             this.health = 999;
             this.isInteractable = true;
-            Data.AddGameObject(this);
+            Map.InsertGameObject(this);
         }
 
         public void ReceiveEvent(TookDamageEvent leEvent)

@@ -56,7 +56,7 @@ namespace Server
 
                 // write all the game data to a by
                 MemoryStream ms = new MemoryStream();
-                new BinaryFormatter().Serialize(ms, Data.FindGameObject.Values.ToList());
+                new BinaryFormatter().Serialize(ms, Map.GetGameObjects());
                 byte[] allGameData = ms.ToArray();
 
 

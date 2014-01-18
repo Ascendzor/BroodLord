@@ -64,7 +64,7 @@ namespace BroodLord
         {
             input.Update();
 
-            foreach (Mob mob in Data.FindMob.Values)
+            foreach (Mob mob in Map.GetMobs())
             {
                 mob.Update();
             }

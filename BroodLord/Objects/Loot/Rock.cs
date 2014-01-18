@@ -23,7 +23,7 @@ namespace Objects
 
             xTileCoord = (int)position.X / Data.TileSize;
             yTileCoord = (int)position.Y / Data.TileSize;
-            Data.AddGameObject(this);
+            Map.InsertGameObject(this);
         }
     }
 }

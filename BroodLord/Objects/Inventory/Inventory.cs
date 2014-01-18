@@ -10,7 +10,7 @@ namespace Objects
     [Serializable()]
     public class Inventory
     {
-        protected List<Loot> items;
+        protected List<Item> items;
         protected int inventorySize;
 
         public int InventorySize
@@ -18,14 +18,14 @@ namespace Objects
             get { return inventorySize; }
         }
 
-        public List<Loot> Items
+        public List<Item> Items
         {
             get { return items; }
         }
 
         public Inventory()
         {
-            items = new List<Loot>();
+            items = new List<Item>();
             inventorySize = 2;
         }
 
@@ -34,7 +34,7 @@ namespace Objects
         /// </summary>
         /// <param name="itemToAdd">Loot that is being picked up</param>
         /// <returns>True if picked up else false (full inventory)</returns>
-        public bool addToInventory(Loot itemToAdd)
+        public bool addToInventory(Item itemToAdd)
         {
             bool itemAddedToInventory = false;
 
@@ -54,16 +54,16 @@ namespace Objects
         /// </summary>
         /// <param name="itemToAdd">Loot that is being picked up</param>
         /// <returns>True if picked up else false (full inventory)</returns>
-        public bool addToInventory(Loot itemToAdd, bool stackItem)
+        public bool addToInventory(Item itemToAdd, bool stackItem)
         {
             bool itemAddedToInventory = false;
 
             // Try stack item
-            foreach (Loot loot in items)
+            foreach (Item item in items)
             {
-                if (itemToAdd.GetType() == loot.GetType())
+                if (itemToAdd.GetType() == item.GetType())
                 {
-                    loot.Quantity += itemToAdd.Quantity;
+                    item.Quantity += itemToAdd.Quantity;
                     itemAddedToInventory = true;
                 }
             }

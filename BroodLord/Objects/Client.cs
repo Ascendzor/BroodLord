@@ -60,7 +60,7 @@ namespace Objects
                 // Update the game objects
                 foreach (GameObject go in gos)
                 {
-                    Data.AddGameObject(go);
+                    Map.InsertGameObject(go);
                     Console.WriteLine("added: " + go);
                 }
 
@@ -75,15 +75,15 @@ namespace Objects
                     leEvent = (Event)new BinaryFormatter().Deserialize(memStream);
                     
                     //This is specific to spawning events, if we change SpawnEventManager to GlobalEventManager this will have to change -Troy
-                    if (Data.FindGameObject.ContainsKey(leEvent.Id)) 
+                    GameObject receiver = Map.GetGameObject(leEvent.Id);
+                    if (receiver != null) 
                     {
                         dynamic dynamicEvent = Convert.ChangeType(leEvent, leEvent.GetType());
-                        dynamic gameObject = Data.FindGameObject[leEvent.Id];
+                        dynamic gameObject = receiver;
                         gameObject.ReceiveEvent(dynamicEvent);
                     }
                     else
                     {
-                        Console.WriteLine(leEvent.GetType());
                         dynamic dynamicEvent = Convert.ChangeType(leEvent, leEvent.GetType());
                         SpawnEventManager.HandleEvent(dynamicEvent);
                     }

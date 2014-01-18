@@ -18,9 +18,7 @@ namespace Objects
         private static List<string> allTextures;
         public static Dictionary<string, Texture2D> FindTexture;
         public static Dictionary<string, Vector2> FindTextureSize;
-        public static Dictionary<Guid, GameObject> FindGameObject;
         public static Dictionary<Guid, Mob> FindMob;
-        public static Dictionary<Guid, Loot> FindLoot;
         public static Dictionary<Guid, Doodad> FindDoodad;
         public static int ToonRadius = 28;
         public static int ToonInteractionRange = 100;
@@ -33,9 +31,7 @@ namespace Objects
 
         public static void Initialize(ContentManager Content)
         {
-            FindGameObject = new Dictionary<Guid, GameObject>();
             FindMob = new Dictionary<Guid, Mob>();
-            FindLoot = new Dictionary<Guid, Loot>();
             FindDoodad = new Dictionary<Guid, Doodad>();
 
             FindTexture = new Dictionary<string, Texture2D>();
@@ -78,9 +74,7 @@ namespace Objects
 
         public static void Initialize()
         {
-            FindGameObject = new Dictionary<Guid, GameObject>();
             FindMob = new Dictionary<Guid, Mob>();
-            FindLoot = new Dictionary<Guid, Loot>();
             FindDoodad = new Dictionary<Guid, Doodad>();
 
             FindTextureSize = new Dictionary<string, Vector2>();
@@ -96,29 +90,6 @@ namespace Objects
         public static Vector2 GetTextureSize(string textureKey)
         {
             return FindTextureSize[textureKey];
-        }
-
-        public static void AddGameObject(GameObject go)
-        {
-            if (FindGameObject.ContainsKey(go.GetId()))
-            {
-                return;
-            }
-            Map.InsertGameObject(go);
-            FindGameObject.Add(go.GetId(), go);
-            
-            if (go is Mob)
-            {
-                FindMob.Add(go.GetId(), (Mob)go);
-            }
-            else if (go is Loot)
-            {
-                FindLoot.Add(go.GetId(), (Loot)go);
-            }
-            else if (go is Doodad)
-            {
-                FindDoodad.Add(go.GetId(), (Doodad)go);
-            }
         }
 
         /*

@@ -102,5 +102,58 @@ namespace Objects
         {
             return MapSize;
         }
+
+        public static GameObject GetGameObject(Guid id)
+        {
+            foreach (Tile tile in tiles)
+            {
+                if (tile.GetGameObject(id) != null)
+                {
+                    return tile.GetGameObject(id);
+                }
+            }
+            return null;
+        }
+
+        public static List<GameObject> GetGameObjects()
+        {
+            List<GameObject> allGameObjects = new List<GameObject>();
+            foreach (Tile tile in tiles)
+            {
+                foreach (GameObject go in tile.GetGameObjects())
+                {
+                    allGameObjects.Add(go);
+                }
+            }
+
+            return allGameObjects;
+        }
+
+        public static List<Mob> GetMobs()
+        {
+            List<Mob> allMobs = new List<Mob>();
+            foreach (Tile tile in tiles)
+            {
+                foreach (Mob mob in tile.GetMobs())
+                {
+                    allMobs.Add(mob);
+                }
+            }
+
+            return allMobs;
+        }
+
+        public static Loot GetLoot(Guid id)
+        {
+            foreach (Tile tile in tiles)
+            {
+                if (tile.GetGameObject(id) != null)
+                {
+                    return (Loot)tile.GetGameObject(id);
+                }
+            }
+
+            return null;
+        }
     }
 }

@@ -60,6 +60,9 @@
     <Compile Include="Events\TookDamageEvent.cs" />
     <Compile Include="Inventory\InvSlot.cs" />
     <Compile Include="Inventory\Inventory.cs" />
+    <Compile Include="Loot\RockItem.cs" />
+    <Compile Include="Loot\WoodItem.cs" />
+    <Compile Include="Loot\Item.cs" />
     <Compile Include="Loot\Loot.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="Mob\Cat.cs" />

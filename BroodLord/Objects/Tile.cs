@@ -44,6 +44,10 @@ namespace Objects
 
         public void InsertGameObject(GameObject go)
         {
+            if(gameObjects.ContainsKey(go.GetId()))
+            {
+                return;
+            }
             gameObjects.Add(go.GetId(), go);
         }
 
@@ -74,6 +78,20 @@ namespace Objects
             }
 
             return doodads;
+        }
+
+        public List<Mob> GetMobs()
+        {
+            List<Mob> allMobs = new List<Mob>();
+            foreach(GameObject go in gameObjects.Values.ToList())
+            {
+                if(go is Mob)
+                {
+                    allMobs.Add((Mob)go);
+                }
+            }
+
+            return allMobs;
         }
 
         public void Draw(SpriteBatch sb)

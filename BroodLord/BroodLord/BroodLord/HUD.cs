@@ -41,7 +41,7 @@ namespace BroodLord
             drawPosition.Y -= (Data.FindTexture["inventorySlots"].Height);
             sb.Draw(Data.FindTexture["inventorySlots"], drawPosition, Color.White);
 
-            foreach (Loot l in dude.Inventory.Items)
+            foreach (Item l in dude.Inventory.Items)
             {
                 sb.Draw(Data.FindTexture[l.TextureKey], drawPosition, Color.White);
                 sb.DrawString(spriteFont, l.Quantity.ToString(), drawPosition, Color.White);
@@ -56,7 +56,7 @@ namespace BroodLord
         private String inventoryItems()
         {
             String itemsAsText = "Inventory: ";
-            foreach (Loot l in dude.Inventory.Items)
+            foreach (Item l in dude.Inventory.Items)
             {
                 itemsAsText += " (" + l.Quantity + ") " + l.GetType() + ", ";
             }

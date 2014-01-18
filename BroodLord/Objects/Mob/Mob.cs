@@ -35,8 +35,7 @@ namespace Objects
 
         public void ReceiveEvent(MoveToGameObjectEvent leEvent)
         {
-            MoveToGameObjectEvent mtgoe = (MoveToGameObjectEvent)leEvent;
-            goalGameObject = Data.FindGameObject[mtgoe.GoalGameObject];
+            goalGameObject = Map.GetGameObject(leEvent.GoalGameObject);
             goalPosition = goalGameObject.Position;
         }
 
@@ -46,8 +45,7 @@ namespace Objects
         
         //All non-event behaviour is handled in Update.
         //This means basically only Moving is handled in Update.
-        //Check if the move is unnecessary (close enough to target)
-        //move and update the grid with where you have moved
+        //Check if the move is unnecessary (close enough to target) before moving
         public void Update()
         {
             Vector2 moveDirection = goalPosition - position;

@@ -17,6 +17,7 @@ namespace Objects
     {
         public Toon(Guid id, Vector2 position, string textureKey)
         {
+            Console.WriteLine("new toon getting mayd");
             this.id = id;
             this.position = position;
             this.textureKey = textureKey;
@@ -35,7 +36,7 @@ namespace Objects
             lastInteractionTimestamp = DateTime.Now;
             interactionOffCooldown = DateTime.Now;
 
-            Data.AddGameObject(this);
+            Map.InsertGameObject(this);
         }
 
         public Inventory Inventory
@@ -77,6 +78,16 @@ namespace Objects
 
         private void InteractWithObject(Loot loot)
         {
+            //bad implementation but can be improved on later
+            if (loot is Rock)
+            {
+                inventory.addToInventory(new RockItem(loot.GetId()), true);
+            }
+            else if (loot is Wood)
+            {
+                inventory.addToInventory(new WoodItem(loot.GetId()), true);
+            }
+
             Client.SendEvent(new LootedLootEvent(id, loot.GetId()));
         }
 
@@ -87,12 +98,7 @@ namespace Objects
 
         public void ReceiveEvent(LootedLootEvent leEvent)
         {
-            Loot lootedItem = Data.FindLoot[leEvent.item];
-
-            if (inventory.addToInventory(lootedItem, true))
-            {
-                Map.RemoveGameObject(lootedItem);
-            }
+            //perform loot animation
         }
 
         //when you publish a SpawnToonEvent you will receive it and this is you telling it to fuck off -Troy

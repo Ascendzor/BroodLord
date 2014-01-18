@@ -12,15 +12,7 @@ namespace Objects
         public static void HandleEvent(SpawnToonEvent leEvent)
         {
             Console.WriteLine("new toon event");
-            Console.WriteLine(leEvent);
-            try
-            {
-                new Toon(leEvent.Id, new Vector2(100, 100), "link");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
+            new Toon(leEvent.Id, new Vector2(100, 100), "link");
         }
 
         public static void HandleEvent(SpawnWoodEvent leEvent)
