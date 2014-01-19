@@ -23,22 +23,32 @@ namespace Server
             while (true)
             {
                 Map.Update();
-                foreach (Cat cat in Map.GetCats())
+                foreach (Mob mob in Map.GetMobs())
                 {
-                    if (cat.GetGoalGameObject() == null)
-                    {   
-                        foreach (Toon toon in Map.GetToons())
-                        {
-                            if ((cat.Position - toon.Position).Length() < 300)
-                            {
-                                Console.WriteLine("Event go! cat!");
-                                Client.SendEvent(new MoveToGameObjectEvent(cat.GetId(), toon.GetId()));
-                            }
-                        }
-                    }   
+                    //dynamic this shit
+                    //Behave(mob) should call the appropriate Behave!
+                    if (mob is Cat)
+                    {
+                        Behave((Cat)mob);
+                    }
                 }
 
-                Thread.Sleep(16); //something like 65 fps
+                Thread.Sleep(16); //something like 62.5 fps
+            }
+        }
+
+        private void Behave(Cat cat)
+        {
+            if (cat.GetGoalGameObject() == null)
+            {
+                foreach (Toon toon in Map.GetToons())
+                {
+                    if ((cat.Position - toon.Position).Length() < 300)
+                    {
+                        Console.WriteLine("Event go! cat!");
+                        Client.SendEvent(new MoveToGameObjectEvent(cat.GetId(), toon.GetId()));
+                    }
+                }
             }
         }
     }
