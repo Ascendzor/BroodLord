@@ -14,12 +14,15 @@ namespace Objects
     {
         private static int port;
         private static TcpClient client;
+        private static TcpClient otherClient;
         private static NetworkStream stream;
+        private static NetworkStream otherStream;
 
         public static void Initialize()
         {
             port = 41337;
             client = new TcpClient("127.0.0.1", port);
+            otherClient = new TcpClient("127.0.0.1", 41338);
 
             new Thread(ReceiveEvent).Start();
         }
@@ -35,6 +38,7 @@ namespace Objects
         private static void ReceiveEvent()
         {
             stream = client.GetStream();
+            otherStream = otherClient.GetStream();
 
             Event leEvent = null;
             try
@@ -43,7 +47,7 @@ namespace Objects
                 MemoryStream mStream = new MemoryStream();
                 byte[] messageData =  new byte[Data.SizeOfNetEventPacket];
                 Console.WriteLine("Recieveing {0}", messageData.Length);
-                stream.Read(messageData, 0, messageData.Length);
+                otherStream.Read(messageData, 0, messageData.Length);
                 mStream.Write(messageData, 0, messageData.Length);
                 mStream.Seek(0, SeekOrigin.Begin);
                 GameDataSizeMessage dataMessage = (GameDataSizeMessage)new BinaryFormatter().Deserialize(mStream);
@@ -51,7 +55,7 @@ namespace Objects
                 // read the list of game objects
                 mStream = new MemoryStream();
                 messageData = new byte[dataMessage.sizeOfData];
-                stream.Read(messageData, 0, messageData.Length);
+                otherStream.Read(messageData, 0, messageData.Length);
                 mStream.Write(messageData, 0, messageData.Length);
                 mStream.Seek(0, SeekOrigin.Begin);
                 List<GameObject> gos = (List<GameObject>)new BinaryFormatter().Deserialize(mStream);
@@ -67,7 +71,7 @@ namespace Objects
                 byte[] bytes = new byte[512];
                 while (true)
                 {
-                    stream.Read(bytes, 0, bytes.Length);
+                    otherStream.Read(bytes, 0, bytes.Length);
                     Console.WriteLine("Received an event");
                     MemoryStream memStream = new MemoryStream();
                     memStream.Write(bytes, 0, bytes.Length);

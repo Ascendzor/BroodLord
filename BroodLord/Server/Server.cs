@@ -16,11 +16,13 @@ namespace Server
         int port;
         private List<NetworkStream> streams;
         private TcpListener listener;
+        private TcpListener otherListener;
 
         public Server()
         {
             port = 41337;
             listener = new TcpListener(port);
+            otherListener = new TcpListener(41338);
             streams = new List<NetworkStream>();
         }
 
@@ -30,15 +32,17 @@ namespace Server
         public void ListenForNewConnections()
         {
             listener.Start();
+            otherListener.Start();
 
             while (true)
             {
                 NetworkStream stream = listener.AcceptTcpClient().GetStream();
+                NetworkStream otherStream = otherListener.AcceptTcpClient().GetStream();
                 Console.WriteLine("found client");
                 //first thing is to send the map data to the new client
-                SendData(stream);
+                SendData(otherStream);
                 Console.WriteLine("client connected");
-                streams.Add(stream);
+                streams.Add(otherStream);
                 // spawn a listening thread for the stream
                 new Thread(() => Listen(stream)).Start();
             }
