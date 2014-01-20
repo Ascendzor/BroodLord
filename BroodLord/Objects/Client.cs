@@ -72,12 +72,8 @@ namespace Objects
                 while (true)
                 {
                     otherStream.Read(bytes, 0, bytes.Length);
-                    Console.WriteLine("Received an event");
-                    MemoryStream memStream = new MemoryStream();
-                    memStream.Write(bytes, 0, bytes.Length);
-                    memStream.Seek(0, SeekOrigin.Begin);
-                    leEvent = (Event)new BinaryFormatter().Deserialize(memStream);
-                    
+                    leEvent = Deserialize(bytes);
+
                     //This is specific to spawning events, if we change SpawnEventManager to GlobalEventManager this will have to change -Troy
                     GameObject receiver = Map.GetGameObject(leEvent.Id);
                     if (receiver != null) 
@@ -105,18 +101,57 @@ namespace Objects
             MemoryStream ms = new MemoryStream();
             try
             {
-                Console.WriteLine(leEvent.GetType());
-                new BinaryFormatter().Serialize(ms, leEvent);
-                byte[] bytes = ms.ToArray();
-                Console.WriteLine(bytes.Length);
+                byte[] bytes = leEvent.Serialize();
                 stream.Write(bytes, 0, bytes.Length);
-                ms.Close();
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 Console.WriteLine("something died :( Client=>SendEvent(Event)");
             }
+        }
+
+        private static Event Deserialize(byte[] bytes)
+        {
+            byte[] typeBytes = new byte[4];
+            Buffer.BlockCopy(bytes, 0, typeBytes, 0, 4);
+
+            int theType = BitConverter.ToInt16(typeBytes, 0);
+
+            Event leEvent = null;
+            if (theType == 0)
+            {
+                leEvent = ChopEvent.Deserialize(bytes);
+            }
+            else  if (theType == 1)
+            {
+                leEvent = LootedLootEvent.Deserialize(bytes);
+            }
+            else if (theType == 2)
+            {
+                leEvent = MoveToGameObjectEvent.Deserialize(bytes);
+            }
+            else if (theType == 3)
+            {
+                leEvent = MoveToPositionEvent.Deserialize(bytes);
+            }
+            else if (theType == 4)
+            {
+                leEvent = SpawnToonEvent.Deserialize(bytes);
+            }
+            else if (theType == 5)
+            {
+                leEvent = SpawnWoodEvent.Deserialize(bytes);
+            }
+            else if (theType == 6)
+            {
+                leEvent = TookDamageEvent.Deserialize(bytes);
+            }
+            else if (theType == 7)
+            {
+                leEvent = TreeRipEvent.Deserialize(bytes);
+            }
+            return leEvent;
         }
     }
 }

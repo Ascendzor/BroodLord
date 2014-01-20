@@ -8,6 +8,12 @@ namespace Objects
     [Serializable()]
     public class Event
     {
+        public int Type;
         public Guid Id;
+
+        public virtual byte[] Serialize()
+        {
+            return null;
+        }
     }
 }
