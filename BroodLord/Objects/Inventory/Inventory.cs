@@ -12,10 +12,16 @@ namespace Objects
     {
         protected List<Item> items;
         protected int inventorySize;
+        protected int inventorySlotSize;
 
         public int InventorySize
         {
             get { return inventorySize; }
+        }
+
+        public int InventorySlotSize
+        {
+            get { return inventorySlotSize; }
         }
 
         public List<Item> Items
@@ -28,6 +34,7 @@ namespace Objects
         {
             items = new List<Item>();
             inventorySize = 10;
+            inventorySlotSize = 90;
         }
 
         /// <summary>
@@ -100,12 +107,12 @@ namespace Objects
                 sb.Draw(Data.FindTexture["InventorySlot"], drawPosition, Color.White);
                 sb.Draw(Data.FindTexture[l.TextureKey], drawPosition, Color.White);
                 sb.DrawString(spriteFont, l.Quantity.ToString(), drawPosition, Color.White);
-                drawPosition.X += 90;
+                drawPosition.X += inventorySlotSize;
                 count++;
                 if (count == 4)
                 {
-                    drawPosition.X -= 360;
-                    drawPosition.Y += 90;
+                    drawPosition.X -= inventorySlotSize*4;
+                    drawPosition.Y += inventorySlotSize;
                     count = 0;
                 }
             }
