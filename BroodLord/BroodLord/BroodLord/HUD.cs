@@ -38,15 +38,9 @@ namespace BroodLord
             drawPosition = cameraPosition + bottomLeftPosition;
             sb.DrawString(spriteFont, inventoryItems(), drawPosition, Color.White);
 
-            drawPosition.Y -= (Data.FindTexture["inventorySlots"].Height);
-            sb.Draw(Data.FindTexture["inventorySlots"], drawPosition, Color.White);
+            // Draw inventory
+            dude.Inventory.Draw(sb, drawPosition, spriteFont);
 
-            foreach (Item l in dude.Inventory.Items)
-            {
-                sb.Draw(Data.FindTexture[l.TextureKey], drawPosition, Color.White);
-                sb.DrawString(spriteFont, l.Quantity.ToString(), drawPosition, Color.White);
-                drawPosition.X += 75;
-            }
         }
 
         /// <summary>

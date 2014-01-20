@@ -78,11 +78,11 @@ namespace Objects
             //bad implementation but can be improved on later
             if (loot is RockLoot)
             {
-                inventory.addToInventory(new RockItem(loot.GetId()), true);
+                inventory.addToInventory(new RockItem(loot.GetId()));
             }
             else if (loot is WoodLoot)
             {
-                inventory.addToInventory(new WoodItem(loot.GetId()), true);
+                inventory.addToInventory(new WoodItem(loot.GetId()));
             }
 
             Console.WriteLine("looting: " + loot.GetId());

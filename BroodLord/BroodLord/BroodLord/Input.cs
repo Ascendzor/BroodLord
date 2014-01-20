@@ -52,6 +52,9 @@ namespace BroodLord
         //move him to where he clicked
         private void LeftClick(MouseState nowState)
         {
+            // If click in inventory do inventory click
+            if (nowState.X < 360 && nowState.Y > 420) inventoryClick(nowState);
+
             Vector2 clickPosition = new Vector2(nowState.X - (Game1.graphicsDevice.Viewport.Width * 0.5f), nowState.Y - (Game1.graphicsDevice.Viewport.Height * 0.5f));
             clickPosition = dude.Position + clickPosition;
 
@@ -79,5 +82,16 @@ namespace BroodLord
             Event LeftClickEvent = new MoveToPositionEvent(dude.GetId(), clickPosition);
             Client.SendEvent(LeftClickEvent);
         }
+
+        private void inventoryClick(MouseState nowState)
+        {
+            //bad 90s, bad!
+            Console.WriteLine(nowState.X + " " + nowState.Y);
+            int x = nowState.X / 90;
+            int y = (nowState.Y-420) / 90;
+            int inventorySlotIndex = x + (y * 4);
+            Console.WriteLine("I clicked on the " + inventorySlotIndex + "th inventory slot");
+        }
+    
     }
 }

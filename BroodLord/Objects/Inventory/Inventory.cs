@@ -23,10 +23,11 @@ namespace Objects
             get { return items; }
         }
 
+
         public Inventory()
         {
             items = new List<Item>();
-            inventorySize = 2;
+            inventorySize = 10;
         }
 
         /// <summary>
@@ -85,6 +86,29 @@ namespace Objects
         private String fullInventoryMessage()
         {
             return "Inventory is full!";
+        }
+
+        public void Draw(SpriteBatch sb, Vector2 drawPosition, SpriteFont spriteFont)
+        {
+            // Find number of rows
+            int rows = 3;
+            drawPosition.Y -= (Data.FindTexture["InventorySlot"].Height) * rows;
+
+            int count = 0;
+            foreach (Item l in Items)
+            {
+                sb.Draw(Data.FindTexture["InventorySlot"], drawPosition, Color.White);
+                sb.Draw(Data.FindTexture[l.TextureKey], drawPosition, Color.White);
+                sb.DrawString(spriteFont, l.Quantity.ToString(), drawPosition, Color.White);
+                drawPosition.X += 90;
+                count++;
+                if (count == 4)
+                {
+                    drawPosition.X -= 360;
+                    drawPosition.Y += 90;
+                    count = 0;
+                }
+            }
         }
     }
 }
