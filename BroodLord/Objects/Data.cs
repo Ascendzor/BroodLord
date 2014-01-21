@@ -57,6 +57,7 @@ namespace Objects
             allTextures.Add("treeOutline");
             allTextures.Add("stump");
             allTextures.Add("inventorySlots");
+            allTextures.Add("InventorySlot");
             allTextures.Add("snow1");
             allTextures.Add("snow2");
             allTextures.Add("snow3");
