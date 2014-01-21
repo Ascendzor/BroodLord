@@ -10,9 +10,10 @@ namespace Objects
     [Serializable()]
     public class Inventory
     {
-        protected List<Item> items;
+        protected List<InventorySlot> slots;
         protected int inventorySize;
         protected int inventorySlotSize;
+
 
         public int InventorySize
         {
@@ -23,18 +24,16 @@ namespace Objects
         {
             get { return inventorySlotSize; }
         }
-
-        public List<Item> Items
-        {
-            get { return items; }
-        }
-
-
+        
         public Inventory()
         {
-            items = new List<Item>();
+            slots = new List<InventorySlot>();
             inventorySize = 10;
-            inventorySlotSize = 90;
+            for (int i = 0; i<inventorySize; i++)
+            {
+                slots.Add(new InventorySlot());
+            }
+            inventorySlotSize = 91;
         }
 
         /// <summary>
@@ -45,14 +44,20 @@ namespace Objects
         public bool addToInventory(Item itemToAdd)
         {
             bool itemAddedToInventory = false;
-
-            // Try add item into empty slot
-            if (items.Count < inventorySize)
+            Console.WriteLine(slots.Count);
+            foreach (InventorySlot slot in slots)
             {
-                items.Add(itemToAdd);
-                itemAddedToInventory = true;
+                if (slot.Quantity == 0)
+                {
+                    slot.addItemToSlot(itemToAdd);
+                    itemAddedToInventory = true;
+                    break;
+                }
             }
-            else Console.WriteLine(fullInventoryMessage());
+
+            // Testing only
+            if (!itemAddedToInventory)
+                Console.WriteLine(fullInventoryMessage());
 
             return itemAddedToInventory;
         }
@@ -66,28 +71,48 @@ namespace Objects
         {
             bool itemAddedToInventory = false;
 
-            // Try stack item
-            foreach (Item item in items)
+            // Try stack item in a slot
+            foreach (InventorySlot slot in slots)
             {
-                if (itemToAdd.GetType() == item.GetType())
+                if (slot.Quantity != 0)
                 {
-                    item.Quantity += itemToAdd.Quantity;
-                    itemAddedToInventory = true;
+                    if (itemToAdd.GetType() == slot.ItemType)
+                    {
+                        slot.addItemToSlot(itemToAdd);
+                        itemAddedToInventory = true;
+                    }
                 }
             }
 
             // Try add item into empty slot
             if (!itemAddedToInventory)
             {
-                if (items.Count < inventorySize)
-                { 
-                    items.Add(itemToAdd);
-                    itemAddedToInventory = true;
+                foreach (InventorySlot slot in slots)
+                {
+                    if (slot.Quantity == 0)
+                    {
+                        slot.addItemToSlot(itemToAdd);
+                        itemAddedToInventory = true;
+                        break;
+                    }
                 }
-                else Console.WriteLine(fullInventoryMessage());
+
+                // Testing only
+                if (!itemAddedToInventory)
+                    Console.WriteLine(fullInventoryMessage());
             }
 
             return itemAddedToInventory;
+        }
+
+        private int getSlotsInUse()
+        {
+            int count = 0;
+            foreach (InventorySlot slot in slots)
+            {
+                if (slot.Quantity == 0) count++;
+            }
+            return count;
         }
 
         private String fullInventoryMessage()
@@ -102,20 +127,21 @@ namespace Objects
             drawPosition.Y -= (Data.FindTexture["InventorySlot"].Height) * rows;
 
             int count = 0;
-            foreach (Item l in Items)
+            foreach (InventorySlot invSlot in slots)
             {
                 sb.Draw(Data.FindTexture["InventorySlot"], drawPosition, Color.White);
-                sb.Draw(Data.FindTexture[l.TextureKey], drawPosition, Color.White);
-                sb.DrawString(spriteFont, l.Quantity.ToString(), drawPosition, Color.White);
+                sb.Draw(Data.FindTexture[invSlot.getTextureKey()], drawPosition, Color.White);
+                sb.DrawString(spriteFont, invSlot.Quantity.ToString(), drawPosition, Color.White);
                 drawPosition.X += inventorySlotSize;
                 count++;
                 if (count == 4)
                 {
-                    drawPosition.X -= inventorySlotSize*4;
+                    drawPosition.X -= inventorySlotSize * 4;
                     drawPosition.Y += inventorySlotSize;
                     count = 0;
                 }
             }
+
         }
     }
 }

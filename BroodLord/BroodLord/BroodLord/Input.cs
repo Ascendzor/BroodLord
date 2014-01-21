@@ -93,7 +93,7 @@ namespace BroodLord
             //bad 90s, bad!
             Console.WriteLine(nowState.X + " " + nowState.Y);
             int x = nowState.X / dude.Inventory.InventorySlotSize;
-            int y = (nowState.Y - 420) / dude.Inventory.InventorySlotSize;
+            int y = (nowState.Y - 450) / dude.Inventory.InventorySlotSize;
             int inventorySlotIndex = x + (y * 4);
             Console.WriteLine("I clicked on the " + inventorySlotIndex + "th inventory slot");
         }

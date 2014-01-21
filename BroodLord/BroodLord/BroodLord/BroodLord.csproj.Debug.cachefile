@@ -6,6 +6,7 @@ Content\treeOutline.xnb
 Content\stump.xnb
 Content\wood.xnb
 Content\cat.xnb
+Content\TestFont.xnb
 Content\inventorySlots.xnb
 Content\snow1.xnb
 Content\snow2.xnb
@@ -16,4 +17,4 @@ Content\snow6.xnb
 Content\snow7.xnb
 Content\snow8.xnb
 Content\InventorySlot.xnb
-Content\TestFont.xnb
+Content\EmptyInventorySlot.xnb
