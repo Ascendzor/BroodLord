@@ -89,7 +89,7 @@ namespace Server
         /// <param name="stream"> stream which is associated with a client</param>
         public void Listen(NetworkStream stream)
         {
-            byte[] bytes = new byte[512];
+            byte[] bytes = new byte[128];
             try
             {
                 while (true)
