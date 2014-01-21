@@ -6,13 +6,19 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Objects
-{
+{   
+    /// <summary>
+    /// Dude has inventory, inventory has a list of InventorySlots
+    /// Inventory has size (number of slots)
+    /// Inventory draws each slot on to the screen (draw call from HUD draw)
+    /// </summary>
     [Serializable()]
     public class Inventory
     {
         protected List<InventorySlot> slots;
         protected int inventorySize;
         protected int inventorySlotSize;
+        protected int slotInUse;
 
 
         public int InventorySize
@@ -24,6 +30,12 @@ namespace Objects
         {
             get { return inventorySlotSize; }
         }
+
+        public int SlotInUse
+        {
+            get { return slotInUse; }
+            set { slotInUse = value; }
+        }
         
         public Inventory()
         {
@@ -34,6 +46,7 @@ namespace Objects
                 slots.Add(new InventorySlot());
             }
             inventorySlotSize = 91;
+            slotInUse = -1;
         }
 
         /// <summary>
@@ -105,16 +118,6 @@ namespace Objects
             return itemAddedToInventory;
         }
 
-        private int getSlotsInUse()
-        {
-            int count = 0;
-            foreach (InventorySlot slot in slots)
-            {
-                if (slot.Quantity == 0) count++;
-            }
-            return count;
-        }
-
         private String fullInventoryMessage()
         {
             return "Inventory is full!";
@@ -127,21 +130,31 @@ namespace Objects
             drawPosition.Y -= (Data.FindTexture["InventorySlot"].Height) * rows;
 
             int count = 0;
+            
+            
+            // Depth layer, 0 = default, >0 = away from you
             foreach (InventorySlot invSlot in slots)
             {
-                sb.Draw(Data.FindTexture["InventorySlot"], drawPosition, Color.White);
-                sb.Draw(Data.FindTexture[invSlot.getTextureKey()], drawPosition, Color.White);
-                sb.DrawString(spriteFont, invSlot.Quantity.ToString(), drawPosition, Color.White);
+                sb.Draw(Data.FindTexture[invSlot.getTextureKey()], drawPosition, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.1f);
+                sb.DrawString(spriteFont, invSlot.Quantity.ToString(), drawPosition, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0);
+
+                // Draw around the current slot
+                if (slotInUse == count)
+                {
+                    sb.Draw(Data.FindTexture["InventorySlot"], drawPosition, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.2f);
+                }
                 drawPosition.X += inventorySlotSize;
+
                 count++;
-                if (count == 4)
+                // May be bad to modulo here
+                if (count % 4 == 0)
                 {
                     drawPosition.X -= inventorySlotSize * 4;
                     drawPosition.Y += inventorySlotSize;
-                    count = 0;
                 }
             }
-
         }
+
+    
     }
 }

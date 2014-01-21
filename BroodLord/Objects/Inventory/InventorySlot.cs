@@ -4,7 +4,13 @@ using System.Linq;
 using System.Text;
 
 namespace Objects
-{
+{   
+    /// <summary>
+    /// InventorySlot has a list of items
+    /// If the list is ever greater than size 1, then there are more than one of the same item in the list/slot
+    /// List of size 0 is an empty slot
+    /// Inventory calls getTextureKey to get either the item texture or empty slot texture
+    /// </summary>
     public class InventorySlot
     {
         protected List<Item> itemsInSlot;
