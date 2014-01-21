@@ -126,9 +126,8 @@ namespace Objects
                     leEvent = outgoingEvents.Dequeue();
                     byte[] bytes = leEvent.Serialize();
                     stream.Write(bytes, 0, bytes.Length);
-                    Thread.Sleep(5);
+                    Thread.Sleep(30);
                 }
-                Thread.Sleep(5);
             }
         }
 
@@ -138,7 +137,6 @@ namespace Objects
             Buffer.BlockCopy(bytes, 0, typeBytes, 0, 4);
 
             int theType = BitConverter.ToInt16(typeBytes, 0);
-
             Event leEvent = null;
             if (theType == 0)
             {
