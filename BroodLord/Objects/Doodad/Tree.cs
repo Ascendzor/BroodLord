@@ -57,6 +57,8 @@ namespace Objects
             {
                 Console.WriteLine("the tree has died and is spawning 2 woods");
                 Client.SendEvent(new TreeRipEvent(id));
+                Client.SendEvent(new SpawnWoodEvent(Guid.NewGuid(), position + new Vector2(-20, 5)));
+                Client.SendEvent(new SpawnWoodEvent(Guid.NewGuid(), position + new Vector2(20, 30)));
                 return;
             }
             Client.SendEvent(new TookDamageEvent(id, dude.GetAttackDamage()));

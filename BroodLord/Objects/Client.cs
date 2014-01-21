@@ -79,8 +79,19 @@ namespace Objects
 
                     if (!leEvent.Id.Equals(Guid.Empty))
                     {
-                        dynamic dynamicEvent = Convert.ChangeType(leEvent, leEvent.GetType());
-                        SpawnEventManager.HandleEvent(dynamicEvent);
+                        //This is specific to spawning events, if we change SpawnEventManager to GlobalEventManager this will have to change -Troy
+                        GameObject receiver = Map.GetGameObject(leEvent.Id);
+                        if (receiver != null)
+                        {
+                            dynamic dynamicEvent = Convert.ChangeType(leEvent, leEvent.GetType());
+                            dynamic gameObject = receiver;
+                            gameObject.ReceiveEvent(dynamicEvent);
+                        }
+                        else
+                        {
+                            dynamic dynamicEvent = Convert.ChangeType(leEvent, leEvent.GetType());
+                            SpawnEventManager.HandleEvent(dynamicEvent);
+                        }
                     }
                 }
             }
