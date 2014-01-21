@@ -17,14 +17,17 @@ namespace Objects
         private static TcpClient otherClient;
         private static NetworkStream stream;
         private static NetworkStream otherStream;
+        private static Queue<Event> outgoingEvents;
 
         public static void Initialize()
         {
             port = 41337;
             client = new TcpClient("127.0.0.1", port);
             otherClient = new TcpClient("127.0.0.1", 41338);
+            outgoingEvents = new Queue<Event>();
 
             new Thread(ReceiveEvent).Start();
+            new Thread(ShaveOutgoingQueue).Start();
         }
 
         public static NetworkStream getStream()
@@ -68,7 +71,7 @@ namespace Objects
                     Console.WriteLine("added: " + go);
                 }
 
-                byte[] bytes = new byte[512];
+                byte[] bytes = new byte[128];
                 while (true)
                 {
                     otherStream.Read(bytes, 0, bytes.Length);
@@ -104,13 +107,28 @@ namespace Objects
             MemoryStream ms = new MemoryStream();
             try
             {
-                byte[] bytes = leEvent.Serialize();
-                stream.Write(bytes, 0, bytes.Length);
+                outgoingEvents.Enqueue(leEvent);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 Console.WriteLine("something died :( Client=>SendEvent(Event)");
+            }
+        }
+
+        public static void ShaveOutgoingQueue()
+        {
+            while (true)
+            {
+                Event leEvent = null;
+                while (outgoingEvents.Count > 0)
+                {
+                    leEvent = outgoingEvents.Dequeue();
+                    byte[] bytes = leEvent.Serialize();
+                    stream.Write(bytes, 0, bytes.Length);
+                    Thread.Sleep(5);
+                }
+                Thread.Sleep(5);
             }
         }
 
