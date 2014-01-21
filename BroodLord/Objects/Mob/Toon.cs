@@ -41,6 +41,11 @@ namespace Objects
             get { return inventory; }
         }
 
+        public int Health
+        {
+            get { return health; }
+        }
+
         protected override void Interact(GameObject gameObject)
         {
             if (DateTime.Now.CompareTo(interactionOffCooldown) == -1)
