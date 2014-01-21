@@ -125,7 +125,7 @@ namespace Objects
 
         public void Draw(SpriteBatch sb, Vector2 drawPosition, SpriteFont spriteFont)
         {
-            // Find number of rows
+            // If variable sized inventory must find number of rows, else can be static
             int rows = 3;
             drawPosition.Y -= (Data.FindTexture["InventorySlot"].Height) * rows;
 

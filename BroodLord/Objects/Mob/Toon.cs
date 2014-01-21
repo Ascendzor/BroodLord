@@ -76,17 +76,18 @@ namespace Objects
         private void InteractWithObject(Loot loot)
         {
             //bad implementation but can be improved on later
+            bool pickedUp = false;
             if (loot is RockLoot)
             {
-                inventory.addToInventory(new RockItem(loot.GetId()), true);
+                pickedUp = inventory.addToInventory(new RockItem(loot.GetId()), true);
             }
             else if (loot is WoodLoot)
             {
-                inventory.addToInventory(new WoodItem(loot.GetId()));
+                pickedUp = inventory.addToInventory(new WoodItem(loot.GetId()));
             }
 
             Console.WriteLine("looting: " + loot.GetId());
-            Client.SendEvent(new LootedLootEvent(loot.GetId()));
+            if (pickedUp) Client.SendEvent(new LootedLootEvent(loot.GetId()));
         }
 
         public double GetAttackDamage()
