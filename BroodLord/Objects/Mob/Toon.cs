@@ -61,6 +61,7 @@ namespace Objects
             else if (gameObject is Loot)
             {
                 InteractWithObject((Loot)gameObject);
+                
             }
         }
         
@@ -69,7 +70,6 @@ namespace Objects
             interactionOffCooldown = DateTime.Now.AddMilliseconds(interactionCooldown); //<--- this allows the interaction to define the cooldown, ie chopping may take longer than attacking
             base.Interact(tree);
             Console.WriteLine("Toon chopped");
-            Client.SendEvent(new ChopEvent(id));
             tree.GotChopped(this);
         }
 
@@ -86,18 +86,7 @@ namespace Objects
             }
 
             Console.WriteLine("looting: " + loot.GetId());
-            Client.SendEvent(new LootedLootEvent(loot.GetId()));
-        }
-
-        public double GetAttackDamage()
-        {
-            return attackDamage;
-        }
-
-        public void ReceiveEvent(LootedLootEvent leEvent)
-        {
-            //perform loot animation
-            Map.RemoveGameObject(leEvent.Id);
+            Map.RemoveGameObject(loot.GetId());
         }
 
         //when you publish a SpawnToonEvent your dude will receive it and this is you telling it to fuck off -Troy
@@ -106,13 +95,12 @@ namespace Objects
             return;
         }
 
-        public void ReceiveEvent(TookDamageEvent leEvent)
+        public void TakeDamage(Mob mob)
         {
-            Console.WriteLine("I got smacked yo");
-            health -= (int)leEvent.DamageTaken;
+            health -= (int)mob.GetAttackDamage();
             if (health <= 0)
             {
-                Console.WriteLine("I rip gg");
+                Console.WriteLine("rip dude");
             }
         }
     }

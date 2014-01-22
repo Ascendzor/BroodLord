@@ -13,7 +13,7 @@ namespace Objects
 
         public MoveToPositionEvent(Guid id, Vector2 position)
         {
-            this.Type = 3;
+            this.Type = 0;
             this.Id = id;
             this.Position = position;
         }

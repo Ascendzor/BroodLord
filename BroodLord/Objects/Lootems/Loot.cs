@@ -40,10 +40,5 @@ namespace Objects
                 1 - (position.Y / (Data.MapSize * Data.TileSize)));
             sb.Draw(Data.FindTexture["treeOutline"], hitbox, Color.Red);
         }
-
-        public void ReceiveEvent(LootedLootEvent lle)
-        {
-            Map.RemoveGameObject(this);
-        }
     }
 }

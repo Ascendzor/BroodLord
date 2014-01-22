@@ -45,7 +45,7 @@ namespace Objects
         {
             Console.WriteLine("cat smacking the bitch: " + toon.GetId());
             interactionOffCooldown = DateTime.Now.AddMilliseconds(interactionCooldown); //<--- this allows the interaction to define the cooldown, ie chopping may take longer than attacking
-            Client.SendEvent(new TookDamageEvent(toon.GetId(), attackDamage));
+            toon.TakeDamage(this);
         }
     }
 }

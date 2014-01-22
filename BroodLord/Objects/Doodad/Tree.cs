@@ -30,38 +30,15 @@ namespace Objects
             Map.InsertGameObject(this);
         }
 
-        public void ReceiveEvent(TookDamageEvent leEvent)
-        {
-            if (isStump)
-            {
-                return;
-            }
-
-            if (leEvent is TookDamageEvent)
-            {
-                TookDamageEvent td = (TookDamageEvent)leEvent;
-                health -= (int)td.DamageTaken;
-            }
-        }
-
-        public void ReceiveEvent(TreeRipEvent leEvent)
-        {
-            isStump = true;
-            textureKey = "stump";
-            this.isInteractable = false;
-        }
-
         public void GotChopped(Toon dude)
         {
-            if (health < dude.GetAttackDamage())
+            health -= (int)dude.GetAttackDamage();
+            if (health < 0)
             {
-                Console.WriteLine("the tree has died and is spawning 2 woods");
-                Client.SendEvent(new TreeRipEvent(id));
-                Client.SendEvent(new SpawnWoodEvent(Guid.NewGuid(), position + new Vector2(-20, 5)));
-                Client.SendEvent(new SpawnWoodEvent(Guid.NewGuid(), position + new Vector2(20, 30)));
-                return;
+                isStump = true;
+                textureKey = "stump";
+                this.isInteractable = false;
             }
-            Client.SendEvent(new TookDamageEvent(id, dude.GetAttackDamage()));
         }
     }
 }

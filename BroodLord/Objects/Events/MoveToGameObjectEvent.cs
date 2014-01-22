@@ -12,7 +12,7 @@ namespace Objects
 
         public MoveToGameObjectEvent(Guid id, Guid goalGameObject)
         {
-            this.Type = 2;
+            this.Type = 1;
             this.Id = id;
             this.GoalGameObject = goalGameObject;
         }

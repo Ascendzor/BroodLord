@@ -37,10 +37,6 @@ namespace Objects
         {
             goalGameObject = Map.GetGameObject(leEvent.GoalGameObject);
         }
-
-        public void ReceiveEvent(ChopEvent leEvent)
-        {
-        }
         
         //All non-event behaviour is handled in Update.
         //This means basically only Moving is handled in Update.
@@ -103,6 +99,11 @@ namespace Objects
         public Vector2 GetGoalPosition()
         {
             return goalPosition;
+        }
+
+        public double GetAttackDamage()
+        {
+            return attackDamage;
         }
 
         public override void Draw(SpriteBatch sb)

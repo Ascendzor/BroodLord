@@ -140,35 +140,19 @@ namespace Objects
             Event leEvent = null;
             if (theType == 0)
             {
-                leEvent = ChopEvent.Deserialize(bytes);
+                leEvent = MoveToPositionEvent.Deserialize(bytes);
             }
-            else  if (theType == 1)
-            {
-                leEvent = LootedLootEvent.Deserialize(bytes);
-            }
-            else if (theType == 2)
+            else if (theType == 1)
             {
                 leEvent = MoveToGameObjectEvent.Deserialize(bytes);
             }
-            else if (theType == 3)
-            {
-                leEvent = MoveToPositionEvent.Deserialize(bytes);
-            }
-            else if (theType == 4)
+            else if (theType == 2)
             {
                 leEvent = SpawnToonEvent.Deserialize(bytes);
             }
-            else if (theType == 5)
+            else if (theType == 3)
             {
                 leEvent = SpawnWoodEvent.Deserialize(bytes);
-            }
-            else if (theType == 6)
-            {
-                leEvent = TookDamageEvent.Deserialize(bytes);
-            }
-            else if (theType == 7)
-            {
-                leEvent = TreeRipEvent.Deserialize(bytes);
             }
             return leEvent;
         }

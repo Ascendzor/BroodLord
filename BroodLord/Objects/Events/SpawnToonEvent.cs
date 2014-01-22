@@ -10,7 +10,7 @@ namespace Objects
     {
         public SpawnToonEvent(Guid id)
         {
-            this.Type = 4;
+            this.Type = 2;
             this.Id = id;
         }
 

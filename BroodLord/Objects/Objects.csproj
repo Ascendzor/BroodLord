@@ -45,17 +45,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Events\ChopEvent.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="Data.cs" />
     <Compile Include="Doodad\Doodad.cs" />
-    <Compile Include="Events\LootedLootEvent.cs" />
     <Compile Include="Events\SpawnToonEvent.cs" />
     <Compile Include="Events\SpawnWoodEvent.cs" />
-    <Compile Include="Events\TreeRipEvent.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="Events\Event.cs" />
-    <Compile Include="Events\TookDamageEvent.cs" />
     <Compile Include="Inventory\InvSlot.cs" />
     <Compile Include="Inventory\Inventory.cs" />
     <Compile Include="Lootems\RockItem.cs" />
