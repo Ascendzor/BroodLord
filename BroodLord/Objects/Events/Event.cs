@@ -39,6 +39,10 @@ namespace Objects
             {
                 leEvent = SpawnWoodEvent.Deserialize(bytes);
             }
+            else if (theType == 4)
+            {
+                leEvent = SpawnRockEvent.Deserialize(bytes);
+            }
 
             return leEvent;
         }

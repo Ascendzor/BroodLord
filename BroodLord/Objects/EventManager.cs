@@ -27,5 +27,10 @@ namespace Objects
         {
             new WoodLoot(leEvent.Id, leEvent.Position);
         }
+
+        public static void HandleEvent(SpawnRockEvent leEvent)
+        {
+            new RockLoot(leEvent.Id, leEvent.Position);
+        }
     }
 }

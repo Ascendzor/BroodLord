@@ -44,7 +44,27 @@ namespace BroodLord
             }
             #endregion endOfLeftClick
 
+            #region rightClick
+            if (oldState.RightButton != ButtonState.Pressed)
+            {
+                if (nowState.RightButton == ButtonState.Pressed)
+                {
+                    RightClick(nowState);
+                }
+            }
+            #endregion endOfRightClick
+
             oldState = nowState;
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void RightClick(MouseState nowState)
+        {
+            if (dude.Inventory.inventoryClick(nowState, dude))
+                return;            
         }
 
         //check if the dude clicked on something
@@ -53,7 +73,7 @@ namespace BroodLord
         private void LeftClick(MouseState nowState)
         {
             // Do inventory click
-            if (dude.Inventory.inventoryClick(new Point(nowState.X, nowState.Y)))
+            if (dude.Inventory.inventoryClick(nowState, dude))
                 return;
             
             Vector2 clickPosition = new Vector2(nowState.X - (Game1.graphicsDevice.Viewport.Width * 0.5f), nowState.Y - (Game1.graphicsDevice.Viewport.Height * 0.5f));

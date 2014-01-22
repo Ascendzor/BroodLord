@@ -27,5 +27,10 @@ namespace Objects
             get { return textureKey; }
             set { textureKey = value; }
         }
+
+        public Guid Id
+        {
+            get { return id; }
+        }
     }
 }
