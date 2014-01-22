@@ -57,7 +57,6 @@ namespace BroodLord
             oldState = nowState;
         }
 
-
         /// <summary>
         /// 
         /// </summary>

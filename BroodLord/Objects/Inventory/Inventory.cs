@@ -45,8 +45,7 @@ namespace Objects
                 slots.Add(new InventorySlot());
             }
 
-            //inventorySlotSize = Data.FindTexture["InventorySlot"].Height; //y u no work
-            inventorySlotSize = 90;
+            inventorySlotSize = (int)Data.GetTextureSize("InventorySlot").Y;
             selectedSlot = -1;
 
             // 720 needs to be screen height :((((
