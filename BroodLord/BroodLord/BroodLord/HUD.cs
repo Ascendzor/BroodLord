@@ -19,14 +19,14 @@ namespace BroodLord
         private SpriteFont spriteFont;
         private Toon dude;
         private Vector2 topLeftPosition;
-        private Vector2 bottomLeftPosition;        
+        private Vector2 bottomLeftPosition;
 
-        public HUD(ContentManager content, Toon dude, int halfScreenHeight, int halfScreenWidth)
+        public HUD(ContentManager content, Toon dude, int screenHeight, int screenWidth)
         {
             spriteFont = content.Load<SpriteFont>("TestFont");
             this.dude = dude;
-            topLeftPosition = new Vector2(-halfScreenWidth, -halfScreenHeight);
-            bottomLeftPosition = new Vector2(-halfScreenWidth, halfScreenHeight);
+            topLeftPosition = new Vector2(-screenWidth/2, -screenHeight/2);
+            bottomLeftPosition = new Vector2(-screenWidth/2, screenHeight/2);
         }
 
         public void Draw(SpriteBatch sb, Vector2 cameraPosition)

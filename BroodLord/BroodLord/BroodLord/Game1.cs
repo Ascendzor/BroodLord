@@ -51,7 +51,7 @@ namespace BroodLord
             graphics.PreferredBackBufferWidth = 1280;
             graphics.PreferredBackBufferHeight = 720;
             graphics.ApplyChanges();
-            HUD = new HUD(this.Content, dude, graphics.PreferredBackBufferHeight / 2, graphics.PreferredBackBufferWidth / 2);
+            HUD = new HUD(this.Content, dude, graphics.PreferredBackBufferHeight, graphics.PreferredBackBufferWidth);
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
