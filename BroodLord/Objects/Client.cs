@@ -43,7 +43,6 @@ namespace Objects
             stream = client.GetStream();
             otherStream = otherClient.GetStream();
 
-            Event leEvent = null;
             try
             {
                 // read the GameDataSizeMessage
@@ -75,7 +74,7 @@ namespace Objects
                 while (true)
                 {
                     otherStream.Read(bytes, 0, bytes.Length);
-                    leEvent = Event.Deserialize(bytes);
+                    dynamic leEvent = Event.Deserialize(bytes);
 
                     if (!leEvent.Id.Equals(Guid.Empty))
                     {
