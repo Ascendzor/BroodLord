@@ -7,8 +7,16 @@ using Microsoft.Xna.Framework;
 namespace Objects
 {
     [Serializable()]
-    public class SpawnEventManager
+    public class EventManager
     {
+        public static void HandleEvent(Event leEvent)
+        {
+            dynamic go = Map.GetGameObject(leEvent.Id);
+            dynamic specificEvent = Convert.ChangeType(leEvent, leEvent.GetType());
+            Console.WriteLine(leEvent);
+            go.ReceiveEvent(specificEvent);
+        }
+
         public static void HandleEvent(SpawnToonEvent leEvent)
         {
             Console.WriteLine("new toon event");

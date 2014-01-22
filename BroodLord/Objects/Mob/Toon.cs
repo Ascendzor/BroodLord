@@ -89,6 +89,11 @@ namespace Objects
             Map.RemoveGameObject(loot.GetId());
         }
 
+        public void ReceiveEvent(MoveToPositionEvent leEvent)
+        {
+            goalPosition = leEvent.Position;
+        }
+
         //when you publish a SpawnToonEvent your dude will receive it and this is you telling it to fuck off -Troy
         public void ReceiveEvent(SpawnToonEvent leEvent)
         {

@@ -15,5 +15,32 @@ namespace Objects
         {
             return null;
         }
+
+        public static Event Deserialize(byte[] bytes)
+        {
+            byte[] typeBytes = new byte[4];
+            Buffer.BlockCopy(bytes, 0, typeBytes, 0, 4);
+
+            int theType = BitConverter.ToInt16(typeBytes, 0);
+            Event leEvent = null;
+            if (theType == 0)
+            {
+                leEvent = MoveToPositionEvent.Deserialize(bytes);
+            }
+            else if (theType == 1)
+            {
+                leEvent = MoveToGameObjectEvent.Deserialize(bytes);
+            }
+            else if (theType == 2)
+            {
+                leEvent = SpawnToonEvent.Deserialize(bytes);
+            }
+            else if (theType == 3)
+            {
+                leEvent = SpawnWoodEvent.Deserialize(bytes);
+            }
+
+            return leEvent;
+        }
     }
 }

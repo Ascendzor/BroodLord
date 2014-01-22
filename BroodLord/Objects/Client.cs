@@ -75,23 +75,11 @@ namespace Objects
                 while (true)
                 {
                     otherStream.Read(bytes, 0, bytes.Length);
-                    leEvent = Deserialize(bytes);
+                    leEvent = Event.Deserialize(bytes);
 
                     if (!leEvent.Id.Equals(Guid.Empty))
                     {
-                        //This is specific to spawning events, if we change SpawnEventManager to GlobalEventManager this will have to change -Troy
-                        GameObject receiver = Map.GetGameObject(leEvent.Id);
-                        if (receiver != null)
-                        {
-                            dynamic dynamicEvent = Convert.ChangeType(leEvent, leEvent.GetType());
-                            dynamic gameObject = receiver;
-                            gameObject.ReceiveEvent(dynamicEvent);
-                        }
-                        else
-                        {
-                            dynamic dynamicEvent = Convert.ChangeType(leEvent, leEvent.GetType());
-                            SpawnEventManager.HandleEvent(dynamicEvent);
-                        }
+                        EventManager.HandleEvent(leEvent);
                     }
                 }
             }
@@ -129,32 +117,6 @@ namespace Objects
                     Thread.Sleep(30);
                 }
             }
-        }
-
-        private static Event Deserialize(byte[] bytes)
-        {
-            byte[] typeBytes = new byte[4];
-            Buffer.BlockCopy(bytes, 0, typeBytes, 0, 4);
-
-            int theType = BitConverter.ToInt16(typeBytes, 0);
-            Event leEvent = null;
-            if (theType == 0)
-            {
-                leEvent = MoveToPositionEvent.Deserialize(bytes);
-            }
-            else if (theType == 1)
-            {
-                leEvent = MoveToGameObjectEvent.Deserialize(bytes);
-            }
-            else if (theType == 2)
-            {
-                leEvent = SpawnToonEvent.Deserialize(bytes);
-            }
-            else if (theType == 3)
-            {
-                leEvent = SpawnWoodEvent.Deserialize(bytes);
-            }
-            return leEvent;
         }
     }
 }

@@ -95,9 +95,8 @@ namespace Server
                 while (true)
                 {
                     stream.Read(bytes, 0, bytes.Length);
-                    MemoryStream memStream = new MemoryStream();
-                    memStream.Write(bytes, 0, bytes.Length);
-                    memStream.Close();
+                    dynamic leEvent = Event.Deserialize(bytes);
+                    EventManager.HandleEvent(leEvent);
                     foreach (NetworkStream ns in streams)
                     {
                         ns.Write(bytes, 0, bytes.Length);
@@ -118,7 +117,6 @@ namespace Server
 
             Server server = new Server();
             new Thread(() => server.ListenForNewConnections()).Start();
-
 
             environment.Play();
         }
