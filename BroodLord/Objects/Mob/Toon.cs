@@ -41,6 +41,11 @@ namespace Objects
             get { return inventory; }
         }
 
+        public int Health
+        {
+            get { return health; }
+        }
+
         protected override void Interact(GameObject gameObject)
         {
             if (DateTime.Now.CompareTo(interactionOffCooldown) == -1)
@@ -76,13 +81,14 @@ namespace Objects
         private void InteractWithObject(Loot loot)
         {
             //bad implementation but can be improved on later
+            bool pickedUp = false;
             if (loot is RockLoot)
             {
-                inventory.addToInventory(new RockItem(loot.GetId()), true);
+                pickedUp = inventory.addToInventory(new RockItem(loot.GetId()), true);
             }
             else if (loot is WoodLoot)
             {
-                inventory.addToInventory(new WoodItem(loot.GetId()));
+                pickedUp = inventory.addToInventory(new WoodItem(loot.GetId()));
             }
 
             Console.WriteLine("looting: " + loot.GetId());
