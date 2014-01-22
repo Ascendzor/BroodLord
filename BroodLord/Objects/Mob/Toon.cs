@@ -91,8 +91,10 @@ namespace Objects
                 pickedUp = inventory.addToInventory(new WoodItem(loot.GetId()));
             }
 
+
             Console.WriteLine("looting: " + loot.GetId());
-            Map.RemoveGameObject(loot.GetId());
+            if (pickedUp)
+                Map.RemoveGameObject(loot.GetId());
         }
 
         public void ReceiveEvent(MoveToPositionEvent leEvent)

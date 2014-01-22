@@ -49,7 +49,7 @@ namespace Objects
             selectedSlot = -1;
 
             // 720 needs to be screen height :((((
-            boundsOnScreen = new Rectangle(0, 720 - inventorySlotSize * inventoryRows, inventorySlotSize * inventoryCols, inventorySlotSize * inventoryRows);
+            boundsOnScreen = new Rectangle(0, 1080 - inventorySlotSize * inventoryRows, inventorySlotSize * inventoryCols, inventorySlotSize * inventoryRows);
         }
 
         /// <summary>

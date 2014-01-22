@@ -38,7 +38,7 @@ namespace BroodLord
             Console.WriteLine("Guid size: " + Guid.NewGuid().ToByteArray().Length);
             Thread.Sleep(1000);
             Data.Initialize(Content);
-            Map.Initialize(5); //the renderWidth should be dynamic to the resolution
+            Map.Initialize(12); //the renderWidth should be dynamic to the resolution
             Client.Initialize();
             dude = new Toon(Guid.NewGuid(), new Vector2(100, 100), "link");
             input = new Input(dude);
@@ -48,8 +48,8 @@ namespace BroodLord
             IsMouseVisible = true;
 
             graphics.IsFullScreen = false;
-            graphics.PreferredBackBufferWidth = 1280;
-            graphics.PreferredBackBufferHeight = 720;
+            graphics.PreferredBackBufferWidth = 1920;
+            graphics.PreferredBackBufferHeight = 1080;
             graphics.ApplyChanges();
             HUD = new HUD(this.Content, dude, graphics.PreferredBackBufferHeight, graphics.PreferredBackBufferWidth);
 
@@ -72,7 +72,7 @@ namespace BroodLord
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             spriteBatch.Begin(SpriteSortMode.BackToFront,
                         BlendState.AlphaBlend,
