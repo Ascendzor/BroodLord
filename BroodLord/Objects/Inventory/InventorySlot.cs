@@ -14,26 +14,21 @@ namespace Objects
     /// </summary>
     public class InventorySlot
     {
-        protected List<Item> itemsInSlot;
+        protected Dictionary<Guid, Item> items;
 
         public InventorySlot()
         {
-            itemsInSlot = new List<Item>();
+            items = new Dictionary<Guid, Item>();
         }
-
-        public List<Item> ItemsInSlot
-        {
-            get { return itemsInSlot; }
-        }
-
+        
         public int Quantity
         {
-            get { return itemsInSlot.Count; }
+            get { return items.Count; }
         }
 
         public void addItemToSlot(Item item)
         {
-            itemsInSlot.Add(item);
+            items.Add(item.Id, item);
         }
 
         /// <summary>
@@ -43,8 +38,8 @@ namespace Objects
         {
             get
             {
-                if (itemsInSlot.Count > 0)
-                    return itemsInSlot[0].GetType();
+                if (items.Count > 0)
+                    return items.Values.ToList<Item>()[0].GetType();
                 else
                     return null;
             }
@@ -56,8 +51,8 @@ namespace Objects
         /// <returns></returns>
         public String getTextureKey()
         {
-            if (itemsInSlot.Count != 0)
-                return itemsInSlot[0].TextureKey;
+            if (items.Count != 0)
+                return items.Values.ToList<Item>()[0].TextureKey;
             else
                 return "EmptyInventorySlot";
             
@@ -65,36 +60,20 @@ namespace Objects
 
         public void dropSlot(Vector2 position, Guid dudeId)
         {
-            //foreach (Item item in itemsInSlot)
-            //{
-            //    if (item is WoodItem)
-            //        Client.SendEvent(new SpawnWoodEvent(item.Id, position));
-            //    if (item is RockItem)
-            //        Client.SendEvent(new SpawnRockEvent(item.Id, position));
-            //}
-
-            foreach (Item item in itemsInSlot)
+            foreach (Item item in items.Values.ToList<Item>())
             {
                 Client.SendEvent(new DroppedItemEvent(dudeId, item.Id));
-            }
-
-            //
-            //Drop loot event
-            //
-
-            //itemsInSlot.Clear();            
+            }         
         }
 
-        public void removeItem(Guid itemId)
+        public bool removeItem(Guid itemId)
         {
-            foreach (Item item in itemsInSlot)
+            if (items.ContainsKey(itemId))
             {
-                if (item.Id.Equals(itemId))
-                {
-                    itemsInSlot.Remove(item);
-                    return;
-                }
+                items.Remove(itemId);
+                return true;
             }
+            else return false;
         }
 
 

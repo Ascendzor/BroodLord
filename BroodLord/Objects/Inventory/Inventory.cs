@@ -153,7 +153,8 @@ namespace Objects
         {
             foreach (InventorySlot slot in slots)
             {
-                slot.removeItem(itemId);
+                if (slot.removeItem(itemId))
+                    break;
             }
         }
 
