@@ -78,7 +78,7 @@ namespace Objects
             //bad implementation but can be improved on later
             if (loot is RockLoot)
             {
-                inventory.addToInventory(new RockItem(loot.GetId()));
+                inventory.addToInventory(new RockItem(loot.GetId()), true);
             }
             else if (loot is WoodLoot)
             {

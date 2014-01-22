@@ -52,7 +52,8 @@
     <Compile Include="Events\SpawnWoodEvent.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="Events\Event.cs" />
-    <Compile Include="Inventory\InvSlot.cs" />
+    <Compile Include="Events\TookDamageEvent.cs" />
+    <Compile Include="Inventory\InventorySlot.cs" />
     <Compile Include="Inventory\Inventory.cs" />
     <Compile Include="Lootems\RockItem.cs" />
     <Compile Include="Lootems\WoodItem.cs" />

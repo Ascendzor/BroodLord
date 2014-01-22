@@ -26,7 +26,7 @@ namespace BroodLord
             spriteFont = content.Load<SpriteFont>("TestFont");
             this.dude = dude;
             topLeftPosition = new Vector2(-halfScreenWidth, -halfScreenHeight);
-            bottomLeftPosition = new Vector2(-halfScreenWidth, halfScreenHeight-25);
+            bottomLeftPosition = new Vector2(-halfScreenWidth, halfScreenHeight);
         }
 
         public void Draw(SpriteBatch sb, Vector2 cameraPosition)
@@ -36,25 +36,11 @@ namespace BroodLord
             sb.DrawString(spriteFont, "Life: 1, Energy Shield: 9001", drawPosition, Color.White);
 
             drawPosition = cameraPosition + bottomLeftPosition;
-            sb.DrawString(spriteFont, inventoryItems(), drawPosition, Color.White);
 
             // Draw inventory
             dude.Inventory.Draw(sb, drawPosition, spriteFont);
 
         }
 
-        /// <summary>
-        /// Testing only
-        /// </summary>
-        /// <returns>returns players items as a string</returns>
-        private String inventoryItems()
-        {
-            String itemsAsText = "Inventory: ";
-            foreach (Item l in dude.Inventory.Items)
-            {
-                itemsAsText += " (" + l.Quantity + ") " + l.GetType() + ", ";
-            }
-            return itemsAsText;
-        }
     }
 }

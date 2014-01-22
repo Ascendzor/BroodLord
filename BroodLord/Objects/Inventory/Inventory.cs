@@ -6,13 +6,20 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Objects
-{
+{   
+    /// <summary>
+    /// Dude has inventory, inventory has a list of InventorySlots
+    /// Inventory has size (number of slots)
+    /// Inventory draws each slot on to the screen (draw call from HUD draw)
+    /// </summary>
     [Serializable()]
     public class Inventory
     {
-        protected List<Item> items;
+        protected List<InventorySlot> slots;
         protected int inventorySize;
         protected int inventorySlotSize;
+        protected int slotInUse;
+
 
         public int InventorySize
         {
@@ -24,17 +31,22 @@ namespace Objects
             get { return inventorySlotSize; }
         }
 
-        public List<Item> Items
+        public int SlotInUse
         {
-            get { return items; }
+            get { return slotInUse; }
+            set { slotInUse = value; }
         }
-
-
+        
         public Inventory()
         {
-            items = new List<Item>();
+            slots = new List<InventorySlot>();
             inventorySize = 10;
-            inventorySlotSize = 90;
+            for (int i = 0; i<inventorySize; i++)
+            {
+                slots.Add(new InventorySlot());
+            }
+            inventorySlotSize = 91;
+            slotInUse = -1;
         }
 
         /// <summary>
@@ -45,14 +57,20 @@ namespace Objects
         public bool addToInventory(Item itemToAdd)
         {
             bool itemAddedToInventory = false;
-
-            // Try add item into empty slot
-            if (items.Count < inventorySize)
+            Console.WriteLine(slots.Count);
+            foreach (InventorySlot slot in slots)
             {
-                items.Add(itemToAdd);
-                itemAddedToInventory = true;
+                if (slot.Quantity == 0)
+                {
+                    slot.addItemToSlot(itemToAdd);
+                    itemAddedToInventory = true;
+                    break;
+                }
             }
-            else Console.WriteLine(fullInventoryMessage());
+
+            // Testing only
+            if (!itemAddedToInventory)
+                Console.WriteLine(fullInventoryMessage());
 
             return itemAddedToInventory;
         }
@@ -66,25 +84,35 @@ namespace Objects
         {
             bool itemAddedToInventory = false;
 
-            // Try stack item
-            foreach (Item item in items)
+            // Try stack item in a slot
+            foreach (InventorySlot slot in slots)
             {
-                if (itemToAdd.GetType() == item.GetType())
+                if (slot.Quantity != 0)
                 {
-                    item.Quantity += itemToAdd.Quantity;
-                    itemAddedToInventory = true;
+                    if (itemToAdd.GetType() == slot.ItemType)
+                    {
+                        slot.addItemToSlot(itemToAdd);
+                        itemAddedToInventory = true;
+                    }
                 }
             }
 
             // Try add item into empty slot
             if (!itemAddedToInventory)
             {
-                if (items.Count < inventorySize)
-                { 
-                    items.Add(itemToAdd);
-                    itemAddedToInventory = true;
+                foreach (InventorySlot slot in slots)
+                {
+                    if (slot.Quantity == 0)
+                    {
+                        slot.addItemToSlot(itemToAdd);
+                        itemAddedToInventory = true;
+                        break;
+                    }
                 }
-                else Console.WriteLine(fullInventoryMessage());
+
+                // Testing only
+                if (!itemAddedToInventory)
+                    Console.WriteLine(fullInventoryMessage());
             }
 
             return itemAddedToInventory;
@@ -102,20 +130,31 @@ namespace Objects
             drawPosition.Y -= (Data.FindTexture["InventorySlot"].Height) * rows;
 
             int count = 0;
-            foreach (Item l in Items)
+            
+            
+            // Depth layer, 0 = default, >0 = away from you
+            foreach (InventorySlot invSlot in slots)
             {
-                sb.Draw(Data.FindTexture["InventorySlot"], drawPosition, Color.White);
-                sb.Draw(Data.FindTexture[l.TextureKey], drawPosition, Color.White);
-                sb.DrawString(spriteFont, l.Quantity.ToString(), drawPosition, Color.White);
-                drawPosition.X += inventorySlotSize;
-                count++;
-                if (count == 4)
+                sb.Draw(Data.FindTexture[invSlot.getTextureKey()], drawPosition, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.1f);
+                sb.DrawString(spriteFont, invSlot.Quantity.ToString(), drawPosition, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0);
+
+                // Draw around the current slot
+                if (slotInUse == count)
                 {
-                    drawPosition.X -= inventorySlotSize*4;
+                    sb.Draw(Data.FindTexture["InventorySlot"], drawPosition, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.2f);
+                }
+                drawPosition.X += inventorySlotSize;
+
+                count++;
+                // May be bad to modulo here
+                if (count % 4 == 0)
+                {
+                    drawPosition.X -= inventorySlotSize * 4;
                     drawPosition.Y += inventorySlotSize;
-                    count = 0;
                 }
             }
         }
+
+    
     }
 }
