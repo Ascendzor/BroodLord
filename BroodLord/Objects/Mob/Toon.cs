@@ -101,6 +101,11 @@ namespace Objects
         {
             goalPosition = leEvent.Position;
         }
+        public void ReceiveEvent(DroppedItemEvent leEvent)
+        {
+            Console.WriteLine("I dropped item guid: " + leEvent.Id + " itemid " + leEvent.ItemId);
+            inventory.removeItem(leEvent.ItemId);
+        }
 
         //when you publish a SpawnToonEvent your dude will receive it and this is you telling it to fuck off -Troy
         public void ReceiveEvent(SpawnToonEvent leEvent)

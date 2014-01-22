@@ -63,20 +63,35 @@ namespace Objects
             
         }
 
-        public void dropSlot(Vector2 position)
+        public void dropSlot(Vector2 position, Guid dudeId)
+        {
+            //foreach (Item item in itemsInSlot)
+            //{
+            //    if (item is WoodItem)
+            //        Client.SendEvent(new SpawnWoodEvent(item.Id, position));
+            //    if (item is RockItem)
+            //        Client.SendEvent(new SpawnRockEvent(item.Id, position));
+            //}
+
+            foreach (Item item in itemsInSlot)
+            {
+                Client.SendEvent(new DroppedItemEvent(dudeId, item.Id));
+            }
+
+            //
+            //Drop loot event
+            //
+
+            //itemsInSlot.Clear();            
+        }
+
+        public void removeItem(Guid itemId)
         {
             foreach (Item item in itemsInSlot)
             {
-                if (item is WoodItem)
-                    Client.SendEvent(new SpawnWoodEvent(item.Id, position));
-                if (item is RockItem)
-                    Client.SendEvent(new SpawnRockEvent(item.Id, position));
+                if (item.Id.Equals(itemId))
+                    itemsInSlot.Remove(item);
             }
-                //if (itemsInSlot[0] is WoodItem)
-                //    Client.SendEvent(new SpawnWoodEvent(itemsInSlot[0].Id, position));
-                //if (itemsInSlot[0] is RockItem)
-                //    Client.SendEvent(new SpawnRockEvent(itemsInSlot[0].Id, position));
-            itemsInSlot.Clear();            
         }
 
 

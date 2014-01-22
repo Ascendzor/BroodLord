@@ -43,6 +43,10 @@ namespace Objects
             {
                 leEvent = SpawnRockEvent.Deserialize(bytes);
             }
+            else if (theType == 5)
+            {
+                leEvent = DroppedItemEvent.Deserialize(bytes);
+            }
 
             return leEvent;
         }

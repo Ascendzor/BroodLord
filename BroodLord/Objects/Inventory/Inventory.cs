@@ -48,7 +48,7 @@ namespace Objects
             inventorySlotSize = (int)Data.GetTextureSize("InventorySlot").Y;
             selectedSlot = -1;
 
-            // 720 needs to be screen height :((((
+            // 1080 needs to be screen height :((((
             boundsOnScreen = new Rectangle(0, 1080 - inventorySlotSize * inventoryRows, inventorySlotSize * inventoryCols, inventorySlotSize * inventoryRows);
         }
 
@@ -144,9 +144,17 @@ namespace Objects
             if (nowState.LeftButton == ButtonState.Pressed)
                 selectedSlot = clickedSlot;
             else if (nowState.RightButton == ButtonState.Pressed)
-                slots[clickedSlot].dropSlot(dude.Position);
+                slots[clickedSlot].dropSlot(dude.Position, dude.GetId());
 
             return true;
+        }
+
+        public void removeItem(Guid itemId)
+        {
+            foreach (InventorySlot slot in slots)
+            {
+                slot.removeItem(itemId);
+            }
         }
 
         /// <summary>
@@ -181,8 +189,6 @@ namespace Objects
                     drawPosition.Y += inventorySlotSize + 1;
                 }
             }
-        }
-
-    
+        }    
     }
 }

@@ -53,7 +53,6 @@ namespace Objects
                 {
                     otherStream.Read(bytes, 0, bytes.Length);
                     dynamic leEvent = Event.Deserialize(bytes);
-
                     if (!leEvent.Id.Equals(Guid.Empty))
                     {
                         EventManager.HandleEvent(leEvent);
