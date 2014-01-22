@@ -105,6 +105,7 @@ namespace Objects
         {
             Console.WriteLine("I dropped item guid: " + leEvent.Id + " itemid " + leEvent.ItemId);
             inventory.removeItem(leEvent.ItemId);
+            new RockLoot(leEvent.ItemId, position);
         }
 
         //when you publish a SpawnToonEvent your dude will receive it and this is you telling it to fuck off -Troy

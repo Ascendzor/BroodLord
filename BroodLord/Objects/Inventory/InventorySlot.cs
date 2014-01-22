@@ -90,7 +90,10 @@ namespace Objects
             foreach (Item item in itemsInSlot)
             {
                 if (item.Id.Equals(itemId))
+                {
                     itemsInSlot.Remove(item);
+                    return;
+                }
             }
         }
 
