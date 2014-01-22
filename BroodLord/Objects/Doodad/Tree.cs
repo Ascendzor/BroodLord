@@ -38,6 +38,12 @@ namespace Objects
                 isStump = true;
                 textureKey = "stump";
                 this.isInteractable = false;
+
+                if (Data.IsServer)
+                {
+                    Client.SendEvent(new SpawnWoodEvent(Guid.NewGuid(), new Vector2(position.X - 10, position.Y)));
+                    Client.SendEvent(new SpawnWoodEvent(Guid.NewGuid(), new Vector2(position.X + 20, position.Y + 10)));
+                }
             }
         }
     }

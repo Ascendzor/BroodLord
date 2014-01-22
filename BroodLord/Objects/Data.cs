@@ -23,6 +23,7 @@ namespace Objects
         public static int TreeRadius = 56;
         public static int TileSize = 84;
         public static int MapSize = 20;
+        public static bool IsServer;
 
         //This should probably be in GameDataSizeMessage
         public static int SizeOfNetEventPacket = 140;
@@ -43,6 +44,8 @@ namespace Objects
             {
                 FindTextureSize.Add(textureKey, new Vector2(FindTexture[textureKey].Width, FindTexture[textureKey].Height));
             }
+
+            IsServer = false;
         }
 
         private static void InitializeAllTextures()
@@ -79,6 +82,8 @@ namespace Objects
                 Image leImage = Image.FromFile(@"../../../BroodLord/BroodLordContent/" + key + ".png");
                 FindTextureSize.Add(key, new Vector2(leImage.Width, leImage.Height));
             }
+
+            IsServer = true;
         }
 
         public static Vector2 GetTextureSize(string textureKey)
