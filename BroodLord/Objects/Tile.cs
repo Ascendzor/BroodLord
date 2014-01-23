@@ -28,6 +28,7 @@ namespace Objects
 
         public void Update()
         {
+            //got index out of range error here (dont know what caused)
             foreach (GameObject go in gameObjects.Values.ToList())
             {
                 if (go is Mob) //<-- this entire if might go and we might end up just updating GameObject, we'll see -Troy

@@ -32,5 +32,7 @@ namespace Objects
         {
             get { return id; }
         }
+
+        public virtual Loot CreateLoot(Vector2 position) { return new Loot(); }
     }
 }

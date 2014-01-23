@@ -19,5 +19,10 @@ namespace Objects
 
             Map.InsertGameObject(this);
         }
+
+        public override Item CreateItem(Loot loot)
+        {
+            return new WoodItem(loot.GetId());
+        }
     }
 }

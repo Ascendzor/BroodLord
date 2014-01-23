@@ -78,22 +78,13 @@ namespace Objects
             tree.GotChopped(this);
         }
 
+        /// <summary>
+        /// If adding to inventory succeeded (returned true) remove loot from map
+        /// </summary>
+        /// <param name="loot">Loot to add to inventory</param>
         private void InteractWithObject(Loot loot)
         {
-            //bad implementation but can be improved on later
-            bool pickedUp = false;
-            if (loot is RockLoot)
-            {
-                pickedUp = inventory.addToInventory(new RockItem(loot.GetId()), true);
-            }
-            else if (loot is WoodLoot)
-            {
-                pickedUp = inventory.addToInventory(new WoodItem(loot.GetId()));
-            }
-
-
-            Console.WriteLine("looting: " + loot.GetId());
-            if (pickedUp)
+            if (inventory.addToInventory(loot.CreateItem(loot), true))
                 Map.RemoveGameObject(loot.GetId());
         }
 
@@ -101,18 +92,15 @@ namespace Objects
         {
             goalPosition = leEvent.Position;
         }
+
+        /// <summary>
+        /// Remove item from inventory, then create loot of that item at toons position
+        /// </summary>
+        /// <param name="leEvent">Drop event recieved</param>
         public void ReceiveEvent(DroppedItemEvent leEvent)
         {
-            Console.WriteLine("I dropped item guid: " + leEvent.Id + " itemid " + leEvent.ItemId);
-            Item droppedItem = inventory.removeItem(leEvent.ItemId);
-            if (droppedItem is WoodItem)
-            {
-                new WoodLoot(leEvent.ItemId, position);
-            }
-            else if (droppedItem is RockItem)
-            {
-                new RockLoot(leEvent.ItemId, position);
-            }
+            Item item = inventory.removeItem(leEvent.ItemId);
+            item.CreateLoot(position);
         }
 
         /// <summary>

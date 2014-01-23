@@ -16,5 +16,11 @@ namespace Objects
             this.hitbox = new Rectangle(0, 0, 0, 0); //set this when going to click on the item
             this.quantity = 1;
         }
+
+        public override Loot CreateLoot(Vector2 position)
+        {
+            return new WoodLoot(id, position);
+        }
+
     }
 }
