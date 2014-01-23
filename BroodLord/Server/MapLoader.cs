@@ -36,8 +36,8 @@ namespace Server
                 {
                     LoadTerrain(x, y, terrainMap.GetPixel(x, y));
                     LoadMobs(x, y, mobsMap.GetPixel(x, y));
-                    LoadDoodads(x, y, mobsMap.GetPixel(x, y));
-                    LoadLoots(x, y, mobsMap.GetPixel(x, y));
+                    LoadDoodads(x, y, doodadsMap.GetPixel(x, y));
+                    LoadLoots(x, y, lootsMap.GetPixel(x, y));
                 }
             }
         }

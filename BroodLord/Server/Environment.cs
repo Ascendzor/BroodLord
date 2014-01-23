@@ -23,15 +23,6 @@ namespace Server
             while (true)
             {
                 Map.Update();
-                foreach (Mob mob in Map.GetMobs())
-                {
-                    //dynamic this shit
-                    //Behave(mob) should call the appropriate Behave!
-                    if (mob is Cat)
-                    {
-                        Behave((Cat)mob);
-                    }
-                }
 
                 Thread.Sleep(16); //something like 62.5 fps
             }

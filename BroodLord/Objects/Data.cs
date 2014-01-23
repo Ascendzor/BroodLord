@@ -22,7 +22,7 @@ namespace Objects
         public static int ToonInteractionRange = 100;
         public static int TreeRadius = 56;
         public static int TileSize = 84;
-        public static int MapSize = 20;
+        public static int MapSize = 40;
         public static bool IsServer;
 
         //This should probably be in GameDataSizeMessage

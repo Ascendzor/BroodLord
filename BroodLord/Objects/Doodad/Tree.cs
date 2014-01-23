@@ -12,7 +12,6 @@ namespace Objects
     public class Tree : Doodad
     {
         private int health;
-        private bool isStump;
 
         public Tree(Guid id, Vector2 position, string textureKey)
         {
@@ -35,9 +34,9 @@ namespace Objects
             health -= (int)dude.GetAttackDamage();
             if (health < 0)
             {
-                isStump = true;
                 textureKey = "stump";
                 this.isInteractable = false;
+                Console.WriteLine(health);
 
                 if (Data.IsServer)
                 {
