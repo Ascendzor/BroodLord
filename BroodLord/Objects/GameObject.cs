@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 namespace Objects
 {
     [Serializable()]
-    public class GameObject
+    public abstract class GameObject
     {
         protected Vector2 oldPosition;
         protected Vector2 position;
@@ -67,8 +67,6 @@ namespace Objects
             return id;
         }
 
-        public virtual void Draw(SpriteBatch sb)
-        {
-        }
+        public abstract void Draw(SpriteBatch sb);
     }
 }
