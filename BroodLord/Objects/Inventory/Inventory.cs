@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace Objects
 {   
@@ -18,23 +19,17 @@ namespace Objects
         protected List<InventorySlot> slots;
         
         protected int inventorySlotSize;
-        protected int slotInUse;
+        protected int selectedSlot;
         protected Rectangle boundsOnScreen;
 
         // Used for size of inventory. If inventory can be of variable size then these values must change
-        private const int inventoryRows = 1;
-        private const int inventoryCols = 14;
-        private const int inventoryCapacity = 14;
+        private const int inventoryRows = 3;
+        private const int inventoryCols = 3;
+        private const int inventoryCapacity = 9;
 
         public int InventorySlotSize
         {
             get { return inventorySlotSize; }
-        }
-
-        public int SlotInUse
-        {
-            get { return slotInUse; }
-            set { slotInUse = value; }
         }
 
         public Rectangle BoundsOnScreen
@@ -50,10 +45,9 @@ namespace Objects
                 slots.Add(new InventorySlot());
             }
 
-            
             //inventorySlotSize = Data.FindTexture["InventorySlot"].Height; //y u no work
             inventorySlotSize = 90;
-            slotInUse = -1;
+            selectedSlot = -1;
 
             // 720 needs to be screen height :((((
             boundsOnScreen = new Rectangle(0, 720 - inventorySlotSize * inventoryRows, inventorySlotSize * inventoryCols, inventorySlotSize * inventoryRows);
@@ -136,16 +130,22 @@ namespace Objects
         /// <summary>
         /// True if given point is within the inventory bounds
         /// </summary>
-        public bool inventoryClick(Point clickPos)
+        public bool inventoryClick(MouseState nowState, Toon dude)
         {
             // If click not within inventory return
-            if (!boundsOnScreen.Contains(clickPos))
+            if (!boundsOnScreen.Contains(new Point(nowState.X, nowState.Y)))
                 return false;
 
             // Else work out where the click was and then which index that is inside slots
-            int x = (clickPos.X - boundsOnScreen.X) / inventorySlotSize;
-            int y = (clickPos.Y - boundsOnScreen.Y) / inventorySlotSize;
-            slotInUse = x + (y * inventoryCols);
+            int x = (nowState.X - boundsOnScreen.X) / inventorySlotSize;
+            int y = (nowState.Y - boundsOnScreen.Y) / inventorySlotSize;
+            int clickedSlot = x + (y * inventoryCols);
+
+            // Left and Right Click
+            if (nowState.LeftButton == ButtonState.Pressed)
+                selectedSlot = clickedSlot;
+            else if (nowState.RightButton == ButtonState.Pressed)
+                slots[clickedSlot].dropSlot(dude.Position);
 
             return true;
         }
@@ -154,7 +154,7 @@ namespace Objects
         /// Draws inventory slots
         /// Image = empty slot or item in bag image
         /// </summary>
-        /// <param name="drawPosition">Set to bottom left corner of screen</param>
+        /// <param name="drawPosition">Bottom left of the drawing position</param>
         public void Draw(SpriteBatch sb, Vector2 drawPosition, SpriteFont spriteFont)
         {
             drawPosition.Y -= (inventorySlotSize + 1) * inventoryRows;
@@ -167,7 +167,7 @@ namespace Objects
                 sb.DrawString(spriteFont, invSlot.Quantity.ToString(), drawPosition, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0);
 
                 // Draw around the current slot
-                if (slotInUse == count)
+                if (selectedSlot == count)
                 {
                     sb.Draw(Data.FindTexture["InventorySlot"], drawPosition, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.1f);
                 }

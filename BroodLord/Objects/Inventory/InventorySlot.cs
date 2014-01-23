@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
 
 namespace Objects
 {   
@@ -61,6 +62,25 @@ namespace Objects
                 return "EmptyInventorySlot";
             
         }
+
+        public void dropSlot(Vector2 position)
+        {
+            foreach (Item item in itemsInSlot)
+            {
+                if (item is WoodItem)
+                    Client.SendEvent(new SpawnWoodEvent(item.Id, position));
+                if (item is RockItem)
+                    Client.SendEvent(new SpawnRockEvent(item.Id, position));
+            }
+                //if (itemsInSlot[0] is WoodItem)
+                //    Client.SendEvent(new SpawnWoodEvent(itemsInSlot[0].Id, position));
+                //if (itemsInSlot[0] is RockItem)
+                //    Client.SendEvent(new SpawnRockEvent(itemsInSlot[0].Id, position));
+            itemsInSlot.Clear();            
+        }
+
+
+
 
     }
 }
