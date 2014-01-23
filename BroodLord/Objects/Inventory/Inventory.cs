@@ -149,15 +149,28 @@ namespace Objects
             return true;
         }
 
-        public void removeItem(Guid itemId)
+        /// <summary>
+        /// Gets and removes an item out of an inventory slot.
+        /// </summary>
+        /// <param name="itemId">Guid of item to remove</param>
+        /// <returns>Item that was removed, or null if not found</returns>
+        public Item removeItem(Guid itemId)
         {
             foreach (InventorySlot slot in slots)
             {
-                if (slot.removeItem(itemId))
-                    break;
+                Item itemRemoved;
+                if ((itemRemoved = slot.removeItem(itemId)) != null)
+                    return itemRemoved;
             }
+            // Not sure about this return, "should" be no case where item is not found
+            return null;
         }
         
+        /// <summary>
+        /// Gets item in an inventory slot
+        /// </summary>
+        /// <param name="id">Guid of item</param>
+        /// <returns>Item found in inventory slot</returns>
         public Item GetItem(Guid id)
         {
             foreach (InventorySlot slot in slots)

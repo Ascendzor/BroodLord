@@ -48,7 +48,7 @@ namespace Objects
         /// <summary>
         /// Gets item texture or empty slot texture if no items in slot
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Name of texture in Data as String</returns>
         public String getTextureKey()
         {
             if (items.Count != 0)
@@ -58,6 +58,11 @@ namespace Objects
             
         }
 
+        /// <summary>
+        /// Drops all items out of this inventory slot by sending DroppedItemEvent to server
+        /// </summary>
+        /// <param name="position">Position to drop item at</param>
+        /// <param name="dudeId">Id of person to drop item from</param>
         public void dropSlot(Vector2 position, Guid dudeId)
         {
             foreach (Item item in items.Values.ToList<Item>())
@@ -66,16 +71,27 @@ namespace Objects
             }         
         }
 
-        public bool removeItem(Guid itemId)
+        /// <summary>
+        /// Removes item from slot (dictionary) then returns it
+        /// </summary>
+        /// <param name="itemId">Guid of item to remove</param>
+        /// <returns>Item that was removed</returns>
+        public Item removeItem(Guid itemId)
         {
             if (items.ContainsKey(itemId))
             {
+                Item item = items[itemId];
                 items.Remove(itemId);
-                return true;
+                return item;
             }
-            else return false;
+            else return null;
         }
 
+        /// <summary>
+        /// Returns item with Guid id
+        /// </summary>
+        /// <param name="id">Guid of item to get</param>
+        /// <returns>Item with id</returns>
         public Item GetItem(Guid id)
         {
             if (items.ContainsKey(id))

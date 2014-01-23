@@ -104,8 +104,7 @@ namespace Objects
         public void ReceiveEvent(DroppedItemEvent leEvent)
         {
             Console.WriteLine("I dropped item guid: " + leEvent.Id + " itemid " + leEvent.ItemId);
-            Item droppedItem = inventory.GetItem(leEvent.ItemId);
-            inventory.removeItem(leEvent.ItemId);
+            Item droppedItem = inventory.removeItem(leEvent.ItemId);
             if (droppedItem is WoodItem)
             {
                 new WoodLoot(leEvent.ItemId, position);
@@ -116,7 +115,10 @@ namespace Objects
             }
         }
 
-        //when you publish a SpawnToonEvent your dude will receive it and this is you telling it to fuck off -Troy
+        /// <summary>
+        /// When you publish a SpawnToonEvent your dude will receive it and this is you telling it to fuck off -Troy
+        /// </summary>
+        /// <param name="leEvent"></param>
         public void ReceiveEvent(SpawnToonEvent leEvent)
         {
             return;
