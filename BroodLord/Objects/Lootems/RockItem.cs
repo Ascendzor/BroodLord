@@ -16,7 +16,6 @@ namespace Objects
             this.textureKey = "rock";
             this.origin = new Vector2(Data.GetTextureSize(textureKey).X / 2, Data.GetTextureSize(textureKey).Y * 0.85f);
             this.hitbox = new Rectangle(0, 0, 0, 0); //set this when going to click on the item
-            this.quantity = 1;
         }
 
         public override Loot CreateLoot(Vector2 position)
