@@ -80,6 +80,11 @@ namespace Objects
             }
         }
 
+        public static void SetTileTexture(int x, int y, string textureKey)
+        {
+            tiles[x, y].SetTextureKey(textureKey);
+        }
+
         public static List<Tile> GetRenderedTiles(Vector2 dudesPosition)
         {
             List<Tile> renderedTiles = new List<Tile>();

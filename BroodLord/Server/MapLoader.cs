@@ -83,6 +83,7 @@ namespace Server
         public static void LoadTerrain(int x, int y, System.Drawing.Color color)
         {
             //load terrain here
+            Map.SetTileTexture(x, y, "snow1");
         }
 
         public static void LoadMobs(int x, int y, System.Drawing.Color color)

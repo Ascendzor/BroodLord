@@ -73,6 +73,7 @@ namespace Server
 
                 //now send the game data
                 stream.Write(allGameData, 0, allGameData.Length);
+
                 Console.WriteLine("Sent the game data {0} bytes long", allGameData.Length);
                 ms.Close();
             }

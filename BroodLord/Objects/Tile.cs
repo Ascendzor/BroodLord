@@ -65,6 +65,11 @@ namespace Objects
             gameObjects.Add(go.GetId(), go);
         }
 
+        public void SetTextureKey(string textureKey)
+        {
+            this.textureKey = textureKey;
+        }
+
         public GameObject GetGameObject(Guid id)
         {
             if (gameObjects.ContainsKey(id))
@@ -115,6 +120,7 @@ namespace Objects
                 gameObject.Draw(sb);
             }
 
+            Texture2D theTexture = Data.FindTexture[textureKey];
             sb.Draw(Data.FindTexture[textureKey], area, null, Color.White, 0, Vector2.One, SpriteEffects.None, 0.99999f);
         }
 
