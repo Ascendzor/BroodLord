@@ -70,7 +70,7 @@
     <Compile Include="Tile.cs" />
     <Compile Include="Mob\Toon.cs" />
     <Compile Include="Doodad\Tree.cs" />
-    <Compile Include="Lootems\WoodLood.cs" />
+    <Compile Include="Lootems\WoodLoot.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

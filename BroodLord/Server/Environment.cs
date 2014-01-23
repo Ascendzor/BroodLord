@@ -13,7 +13,7 @@ namespace Server
     {
         public Environment()
         {
-            MapLoader.LoadMap(@"Assets/map.bmp");
+            MapLoader.LoadMap(@"Assets/map.bmp", @"Assets/map.bmp", @"Assets/map.bmp", @"Assets/map.bmp");
         }
 
         public void Play()
