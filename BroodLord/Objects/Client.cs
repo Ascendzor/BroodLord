@@ -45,30 +45,8 @@ namespace Objects
 
             try
             {
-                // read the GameDataSizeMessage
-                MemoryStream mStream = new MemoryStream();
-                byte[] messageData =  new byte[Data.SizeOfNetEventPacket];
-                Console.WriteLine("Recieveing {0}", messageData.Length);
-                otherStream.Read(messageData, 0, messageData.Length);
-                mStream.Write(messageData, 0, messageData.Length);
-                mStream.Seek(0, SeekOrigin.Begin);
-                GameDataSizeMessage dataMessage = (GameDataSizeMessage)new BinaryFormatter().Deserialize(mStream);
-
-                // read the list of game objects
-                mStream = new MemoryStream();
-                messageData = new byte[dataMessage.sizeOfData];
-                otherStream.Read(messageData, 0, messageData.Length);
-                mStream.Write(messageData, 0, messageData.Length);
-                mStream.Seek(0, SeekOrigin.Begin);
-                List<GameObject> gos = (List<GameObject>)new BinaryFormatter().Deserialize(mStream);
-                Console.WriteLine(gos.Count);
-                Console.WriteLine("adding game objects from server");
-                // Update the game objects
-                foreach (GameObject go in gos)
-                {
-                    Map.InsertGameObject(go);
-                    Console.WriteLine("added: " + go);
-                }
+                ReceiveGameObjects();
+                ReceiveTileTextures();
 
                 byte[] bytes = new byte[128];
                 while (true)
@@ -88,6 +66,59 @@ namespace Objects
                 Console.WriteLine("something died :( Client=>ReceiveEvent)");
             }
         }
+
+        private static void ReceiveGameObjects()
+        {
+            // read the GameDataSizeMessage
+            MemoryStream mStream = new MemoryStream();
+            byte[] messageData = new byte[Data.SizeOfNetEventPacket];
+            Console.WriteLine("Recieveing {0}", messageData.Length);
+            otherStream.Read(messageData, 0, messageData.Length);
+            mStream.Write(messageData, 0, messageData.Length);
+            mStream.Seek(0, SeekOrigin.Begin);
+            GameDataSizeMessage dataMessage = (GameDataSizeMessage)new BinaryFormatter().Deserialize(mStream);
+
+            // read the list of game objects
+            mStream = new MemoryStream();
+            messageData = new byte[dataMessage.sizeOfData];
+            otherStream.Read(messageData, 0, messageData.Length);
+            mStream.Write(messageData, 0, messageData.Length);
+            mStream.Seek(0, SeekOrigin.Begin);
+            List<GameObject> gos = (List<GameObject>)new BinaryFormatter().Deserialize(mStream);
+            Console.WriteLine(gos.Count);
+            Console.WriteLine("adding game objects from server");
+            // Update the game objects
+            foreach (GameObject go in gos)
+            {
+                Map.InsertGameObject(go);
+                Console.WriteLine("added: " + go);
+            }
+        }
+
+        private static void ReceiveTileTextures()
+        {
+            // read the GameDataSizeMessage
+            MemoryStream mStream = new MemoryStream();
+            byte[] messageData = new byte[Data.SizeOfNetEventPacket];
+            Console.WriteLine("Recieveing {0}", messageData.Length);
+            otherStream.Read(messageData, 0, messageData.Length);
+            mStream.Write(messageData, 0, messageData.Length);
+            mStream.Seek(0, SeekOrigin.Begin);
+            GameDataSizeMessage dataMessage = (GameDataSizeMessage)new BinaryFormatter().Deserialize(mStream);
+
+            // read the list of game objects
+            mStream = new MemoryStream();
+            messageData = new byte[dataMessage.sizeOfData];
+            otherStream.Read(messageData, 0, messageData.Length);
+            mStream.Write(messageData, 0, messageData.Length);
+            mStream.Seek(0, SeekOrigin.Begin);
+            List<string> gos = (List<string>)new BinaryFormatter().Deserialize(mStream);
+            Console.WriteLine(gos.Count);
+            Console.WriteLine("adding game objects from server");
+            // Update the game objects
+            Map.SetTilesTextureKeys(gos);
+        }
+
 
         public static void SendEvent(Event leEvent)
         {

@@ -85,6 +85,26 @@ namespace Objects
             tiles[x, y].SetTextureKey(textureKey);
         }
 
+        public static List<string> GetTilesTextureKeys()
+        {
+            List<string> textures = new List<string>();
+            foreach (Tile tile in tiles)
+            {
+                textures.Add(tile.GetTextureKey());
+            }
+            return textures;
+        }
+
+        public static void SetTilesTextureKeys(List<string> textureKeys)
+        {
+            int textureIterator = 0;
+            foreach (Tile tile in tiles)
+            {
+                tile.SetTextureKey(textureKeys[textureIterator]);
+                textureIterator++;
+            }
+        }
+
         public static List<Tile> GetRenderedTiles(Vector2 dudesPosition)
         {
             List<Tile> renderedTiles = new List<Tile>();

@@ -80,6 +80,11 @@ namespace Objects
             return null;
         }
 
+        public string GetTextureKey()
+        {
+            return textureKey;
+        }
+
         public List<GameObject> GetGameObjects()
         {
             return gameObjects.Values.ToList();

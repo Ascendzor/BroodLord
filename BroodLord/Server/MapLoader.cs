@@ -23,29 +23,7 @@ namespace Server
         /// <param name="path"> Path to a BMP</param>
         public static void LoadMap(string terrainPath, string mobsPath, string doodadsPath, string lootsPath)
         {
-            Bitmap mapImage = new Bitmap(terrainPath);
-
             Map.Initialize(5);
-
-            for (int y = 0; y < mapImage.Height; y++)
-            {
-                for (int x = 0; x < mapImage.Width; x++)
-                {
-                    System.Drawing.Color pixel = mapImage.GetPixel(x, y);
-                    if (pixel.R == 255 && pixel.G == 0 && pixel.B == 0)
-                    {
-                        new Tree(Guid.NewGuid(), new Vector2(x * Data.TileSize, y * Data.TileSize), "tree");
-                    }
-                    if (pixel.R == 0 && pixel.G == 255 && pixel.B == 0)
-                    {
-                        new RockLoot(Guid.NewGuid(), new Vector2(x * Data.TileSize, y * Data.TileSize));
-                    }
-                    if (pixel.R == 0 && pixel.G == 0 && pixel.B == 255)
-                    {
-                        
-                    }
-                }
-            }
 
             Bitmap terrainMap = new Bitmap(terrainPath);
             Bitmap mobsMap = new Bitmap(mobsPath);
@@ -57,6 +35,9 @@ namespace Server
                 for (int y = 0; y < smallestMap.Y; y++)
                 {
                     LoadTerrain(x, y, terrainMap.GetPixel(x, y));
+                    LoadMobs(x, y, mobsMap.GetPixel(x, y));
+                    LoadDoodads(x, y, mobsMap.GetPixel(x, y));
+                    LoadLoots(x, y, mobsMap.GetPixel(x, y));
                 }
             }
         }
@@ -83,12 +64,43 @@ namespace Server
         public static void LoadTerrain(int x, int y, System.Drawing.Color color)
         {
             //load terrain here
-            Map.SetTileTexture(x, y, "snow1");
+            if (color.R == 255 && color.G == 0 && color.B == 0)
+            {
+                Map.SetTileTexture(x, y, "snow1");
+            }
+            else if (color.R == 0 && color.G == 255 && color.B == 0)
+            {
+                Map.SetTileTexture(x, y, "snow2");
+            }
+            else if (color.R == 0 && color.G == 0 && color.B == 255)
+            {
+                Map.SetTileTexture(x, y, "snow3");
+            }
+            else if (color.R == 0 && color.G == 0 && color.B == 0)
+            {
+                Map.SetTileTexture(x, y, "snow4");
+            }
+            else if (color.R == 0 && color.G == 0 && color.B == 0)
+            {
+                Map.SetTileTexture(x, y, "snow5");
+            }
+            else if (color.R == 0 && color.G == 0 && color.B == 0)
+            {
+                Map.SetTileTexture(x, y, "snow6");
+            }
+            else if (color.R == 0 && color.G == 0 && color.B == 0)
+            {
+                Map.SetTileTexture(x, y, "snow7");
+            }
+            else
+            {
+                Map.SetTileTexture(x, y, "snow8");
+            }
         }
 
         public static void LoadMobs(int x, int y, System.Drawing.Color color)
         {
-            if (color.B == 255)
+            if (color.R == 0 && color.G == 0 && color.B == 255)
             {
                 new Cat(Guid.NewGuid(), new Vector2(x * Data.TileSize, y * Data.TileSize));
             }
@@ -96,7 +108,7 @@ namespace Server
 
         public static void LoadDoodads(int x, int y, System.Drawing.Color color)
         {
-            if (color.R == 255)
+            if (color.R == 255 && color.G == 0 && color.B == 0)
             {
                 new Tree(Guid.NewGuid(), new Vector2(x * Data.TileSize, y * Data.TileSize), "tree");
             }
@@ -104,7 +116,7 @@ namespace Server
 
         public static void LoadLoots(int x, int y, System.Drawing.Color color)
         {
-            if (color.G == 255)
+            if (color.R == 0 && color.G == 255 && color.B == 0)
             {
                 new RockLoot(Guid.NewGuid(), new Vector2(x * Data.TileSize, y * Data.TileSize));
             }
