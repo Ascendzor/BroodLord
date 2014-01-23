@@ -76,8 +76,13 @@ namespace Objects
             else return false;
         }
 
-
-
-
+        public Item GetItem(Guid id)
+        {
+            if (items.ContainsKey(id))
+            {
+                return items[id];
+            }
+            return null;
+        }
     }
 }

@@ -157,6 +157,18 @@ namespace Objects
                     break;
             }
         }
+        
+        public Item GetItem(Guid id)
+        {
+            foreach (InventorySlot slot in slots)
+            {
+                if (slot.GetItem(id) != null)
+                {
+                    return slot.GetItem(id);
+                }
+            }
+            return null;
+        }
 
         /// <summary>
         /// Draws inventory slots
