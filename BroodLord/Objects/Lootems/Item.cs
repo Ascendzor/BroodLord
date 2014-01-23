@@ -14,13 +14,6 @@ namespace Objects
         protected string textureKey;
         protected Vector2 origin;
         protected Rectangle hitbox;
-        protected int quantity;
-
-        public int Quantity
-        {
-            get { return quantity; }
-            set { quantity = value; }
-        }
 
         public string TextureKey
         {
