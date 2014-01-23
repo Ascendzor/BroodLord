@@ -84,7 +84,7 @@ namespace Objects
         /// <param name="loot">Loot to add to inventory</param>
         private void InteractWithObject(Loot loot)
         {
-            if (inventory.addToInventory(loot.CreateItem(loot), true))
+            if (inventory.addToInventory(loot.CreateItem(loot), loot.Stackable))
                 Map.RemoveGameObject(loot.GetId());
         }
 

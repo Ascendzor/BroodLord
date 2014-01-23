@@ -10,7 +10,7 @@ namespace Objects
     [Serializable()]
     public abstract class Loot : GameObject
     {
-        protected int quantity;
+        protected bool stackable;
 
         /// <summary>
         /// All loot is interactable so define as true here
@@ -20,10 +20,9 @@ namespace Objects
             this.isInteractable = true;
         }
 
-        public int Quantity
+        public bool Stackable
         {
-            get { return quantity; }
-            set { quantity = value; }
+            get { return stackable; }
         }
 
         public override void Draw(SpriteBatch sb)

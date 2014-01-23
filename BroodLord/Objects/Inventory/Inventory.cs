@@ -53,32 +53,6 @@ namespace Objects
         }
 
         /// <summary>
-        /// Attempt to add an item to inventory
-        /// </summary>
-        /// <param name="itemToAdd">Loot that is being picked up</param>
-        /// <returns>True if picked up else false (full inventory)</returns>
-        public bool addToInventory(Item itemToAdd)
-        {
-            bool itemAddedToInventory = false;
-            Console.WriteLine(slots.Count);
-            foreach (InventorySlot slot in slots)
-            {
-                if (slot.Quantity == 0)
-                {
-                    slot.addItemToSlot(itemToAdd);
-                    itemAddedToInventory = true;
-                    break;
-                }
-            }
-
-            // Testing only
-            if (!itemAddedToInventory)
-                Console.WriteLine(fullInventoryMessage());
-
-            return itemAddedToInventory;
-        }
-
-        /// <summary>
         /// Attempt to add an item to inventory and stack it with existing items of same type
         /// </summary>
         /// <param name="itemToAdd">Loot that is being picked up</param>
@@ -88,14 +62,17 @@ namespace Objects
             bool itemAddedToInventory = false;
 
             // Try stack item in a slot
-            foreach (InventorySlot slot in slots)
+            if (stackItem)
             {
-                if (slot.Quantity != 0)
+                foreach (InventorySlot slot in slots)
                 {
-                    if (itemToAdd.GetType() == slot.ItemType)
+                    if (slot.Quantity != 0)
                     {
-                        slot.addItemToSlot(itemToAdd);
-                        itemAddedToInventory = true;
+                        if (itemToAdd.GetType() == slot.ItemType)
+                        {
+                            slot.addItemToSlot(itemToAdd);
+                            itemAddedToInventory = true;
+                        }
                     }
                 }
             }
