@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace Objects
 {
     [Serializable()]
-    public class Item
+    public abstract class Item
     {
         protected Guid id;
         protected string textureKey;
@@ -33,6 +33,6 @@ namespace Objects
             get { return id; }
         }
 
-        public virtual Loot CreateLoot(Vector2 position) { return new Loot(); }
+        public abstract Loot CreateLoot(Vector2 position);
     }
 }

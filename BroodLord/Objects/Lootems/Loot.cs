@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace Objects
 {
     [Serializable()]
-    public class Loot : GameObject
+    public abstract class Loot : GameObject
     {
         protected int quantity;
 
@@ -41,7 +41,7 @@ namespace Objects
             sb.Draw(Data.FindTexture["treeOutline"], hitbox, Color.Red);
         }
 
-        public virtual Item CreateItem(Loot loot) { return new Item(); }
+        public abstract Item CreateItem(Loot loot);
 
     }
 }
