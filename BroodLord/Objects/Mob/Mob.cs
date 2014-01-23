@@ -46,19 +46,16 @@ namespace Objects
             if (goalGameObject != null)
             {
                 goalPosition = goalGameObject.Position;
-            }
-            Vector2 moveDirection = goalPosition - position;
-            if (moveDirection.Length() <= 10)
-            {
-                return;
-            }
-            if (goalGameObject != null)
-            {
                 if ((position - goalGameObject.Position).Length() < interactRange)
                 {
                     Interact(goalGameObject);
                     return;
                 }
+            }
+            Vector2 moveDirection = goalPosition - position;
+            if (moveDirection.Length() <= 10)
+            {
+                return;
             }
 
             moveDirection.Normalize();
