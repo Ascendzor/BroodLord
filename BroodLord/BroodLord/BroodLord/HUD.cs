@@ -63,6 +63,17 @@ namespace BroodLord
                 drawPosition.X += Data.FindTextureSize["hunger" + i.ToString()].X;
             }
 
+            // Draw Hunger
+            drawPosition = cameraPosition + bottomMiddlePosition;
+            drawPosition.Y -= Data.FindTextureSize["hydration1"].Y * 2;
+            drawPosition.X -= Data.FindTextureSize["hydration1"].Y * 2;
+            numberOfSegments = (dude.Hunger / (dude.MaxHunger / 10)) + 1;
+            for (int i = 1; i < numberOfSegments; i++)
+            {
+                sb.Draw(Data.FindTexture["hydration" + i.ToString()], drawPosition, Color.White);
+                drawPosition.X += Data.FindTextureSize["hydration" + i.ToString()].X;
+            }
+
             drawPosition = cameraPosition + bottomLeftPosition;
 
             // Draw inventory
