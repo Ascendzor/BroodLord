@@ -93,55 +93,35 @@ namespace Objects
                 Map.InsertGameObject(goz);
             }
             return;
-
-            // read the GameDataSizeMessage
-            MemoryStream mStream = new MemoryStream();
-            messageData = new byte[Data.SizeOfNetEventPacket];
-            Console.WriteLine("Recieveing {0}", messageData.Length);
-            otherStream.Read(messageData, 0, messageData.Length);
-            mStream.Write(messageData, 0, messageData.Length);
-            mStream.Seek(0, SeekOrigin.Begin);
-            GameDataSizeMessage dataMessage = (GameDataSizeMessage)new BinaryFormatter().Deserialize(mStream);
-
-            // read the list of game objects
-            mStream = new MemoryStream();
-            messageData = new byte[dataMessage.sizeOfData];
-            otherStream.Read(messageData, 0, messageData.Length);
-            mStream.Write(messageData, 0, messageData.Length);
-            mStream.Seek(0, SeekOrigin.Begin);
-            List<GameObject> gos = (List<GameObject>)new BinaryFormatter().Deserialize(mStream);
-            Console.WriteLine(gos.Count);
-            Console.WriteLine("adding game objects from server");
-            // Update the game objects
-            foreach (GameObject go in gos)
-            {
-                Map.InsertGameObject(go);
-                Console.WriteLine("added: " + go);
-            }
         }
 
         private static void ReceiveTileTextures()
         {
-            // read the GameDataSizeMessage
-            MemoryStream mStream = new MemoryStream();
-            byte[] messageData = new byte[Data.SizeOfNetEventPacket];
-            Console.WriteLine("Recieveing {0}", messageData.Length);
-            otherStream.Read(messageData, 0, messageData.Length);
-            mStream.Write(messageData, 0, messageData.Length);
-            mStream.Seek(0, SeekOrigin.Begin);
-            GameDataSizeMessage dataMessage = (GameDataSizeMessage)new BinaryFormatter().Deserialize(mStream);
+            BinaryFormatter bf = new BinaryFormatter();
 
-            // read the list of game objects
-            mStream = new MemoryStream();
-            messageData = new byte[dataMessage.sizeOfData];
-            otherStream.Read(messageData, 0, messageData.Length);
-            mStream.Write(messageData, 0, messageData.Length);
-            mStream.Seek(0, SeekOrigin.Begin);
-            List<string> gos = (List<string>)new BinaryFormatter().Deserialize(mStream);
-            Console.WriteLine(gos.Count);
-            Console.WriteLine("adding game objects from server");
-            // Update the game objects
-            Map.SetTilesTextureKeys(gos);
+            byte[] messageData = new byte[32];
+            Int32 leSize;
+            List<string> textureKeys = new List<string>();
+            while (true)
+            {
+                messageData = new byte[32];
+                otherStream.Read(messageData, 0, 32);
+                leSize = BitConverter.ToInt32(messageData, 0);
+                if (leSize == -1)
+                {
+                    break;
+                }
+
+                MemoryStream stream = new MemoryStream();
+                messageData = new byte[leSize];
+                otherStream.Read(messageData, 0, messageData.Length);
+                stream.Write(messageData, 0, messageData.Length);
+                stream.Position = 0;
+                string textureKey = (string)bf.Deserialize(stream);
+                textureKeys.Add(textureKey);
+            }
+            Map.SetTilesTextureKeys(textureKeys);
+            return;
         }
 
 

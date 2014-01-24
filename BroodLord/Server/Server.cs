@@ -81,10 +81,10 @@ namespace Server
                 data = BitConverter.GetBytes(leInt);
                 stream.Write(data, 0, data.Length);
                 Console.WriteLine("sending: " + go);
-                Thread.Sleep(15);
+                Thread.Sleep(5);
 
                 stream.Write(allGameData, 0, allGameData.Length);
-                Thread.Sleep(15);
+                Thread.Sleep(5);
             }
 
             leInt = -1;
@@ -94,24 +94,32 @@ namespace Server
 
         private void SendTileTextures(NetworkStream stream)
         {
-            // write all the game data to a by
-            MemoryStream ms = new MemoryStream();
-            new BinaryFormatter().Serialize(ms, Map.GetTilesTextureKeys());
-            byte[] allGameData = ms.ToArray();
+            Console.WriteLine("About to send tiles");
+            Thread.Sleep(2000);
+            List<string> terrainTextures = Map.GetTilesTextureKeys();
 
+            byte[] data;
+            Int32 leInt;
+            foreach (string terrainTextureKey in terrainTextures)
+            {
+                MemoryStream ms = new MemoryStream();
+                new BinaryFormatter().Serialize(ms, terrainTextureKey);
+                byte[] allGameData = ms.ToArray();
+                leInt = allGameData.Length;
+                data = BitConverter.GetBytes(leInt);
+                stream.Write(data, 0, data.Length);
+                Console.WriteLine("sending: " + terrainTextureKey);
+                Thread.Sleep(10);
 
-            // Send a message to the server to tell it the size of the next Message with all game objects
-            ms = new MemoryStream();
-            new BinaryFormatter().Serialize(ms, new GameDataSizeMessage(allGameData.Length));
-            byte[] dataSizeMessage = ms.ToArray();
-            stream.Write(dataSizeMessage, 0, dataSizeMessage.Length);
-            Console.WriteLine("Sent the data size message {0} long", dataSizeMessage.Length);
+                Console.WriteLine("allDataLength: " + allGameData.Length);
+                stream.Write(allGameData, 0, allGameData.Length);
+                Thread.Sleep(10);
+            }
 
-            //now send the game data
-            stream.Write(allGameData, 0, allGameData.Length);
-
-            Console.WriteLine("Sent the game data {0} bytes long", allGameData.Length);
-            ms.Close();
+            leInt = -1;
+            data = BitConverter.GetBytes(leInt);
+            stream.Write(data, 0, data.Length);
+            Console.WriteLine("sent the killer of tiles");
         }
 
         /// <summary>
