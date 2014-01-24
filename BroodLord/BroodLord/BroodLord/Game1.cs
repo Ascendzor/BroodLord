@@ -36,7 +36,7 @@ namespace BroodLord
         protected override void Initialize()
         {
             Console.WriteLine("Guid size: " + Guid.NewGuid().ToByteArray().Length);
-            Thread.Sleep(1000);
+            Thread.Sleep(5000);
             Data.Initialize(Content);
             Map.Initialize(12); //the renderWidth should be dynamic to the resolution
             Client.Initialize();

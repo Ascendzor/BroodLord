@@ -68,9 +68,35 @@ namespace Objects
 
         private static void ReceiveGameObjects()
         {
+            BinaryFormatter bf = new BinaryFormatter();
+
+            byte[] messageData = new byte[32];
+            Int32 leSize;
+            while (true)
+            {
+                otherStream.Read(messageData, 0, 32);
+                leSize = BitConverter.ToInt32(messageData, 0);
+
+                Console.WriteLine(leSize);
+                if (leSize == -1)
+                {
+                    break;
+                }
+
+                MemoryStream stream = new MemoryStream();
+                messageData = new byte[leSize];
+                otherStream.Read(messageData, 0, messageData.Length);
+                Console.WriteLine("incoming object size: " + messageData.Length);
+                stream.Write(messageData, 0, messageData.Length);
+                stream.Position = 0;
+                GameObject goz = (GameObject)bf.Deserialize(stream);
+                Map.InsertGameObject(goz);
+            }
+            return;
+
             // read the GameDataSizeMessage
             MemoryStream mStream = new MemoryStream();
-            byte[] messageData = new byte[Data.SizeOfNetEventPacket];
+            messageData = new byte[Data.SizeOfNetEventPacket];
             Console.WriteLine("Recieveing {0}", messageData.Length);
             otherStream.Read(messageData, 0, messageData.Length);
             mStream.Write(messageData, 0, messageData.Length);

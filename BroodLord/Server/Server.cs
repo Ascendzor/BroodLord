@@ -68,24 +68,28 @@ namespace Server
 
         private void SendGameObjects(NetworkStream stream)
         {
-            // write all the game data to a by
-            MemoryStream ms = new MemoryStream();
-            new BinaryFormatter().Serialize(ms, Map.GetGameObjects());
-            byte[] allGameData = ms.ToArray();
+            List<GameObject> gos = Map.GetGameObjects();
 
+            byte[] data;
+            Int32 leInt;
+            foreach (GameObject go in gos)
+            {
+                MemoryStream ms = new MemoryStream();
+                new BinaryFormatter().Serialize(ms, go);
+                byte[] allGameData = ms.ToArray();
+                leInt = allGameData.Length;
+                data = BitConverter.GetBytes(leInt);
+                stream.Write(data, 0, data.Length);
+                Console.WriteLine("sending: " + go);
+                Thread.Sleep(15);
 
-            // Send a message to the server to tell it the size of the next Message with all game objects
-            ms = new MemoryStream();
-            new BinaryFormatter().Serialize(ms, new GameDataSizeMessage(allGameData.Length));
-            byte[] dataSizeMessage = ms.ToArray();
-            stream.Write(dataSizeMessage, 0, dataSizeMessage.Length);
-            Console.WriteLine("Sent the data size message {0} long", dataSizeMessage.Length);
+                stream.Write(allGameData, 0, allGameData.Length);
+                Thread.Sleep(15);
+            }
 
-            //now send the game data
-            stream.Write(allGameData, 0, allGameData.Length);
-
-            Console.WriteLine("Sent the game data {0} bytes long", allGameData.Length);
-            ms.Close();
+            leInt = -1;
+            data = BitConverter.GetBytes(leInt);
+            stream.Write(data, 0, data.Length);
         }
 
         private void SendTileTextures(NetworkStream stream)

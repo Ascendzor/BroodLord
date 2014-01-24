@@ -33,8 +33,8 @@ namespace BroodLord
         {
             Vector2 drawPosition = new Vector2(0, 0);
             drawPosition = cameraPosition + topLeftPosition;
-            String life = dude.Health.ToString();
-            sb.DrawString(spriteFont, "Life: " + life + ", Energy Shield: 9001", drawPosition, Color.White);
+            //String life = dude.Health.ToString();
+            //sb.DrawString(spriteFont, "Life: " + life + ", Energy Shield: 9001", drawPosition, Color.White);
 
             drawPosition = cameraPosition + bottomLeftPosition;
 
