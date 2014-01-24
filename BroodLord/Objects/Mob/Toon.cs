@@ -15,6 +15,12 @@ namespace Objects
     [Serializable()]
     public class Toon : Mob
     {
+        protected int maxHealth;
+        protected int maxHunger;
+        protected int hunger;
+        protected int maxThirst;
+        protected int thirst;
+        
         public Toon(Guid id, Vector2 position, string textureKey)
         {
             Console.WriteLine("new toon getting mayd");
@@ -29,11 +35,26 @@ namespace Objects
             this.interactionCooldown = 1000;
             this.interactionCooldown = 200;
             this.inventory = new Inventory();
-            this.health = 100;
+            this.health = 10;
+            this.maxHealth = 10;
+            this.hunger = 0;
+            this.maxHunger = 10080;
+            this.thirst = 0;
+            this.maxThirst = 10080;
 
             interactionOffCooldown = DateTime.Now;
 
             Map.InsertGameObject(this);
+        }
+
+        public int Hunger
+        {
+            get { return hunger; }
+        }
+
+        public int Thirst
+        {
+            get { return thirst; }
         }
 
         public Inventory Inventory
@@ -119,6 +140,35 @@ namespace Objects
             {
                 Console.WriteLine("rip dude");
             }
+        }
+
+        int hungerCounter = 0;
+        int thirstCounter = 0;
+        public override void Update()
+        {
+            hunger--;
+            thirst--;
+            if (hunger < 0)
+            {
+                hungerCounter++;
+                if (hungerCounter > 1200)
+                {
+                    hungerCounter = 0;
+                    health--;
+                }
+            }
+
+            if (thirst < 0)
+            {
+                thirstCounter++;
+                if (thirstCounter > 1200)
+                {
+                    thirstCounter = 0;
+                    health--;
+                }
+            }
+
+            base.Update();
         }
     }
 }
