@@ -22,8 +22,8 @@ namespace Objects
         public static void Initialize()
         {
             port = 41337;
-            client = new TcpClient("10.30.152.112", port);
-            otherClient = new TcpClient("10.30.152.112", 41338);
+            client = new TcpClient("127.0.0.1", port);
+            otherClient = new TcpClient("127.0.0.1", 41338);
             outgoingEvents = new Queue<Event>();
 
             new Thread(ReceiveEvent).Start();
@@ -152,7 +152,7 @@ namespace Objects
             while (true)
             {
                 Event leEvent = null;
-                while (outgoingEvents.Count > 0)
+                while (outgoingEvents.Count > 0) 
                 {
                     leEvent = outgoingEvents.Dequeue();
                     byte[] bytes = leEvent.Serialize();
