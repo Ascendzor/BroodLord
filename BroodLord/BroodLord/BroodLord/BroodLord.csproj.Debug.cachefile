@@ -1,5 +1,5 @@
 Content\link.xnb
-Content\tree.xnb
+Content\treeold.xnb
 Content\rock.xnb
 Content\rockBag.xnb
 Content\treeOutline.xnb
@@ -17,7 +17,6 @@ Content\snow7.xnb
 Content\snow8.xnb
 Content\InventorySlot.xnb
 Content\EmptyInventorySlot.xnb
-Content\TestFont.xnb
 Content\health1.xnb
 Content\health10.xnb
 Content\health2.xnb
@@ -28,7 +27,7 @@ Content\health6.xnb
 Content\health7.xnb
 Content\health8.xnb
 Content\health9.xnb
-Content\treeold.xnb
+Content\tree.xnb
 Content\hunger1.xnb
 Content\hunger10.xnb
 Content\hunger2.xnb
@@ -39,3 +38,4 @@ Content\hunger6.xnb
 Content\hunger7.xnb
 Content\hunger8.xnb
 Content\hunger9.xnb
+Content\TestFont.xnb
