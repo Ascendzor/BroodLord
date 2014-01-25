@@ -54,8 +54,20 @@ namespace BroodLord
             }
             #endregion endOfRightClick
 
+            #region middleClick
+            if (oldState.MiddleButton != ButtonState.Pressed)
+            {
+                if (nowState.MiddleButton == ButtonState.Pressed)
+                {
+                    //MiddleClick(nowState);
+                }
+            }
+            #endregion middleClick
+
             oldState = nowState;
         }
+
+        
 
         /// <summary>
         /// 

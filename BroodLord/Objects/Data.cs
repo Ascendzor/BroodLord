@@ -83,6 +83,7 @@ namespace Objects
             allTextures.Add("hunger8");
             allTextures.Add("hunger9");
             allTextures.Add("hunger10");
+            allTextures.Add("hungerOutline");
             allTextures.Add("hydration1");
             allTextures.Add("hydration2");
             allTextures.Add("hydration3");
