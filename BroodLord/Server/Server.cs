@@ -95,7 +95,7 @@ namespace Server
                 Thread.Sleep(200);
 
                 stream.Write(allGameData, 0, allGameData.Length);
-                Thread.Sleep(5000);
+                Thread.Sleep(500);
                 if (i == gos.Count)
                 {
                     break;
@@ -137,7 +137,7 @@ namespace Server
                 Thread.Sleep(200);
 
                 stream.Write(allGameData, 0, allGameData.Length);
-                Thread.Sleep(5000);
+                Thread.Sleep(500);
             }
 
             leInt = -1;
