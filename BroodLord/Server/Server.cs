@@ -193,13 +193,22 @@ namespace Server
             {
                 Console.WriteLine("updated night");
                 Client.SendEvent(new UpdateNightEvent(1));
-                Thread.Sleep(10000);
+                Thread.Sleep(5000);
+                Console.WriteLine("updated night");
                 Client.SendEvent(new UpdateNightEvent(2));
-                Thread.Sleep(10000);
+                Thread.Sleep(5000);
+                Console.WriteLine("updated night");
+                Client.SendEvent(new UpdateNightEvent(3));
+                Thread.Sleep(5000);
+                Console.WriteLine("updated night");
+                Client.SendEvent(new UpdateNightEvent(2));
+                Thread.Sleep(5000);
+                Console.WriteLine("updated night");
                 Client.SendEvent(new UpdateNightEvent(1));
-                Thread.Sleep(10000);
+                Thread.Sleep(5000);
+                Console.WriteLine("updated night");
                 Client.SendEvent(new UpdateNightEvent(0));
-                Thread.Sleep(10000);
+                Thread.Sleep(100000);
             }
         }
 

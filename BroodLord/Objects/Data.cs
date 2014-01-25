@@ -148,6 +148,7 @@ namespace Objects
             allTextures.Add("Night_Dark");
             allTextures.Add("Night_Light");
             allTextures.Add("Night_Medium");
+            allTextures.Add("Night_Bright");
             allTextures.Add("Stoneer1");
             allTextures.Add("Stoneer2");
             allTextures.Add("Stoneer3");

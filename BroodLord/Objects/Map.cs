@@ -27,7 +27,7 @@ namespace Objects
         public static void Initialize(int _renderWidth)
         {
             renderWidth = _renderWidth;
-            vignette = "Night_Light";
+            vignette = "Night_Bright";
 
             tiles = new Tile[Data.MapSize, Data.MapSize];
 
@@ -104,13 +104,17 @@ namespace Objects
             Console.WriteLine("RECEIVED UPDATENIGHT ON MAP");
             if (leEvent.Nightness == 0)
             {
-                vignette = "Night_Light";
+                vignette = "Night_Bright";
             }
             else if (leEvent.Nightness == 1)
             {
-                vignette = "Night_Medium";
+                vignette = "Night_Light";
             }
             else if (leEvent.Nightness == 2)
+            {
+                vignette = "Night_Medium";
+            }
+            else if (leEvent.Nightness == 3)
             {
                 vignette = "Night_Dark";
             }
