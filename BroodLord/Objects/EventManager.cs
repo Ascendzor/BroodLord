@@ -24,7 +24,7 @@ namespace Objects
         public static void HandleEvent(SpawnToonEvent leEvent)
         {
             Console.WriteLine("new toon event");
-            new Toon(leEvent.Id, new Vector2(100, 100), "link");
+            new Toon(leEvent.Id, new Vector2(2000, 32000), "link");
         }
 
         public static void HandleEvent(SpawnWoodEvent leEvent)

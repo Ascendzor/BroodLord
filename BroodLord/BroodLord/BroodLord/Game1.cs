@@ -40,7 +40,7 @@ namespace BroodLord
             Data.Initialize(Content);
             Map.Initialize(12); //the renderWidth should be dynamic to the resolution
             Client.Initialize();
-            dude = new Toon(Guid.NewGuid(), new Vector2(100, 100), "link");
+            dude = new Toon(Guid.NewGuid(), new Vector2(2000, 32000), "link");
             Data.Dude = dude;
             input = new Input(dude);
             camera = new Camera();
