@@ -73,6 +73,7 @@ namespace Objects
 
             byte[] messageData = new byte[32];
             Int32 leSize;
+            List<GameObject> allObjectsGiven = new List<GameObject>();
             while (true)
             {
                 otherStream.Read(messageData, 0, 32);
@@ -90,8 +91,11 @@ namespace Objects
                 Console.WriteLine("incoming object size: " + messageData.Length);
                 stream.Write(messageData, 0, messageData.Length);
                 stream.Position = 0;
-                GameObject goz = (GameObject)bf.Deserialize(stream);
-                Map.InsertGameObject(goz);
+                List<GameObject> goz = (List<GameObject>)bf.Deserialize(stream);
+                foreach (GameObject go in goz)
+                {
+                    Map.InsertGameObject(go);
+                }
             }
             return;
         }

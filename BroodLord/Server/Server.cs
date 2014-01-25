@@ -72,19 +72,34 @@ namespace Server
 
             byte[] data;
             Int32 leInt;
-            foreach (GameObject go in gos)
+            for (int i = 0; i < gos.Count;)
             {
+                List<GameObject> goBuffer = new List<GameObject>();
+                for (int x = 0; x < 75; x++)
+                {
+                    goBuffer.Add(gos[i]);
+                    i++;
+                    if (i >= gos.Count)
+                    {
+                        break;
+                    }
+                }
+
+
                 MemoryStream ms = new MemoryStream();
-                new BinaryFormatter().Serialize(ms, go);
+                new BinaryFormatter().Serialize(ms, goBuffer);
                 byte[] allGameData = ms.ToArray();
                 leInt = allGameData.Length;
                 data = BitConverter.GetBytes(leInt);
                 stream.Write(data, 0, data.Length);
-                Console.WriteLine("sending: " + go);
-                Thread.Sleep(5);
+                Thread.Sleep(100);
 
                 stream.Write(allGameData, 0, allGameData.Length);
-                Thread.Sleep(5);
+                Thread.Sleep(500);
+                if (i >= gos.Count)
+                {
+                    break;
+                }
             }
 
             leInt = -1;
@@ -104,7 +119,7 @@ namespace Server
             {
                 List<string> tileBuffer = new List<string>();
 
-                for (int counter = 0; counter <= 50; counter++)
+                for (int counter = 0; counter <= 75; counter++)
                 {
                     tileBuffer.Add(terrainTextures[x]);
                     x++;
@@ -117,17 +132,17 @@ namespace Server
                 {
                     Console.WriteLine(tileBuffer.Count);
                 }
-
+                
                 MemoryStream ms = new MemoryStream();
                 new BinaryFormatter().Serialize(ms, tileBuffer);
                 byte[] allGameData = ms.ToArray();
                 leInt = allGameData.Length;
                 data = BitConverter.GetBytes(leInt);
                 stream.Write(data, 0, data.Length);
-                Thread.Sleep(10);
+                Thread.Sleep(200);
 
                 stream.Write(allGameData, 0, allGameData.Length);
-                Thread.Sleep(10);
+                Thread.Sleep(700);
             }
 
             leInt = -1;
