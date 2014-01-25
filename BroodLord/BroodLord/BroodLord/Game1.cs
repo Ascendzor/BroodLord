@@ -54,6 +54,7 @@ namespace BroodLord
             graphics.ApplyChanges();
             HUD = new HUD(this.Content, dude, graphics.PreferredBackBufferHeight, graphics.PreferredBackBufferWidth);
 
+            Patterns.Initilize(camera.Position);
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             Console.WriteLine("published SpawnToonEvent");

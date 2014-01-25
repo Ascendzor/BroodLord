@@ -79,7 +79,9 @@ namespace BroodLord
         private void RightClick(MouseState nowState)
         {
             if (dude.Inventory.inventoryClick(nowState, dude))
-                return;            
+                return;
+            else if (Patterns.Click(nowState, dude))
+                return;
         }
 
         //check if the dude clicked on something
