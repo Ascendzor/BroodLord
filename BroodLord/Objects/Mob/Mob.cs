@@ -27,6 +27,11 @@ namespace Objects
         {
 
         }*/
+        public void ReceiveEvent(DeathEvent leEvent)
+        {
+             Map.RemoveGameObject(this);
+        }
+
 
         public void ReceiveEvent(MoveToPositionEvent leEvent)
         {
@@ -38,6 +43,7 @@ namespace Objects
         {
             goalGameObject = Map.GetGameObject(leEvent.GoalGameObject);
         }
+
         
         //All non-event behaviour is handled in Update.
         //This means basically only Moving is handled in Update.
@@ -132,14 +138,14 @@ namespace Objects
             return (GetGoalPosition() - Position).Length() < 10;
         }
 
-        public virtual void TakeDamage(Mob mob)
-        {
-            health -= (int)mob.GetAttackDamage();
-        }
-
         public void AttackMob(Mob mob)
         {
             mob.TakeDamage(this);
+        }
+
+        public virtual void TakeDamage(Mob mob)
+        {
+            health -= (int)mob.GetAttackDamage();
         }
 
         public override void Draw(SpriteBatch sb)

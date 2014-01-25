@@ -47,7 +47,7 @@ namespace Objects
             set { textureKey = value; }
         }
 
-        public Rectangle GetHitbox()
+        public virtual Rectangle GetHitBox()
         {
             return hitbox;
         }

@@ -9,7 +9,7 @@ namespace Objects
     [Serializable()]
     public class SpawnMeatEvent : Event
     {
-        public Guid RockId;
+        public Guid MeatId;
         public Vector2 Position;
 
         public SpawnMeatEvent(Guid id, Vector2 position)
@@ -20,7 +20,7 @@ namespace Objects
         }
 
         public override byte[] Serialize()
-        {
+        {  
             byte[] typeBytes = BitConverter.GetBytes(Type);
             byte[] idBytes = Id.ToByteArray();
             byte[] positionX = BitConverter.GetBytes(Position.X);
