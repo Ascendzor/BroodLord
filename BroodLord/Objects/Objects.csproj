@@ -70,6 +70,7 @@
     <Compile Include="MobStates\MobState.cs" />
     <Compile Include="MobStates\MoveToGameObjectMobState.cs" />
     <Compile Include="MobStates\MoveToPostionMobState.cs" />
+    <Compile Include="Mob\Swampert.cs" />
     <Compile Include="Mob\HostileMob.cs" />
     <Compile Include="Mob\Cat.cs" />
     <Compile Include="Mob\Mob.cs" />
