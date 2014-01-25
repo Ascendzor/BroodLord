@@ -44,11 +44,14 @@ namespace Objects
             this.maxHunger = 10080;
             this.thirst = 10080;
             this.maxThirst = 10080;
+            this.isInteractable = true;
 
             interactionOffCooldown = DateTime.Now;
 
             Map.InsertGameObject(this);
         }
+
+        
 
         public int Hunger
         {
@@ -92,9 +95,9 @@ namespace Objects
                 hunger = maxHunger;
         }
 
-        public override void TakeDamage(Mob mob)
+        public override void TakeDamage(int damage)
         {
-            base.TakeDamage(mob);
+            base.TakeDamage(damage);
 
             if (Data.IsServer)
             {

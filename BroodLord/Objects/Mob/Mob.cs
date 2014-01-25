@@ -33,6 +33,11 @@ namespace Objects
         {
 
         }*/
+
+        public override Rectangle GetHitBox()
+        {
+            return new Rectangle((int)(position.X - origin.X), (int)(position.Y - origin.Y), (int)Data.GetTextureSize(textureKey).X, (int)Data.GetTextureSize(textureKey).Y);
+        }
         public virtual void ReceiveEvent(DeathEvent leEvent)
         {
             Map.ErradicateGameObject(leEvent.Id);
@@ -146,12 +151,12 @@ namespace Objects
 
         public void AttackMob(Mob mob)
         {
-            mob.TakeDamage(this);
+            mob.TakeDamage((int)GetAttackDamage());
         }
 
-        public virtual void TakeDamage(Mob mob)
+        public virtual void TakeDamage(int mobDamage)
         {
-            health -= (int)mob.GetAttackDamage();
+            health -= mobDamage;
         }
 
         public override void Draw(SpriteBatch sb)
