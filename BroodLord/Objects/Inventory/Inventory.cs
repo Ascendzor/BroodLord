@@ -27,6 +27,14 @@ namespace Objects
         private const int inventoryCols = 3;
         private const int inventoryCapacity = 9;
 
+        public void Print()
+        {
+            foreach (InventorySlot slot in slots)
+            {
+                slot.Print();
+            }
+        }
+
         public int InventorySlotSize
         {
             get { return inventorySlotSize; }

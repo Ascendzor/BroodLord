@@ -116,6 +116,8 @@ namespace Objects
 
         public void ReceiveEvent(MoveToPositionEvent leEvent)
         {
+            Console.WriteLine("==============" + id);
+            inventory.Print();
             goalPosition = leEvent.Position;
         }
 
@@ -151,6 +153,7 @@ namespace Objects
         int thirstCounter = 0;
         public override void Update()
         {
+
             hunger--;
             thirst--;
             if (hunger < 0)
