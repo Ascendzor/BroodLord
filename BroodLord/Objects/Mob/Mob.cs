@@ -132,6 +132,20 @@ namespace Objects
             return (GetGoalPosition() - Position).Length() < 10;
         }
 
+        public void TakeDamage(Mob mob)
+        {
+            health -= (int)mob.GetAttackDamage();
+            if (health <= 0)
+            {
+                Console.WriteLine("rip Mob");
+            }
+        }
+
+        public void AttackMob(Mob mob)
+        {
+            mob.TakeDamage(this);
+        }
+
         public override void Draw(SpriteBatch sb)
         {
             sb.Draw(Data.FindTexture[textureKey],

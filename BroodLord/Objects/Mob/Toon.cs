@@ -20,6 +20,9 @@ namespace Objects
         protected int hunger;
         protected int maxThirst;
         protected int thirst;
+
+        protected int hungerCounter = 0;
+        protected int thirstCounter = 0;
         
         public Toon(Guid id, Vector2 position, string textureKey)
         {
@@ -87,7 +90,11 @@ namespace Objects
             else if (gameObject is Loot)
             {
                 InteractWithObject((Loot)gameObject);
-                
+
+            }
+            else if (gameObject is Mob)
+            {
+                InteractWithObject((Mob)gameObject);
             }
         }
         
@@ -97,6 +104,15 @@ namespace Objects
             base.Interact(tree);
             Console.WriteLine("Toon chopped");
             tree.GotChopped(this);
+        }
+
+        private void InteractWithObject(Mob mob)
+        {
+            interactionOffCooldown = DateTime.Now.AddMilliseconds(interactionCooldown); //<--- this allows the interaction to define the cooldown, ie chopping may take longer than attacking
+            AttackMob(mob);
+            //base.Interact(tree);
+            //Console.WriteLine("Toon chopped");
+           // tree.GotChopped(this);
         }
 
         /// <summary>
@@ -133,17 +149,9 @@ namespace Objects
             return;
         }
 
-        public void TakeDamage(Mob mob)
-        {
-            health -= (int)mob.GetAttackDamage();
-            if (health <= 0)
-            {
-                Console.WriteLine("rip dude");
-            }
-        }
+        
 
-        int hungerCounter = 0;
-        int thirstCounter = 0;
+        
         public override void Update()
         {
             hunger--;

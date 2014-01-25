@@ -21,6 +21,7 @@ namespace Objects
             this.interactionCooldown = 5000;
             this.attackDamage = 60;
             this.health = 100;
+            this.hitbox = new Rectangle((int)(position.X - origin.X), (int)(position.Y - origin.Y), (int)Data.GetTextureSize(textureKey).X, (int)Data.GetTextureSize(textureKey).Y);
 
             Map.InsertGameObject(this);
 
@@ -62,7 +63,7 @@ namespace Objects
         {
             Console.WriteLine("cat smacking the bitch: " + toon.GetId());
             interactionOffCooldown = DateTime.Now.AddMilliseconds(interactionCooldown); //<--- this allows the interaction to define the cooldown, ie chopping may take longer than attacking
-            toon.TakeDamage(this);
+            AttackMob(toon);
         }
 
         public void Behave()
