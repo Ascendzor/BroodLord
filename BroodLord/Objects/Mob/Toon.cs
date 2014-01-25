@@ -56,11 +56,46 @@ namespace Objects
             Map.InsertGameObject(this);
         }
 
-        public void CheckWinner()
+        public void CheckWinner(SpriteBatch sb)
         {
             if (position.X > 32000 && position.Y < 2000)
             {
                 Console.WriteLine("WINRAR");
+                if (Data.Dude.GetId().Equals(id))
+                {
+                    sb.Draw(Data.FindTexture["YOUWON"], position, Color.White);
+                }
+            }
+        }
+
+        public override void Draw(SpriteBatch sb)
+        {
+            CheckWinner(sb);
+            if (!flip)
+            {
+                sb.Draw(Data.FindTexture[textureKey],
+                    new Rectangle((int)position.X,
+                        (int)position.Y,
+                        Data.FindTexture[textureKey].Width, Data.FindTexture[textureKey].Height),
+                        null,
+                        Color.White,
+                        0,
+                        origin,
+                        SpriteEffects.None,
+                        1 - (position.Y / (Data.MapSize * Data.TileSize)));
+            }
+            else
+            {
+                sb.Draw(Data.FindTexture[textureKey],
+                    new Rectangle((int)position.X,
+                        (int)position.Y,
+                        Data.FindTexture[textureKey].Width, Data.FindTexture[textureKey].Height),
+                        null,
+                        Color.White,
+                        0,
+                        origin,
+                        SpriteEffects.FlipHorizontally,
+                        1 - (position.Y / (Data.MapSize * Data.TileSize)));
             }
         }
 
@@ -272,8 +307,6 @@ namespace Objects
                 }
                 thirst++;
             }
-
-            CheckWinner();
 
             base.Update();
         }

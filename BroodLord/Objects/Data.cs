@@ -169,6 +169,7 @@ namespace Objects
             allTextures.Add("Stoneer6");
             allTextures.Add("Spidey1");
             allTextures.Add("Spidey2");
+            allTextures.Add("YOUWON");
         }
 
         public static void Initialize()
