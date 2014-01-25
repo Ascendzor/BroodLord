@@ -42,9 +42,9 @@ namespace Objects
             return new Rectangle((int)(position.X - origin.X), (int)(position.Y - origin.Y), (int)Data.GetTextureSize(textureKey).X, (int)Data.GetTextureSize(textureKey).Y);
         }
 
-        public override void TakeDamage(Mob mob)
+        public override void TakeDamage(int damage)
         {
-            base.TakeDamage(mob);
+            base.TakeDamage(damage);
 
             if (Data.IsServer && health <= 0)
             {
