@@ -75,6 +75,10 @@ namespace Objects
             {
                 leEvent = SetToPositionEvent.Deserialize(bytes);
             }
+            else if (theType == 13)
+            {
+                leEvent = DamageEvent.Deserialize(bytes);
+            }   
 
             return leEvent;
         }
