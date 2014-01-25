@@ -61,6 +61,10 @@
     <Compile Include="Lootems\Item.cs" />
     <Compile Include="Lootems\Loot.cs" />
     <Compile Include="Map.cs" />
+    <Compile Include="MobStates\IdleMobState.cs" />
+    <Compile Include="MobStates\MobState.cs" />
+    <Compile Include="MobStates\MoveToGameObjectMobState.cs" />
+    <Compile Include="MobStates\MoveToPostionMobState.cs" />
     <Compile Include="Mob\Cat.cs" />
     <Compile Include="Mob\Mob.cs" />
     <Compile Include="Events\MoveToGameObjectEvent.cs" />

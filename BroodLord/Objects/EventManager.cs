@@ -12,9 +12,12 @@ namespace Objects
         public static void HandleEvent(Event leEvent)
         {
             dynamic go = Map.GetGameObject(leEvent.Id);
-            dynamic specificEvent = Convert.ChangeType(leEvent, leEvent.GetType());
-            Console.WriteLine(leEvent);
-            go.ReceiveEvent(specificEvent);
+            if (go != null)
+            {
+                dynamic specificEvent = Convert.ChangeType(leEvent, leEvent.GetType());
+                Console.WriteLine(leEvent);
+                go.ReceiveEvent(specificEvent);
+            }
         }
 
         public static void HandleEvent(SpawnToonEvent leEvent)

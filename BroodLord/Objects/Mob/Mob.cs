@@ -21,6 +21,7 @@ namespace Objects
         protected DateTime interactionOffCooldown;
         protected Inventory inventory;
         protected int health;
+        protected MobState mobState;
 
         /*public Mob(Vector2 position, string textureKey, Guid id, Vector2 origin, Rectangle hitbox) //: base(position, textureKey, id, origin, hitbox, client)
         {
@@ -43,25 +44,33 @@ namespace Objects
         //Check if the move is unnecessary (close enough to target) before moving
         public void Update()
         {
+            Vector2 moveDirection;
+            if (GetGoalGameObject() != null)
+            {
+                moveDirection = GetGoalGameObject().Position - position;
+            }
+            else
+            {
+                moveDirection = GetGoalPosition() - position;
+            }
+
+            if (moveDirection.Length() <= 10)
+            {
+                return;
+            }
+
             if (goalGameObject != null)
             {
-                goalPosition = goalGameObject.Position;
                 if ((position - goalGameObject.Position).Length() < interactRange)
                 {
                     Interact(goalGameObject);
                     return;
                 }
             }
-            Vector2 moveDirection = goalPosition - position;
-            if (moveDirection.Length() <= 10)
-            {
-                return;
-            }
 
             moveDirection.Normalize();
             Vector2 newPos = position + moveDirection * movementSpeed;
             newPos = CheckCol(newPos);
-            oldPosition = new Vector2(position.X, position.Y);
             position = newPos;
         }
 
@@ -93,14 +102,34 @@ namespace Objects
             return goalGameObject;
         }
 
+        public bool IsGameObjectNull()
+        {
+            return GetGoalGameObject() == null;
+        }
+
+        public bool IsGameObjectInsideRange(GameObject gameObject, int range)
+        {
+            return (gameObject.Position - Position).Length() < range;
+        }
+
         public Vector2 GetGoalPosition()
         {
             return goalPosition;
         }
 
+        public void SetGoalPosition(Vector2 newPos)
+        {
+            goalPosition = newPos;
+        }
+
         public double GetAttackDamage()
         {
             return attackDamage;
+        }
+
+        public bool AtGoalPosition()
+        {
+            return (GetGoalPosition() - Position).Length() < 10;
         }
 
         public override void Draw(SpriteBatch sb)

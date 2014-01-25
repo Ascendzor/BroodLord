@@ -23,7 +23,24 @@ namespace Objects
             this.health = 100;
 
             Map.InsertGameObject(this);
+
+            MoveToPostionMobState MovPosState = new MoveToPostionMobState(new Vector2(position.X, position.Y), this);
+            MoveToPostionMobState MovPosState2 = new MoveToPostionMobState(new Vector2(position.X - 100, position.Y), this);
+            IdleMobState idleMobState = new IdleMobState(3, this);
+            MovPosState.NextState = idleMobState;
+            idleMobState.NextState = MovPosState2;
+            MovPosState2.NextState = MovPosState;
+            mobState = MovPosState;
         }
+
+        public Vector2 GetRandomNewGoalPosition()
+        {
+            Random randomPositionGenerator = new Random();
+            Vector2 newGoalPosition = new Vector2(
+                GetGoalPosition().X + randomPositionGenerator.Next(-500, 500),
+                GetGoalPosition().Y + randomPositionGenerator.Next(-500, 500));
+            return newGoalPosition;
+        } 
 
         protected override void Interact(GameObject gameObject)
         {
@@ -46,6 +63,81 @@ namespace Objects
             Console.WriteLine("cat smacking the bitch: " + toon.GetId());
             interactionOffCooldown = DateTime.Now.AddMilliseconds(interactionCooldown); //<--- this allows the interaction to define the cooldown, ie chopping may take longer than attacking
             toon.TakeDamage(this);
+        }
+
+        public void Behave()
+        {
+
+            foreach (Toon toon in Map.GetToons())
+            {
+                if (IsGameObjectNull() && IsGameObjectInsideRange(toon, 300))
+                {
+                    Client.SendEvent(new MoveToGameObjectEvent(GetId(), toon.GetId()));
+                    MobState currentState = mobState;
+                    currentState.IsActive = false;
+                    mobState = new MoveToGameObjectMobState(toon, this);
+                    mobState.NextState = currentState;
+                }
+            }
+
+            if (mobState is MoveToGameObjectMobState)
+            {
+                HandleMobState((MoveToGameObjectMobState)mobState);
+            }
+            else if (mobState is MoveToPostionMobState)
+            {
+                HandleMobState((MoveToPostionMobState)mobState);
+            }
+            else if (mobState is IdleMobState)
+            {
+                HandleMobState((IdleMobState)mobState);
+            }
+        }
+
+        public void HandleMobState(MoveToGameObjectMobState leState)
+        {
+
+            if (!IsGameObjectNull() && !IsGameObjectInsideRange(leState.GoalGameObject, 600))
+            {
+                Console.WriteLine("Cat not chasing no more");
+                goalGameObject = null;
+            }
+
+            if (!leState.IsActive)
+            {
+                leState.Activate();
+            }
+            else if (leState.CheckState())
+            {
+                leState.IsActive = false;
+                mobState = leState.NextState;
+            }
+        }
+
+        public void HandleMobState(MoveToPostionMobState leState)
+        {
+            if (!leState.IsActive)
+            {
+                leState.Activate();
+            }
+            else if (leState.CheckState())
+            {
+                leState.IsActive = false;
+                mobState = leState.NextState;
+            }
+        }
+
+        public void HandleMobState(IdleMobState leState)
+        {
+            if (!leState.IsActive)
+            {
+                leState.Activate();
+            }
+            else if (leState.CheckState())
+            {
+                leState.IsActive = false;
+                mobState = leState.NextState;
+            }
         }
     }
 }
