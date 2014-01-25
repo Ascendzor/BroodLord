@@ -21,7 +21,7 @@ namespace Objects
             this.xTileCoord = (int)position.X / Data.TileSize;
             this.yTileCoord = (int)position.Y / Data.TileSize;
             this.collisionWidth = Data.TreeRadius;
-            this.origin = new Vector2(Data.GetTextureSize(textureKey).X / 2, Data.GetTextureSize(textureKey).Y * 0.85f);
+            this.origin = new Vector2(Data.GetTextureSize(textureKey).X / 2, Data.GetTextureSize(textureKey).Y * 0.90f);
             this.hitbox = new Rectangle((int)(position.X - origin.X), (int)(position.Y - origin.Y), (int)Data.GetTextureSize(textureKey).X, (int)Data.GetTextureSize(textureKey).Y);
             this.health = 999;
             this.isInteractable = true;
