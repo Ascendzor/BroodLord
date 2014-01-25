@@ -55,6 +55,14 @@ namespace Objects
             {
                 leEvent = DeathEvent.Deserialize(bytes);
             }
+            else if (theType == 8)
+            {
+                leEvent = DestroyItemEvent.Deserialize(bytes);
+            }
+            else if (theType == 9)
+            {
+                leEvent = SpawnCoconutEvent.Deserialize(bytes);
+            }
 
             return leEvent;
         }

@@ -40,5 +40,10 @@ namespace Objects
         {
             new MeatLoot(leEvent.Id, leEvent.Position);
         }
+
+        public static void HandleEvent(SpawnCoconutEvent leEvent)
+        {
+            new CoconutLoot(leEvent.Id, leEvent.Position);
+        }
     }
 }

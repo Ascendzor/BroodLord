@@ -23,9 +23,9 @@ namespace Objects
             return new RockLoot(id, position);
         }
 
-        public override void Use(Toon dude)
+        public override bool Use(Toon dude)
         {
-            Console.WriteLine("I used this item");
+            return false;
         }
     }
 }

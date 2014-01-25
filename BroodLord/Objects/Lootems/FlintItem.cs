@@ -25,9 +25,9 @@ namespace Objects
             return new FlintLoot(id, position);
         }
 
-        public override void Use(Toon dude)
+        public override bool Use(Toon dude)
         {
-            
+            return false;
         }
     }
 }

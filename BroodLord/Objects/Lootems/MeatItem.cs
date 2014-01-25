@@ -10,7 +10,7 @@ namespace Objects
     [Serializable()]
     public class MeatItem : Item
     {
-        private const int HEAL_AMOUNT = 4000;
+        private const int HUNGER_AMOUNT = 4000;
         public MeatItem(Guid id) : base()
         {
             this.id = id;
@@ -24,9 +24,10 @@ namespace Objects
             return new MeatLoot(id, position);
         }
 
-        public override void Use(Toon dude)
+        public override bool Use(Toon dude)
         {
-            dude.replenishHunger(HEAL_AMOUNT);
+            dude.replenishHunger(HUNGER_AMOUNT);
+            return true;
         }
     }
 }

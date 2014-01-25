@@ -95,6 +95,13 @@ namespace Objects
                 hunger = maxHunger;
         }
 
+        public void replenishThirst(int amount)
+        {
+            thirst += amount;
+            if (thirst > maxThirst)
+                thirst = maxThirst;
+        }
+
         public override void TakeDamage(int damage)
         {
             base.TakeDamage(damage);
@@ -187,7 +194,13 @@ namespace Objects
         public void ReceiveEvent(DroppedItemEvent leEvent)
         {
             Item item = inventory.removeItem(leEvent.ItemId);
-            item.CreateLoot(position);
+            if (item != null)
+                item.CreateLoot(position);
+        }
+
+        public void ReceiveEvent(DestroyItemEvent leEvent)
+        {
+            Item item = inventory.removeItem(leEvent.ItemId);
         }
 
         public override void ReceiveEvent(DeathEvent leEvent)

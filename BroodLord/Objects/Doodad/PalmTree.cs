@@ -34,7 +34,7 @@ namespace Objects
             health -= (int)dude.GetAttackDamage();
             if (health < 0)
             {
-                textureKey = "stump";
+                textureKey = "PalmStump";
                 this.isInteractable = false;
                 Console.WriteLine(health);
 

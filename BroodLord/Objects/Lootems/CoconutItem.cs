@@ -10,7 +10,8 @@ namespace Objects
     [Serializable()]
     public class CoconutItem : Item
     {
-        private const int HEAL_AMOUNT = 4000;
+        private const int HUNGER_AMOUNT = 2000;
+        private const int THIRST_AMOUNT = 2000;
         public CoconutItem(Guid id)
             : base()
         {
@@ -25,9 +26,11 @@ namespace Objects
             return new CoconutLoot(id, position);
         }
 
-        public override void Use(Toon dude)
+        public override bool Use(Toon dude)
         {
-            dude.replenishHunger(HEAL_AMOUNT);
+            dude.replenishHunger(HUNGER_AMOUNT);
+            dude.replenishThirst(THIRST_AMOUNT);
+            return true;
         }
     }
 }
