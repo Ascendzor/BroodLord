@@ -17,16 +17,6 @@ Content\snow7.xnb
 Content\snow8.xnb
 Content\InventorySlot.xnb
 Content\EmptyInventorySlot.xnb
-Content\health1.xnb
-Content\health10.xnb
-Content\health2.xnb
-Content\health3.xnb
-Content\health4.xnb
-Content\health5.xnb
-Content\health6.xnb
-Content\health7.xnb
-Content\health8.xnb
-Content\health9.xnb
 Content\tree.xnb
 Content\hunger1.xnb
 Content\hunger10.xnb
@@ -38,7 +28,23 @@ Content\hunger6.xnb
 Content\hunger7.xnb
 Content\hunger8.xnb
 Content\hunger9.xnb
+<<<<<<< HEAD
 Content\hydration1.xnb
+=======
+Content\meatPH.xnb
+Content\health1.xnb
+Content\health10.xnb
+Content\health2.xnb
+Content\health3.xnb
+Content\health4.xnb
+Content\health5.xnb
+Content\health6.xnb
+Content\health7.xnb
+Content\health8.xnb
+Content\health9.xnb
+Content\healthBarOutline.xnb
+Content\hydration1.xnb
+>>>>>>> c67a9e27aaa38e6a6d85d724016bd2b3c935b53f
 Content\hydration10.xnb
 Content\hydration2.xnb
 Content\hydration3.xnb
@@ -47,9 +53,16 @@ Content\hydration5.xnb
 Content\hydration6.xnb
 Content\hydration7.xnb
 Content\hydration8.xnb
+<<<<<<< HEAD
 Content\hydration9.xnb
 Content\meatPH.xnb
 Content\TestFont.xnb
 Content\healthBarOutline.xnb
 Content\hydrationOutline.xnb
 Content\hungerOutline.xnb
+=======
+Content\hydration9.xnb
+Content\hydrationOutline.xnb
+Content\TestFont.xnb
+Content\healthBarOutline.xnb
+>>>>>>> c67a9e27aaa38e6a6d85d724016bd2b3c935b53f

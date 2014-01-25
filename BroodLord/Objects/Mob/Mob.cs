@@ -23,13 +23,19 @@ namespace Objects
         protected int health;
         protected MobState mobState;
 
+
+        public GameObject GoalGameObject
+        {
+            get {return goalGameObject;}
+            set {goalGameObject = value;}
+        }
         /*public Mob(Vector2 position, string textureKey, Guid id, Vector2 origin, Rectangle hitbox) //: base(position, textureKey, id, origin, hitbox, client)
         {
 
         }*/
-        public void ReceiveEvent(DeathEvent leEvent)
+        public virtual void ReceiveEvent(DeathEvent leEvent)
         {
-             Map.RemoveGameObject(this);
+            Map.ErradicateGameObject(leEvent.Id);
         }
 
 

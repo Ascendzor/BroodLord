@@ -85,6 +85,19 @@ namespace Objects
             get { return health; }
         }
 
+        public override void TakeDamage(Mob mob)
+        {
+            base.TakeDamage(mob);
+
+            if (Data.IsServer)
+            {
+                if (health <= 0)
+                {
+                    Client.SendEvent(new DeathEvent(GetId()));
+                }
+            }
+        }
+
         protected override void Interact(GameObject gameObject)
         {
             if (DateTime.Now.CompareTo(interactionOffCooldown) == -1)
@@ -153,6 +166,11 @@ namespace Objects
         {
             Item item = inventory.removeItem(leEvent.ItemId);
             item.CreateLoot(position);
+        }
+
+        public override void ReceiveEvent(DeathEvent leEvent)
+        {
+            Map.ErradicateGameObject(leEvent.Id);
         }
 
         /// <summary>
