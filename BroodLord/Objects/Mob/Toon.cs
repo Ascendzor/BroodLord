@@ -214,7 +214,22 @@ namespace Objects
         /// <param name="leEvent"></param>
         public void ReceiveEvent(SpawnToonEvent leEvent)
         {
+            Console.WriteLine("my id: " + id);
             return;
+        }
+
+        public void ReceiveEvent(EvilDudeEvent leEvent)
+        {
+            Console.WriteLine("RECEIVED EVIL DUDE EVENT");
+            Console.WriteLine("given guid: " + leEvent.Id);
+            Console.WriteLine("my guid: " + Data.Dude);
+            if (Data.Dude != null)
+            {
+                if (id.Equals(leEvent.Id))
+                {
+                    textureKey = "evil man medium";
+                }
+            }
         }
         
         public override void Update()

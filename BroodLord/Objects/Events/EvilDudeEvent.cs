@@ -5,11 +5,11 @@ using System.Text;
 
 namespace Objects
 {
-    public class EvildeDudeEvent : Event
+    public class EvilDudeEvent : Event
     {
-        public EvildeDudeEvent(Guid Id)
+        public EvilDudeEvent(Guid Id)
         {
-            this.Type = 7;
+            this.Type = 8;
             this.Id = Id;
         }
 
@@ -25,7 +25,7 @@ namespace Objects
             return bytes;
         }
 
-        public static EvildeDudeEvent Deserialize(byte[] bytes)
+        public static EvilDudeEvent Deserialize(byte[] bytes)
         {
             byte[] idBytes = new byte[16];
             byte[] idDestinationBytes = new byte[16];
@@ -33,7 +33,7 @@ namespace Objects
             Buffer.BlockCopy(bytes, 4, idBytes, 0, 16);
             Buffer.BlockCopy(bytes, 20, idDestinationBytes, 0, 16);
 
-            return new EvildeDudeEvent(new Guid(idBytes));
+            return new EvilDudeEvent(new Guid(idBytes));
         }
     }
 }

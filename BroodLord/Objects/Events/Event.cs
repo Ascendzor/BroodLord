@@ -63,8 +63,14 @@ namespace Objects
             {
                 leEvent = SpawnCoconutEvent.Deserialize(bytes);
             }
+            else if (theType == 10)
+            {
+                leEvent = EvilDudeEvent.Deserialize(bytes);
+            }
 
             return leEvent;
         }
+    
+      
     }
 }

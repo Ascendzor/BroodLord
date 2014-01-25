@@ -171,6 +171,21 @@ namespace Server
             }
         }
 
+        public void MakeEvilDude()
+        {
+            List<Toon> dudes = new List<Toon>();
+            foreach(Mob mob in Map.GetMobs())
+            {
+                if(mob is Toon)
+                {
+                    dudes.Add((Toon)mob);
+                }
+            }
+            int leEvilDude = new Random().Next(0, dudes.Count);
+            Console.WriteLine("you're evil: " + dudes[leEvilDude].GetId());
+            Client.SendEvent(new EvilDudeEvent(dudes[leEvilDude].GetId()));
+        }
+
         static void Main(string[] args)
         {
             Data.Initialize();
@@ -181,7 +196,10 @@ namespace Server
 
             Client.Initialize();
 
+            Thread.Sleep(10000);
+            server.MakeEvilDude();
             environment.Play();
+
         }
     }
 }
