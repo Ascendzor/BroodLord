@@ -66,15 +66,52 @@ namespace Server
         {
             String grass = "Grass";
             String sand = "Sand";
-            int randomNumber = ran.Next(4) + 1;
+            String marsh = "Marsh";
+            String stone = "Stone";
+            int randomNumber;
 
             if (color.G == 255)
             {
+                randomNumber = ran.Next(4) + 1;
                 Map.SetTileTexture(x, y, grass + randomNumber.ToString());
             }
             else if (color.B == 255)
             {
+                randomNumber = ran.Next(3) + 1;
                 Map.SetTileTexture(x, y, sand + randomNumber.ToString());
+            }
+            else if (color.G == 255)
+            {
+                randomNumber = ran.Next(10);
+                if (randomNumber > 9)
+                {
+                    Map.SetTileTexture(x, y, marsh + "1");
+                }
+                else if (randomNumber > 6)
+                {
+                    Map.SetTileTexture(x, y, marsh + "2");
+                }
+                else
+                {
+                    randomNumber = ran.Next(2) + 1;
+                    Map.SetTileTexture(x, y, marsh + randomNumber.ToString());
+                }
+            }
+            else if (color.G == 255 && color.B == 255)
+            {
+                randomNumber = ran.Next(10);
+                if (randomNumber > 9)
+                {
+                    Map.SetTileTexture(x, y, stone + "1");
+                }
+                else if (randomNumber > 6)
+                {
+                    Map.SetTileTexture(x, y, stone + "2");
+                }
+                else
+                {
+                    Map.SetTileTexture(x, y, stone + "3");
+                }
             }
             ////load terrain here
             //if (color.R == 255 && color.G == 0 && color.B == 0)

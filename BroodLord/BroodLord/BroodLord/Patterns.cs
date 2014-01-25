@@ -20,8 +20,8 @@ namespace BroodLord
             camPos = camPos_;
             patterns = new List<Pattern>();
             patterns.Add(new Pattern(new List<String>(new String[]{"Rock", "Club"}), "HammerItem"));
-            patterns.Add(new Pattern(new List<String>(new String[] { "Rock", "Club" }), "HammerItem"));
-            patterns.Add(new Pattern(new List<String>(new String[] { "Rock", "Club" }), "HammerItem"));
+            patterns.Add(new Pattern(new List<String>(new String[] { "Rock", "Club", "Flint" }), "AxeItem"));
+            patterns.Add(new Pattern(new List<String>(new String[] { "Flint", "Coconut" }), "OpenCoconutItem"));
             boundsOnScreen = new Rectangle(0, 0, (int)Data.FindTextureSize["EmptyInventorySlot"].X, (int)Data.FindTextureSize["EmptyInventorySlot"].Y * patterns.Count);
         }
 
@@ -32,6 +32,7 @@ namespace BroodLord
             {
                 //pat.Draw(sb, posi + cameraPosition);
                 sb.Draw(Data.FindTexture["EmptyInventorySlot"], drawPosition, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.0004f);
+                
                 drawPosition.Y += Data.FindTextureSize["EmptyInventorySlot"].Y;
                 //posi.Y += Data.FindTextureSize["EmptyInventorySlot"].Y;
             }
@@ -45,6 +46,11 @@ namespace BroodLord
 
             // Else work out where the click was and then which index that is inside slots
             int clickedPattern = (nowState.Y - boundsOnScreen.Y) / 90;
+
+            //if (patterns[clickedPattern].HaveIngredients())
+            //{
+            //    // craft item
+            //}
 
             Console.WriteLine(clickedPattern);
 
