@@ -214,7 +214,7 @@ namespace Objects
                 if (hungerCounter > 1200)
                 {
                     hungerCounter = 0;
-                    health--;
+                    TakeDamage(1);
                 }
                 hunger++;
             }
@@ -225,7 +225,7 @@ namespace Objects
                 if (thirstCounter > 1200)
                 {
                     thirstCounter = 0;
-                    health--;
+                    TakeDamage(1);
                 }
                 thirst++;
             }
