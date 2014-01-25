@@ -69,7 +69,8 @@ namespace Objects
         /// <param name="dudeId">Id of person to drop item from</param>
         public void dropSlot(Vector2 position, Guid dudeId)
         {
-            Client.SendEvent(new DroppedItemEvent(dudeId, items.First().Value.Id));
+            if (items.Count > 0)
+                Client.SendEvent(new DroppedItemEvent(dudeId, items.First().Value.Id));
             //foreach (Item item in items.Values.ToList<Item>())
             //{
             //    Client.SendEvent(new DroppedItemEvent(dudeId, item.Id));
