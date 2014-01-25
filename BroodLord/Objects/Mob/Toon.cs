@@ -115,6 +115,7 @@ namespace Objects
             {
                 if (health <= 0)
                 {
+                    if(!Data.IsServer)Sounds.PlaySound(Data.FindSound["DeathSound"]);
                     Client.SendEvent(new DeathEvent(GetId()));
                 }
             }
