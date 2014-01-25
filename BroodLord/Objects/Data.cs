@@ -93,6 +93,7 @@ namespace Objects
             allTextures.Add("hydration8");
             allTextures.Add("hydration9");
             allTextures.Add("hydration10");
+            allTextures.Add("hydrationOutline");
             allTextures.Add("snow1");
             allTextures.Add("snow2");
             allTextures.Add("snow3");
