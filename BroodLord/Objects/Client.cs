@@ -59,8 +59,9 @@ namespace Objects
                     }
                 }
             }
-            catch (Exception e)
+            catch (NullReferenceException e)
             {
+                throw e;
                 Console.WriteLine(e);
                 Console.WriteLine("something died :( Client=>ReceiveEvent)");
             }
@@ -117,8 +118,11 @@ namespace Objects
                 otherStream.Read(messageData, 0, messageData.Length);
                 stream.Write(messageData, 0, messageData.Length);
                 stream.Position = 0;
-                string textureKey = (string)bf.Deserialize(stream);
-                textureKeys.Add(textureKey);
+                List<string> textureKeyBatch = (List<string>)bf.Deserialize(stream);
+                foreach (string textureKey in textureKeyBatch)
+                {
+                    textureKeys.Add(textureKey);
+                }
             }
             Map.SetTilesTextureKeys(textureKeys);
             return;

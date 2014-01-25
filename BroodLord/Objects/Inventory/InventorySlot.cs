@@ -12,6 +12,7 @@ namespace Objects
     /// List of size 0 is an empty slot
     /// Inventory calls getTextureKey to get either the item texture or empty slot texture
     /// </summary>
+    [Serializable()]
     public class InventorySlot
     {
         protected Dictionary<Guid, Item> items;

@@ -100,18 +100,32 @@ namespace Server
 
             byte[] data;
             Int32 leInt;
-            foreach (string terrainTextureKey in terrainTextures)
+            for (int x = 0; x < terrainTextures.Count;)
             {
+                List<string> tileBuffer = new List<string>();
+
+                for (int counter = 0; counter <= 50; counter++)
+                {
+                    tileBuffer.Add(terrainTextures[x]);
+                    x++;
+                    if (x == terrainTextures.Count)
+                    {
+                        break;
+                    }
+                }
+                if (tileBuffer.Count < 50)
+                {
+                    Console.WriteLine(tileBuffer.Count);
+                }
+
                 MemoryStream ms = new MemoryStream();
-                new BinaryFormatter().Serialize(ms, terrainTextureKey);
+                new BinaryFormatter().Serialize(ms, tileBuffer);
                 byte[] allGameData = ms.ToArray();
                 leInt = allGameData.Length;
                 data = BitConverter.GetBytes(leInt);
                 stream.Write(data, 0, data.Length);
-                Console.WriteLine("sending: " + terrainTextureKey);
                 Thread.Sleep(10);
 
-                Console.WriteLine("allDataLength: " + allGameData.Length);
                 stream.Write(allGameData, 0, allGameData.Length);
                 Thread.Sleep(10);
             }
