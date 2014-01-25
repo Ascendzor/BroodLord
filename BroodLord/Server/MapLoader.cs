@@ -70,17 +70,17 @@ namespace Server
             String stone = "Stone";
             int randomNumber;
 
-            if (color.G == 255)
+            if (color.G == 255 && color.R == 0 && color.B == 0)
             {
                 randomNumber = ran.Next(4) + 1;
                 Map.SetTileTexture(x, y, grass + randomNumber.ToString());
             }
-            else if (color.B == 255)
+            else if (color.R == 255 && color.G == 255 && color.B == 0)
             {
                 randomNumber = ran.Next(3) + 1;
                 Map.SetTileTexture(x, y, sand + randomNumber.ToString());
             }
-            else if (color.G == 255)
+            else if (color.R == 255 && color.B == 255 && color.G == 0)
             {
                 randomNumber = ran.Next(10);
                 if (randomNumber > 9)
@@ -97,7 +97,7 @@ namespace Server
                     Map.SetTileTexture(x, y, marsh + randomNumber.ToString());
                 }
             }
-            else if (color.G == 255 && color.B == 255)
+            else if (color.G == 255 && color.B == 255 && color.G == 0)
             {
                 randomNumber = ran.Next(10);
                 if (randomNumber > 9)
@@ -112,6 +112,17 @@ namespace Server
                 {
                     Map.SetTileTexture(x, y, stone + "3");
                 }
+            }else if (color.B == 255 && color.R == 0 && color.G == 0)
+            {
+                //water
+            }
+            else if (color.B == 255 && color.R == 0 && color.G == 0)
+            {
+                //shallow water
+            }
+            else if (color.R == 255 && color.G == 0 && color.B == 0)
+            {
+                //cliff
             }
             ////load terrain here
             //if (color.R == 255 && color.G == 0 && color.B == 0)

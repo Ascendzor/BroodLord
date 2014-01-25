@@ -10,13 +10,13 @@ namespace BroodLord
 {
     public class Pattern
     {
-        public List<String> types;
+        public List<String> ingredients;
         public Dictionary<String, String> patternResult;
         public string item;
 
-        public Pattern(List<String> types, string item)
+        public Pattern(List<String> ingredients, string item)
         {
-            this.types = types;
+            this.ingredients = ingredients;
             this.item = item;
         }
 
@@ -27,7 +27,16 @@ namespace BroodLord
 
         public bool HaveIngredients(Inventory inv)
         {
-            return true;
+            bool haveAllIngredients = true;
+
+            foreach (String ingred in ingredients)
+            {
+                if (!inv.ContainsItemType(ingred))
+                    haveAllIngredients = false;
+                
+            }
+
+            return haveAllIngredients;
         }
 
 
