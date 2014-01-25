@@ -57,10 +57,20 @@ namespace Objects
             }
             else if (theType == 8)
             {
-                leEvent = EvildeDudeEvent.Deserialize(bytes);
+                leEvent = DestroyItemEvent.Deserialize(bytes);
+            }
+            else if (theType == 9)
+            {
+                leEvent = SpawnCoconutEvent.Deserialize(bytes);
+            }
+            else if (theType == 10)
+            {
+                leEvent = EvilDudeEvent.Deserialize(bytes);
             }
 
             return leEvent;
         }
+    
+      
     }
 }

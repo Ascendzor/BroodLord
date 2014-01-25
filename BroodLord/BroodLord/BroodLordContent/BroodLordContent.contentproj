@@ -77,8 +77,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="wood.png">
-      <Name>wood</Name>
+    <Compile Include="Wood.png">
+      <Name>Wood</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -387,6 +387,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PalmStump.png">
+      <Name>PalmStump</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="WoodBag.png">
+      <Name>WoodBag</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <Compile Include="evil man medium.png">
       <Name>evil man medium</Name>
       <Importer>TextureImporter</Importer>

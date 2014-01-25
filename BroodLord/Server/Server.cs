@@ -183,7 +183,7 @@ namespace Server
             }
             int leEvilDude = new Random().Next(0, dudes.Count);
             Console.WriteLine("you're evil: " + dudes[leEvilDude].GetId());
-            Client.SendEvent(new EvildeDudeEvent(dudes[leEvilDude].GetId()));
+            Client.SendEvent(new EvilDudeEvent(dudes[leEvilDude].GetId()));
         }
 
         static void Main(string[] args)

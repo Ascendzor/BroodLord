@@ -74,6 +74,7 @@ namespace Objects
             allTextures.Add("link");
             allTextures.Add("tree");
             allTextures.Add("PalmTree");
+            allTextures.Add("PalmStump");
             allTextures.Add("Rock");
             allTextures.Add("Flint");
             allTextures.Add("Club");
@@ -82,7 +83,8 @@ namespace Objects
             allTextures.Add("ClubBag");
             allTextures.Add("RockBag");
             allTextures.Add("CoconutBag");
-            allTextures.Add("wood");
+            allTextures.Add("Wood");
+            allTextures.Add("WoodBag");
             allTextures.Add("cat");
             allTextures.Add("treeOutline");
             allTextures.Add("stump");

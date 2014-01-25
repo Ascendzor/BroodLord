@@ -14,7 +14,7 @@ namespace Objects
 
         public SpawnCoconutEvent(Guid id, Vector2 position)
         {
-            this.Type = 3;
+            this.Type = 9;
             this.Id = id;
             this.Position = position;
         }

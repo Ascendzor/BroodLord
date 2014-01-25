@@ -43,8 +43,8 @@ namespace Objects
                 {
                     Sounds.PlaySound(Data.FindSound["WoodFall"]);
                 }
+                textureKey = "PalmStump";
 
-                textureKey = "stump";
                 this.isInteractable = false;
                 Console.WriteLine(health);
                 

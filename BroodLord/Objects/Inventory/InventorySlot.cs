@@ -65,7 +65,10 @@ namespace Objects
         public void useSlot(Toon dude)
         {
             if (items.Count != 0)
-                items.First().Value.Use(dude);
+            {
+                if (items.First().Value.Use(dude))
+                    Client.SendEvent(new DestroyItemEvent(dude.GetId(), items.First().Value.Id));
+            }
         }
 
         /// <summary>

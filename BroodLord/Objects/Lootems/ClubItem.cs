@@ -25,9 +25,9 @@ namespace Objects
             return new ClubLoot(id, position);
         }
 
-        public override void Use(Toon dude)
+        public override bool Use(Toon dude)
         {
-
+            return false;
         }
     }
 }

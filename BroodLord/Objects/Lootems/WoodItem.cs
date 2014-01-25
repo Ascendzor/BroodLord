@@ -11,7 +11,7 @@ namespace Objects
         public WoodItem(Guid id) : base()
         {
             this.id = id;
-            this.textureKey = "wood";
+            this.textureKey = "WoodBag";
             this.origin = new Vector2(Data.GetTextureSize(textureKey).X / 2, Data.GetTextureSize(textureKey).Y * 0.85f);
             this.hitbox = new Rectangle(0, 0, 0, 0); //set this when going to click on the item
         }
@@ -21,9 +21,9 @@ namespace Objects
             return new WoodLoot(id, position);
         }
 
-        public override void Use(Toon dude)
+        public override bool Use(Toon dude)
         {
-            Console.WriteLine("I used this item");
+            return false;
         }
 
     }
