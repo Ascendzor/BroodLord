@@ -24,6 +24,7 @@ namespace Objects
         public static int TileSize = 84;
         public static int MapSize = 100;
         public static bool IsServer;
+        public static Toon Dude;
 
         //This should probably be in GameDataSizeMessage
         public static int SizeOfNetEventPacket = 140;
