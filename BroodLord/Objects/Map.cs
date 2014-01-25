@@ -47,6 +47,7 @@ namespace Objects
         {
             foreach (Toon toon in GetToons())
             {
+                toon.Update();
                 foreach (Tile tile in GetRenderedTiles(toon.Position))
                 {
                     tile.Update();

@@ -25,6 +25,7 @@ namespace Objects
             this.attackDamage = 6;
             this.health = 100;
             this.mobState = mobState;
+            this.oldPosition = position;
             isInteractable = true;
             
             Map.InsertGameObject(this);
