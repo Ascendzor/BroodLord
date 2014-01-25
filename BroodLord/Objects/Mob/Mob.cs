@@ -19,7 +19,6 @@ namespace Objects
         protected double attackDamage;
         protected double interactionCooldown;
         protected DateTime interactionOffCooldown;
-        protected Inventory inventory;
         protected int health;
 
         /*public Mob(Vector2 position, string textureKey, Guid id, Vector2 origin, Rectangle hitbox) //: base(position, textureKey, id, origin, hitbox, client)

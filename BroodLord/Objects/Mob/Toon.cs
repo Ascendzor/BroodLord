@@ -20,6 +20,8 @@ namespace Objects
         protected int hunger;
         protected int maxThirst;
         protected int thirst;
+        [NonSerialized()]
+        private Inventory inventory;
         
         public Toon(Guid id, Vector2 position, string textureKey)
         {
@@ -105,8 +107,11 @@ namespace Objects
         /// <param name="loot">Loot to add to inventory</param>
         private void InteractWithObject(Loot loot)
         {
-            if (inventory.addToInventory(loot.CreateItem(loot), loot.Stackable))
-                Map.RemoveGameObject(loot.GetId());
+            if (inventory != null)
+            {
+                if (inventory.addToInventory(loot.CreateItem(loot), loot.Stackable))
+                    Map.RemoveGameObject(loot.GetId());
+            }
         }
 
         public void ReceiveEvent(MoveToPositionEvent leEvent)
