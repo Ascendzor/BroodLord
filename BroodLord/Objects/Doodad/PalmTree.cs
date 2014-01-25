@@ -31,13 +31,23 @@ namespace Objects
 
         public void GotChopped(Toon dude)
         {
+            if (!Data.IsServer)
+            {
+                Sounds.PlaySound(Data.FindSound["WoodChop"]);
+            }
+
             health -= (int)dude.GetAttackDamage();
             if (health < 0)
             {
+                if (!Data.IsServer)
+                {
+                    Sounds.PlaySound(Data.FindSound["WoodFall"]);
+                }
+
                 textureKey = "stump";
                 this.isInteractable = false;
                 Console.WriteLine(health);
-
+                
                 if (Data.IsServer)
                 {
                     Client.SendEvent(new SpawnWoodEvent(Guid.NewGuid(), new Vector2(position.X - 10, position.Y)));

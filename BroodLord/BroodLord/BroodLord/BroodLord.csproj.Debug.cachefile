@@ -16,7 +16,6 @@ Content\snow7.xnb
 Content\snow8.xnb
 Content\InventorySlot.xnb
 Content\EmptyInventorySlot.xnb
-Content\tree.xnb
 Content\meatPH.xnb
 Content\health1.xnb
 Content\health10.xnb
@@ -58,5 +57,8 @@ Content\PalmTree.xnb
 Content\Club.xnb
 Content\coconut.xnb
 Content\Flint.xnb
-Content\TestFont.xnb
+Content\tree.xnb
 Content\evil man medium.xnb
+Content\TestFont.xnb
+Content\WoodChop.xnb
+Content\WoodFall.xnb
