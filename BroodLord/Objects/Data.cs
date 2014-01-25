@@ -62,6 +62,16 @@ namespace Objects
             allTextures.Add("inventorySlots");
             allTextures.Add("InventorySlot");
             allTextures.Add("EmptyInventorySlot");
+            allTextures.Add("health1");
+            allTextures.Add("health2");
+            allTextures.Add("health3");
+            allTextures.Add("health4");
+            allTextures.Add("health5");
+            allTextures.Add("health6");
+            allTextures.Add("health7");
+            allTextures.Add("health8");
+            allTextures.Add("health9");
+            allTextures.Add("health10");
             allTextures.Add("snow1");
             allTextures.Add("snow2");
             allTextures.Add("snow3");

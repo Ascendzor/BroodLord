@@ -20,21 +20,38 @@ namespace BroodLord
         private Toon dude;
         private Vector2 topLeftPosition;
         private Vector2 bottomLeftPosition;
+        private Vector2 bottomRightPosition;
+        private Vector2 bottomMiddlePosition;
 
         public HUD(ContentManager content, Toon dude, int screenHeight, int screenWidth)
         {
             spriteFont = content.Load<SpriteFont>("TestFont");
             this.dude = dude;
-            topLeftPosition = new Vector2(-screenWidth/2, -screenHeight/2);
-            bottomLeftPosition = new Vector2(-screenWidth/2, screenHeight/2);
+            topLeftPosition = new Vector2(-screenWidth / 2, -screenHeight / 2);
+            bottomLeftPosition = new Vector2(-screenWidth / 2, screenHeight / 2);
+            bottomRightPosition = new Vector2(screenWidth / 2, screenHeight / 2);
+            bottomMiddlePosition = new Vector2(-screenWidth / 4, screenHeight / 2);
         }
 
         public void Draw(SpriteBatch sb, Vector2 cameraPosition)
         {
             Vector2 drawPosition = new Vector2(0, 0);
             drawPosition = cameraPosition + topLeftPosition;
-            //String life = dude.Health.ToString();
-            //sb.DrawString(spriteFont, "Life: " + life + ", Energy Shield: 9001", drawPosition, Color.White);
+            String life = dude.Health.ToString();
+            sb.DrawString(spriteFont, "Life: " + life +
+                ", Energy Shield: 9001, Hunger: " + dude.Hunger +
+                ", Thirst: " + dude.Thirst, drawPosition, Color.White);
+
+
+            // Draw Health
+            drawPosition = cameraPosition + bottomMiddlePosition;
+            drawPosition.Y -= Data.FindTextureSize["health1"].Y;
+            for (int i = 1; i < dude.Health + 1; i++)
+            {
+                sb.Draw(Data.FindTexture["health" + i.ToString()], drawPosition, Color.White);
+                drawPosition.X += Data.FindTextureSize["health" + i.ToString()].X;
+            }
+
 
             drawPosition = cameraPosition + bottomLeftPosition;
 
@@ -42,6 +59,7 @@ namespace BroodLord
             dude.Inventory.Draw(sb, drawPosition, spriteFont);
 
         }
+
 
     }
 }
