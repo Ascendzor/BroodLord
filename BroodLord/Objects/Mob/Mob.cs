@@ -22,7 +22,9 @@ namespace Objects
         protected Inventory inventory;
         protected int health;
         protected MobState mobState;
-
+        protected int animation;
+        protected String textureBase;
+        protected bool flip;
 
         public GameObject GoalGameObject
         {
@@ -61,6 +63,11 @@ namespace Objects
         //Check if the move is unnecessary (close enough to target) before moving
         public virtual void Update()
         {
+            animation++;
+            if(animation == 25) animation = 5;
+            int finanim = animation / 5;
+            String temp = textureBase + finanim;
+
             Vector2 moveDirection;
             if (GetGoalGameObject() != null)
             {
@@ -70,9 +77,10 @@ namespace Objects
             {
                 moveDirection = GetGoalPosition() - position;
             }
-
+            if (textureBase.Equals("Evil")) this.textureKey = temp;
             if (moveDirection.Length() <= 10)
             {
+                if(textureBase.Equals("Evil"))this.textureKey = (textureBase + "1");
                 return;
             }
 
@@ -84,6 +92,7 @@ namespace Objects
                     return;
                 }
             }
+            if (moveDirection.X > 0) flip = true; else flip = false;
 
             moveDirection.Normalize();
             Vector2 newPos = position + moveDirection * movementSpeed;
@@ -161,6 +170,8 @@ namespace Objects
 
         public override void Draw(SpriteBatch sb)
         {
+            if(!flip)
+            {
             sb.Draw(Data.FindTexture[textureKey],
                 new Rectangle((int)position.X,
                     (int)position.Y,
@@ -171,6 +182,20 @@ namespace Objects
                     origin,
                     SpriteEffects.None,
                     1 - (position.Y / (Data.MapSize * Data.TileSize)));
+            }
+            else
+            {
+            sb.Draw(Data.FindTexture[textureKey],
+                new Rectangle((int)position.X,
+                    (int)position.Y,
+                    Data.FindTexture[textureKey].Width, Data.FindTexture[textureKey].Height),
+                    null,
+                    Color.White,
+                    0,
+                    origin,
+                    SpriteEffects.FlipHorizontally,
+                    1 - (position.Y / (Data.MapSize * Data.TileSize)));
+            }
         }
     }
 }

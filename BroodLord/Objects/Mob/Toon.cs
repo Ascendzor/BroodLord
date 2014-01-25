@@ -27,6 +27,7 @@ namespace Objects
         public Toon(Guid id, Vector2 position, string textureKey)
         {
             Console.WriteLine("new toon getting mayd");
+            this.textureBase = "Link";
             this.id = id;
             this.position = position;
             this.textureKey = textureKey;
@@ -45,6 +46,7 @@ namespace Objects
             this.thirst = 10080;
             this.maxThirst = 10080;
             this.isInteractable = true;
+            this.animation = 5;
 
             interactionOffCooldown = DateTime.Now;
 
@@ -230,11 +232,12 @@ namespace Objects
             Console.WriteLine("RECEIVED EVIL DUDE EVENT");
             Console.WriteLine("given guid: " + leEvent.Id);
             Console.WriteLine("my guid: " + Data.Dude);
+            textureBase = "Evil";
             if (Data.Dude != null)
             {
                 if (id.Equals(leEvent.Id))
                 {
-                    textureKey = "evil man medium";
+                    textureKey = "Evil1";
                 }
             }
         }

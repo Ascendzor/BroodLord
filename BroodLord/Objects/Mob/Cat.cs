@@ -9,10 +9,10 @@ namespace Objects
     [Serializable()]
     public class Cat : HostileMob
     {
-        
+
         public Cat(Guid id, Vector2 position)
         {
-            
+            this.textureBase = "Cat";
             this.id = id;
             this.position = position;
             this.textureKey = "cat";
@@ -25,6 +25,7 @@ namespace Objects
             this.attackDamage = 6;
             this.health = 100;
             this.mobState = mobState;
+            this.animation = 5;
             isInteractable = true;
             
             Map.InsertGameObject(this);
