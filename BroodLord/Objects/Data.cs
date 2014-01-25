@@ -130,6 +130,10 @@ namespace Objects
             allTextures.Add("Grass2");
             allTextures.Add("Grass3");
             allTextures.Add("Grass4");
+            allTextures.Add("Sand1");
+            allTextures.Add("Sand2");
+            allTextures.Add("Sand3");
+            allTextures.Add("Sand4");
             allTextures.Add("snow1");
             allTextures.Add("snow2");
             allTextures.Add("snow3");
@@ -178,15 +182,5 @@ namespace Objects
         {
             return FindTextureSize[textureKey];
         }
-
-        /*
-         * 
-         * Some Notes
-         * 
-         * We do not want to check for other players collision but we may still nee to do tile checking on them if we want to draw
-         * 
-         * 
-         * 
-         */
     }
 }
