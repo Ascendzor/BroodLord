@@ -66,7 +66,7 @@ namespace Server
             //load terrain here
             if (color.R == 255 && color.G == 0 && color.B == 0)
             {
-                Map.SetTileTexture(x, y, "snow1");
+                Map.SetTileTexture(x, y, "Grass1");
             }
             else if (color.R == 0 && color.G == 255 && color.B == 0)
             {
