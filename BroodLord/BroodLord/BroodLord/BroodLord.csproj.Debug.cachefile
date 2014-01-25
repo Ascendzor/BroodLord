@@ -1,5 +1,4 @@
 Content\link.xnb
-Content\treeold.xnb
 Content\rock.xnb
 Content\rockBag.xnb
 Content\treeOutline.xnb
@@ -27,7 +26,6 @@ Content\health6.xnb
 Content\health7.xnb
 Content\health8.xnb
 Content\health9.xnb
-Content\tree.xnb
 Content\hunger1.xnb
 Content\hunger10.xnb
 Content\hunger2.xnb
@@ -60,3 +58,4 @@ Content\PalmTree.xnb
 Content\Club.xnb
 Content\coconut.xnb
 Content\Flint.xnb
+Content\tree.xnb

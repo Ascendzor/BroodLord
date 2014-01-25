@@ -109,9 +109,13 @@ namespace Server
 
         public static void LoadDoodads(int x, int y, System.Drawing.Color color)
         {
-            if (color.R == 255 && color.G == 0 && color.B == 0)
+            if (color.R == 0 && color.G == 255 && color.B == 0)
             {
                 new Tree(Guid.NewGuid(), new Vector2(x * Data.TileSize, y * Data.TileSize), "tree");
+            }
+            else if (color.R == 255 && color.G == 0 && color.B == 0)
+            {
+                new PalmTree(Guid.NewGuid(), new Vector2(x * Data.TileSize, y * Data.TileSize), "PalmTree");
             }
         }
 
