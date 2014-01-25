@@ -21,8 +21,8 @@ namespace Objects
             this.interactionCooldown = 3000;
             this.attackDamage = 1;
             this.interactionCooldown = 5000;
-            this.attackDamage = 6;
-            this.health = 100;
+            this.attackDamage = 0;
+            this.health = 2;
             this.mobState = mobState;
             this.oldPosition = position;
             this.animation = 5;

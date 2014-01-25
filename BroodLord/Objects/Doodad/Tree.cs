@@ -21,7 +21,7 @@ namespace Objects
             this.collisionWidth = Data.TreeRadius;
             this.origin = new Vector2(Data.GetTextureSize(textureKey).X / 2, Data.GetTextureSize(textureKey).Y * 0.85f);
             this.hitbox = new Rectangle((int)(position.X - origin.X), (int)(position.Y - origin.Y), (int)Data.GetTextureSize(textureKey).X, (int)Data.GetTextureSize(textureKey).Y);
-            this.health = 999;
+            this.health = 15;
             this.isInteractable = true;
 
             Map.InsertGameObject(this);
@@ -29,10 +29,7 @@ namespace Objects
 
         public void GotChopped(Toon dude)
         {
-           if (!Data.IsServer)
-           {
-                Sounds.PlaySound(Data.FindSound["WoodChop"]);
-           }
+           if (!Data.IsServer) Sounds.PlaySound(Data.FindSound["WoodChop"]);
 
             health -= (int)dude.GetAttackDamage();
             if (health < 0)
@@ -40,7 +37,7 @@ namespace Objects
                 textureKey = "stump";
                 this.isInteractable = false;
                 Console.WriteLine(health);
-
+                if (!Data.IsServer) Sounds.PlaySound(Data.FindSound["WoodFall"]);
                 if (Data.IsServer)
                 {
                     Client.SendEvent(new SpawnWoodEvent(Guid.NewGuid(), new Vector2(position.X - 10, position.Y)));

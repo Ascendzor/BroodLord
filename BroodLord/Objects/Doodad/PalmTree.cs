@@ -21,7 +21,7 @@ namespace Objects
             this.collisionWidth = Data.TreeRadius;
             this.origin = new Vector2(Data.GetTextureSize(textureKey).X / 2, Data.GetTextureSize(textureKey).Y * 0.90f);
             this.hitbox = new Rectangle((int)(position.X - origin.X), (int)(position.Y - origin.Y), (int)Data.GetTextureSize(textureKey).X, (int)Data.GetTextureSize(textureKey).Y);
-            this.health = 999;
+            this.health = 15;
             this.isInteractable = true;
 
             Map.InsertGameObject(this);

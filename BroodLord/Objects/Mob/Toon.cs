@@ -36,7 +36,7 @@ namespace Objects
             this.goalPosition = position;
             this.origin = new Vector2(Data.GetTextureSize(textureKey).X / 2, Data.GetTextureSize(textureKey).Y * 0.85f);
             this.interactRange = Data.ToonInteractionRange;
-            this.attackDamage = 200;
+            this.attackDamage = 1;
             this.interactionCooldown = 1000;
             this.interactionCooldown = 200;
             this.inventory = new Inventory();
