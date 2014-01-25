@@ -24,7 +24,7 @@ namespace Objects
             port = 41337;
             //client = new TcpClient("127.0.0.1", port);
             //otherClient = new TcpClient("127.0.0.1", 41338);
-            string leIp = "10.30.151.142";
+            string leIp = "127.0.0.1";
             client = new TcpClient(leIp, port);
             otherClient = new TcpClient(leIp, 41338);
             outgoingEvents = new Queue<Event>();

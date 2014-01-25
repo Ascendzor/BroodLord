@@ -54,7 +54,14 @@ namespace Objects
 
             allTextures.Add("link");
             allTextures.Add("tree");
-            allTextures.Add("rock");
+            allTextures.Add("Rock");
+            allTextures.Add("Flint");
+            allTextures.Add("Club");
+            allTextures.Add("Coconut");
+            allTextures.Add("FlintBag");
+            allTextures.Add("ClubBag");
+            allTextures.Add("RockBag");
+            allTextures.Add("CoconutBag");
             allTextures.Add("wood");
             allTextures.Add("cat");
             allTextures.Add("treeOutline");
@@ -95,10 +102,6 @@ namespace Objects
             allTextures.Add("hydration9");
             allTextures.Add("hydration10");
             allTextures.Add("hydrationOutline");
-            allTextures.Add("FlintBag");
-            allTextures.Add("ClubBag");
-            allTextures.Add("RockBag");
-            allTextures.Add("CoconutBag");
             allTextures.Add("snow1");
             allTextures.Add("snow2");
             allTextures.Add("snow3");
