@@ -110,6 +110,10 @@ namespace Objects
             {
                 vignette = "Night_Light";
             }
+            else if (Data.Dude.textureBase == "Evil")
+            {
+                return;
+            }
             else if (leEvent.Nightness == 2)
             {
                 vignette = "Night_Medium";

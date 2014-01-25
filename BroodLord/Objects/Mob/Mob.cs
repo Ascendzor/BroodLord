@@ -24,7 +24,7 @@ namespace Objects
         protected MobState mobState;
         protected int animation;
         protected int animationTot;
-        protected String textureBase;
+        public String textureBase;
         protected bool flip;
 
         public GameObject GoalGameObject
