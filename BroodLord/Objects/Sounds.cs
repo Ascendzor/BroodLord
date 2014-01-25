@@ -17,10 +17,7 @@ namespace Objects
     {
         public static void PlaySound(SoundEffect Sound)
         {
-            SoundEffectInstance soundEngineInstance;
-
-            soundEngineInstance = Sound.CreateInstance();
-            soundEngineInstance.Play();
+            Sound.Play();
         }
     }
 }

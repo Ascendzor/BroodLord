@@ -102,7 +102,7 @@ namespace BroodLord
             {
                 foreach (GameObject gameObject in tile.GetGameObjects())
                 {
-                    if (gameObject.IsInteractable)
+                    if (gameObject.IsInteractable && gameObject != Data.Dude)
                     {
                         //if you clicked on a game object, go to that game object
                         if (gameObject.GetHitBox().Contains((int)clickPosition.X, (int)clickPosition.Y))
