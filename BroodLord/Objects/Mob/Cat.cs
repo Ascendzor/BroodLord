@@ -16,11 +16,12 @@ namespace Objects
             this.textureKey = "cat";
             this.origin = new Vector2(Data.GetTextureSize(textureKey).X / 2, Data.GetTextureSize(textureKey).Y * 0.85f);
             this.movementSpeed = 2;
-            this.goalPosition = position;
+            //this.goalPosition = position;
             this.interactRange = 100;
             this.interactionCooldown = 5000;
             this.attackDamage = 60;
             this.health = 100;
+            isInteractable = true;
             this.hitbox = new Rectangle((int)(position.X - origin.X), (int)(position.Y - origin.Y), (int)Data.GetTextureSize(textureKey).X, (int)Data.GetTextureSize(textureKey).Y);
 
             Map.InsertGameObject(this);
@@ -33,6 +34,7 @@ namespace Objects
             MovPosState2.NextState = MovPosState;
             mobState = MovPosState;
         }
+
 
         public Vector2 GetRandomNewGoalPosition()
         {

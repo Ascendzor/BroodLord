@@ -132,13 +132,9 @@ namespace Objects
             return (GetGoalPosition() - Position).Length() < 10;
         }
 
-        public void TakeDamage(Mob mob)
+        public virtual void TakeDamage(Mob mob)
         {
             health -= (int)mob.GetAttackDamage();
-            if (health <= 0)
-            {
-                Console.WriteLine("rip Mob");
-            }
         }
 
         public void AttackMob(Mob mob)

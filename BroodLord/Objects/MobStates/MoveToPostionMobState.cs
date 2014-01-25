@@ -45,7 +45,7 @@ namespace Objects
         public void Activate()
         {
             IsActive = true;
-            
+            mob.SetGoalPosition(position);
             Client.SendEvent(new MoveToPositionEvent(mob.GetId(), Position));
         }
     }
