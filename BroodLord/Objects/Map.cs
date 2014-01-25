@@ -21,6 +21,7 @@ namespace Objects
         private static int renderWidth;
         private static Dictionary<Guid, GameObject> allGameObjects;
         private static Dictionary<Guid, Mob> allMobs;
+        private static Dictionary<Guid, Toon> allToons;
 
         public static void Initialize(int _renderWidth)
         {
@@ -30,6 +31,7 @@ namespace Objects
 
             allGameObjects = new Dictionary<Guid, GameObject>();
             allMobs = new Dictionary<Guid, Mob>();
+            allToons = new Dictionary<Guid, Toon>();
 
             for (int x = 0; x < tiles.GetLength(0); x++)
             {
@@ -43,9 +45,13 @@ namespace Objects
 
         public static void Update()
         {
-            foreach (Tile tile in tiles)
+            foreach (Toon toon in GetToons())
             {
-                tile.Update();
+                toon.Update();
+                foreach (Tile tile in GetRenderedTiles(toon.Position))
+                {
+                    tile.Update();
+                }
             }
         }
 
@@ -68,6 +74,14 @@ namespace Objects
                 if (!allMobs.ContainsKey(go.GetId()))
                 {
                     allMobs.Add(go.GetId(), (Mob)go);
+                }
+            }
+
+            if (go is Toon)
+            {
+                if (!allToons.ContainsKey(go.GetId()))
+                {
+                    allToons.Add(go.GetId(), (Toon)go);
                 }
             }
         }
@@ -101,6 +115,11 @@ namespace Objects
             if (gameObject is Mob)
             {
                 allMobs.Remove(gameObject.GetId());
+            }
+
+            if (gameObject is Toon)
+            {
+                allToons.Remove(gameObject.GetId());
             }
         }
 
@@ -214,16 +233,7 @@ namespace Objects
 
         public static List<Toon> GetToons()
         {
-            List<Toon> allToons = new List<Toon>();
-            foreach (Mob mob in GetMobs())
-            {
-                if (mob is Toon)
-                {
-                    allToons.Add((Toon)mob);
-                }
-            }
-
-            return allToons;
+            return allToons.Values.ToList();
         }
 
         public static Loot GetLoot(Guid id)

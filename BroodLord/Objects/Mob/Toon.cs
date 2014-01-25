@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
@@ -23,11 +23,12 @@ namespace Objects
 
         protected int hungerCounter = 0;
         protected int thirstCounter = 0;
+
+
         
         public Toon(Guid id, Vector2 position, string textureKey)
         {
             Console.WriteLine("new toon getting mayd");
-            this.textureBase = "Link";
             this.id = id;
             this.position = position;
             this.textureKey = textureKey;
@@ -110,7 +111,6 @@ namespace Objects
 
             if (Data.IsServer)
             {
-                if (!Data.IsServer) Sounds.PlaySound(Data.FindSound["MobHit"]);
                 if (health <= 0)
                 {
                     Client.SendEvent(new DeathEvent(GetId()));
@@ -182,15 +182,13 @@ namespace Objects
         private void InteractWithObject(Loot loot)
         {
             if (inventory.addToInventory(loot.CreateItem(loot), loot.Stackable))
-            {
-                if (!Data.IsServer) Sounds.PlaySound(Data.FindSound["Pickup"]);
                 Map.RemoveGameObject(loot.GetId());
-            }
         }
 
         public void ReceiveEvent(MoveToPositionEvent leEvent)
         {
             goalPosition = leEvent.Position;
+            goalGameObject = null;
         }
 
         /// <summary>
@@ -201,10 +199,7 @@ namespace Objects
         {
             Item item = inventory.removeItem(leEvent.ItemId);
             if (item != null)
-            {
-                if (!Data.IsServer) Sounds.PlaySound(Data.FindSound["Drop"]);
                 item.CreateLoot(position);
-            }
         }
 
         public void ReceiveEvent(DestroyItemEvent leEvent)
@@ -232,7 +227,7 @@ namespace Objects
             Console.WriteLine("RECEIVED EVIL DUDE EVENT");
             Console.WriteLine("given guid: " + leEvent.Id);
             Console.WriteLine("my guid: " + Data.Dude);
-            textureBase = "Evil";
+           textureBase = "Evil";
             if (Data.Dude != null)
             {
                 if (id.Equals(leEvent.Id))

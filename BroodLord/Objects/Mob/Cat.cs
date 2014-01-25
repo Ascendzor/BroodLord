@@ -1,3 +1,4 @@
+
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,11 @@ namespace Objects
     [Serializable()]
     public class Cat : HostileMob
     {
-
+        
         public Cat(Guid id, Vector2 position)
         {
             this.textureBase = "Cat";
+            this.animation = 5;
             this.id = id;
             this.position = position;
             this.textureKey = "cat";
@@ -25,7 +27,7 @@ namespace Objects
             this.attackDamage = 6;
             this.health = 100;
             this.mobState = mobState;
-            this.animation = 5;
+            this.oldPosition = position;
             isInteractable = true;
             
             Map.InsertGameObject(this);
@@ -43,7 +45,7 @@ namespace Objects
         public override void TakeDamage(int damage)
         {
             base.TakeDamage(damage);
-            if (!Data.IsServer) Sounds.PlaySound(Data.FindSound["MobHit"]);
+
             if (Data.IsServer && health <= 0)
             {
                 

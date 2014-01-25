@@ -196,7 +196,7 @@ namespace Server
 
             Client.Initialize();
 
-            Thread.Sleep(10000);
+            Thread.Sleep(50000);
             server.MakeEvilDude();
             environment.Play();
 

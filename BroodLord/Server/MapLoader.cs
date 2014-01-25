@@ -12,6 +12,7 @@ namespace Server
 {
     static class MapLoader
     {
+        static Random ran;
         /// <summary>
         /// Loads the map from a .bmp
         /// 
@@ -24,7 +25,7 @@ namespace Server
         public static void LoadMap(string terrainPath, string mobsPath, string doodadsPath, string lootsPath)
         {
             Map.Initialize(5);
-
+            ran = new Random();
             Bitmap terrainMap = new Bitmap(terrainPath);
             Bitmap mobsMap = new Bitmap(mobsPath);
             Bitmap doodadsMap = new Bitmap(doodadsPath);
@@ -63,46 +64,49 @@ namespace Server
 
         public static void LoadTerrain(int x, int y, System.Drawing.Color color)
         {
-            //load terrain here
-            if (color.R == 255 && color.G == 0 && color.B == 0)
-            {
-                Map.SetTileTexture(x, y, "snow1");
-            }
-            else if (color.R == 0 && color.G == 255 && color.B == 0)
-            {
-                Map.SetTileTexture(x, y, "snow2");
-            }
-            else if (color.R == 0 && color.G == 0 && color.B == 255)
-            {
-                Map.SetTileTexture(x, y, "snow3");
-            }
-            else if (color.R == 0 && color.G == 0 && color.B == 0)
-            {
-                Map.SetTileTexture(x, y, "snow4");
-            }
-            else if (color.R == 0 && color.G == 0 && color.B == 0)
-            {
-                Map.SetTileTexture(x, y, "snow5");
-            }
-            else if (color.R == 0 && color.G == 0 && color.B == 0)
-            {
-                Map.SetTileTexture(x, y, "snow6");
-            }
-            else if (color.R == 0 && color.G == 0 && color.B == 0)
-            {
-                Map.SetTileTexture(x, y, "snow7");
-            }
-            else
-            {
-                Map.SetTileTexture(x, y, "snow8");
-            }
+            String grass = "Grass";
+            int randomNumber = ran.Next(4) + 1;
+
+            Map.SetTileTexture(x, y, grass + randomNumber.ToString());
+            ////load terrain here
+            //if (color.R == 255 && color.G == 0 && color.B == 0)
+            //{
+            //    Map.SetTileTexture(x, y, "Grass1");
+            //}
+            //else if (color.R == 0 && color.G == 255 && color.B == 0)
+            //{
+            //    Map.SetTileTexture(x, y, "snow2");
+            //}
+            //else if (color.R == 0 && color.G == 0 && color.B == 255)
+            //{
+            //    Map.SetTileTexture(x, y, "snow3");
+            //}
+            //else if (color.R == 0 && color.G == 0 && color.B == 0)
+            //{
+            //    Map.SetTileTexture(x, y, "snow4");
+            //}
+            //else if (color.R == 0 && color.G == 0 && color.B == 0)
+            //{
+            //    Map.SetTileTexture(x, y, "snow5");
+            //}
+            //else if (color.R == 0 && color.G == 0 && color.B == 0)
+            //{
+            //    Map.SetTileTexture(x, y, "snow6");
+            //}
+            //else if (color.R == 0 && color.G == 0 && color.B == 0)
+            //{
+            //    Map.SetTileTexture(x, y, "snow7");
+            //}
+            //else
+            //{
+            //    Map.SetTileTexture(x, y, "snow8");
+            //}
         }
 
         public static void LoadMobs(int x, int y, System.Drawing.Color color)
         {
             if (color.R == 0 && color.G == 0 && color.B == 255)
             {
-
                 new Cat(Guid.NewGuid(), new Vector2(x * Data.TileSize, y * Data.TileSize));
             }
         }
@@ -129,15 +133,15 @@ namespace Server
             {
                 new MeatLoot(Guid.NewGuid(), new Vector2(x * Data.TileSize, y * Data.TileSize));
             }
-            else if (color.R == 0 && color.G == 0 && color.B == 254)
+            else if (color.R == 255 && color.G == 0 && color.B == 0)
             {
                 new CoconutLoot(Guid.NewGuid(), new Vector2(x * Data.TileSize, y * Data.TileSize));
             }
-            else if (color.R == 0 && color.G == 0 && color.B == 253)
+            else if (color.R == 255 && color.G == 0 && color.B == 255)
             {
                 new FlintLoot(Guid.NewGuid(), new Vector2(x * Data.TileSize, y * Data.TileSize));
             }
-            else if (color.R == 0 && color.G == 0 && color.B == 252)
+            else if (color.R == 0 && color.G == 255 && color.B == 255)
             {
                 new ClubLoot(Guid.NewGuid(), new Vector2(x * Data.TileSize, y * Data.TileSize));
             }

@@ -24,7 +24,7 @@ namespace Objects
         public static int ToonInteractionRange = 100;
         public static int TreeRadius = 56;
         public static int TileSize = 84;
-        public static int MapSize = 100;
+        public static int MapSize = 400;
         public static bool IsServer;
         public static Toon Dude;
 
@@ -65,9 +65,6 @@ namespace Objects
             allSounds.Add("Eat");
             allSounds.Add("WoodChop");
             allSounds.Add("WoodFall");
-            allSounds.Add("Pickup");
-            allSounds.Add("MobHit");
-            allSounds.Add("Drop");
         }
 
         private static void InitializeAllTextures()
@@ -127,6 +124,10 @@ namespace Objects
             allTextures.Add("hydration9");
             allTextures.Add("hydration10");
             allTextures.Add("hydrationOutline");
+            allTextures.Add("Grass1");
+            allTextures.Add("Grass2");
+            allTextures.Add("Grass3");
+            allTextures.Add("Grass4");
             allTextures.Add("snow1");
             allTextures.Add("snow2");
             allTextures.Add("snow3");
