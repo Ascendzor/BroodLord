@@ -139,6 +139,7 @@ namespace Objects
             allTextures.Add("snow7");
             allTextures.Add("snow8");
             allTextures.Add("meatPH");
+            allTextures.Add("meatBag");
             allTextures.Add("evil man medium");
             allTextures.Add("Evil1");
             allTextures.Add("Evil2");
