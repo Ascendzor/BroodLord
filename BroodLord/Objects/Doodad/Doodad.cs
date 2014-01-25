@@ -30,7 +30,7 @@ namespace Objects
                     SpriteEffects.None,
                     1 - (position.Y / (Data.MapSize * Data.TileSize)));
 
-            sb.Draw(Data.FindTexture["treeOutline"], hitbox, Color.Blue);
+            //sb.Draw(Data.FindTexture["treeOutline"], hitbox, Color.Blue);
         }
     }
 }
