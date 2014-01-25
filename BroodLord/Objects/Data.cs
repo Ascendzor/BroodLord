@@ -143,6 +143,12 @@ namespace Objects
             allTextures.Add("Evil3");
             allTextures.Add("Evil4");
             allTextures.Add("Evil5");
+            allTextures.Add("Stoneer1");
+            allTextures.Add("Stoneer2");
+            allTextures.Add("Stoneer3");
+            allTextures.Add("Stoneer4");
+            allTextures.Add("Stoneer5");
+            allTextures.Add("Stoneer6");
         }
 
         public static void Initialize()
