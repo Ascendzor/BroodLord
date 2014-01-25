@@ -81,6 +81,18 @@ namespace Objects
             }
         }
 
+        public static void ErradicateGameObject(GameObject gameObject)
+        {
+            foreach(Mob mob in allMobs.Values.ToList<GameObject>())
+            {
+                if(mob.GoalGameObject == gameObject)
+                {
+                    mob.GoalGameObject = null;
+                }
+            }
+            RemoveGameObject(gameObject);
+        }
+
         public static void RemoveGameObject(GameObject gameObject)
         {
             GetTile((int)gameObject.Position.X / Data.TileSize, (int)gameObject.Position.Y / Data.TileSize).RemoveObject(gameObject);
