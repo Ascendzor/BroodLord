@@ -125,6 +125,18 @@ namespace Server
             {
                 new MeatLoot(Guid.NewGuid(), new Vector2(x * Data.TileSize, y * Data.TileSize));
             }
+            else if (color.R == 0 && color.G == 0 && color.B == 254)
+            {
+                new CoconutLoot(Guid.NewGuid(), new Vector2(x * Data.TileSize, y * Data.TileSize));
+            }
+            else if (color.R == 0 && color.G == 0 && color.B == 253)
+            {
+                new FlintLoot(Guid.NewGuid(), new Vector2(x * Data.TileSize, y * Data.TileSize));
+            }
+            else if (color.R == 0 && color.G == 0 && color.B == 252)
+            {
+                new ClubLoot(Guid.NewGuid(), new Vector2(x * Data.TileSize, y * Data.TileSize));
+            }
         }
     }
 }

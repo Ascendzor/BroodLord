@@ -122,6 +122,8 @@ namespace Objects
                 selectedSlot = clickedSlot;
             else if (nowState.RightButton == ButtonState.Pressed)
                 slots[clickedSlot].dropSlot(dude.Position, dude.GetId());
+            else if (nowState.MiddleButton == ButtonState.Pressed)
+                slots[clickedSlot].useSlot(dude);
 
             return true;
         }
@@ -167,7 +169,7 @@ namespace Objects
         /// <param name="drawPosition">Bottom left of the drawing position</param>
         public void Draw(SpriteBatch sb, Vector2 drawPosition, SpriteFont spriteFont)
         {
-            drawPosition.Y -= (inventorySlotSize + 1) * inventoryRows;
+            drawPosition.Y -= (inventorySlotSize) * inventoryRows;
 
             // Depth layer, 0 = default, >0 = away from you
             int count = 0;
@@ -182,14 +184,14 @@ namespace Objects
                     sb.Draw(Data.FindTexture["InventorySlot"], drawPosition, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.1f);
                 }
                 // 1 = offset (gap between images)
-                drawPosition.X += inventorySlotSize + 1;
+                drawPosition.X += inventorySlotSize;
 
                 count++;
                 // May be bad to modulo here
                 if (count % inventoryCols == 0)
                 {
-                    drawPosition.X -= (inventorySlotSize + 1) * inventoryCols;
-                    drawPosition.Y += inventorySlotSize + 1;
+                    drawPosition.X -= (inventorySlotSize) * inventoryCols;
+                    drawPosition.Y += inventorySlotSize;
                 }
             }
         }    

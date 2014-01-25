@@ -85,6 +85,13 @@ namespace Objects
             get { return health; }
         }
 
+        public void replenishHunger(int amount)
+        {
+            hunger += amount;
+            if (hunger > maxHunger)
+                hunger = maxHunger;
+        }
+
         public override void TakeDamage(Mob mob)
         {
             base.TakeDamage(mob);

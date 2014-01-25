@@ -50,6 +50,9 @@
     <Compile Include="Doodad\Doodad.cs" />
     <Compile Include="Doodad\PalmTree.cs" />
     <Compile Include="Events\DeathEvent.cs" />
+    <Compile Include="Events\SpawnClubEvent.cs" />
+    <Compile Include="Events\SpawnCoconutEvent.cs" />
+    <Compile Include="Events\SpawnFlintEvent.cs" />
     <Compile Include="Events\SpawnMeatEvent.cs" />
     <Compile Include="Events\DroppedItemEvent.cs" />
     <Compile Include="Events\SpawnRockEvent.cs" />
@@ -59,6 +62,12 @@
     <Compile Include="Events\Event.cs" />
     <Compile Include="Inventory\InventorySlot.cs" />
     <Compile Include="Inventory\Inventory.cs" />
+    <Compile Include="Lootems\ClubItem.cs" />
+    <Compile Include="Lootems\ClubLoot.cs" />
+    <Compile Include="Lootems\CoconutItem.cs" />
+    <Compile Include="Lootems\CoconutLoot.cs" />
+    <Compile Include="Lootems\FlintItem.cs" />
+    <Compile Include="Lootems\FlintLoot.cs" />
     <Compile Include="Lootems\MeatItem.cs" />
     <Compile Include="Lootems\MeatLoot.cs" />
     <Compile Include="Lootems\RockItem.cs" />

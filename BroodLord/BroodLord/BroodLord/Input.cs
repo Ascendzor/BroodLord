@@ -59,7 +59,7 @@ namespace BroodLord
             {
                 if (nowState.MiddleButton == ButtonState.Pressed)
                 {
-                    //MiddleClick(nowState);
+                    MiddleClick(nowState);
                 }
             }
             #endregion middleClick
@@ -67,7 +67,11 @@ namespace BroodLord
             oldState = nowState;
         }
 
-        
+        private void MiddleClick(MouseState nowState)
+        {
+            if (dude.Inventory.inventoryClick(nowState, dude))
+                return; 
+        }
 
         /// <summary>
         /// 
