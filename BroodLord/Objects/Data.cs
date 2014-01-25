@@ -130,6 +130,13 @@ namespace Objects
             allTextures.Add("Grass2");
             allTextures.Add("Grass3");
             allTextures.Add("Grass4");
+            allTextures.Add("Marsh1");
+            allTextures.Add("Marsh2");
+            allTextures.Add("Marsh3");
+            allTextures.Add("Marsh4");
+            allTextures.Add("Stone1");
+            allTextures.Add("Stone2");
+            allTextures.Add("Stone3");
             allTextures.Add("Sand1");
             allTextures.Add("Sand2");
             allTextures.Add("Sand3");
