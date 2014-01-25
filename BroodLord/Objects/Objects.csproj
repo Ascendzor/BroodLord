@@ -48,6 +48,7 @@
     <Compile Include="Client.cs" />
     <Compile Include="Data.cs" />
     <Compile Include="Doodad\Doodad.cs" />
+    <Compile Include="Doodad\PalmTree.cs" />
     <Compile Include="Events\DroppedItemEvent.cs" />
     <Compile Include="Events\SpawnRockEvent.cs" />
     <Compile Include="Events\SpawnToonEvent.cs" />
