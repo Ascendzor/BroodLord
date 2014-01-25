@@ -75,7 +75,7 @@ namespace Server
             for (int i = 0; i < gos.Count;)
             {
                 List<GameObject> goBuffer = new List<GameObject>();
-                for (int x = 0; x <= 500; x++)
+                for (int x = 0; x <= 1250; x++)
                 {
                     goBuffer.Add(gos[i]);
                     i++;
@@ -85,11 +85,11 @@ namespace Server
                     }
                 }
 
-
                 MemoryStream ms = new MemoryStream();
                 new BinaryFormatter().Serialize(ms, goBuffer);
                 byte[] allGameData = ms.ToArray();
                 leInt = allGameData.Length;
+                Console.WriteLine("leInt: " + leInt);
                 data = BitConverter.GetBytes(leInt);
                 stream.Write(data, 0, data.Length);
                 Thread.Sleep(200);
@@ -110,7 +110,6 @@ namespace Server
         private void SendTileTextures(NetworkStream stream)
         {
             Console.WriteLine("About to send tiles");
-            Thread.Sleep(2000);
             List<string> terrainTextures = Map.GetTilesTextureKeys();
 
             byte[] data;
@@ -119,7 +118,7 @@ namespace Server
             {
                 List<string> tileBuffer = new List<string>();
 
-                for (int counter = 0; counter <= 500; counter++)
+                for (int counter = 0; counter <= 34000; counter++)
                 {
                     tileBuffer.Add(terrainTextures[x]);
                     x++;
