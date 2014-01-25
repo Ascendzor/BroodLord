@@ -28,6 +28,7 @@ namespace Objects
             this.health = 100;
             this.mobState = mobState;
             this.oldPosition = position;
+            this.animationTot = 1;
             isInteractable = true;
             
             Map.InsertGameObject(this);

@@ -48,6 +48,8 @@ namespace Objects
             this.maxThirst = 10080;
             this.isInteractable = true;
             this.animation = 5;
+            this.textureBase = "Link";
+            this.animationTot = 5;
 
             interactionOffCooldown = DateTime.Now;
 

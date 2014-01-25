@@ -23,6 +23,7 @@ namespace Objects
         protected int health;
         protected MobState mobState;
         protected int animation;
+        protected int animationTot;
         protected String textureBase;
         protected bool flip;
 
@@ -63,7 +64,7 @@ namespace Objects
         public virtual void Update()
         {
             animation++;
-            if(animation == 25) animation = 5;
+            if(animation == (animationTot *5)) animation = 5;
             int finanim = animation / 5;
             String temp = textureBase + finanim;
 
@@ -76,10 +77,10 @@ namespace Objects
             {
                 moveDirection = GetGoalPosition() - position;
             }
-            if (textureBase.Equals("Evil")) this.textureKey = temp;
+            if (!textureBase.Equals("Cat") && !textureBase.Equals("Link")) this.textureKey = temp;
             if (moveDirection.Length() <= 10)
             {
-                if(textureBase.Equals("Evil"))this.textureKey = (textureBase + "1");
+                if (!textureBase.Equals("Cat") && !textureBase.Equals("Link")) this.textureKey = (textureBase + "2");
                 return;
             }
 
@@ -91,6 +92,7 @@ namespace Objects
                     return;
                 }
             }
+            if (moveDirection.X > 0) flip = true; else flip = false;
 
             moveDirection.Normalize();
             Vector2 newPos = position + moveDirection * movementSpeed;
