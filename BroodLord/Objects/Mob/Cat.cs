@@ -19,7 +19,7 @@ namespace Objects
             this.origin = new Vector2(Data.GetTextureSize(textureKey).X / 2, Data.GetTextureSize(textureKey).Y * 0.85f);
             this.movementSpeed = 2;
             this.interactRange = 100;
-            this.interactionCooldown = 5000;
+            this.interactionCooldown = 3000;
             this.attackDamage = 1;
             this.health = 100;
             this.mobState = mobState;
