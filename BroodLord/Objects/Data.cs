@@ -153,6 +153,8 @@ namespace Objects
             allTextures.Add("Stoneer4");
             allTextures.Add("Stoneer5");
             allTextures.Add("Stoneer6");
+            allTextures.Add("Spidey1");
+            allTextures.Add("Spidey2");
         }
 
         public static void Initialize()
