@@ -139,6 +139,7 @@ namespace Objects
             allTextures.Add("snow7");
             allTextures.Add("snow8");
             allTextures.Add("meatPH");
+            allTextures.Add("meatBag");
             allTextures.Add("evil man medium");
             allTextures.Add("Evil1");
             allTextures.Add("Evil2");
@@ -148,6 +149,7 @@ namespace Objects
             allTextures.Add("Night_Dark");
             allTextures.Add("Night_Light");
             allTextures.Add("Night_Medium");
+            allTextures.Add("Night_Bright");
             allTextures.Add("Stoneer1");
             allTextures.Add("Stoneer2");
             allTextures.Add("Stoneer3");

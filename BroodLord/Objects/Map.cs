@@ -27,7 +27,7 @@ namespace Objects
         public static void Initialize(int _renderWidth)
         {
             renderWidth = _renderWidth;
-            vignette = "Night_Light";
+            vignette = "Night_Bright";
 
             tiles = new Tile[Data.MapSize, Data.MapSize];
 
@@ -96,7 +96,7 @@ namespace Objects
                 tile.Draw(sb);
             }
 
-            sb.Draw(Data.FindTexture[vignette], new Vector2(Data.Dude.Position.X-960, Data.Dude.Position.Y-540), Color.White);
+            sb.Draw(Data.FindTexture[vignette], new Vector2(Data.Dude.Position.X - 960, Data.Dude.Position.Y - 540), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.0005f);
         }
 
         public static void UpdateNight(UpdateNightEvent leEvent)
@@ -104,13 +104,24 @@ namespace Objects
             Console.WriteLine("RECEIVED UPDATENIGHT ON MAP");
             if (leEvent.Nightness == 0)
             {
-                vignette = "Night_Light";
+                vignette = "Night_Bright";
             }
             else if (leEvent.Nightness == 1)
             {
-                vignette = "Night_Medium";
+                vignette = "Night_Light";
+            }
+            else if (!Data.IsServer)
+            {
+                if (Data.Dude.textureBase == "Evil")
+                {
+                    return;
+                }
             }
             else if (leEvent.Nightness == 2)
+            {
+                vignette = "Night_Medium";
+            }
+            else if (leEvent.Nightness == 3)
             {
                 vignette = "Night_Dark";
             }
