@@ -80,12 +80,13 @@ namespace BroodLord
                 drawPosition.X += Data.FindTextureSize["health" + i.ToString()].X;
             }
 
-            
-
-            drawPosition = cameraPosition + bottomLeftPosition;
-
             // Draw inventory
+            drawPosition = cameraPosition + bottomLeftPosition;
             dude.Inventory.Draw(sb, drawPosition, spriteFont);
+
+            // Draw Patters
+            drawPosition = cameraPosition + topLeftPosition;
+            Patterns.Draw(sb, drawPosition);
 
         }
 

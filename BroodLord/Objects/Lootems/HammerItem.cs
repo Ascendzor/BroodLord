@@ -15,7 +15,7 @@ namespace Objects
             : base()
         {
             this.id = id;
-            this.textureKey = "InventorySlot";
+            this.textureKey = "EmptyInventorySlot";
             this.origin = new Vector2(Data.GetTextureSize(textureKey).X / 2, Data.GetTextureSize(textureKey).Y * 0.85f);
             this.hitbox = new Rectangle(0, 0, 0, 0); //set this when going to click on the item
         }

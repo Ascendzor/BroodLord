@@ -34,16 +34,21 @@ namespace Objects
             health -= (int)dude.GetAttackDamage();
             if (health < 0)
             {
-                textureKey = "stump";
-                this.isInteractable = false;
                 Console.WriteLine(health);
                 if (!Data.IsServer) Sounds.PlaySound(Data.FindSound["WoodFall"]);
                 if (Data.IsServer)
                 {
                     Client.SendEvent(new SpawnWoodEvent(Guid.NewGuid(), new Vector2(position.X - 10, position.Y)));
                     Client.SendEvent(new SpawnWoodEvent(Guid.NewGuid(), new Vector2(position.X + 20, position.Y + 10)));
+                    Client.SendEvent(new DeathEvent(id));
                 }
             }
+        }
+
+        public void ReceiveEvent(DeathEvent leEvent)
+        {
+            textureKey = "stump";
+            this.isInteractable = false;
         }
     }
 }
