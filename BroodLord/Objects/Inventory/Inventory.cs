@@ -175,13 +175,13 @@ namespace Objects
             int count = 0;
             foreach (InventorySlot invSlot in slots)
             {
-                sb.Draw(Data.FindTexture[invSlot.getTextureKey()], drawPosition, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.2f);
+                sb.Draw(Data.FindTexture[invSlot.getTextureKey()], drawPosition, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.0004f);
                 sb.DrawString(spriteFont, invSlot.Quantity.ToString(), drawPosition, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0);
 
                 // Draw around the current slot
                 if (selectedSlot == count)
                 {
-                    sb.Draw(Data.FindTexture["InventorySlot"], drawPosition, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.1f);
+                    sb.Draw(Data.FindTexture["InventorySlot"], drawPosition, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.0003f);
                 }
                 // 1 = offset (gap between images)
                 drawPosition.X += inventorySlotSize;

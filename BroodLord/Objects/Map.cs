@@ -96,7 +96,7 @@ namespace Objects
                 tile.Draw(sb);
             }
 
-            sb.Draw(Data.FindTexture[vignette], new Vector2(Data.Dude.Position.X-960, Data.Dude.Position.Y-540), Color.White);
+            sb.Draw(Data.FindTexture[vignette], new Vector2(Data.Dude.Position.X - 960, Data.Dude.Position.Y - 540), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.0005f);
         }
 
         public static void UpdateNight(UpdateNightEvent leEvent)
