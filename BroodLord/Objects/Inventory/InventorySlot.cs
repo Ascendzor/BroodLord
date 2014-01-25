@@ -21,6 +21,14 @@ namespace Objects
         {
             items = new Dictionary<Guid, Item>();
         }
+
+        public void Print()
+        {
+            foreach (Item item in items.Values.ToList())
+            {
+                Console.WriteLine(item);
+            }
+        }
         
         public int Quantity
         {

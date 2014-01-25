@@ -52,6 +52,14 @@ namespace Objects
             boundsOnScreen = new Rectangle(0, 1080 - inventorySlotSize * inventoryRows, inventorySlotSize * inventoryCols, inventorySlotSize * inventoryRows);
         }
 
+        public void Print()
+        {
+            foreach(InventorySlot inv in slots)
+            {
+                inv.Print();
+            }
+        }
+
         /// <summary>
         /// Attempt to add an item to inventory and stack it with existing items of same type
         /// </summary>

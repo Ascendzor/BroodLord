@@ -111,6 +111,8 @@ namespace Objects
 
         public void ReceiveEvent(MoveToPositionEvent leEvent)
         {
+            Console.WriteLine("==========" + id);
+            inventory.Print();
             goalPosition = leEvent.Position;
         }
 
