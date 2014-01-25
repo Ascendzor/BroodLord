@@ -33,9 +33,14 @@ namespace Objects
         {
 
         }*/
-        public void ReceiveEvent(DeathEvent leEvent)
+
+        public override Rectangle GetHitBox()
         {
-             Map.RemoveGameObject(this);
+            return new Rectangle((int)(position.X - origin.X), (int)(position.Y - origin.Y), (int)Data.GetTextureSize(textureKey).X, (int)Data.GetTextureSize(textureKey).Y);
+        }
+        public virtual void ReceiveEvent(DeathEvent leEvent)
+        {
+            Map.ErradicateGameObject(leEvent.Id);
         }
 
 

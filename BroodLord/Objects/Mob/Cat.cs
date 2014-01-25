@@ -21,6 +21,8 @@ namespace Objects
             this.interactRange = 100;
             this.interactionCooldown = 3000;
             this.attackDamage = 1;
+            this.interactionCooldown = 5000;
+            this.attackDamage = 6;
             this.health = 100;
             this.mobState = mobState;
             isInteractable = true;

@@ -81,16 +81,17 @@ namespace Objects
             }
         }
 
-        public static void ErradicateGameObject(GameObject gameObject)
+        public static void ErradicateGameObject(Guid ObjectId)
         {
+            GameObject gameObject = GetGameObject(ObjectId);
             foreach(Mob mob in allMobs.Values.ToList<GameObject>())
             {
-                if(mob.GoalGameObject == gameObject)
+                if (mob.GoalGameObject == gameObject)
                 {
                     mob.GoalGameObject = null;
                 }
             }
-            RemoveGameObject(gameObject);
+            RemoveGameObject(ObjectId);
         }
 
         public static void RemoveGameObject(GameObject gameObject)

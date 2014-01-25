@@ -44,11 +44,14 @@ namespace Objects
             this.maxHunger = 10080;
             this.thirst = 0;
             this.maxThirst = 10080;
+            this.isInteractable = true;
 
             interactionOffCooldown = DateTime.Now;
 
             Map.InsertGameObject(this);
         }
+
+        
 
         public int Hunger
         {
@@ -168,9 +171,9 @@ namespace Objects
             item.CreateLoot(position);
         }
 
-        public void ReceiveEvent(DeathEvent leEvent)
+        public override void ReceiveEvent(DeathEvent leEvent)
         {
-            Map.RemoveGameObject(leEvent.Id);
+            Map.ErradicateGameObject(leEvent.Id);
         }
 
         /// <summary>

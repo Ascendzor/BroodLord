@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,8 +24,9 @@ namespace Objects
             port = 41337;
             //client = new TcpClient("127.0.0.1", port);
             //otherClient = new TcpClient("127.0.0.1", 41338);
-            client = new TcpClient("10.30.151.142", port);
-            otherClient = new TcpClient("10.30.151.142", 41338);
+            string leIp = "127.0.0.1";
+            client = new TcpClient(leIp, port);
+            otherClient = new TcpClient(leIp, 41338);
             outgoingEvents = new Queue<Event>();
 
             new Thread(ReceiveEvent).Start();
