@@ -28,10 +28,6 @@ namespace Objects
 
         public override bool Use(Toon dude)
         {
-            if (!Data.IsServer)
-            {
-                Sounds.PlaySound(Data.FindSound["Eat"]);
-            }
             dude.replenishHunger(HUNGER_AMOUNT);
             dude.replenishThirst(THIRST_AMOUNT);
             return true;

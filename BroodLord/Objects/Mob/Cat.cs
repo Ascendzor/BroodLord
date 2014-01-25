@@ -42,7 +42,7 @@ namespace Objects
         public override void TakeDamage(int damage)
         {
             base.TakeDamage(damage);
-            if (!Data.IsServer) Sounds.PlaySound(Data.FindSound["MobHit"]);
+
             if (Data.IsServer && health <= 0)
             {
                 

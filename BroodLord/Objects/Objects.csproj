@@ -70,8 +70,6 @@
     <Compile Include="Lootems\CoconutLoot.cs" />
     <Compile Include="Lootems\FlintItem.cs" />
     <Compile Include="Lootems\FlintLoot.cs" />
-    <Compile Include="Lootems\HammerItem.cs" />
-    <Compile Include="Lootems\HammerLoot.cs" />
     <Compile Include="Lootems\MeatItem.cs" />
     <Compile Include="Lootems\MeatLoot.cs" />
     <Compile Include="Lootems\RockItem.cs" />
@@ -98,9 +96,6 @@
     <Compile Include="Mob\Toon.cs" />
     <Compile Include="Doodad\Tree.cs" />
     <Compile Include="Lootems\WoodLoot.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Mob\Drop.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

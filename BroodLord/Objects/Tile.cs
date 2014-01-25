@@ -34,6 +34,10 @@ namespace Objects
                 if (go is Mob) //<-- this entire if might go and we might end up just updating GameObject, we'll see -Troy
                 {
                     ((Mob)go).Update();
+                    if (go is HostileMob)
+                    {
+                        ((HostileMob)go).Behave();
+                    }
                 }
             }
 

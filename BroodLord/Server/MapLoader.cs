@@ -65,7 +65,7 @@ namespace Server
         public static void LoadTerrain(int x, int y, System.Drawing.Color color)
         {
             String grass = "Grass";
-            int randomNumber = ran.Next(3) + 1;
+            int randomNumber = ran.Next(4) + 1;
 
             Map.SetTileTexture(x, y, grass + randomNumber.ToString());
             ////load terrain here
