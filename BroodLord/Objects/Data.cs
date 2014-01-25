@@ -100,6 +100,7 @@ namespace Objects
             allTextures.Add("snow6");
             allTextures.Add("snow7");
             allTextures.Add("snow8");
+            allTextures.Add("meatPH");
         }
 
         public static void Initialize()
