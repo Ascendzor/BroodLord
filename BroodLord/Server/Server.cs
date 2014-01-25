@@ -75,11 +75,11 @@ namespace Server
             for (int i = 0; i < gos.Count;)
             {
                 List<GameObject> goBuffer = new List<GameObject>();
-                for (int x = 0; x < 75; x++)
+                for (int x = 0; x <= 500; x++)
                 {
                     goBuffer.Add(gos[i]);
                     i++;
-                    if (i >= gos.Count)
+                    if (i == gos.Count)
                     {
                         break;
                     }
@@ -92,11 +92,11 @@ namespace Server
                 leInt = allGameData.Length;
                 data = BitConverter.GetBytes(leInt);
                 stream.Write(data, 0, data.Length);
-                Thread.Sleep(100);
+                Thread.Sleep(200);
 
                 stream.Write(allGameData, 0, allGameData.Length);
-                Thread.Sleep(500);
-                if (i >= gos.Count)
+                Thread.Sleep(5000);
+                if (i == gos.Count)
                 {
                     break;
                 }
@@ -119,7 +119,7 @@ namespace Server
             {
                 List<string> tileBuffer = new List<string>();
 
-                for (int counter = 0; counter <= 75; counter++)
+                for (int counter = 0; counter <= 500; counter++)
                 {
                     tileBuffer.Add(terrainTextures[x]);
                     x++;
@@ -127,10 +127,6 @@ namespace Server
                     {
                         break;
                     }
-                }
-                if (tileBuffer.Count < 50)
-                {
-                    Console.WriteLine(tileBuffer.Count);
                 }
                 
                 MemoryStream ms = new MemoryStream();
@@ -142,7 +138,7 @@ namespace Server
                 Thread.Sleep(200);
 
                 stream.Write(allGameData, 0, allGameData.Length);
-                Thread.Sleep(700);
+                Thread.Sleep(5000);
             }
 
             leInt = -1;
