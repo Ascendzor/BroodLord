@@ -72,6 +72,16 @@ namespace Objects
             allTextures.Add("health8");
             allTextures.Add("health9");
             allTextures.Add("health10");
+            allTextures.Add("hunger1");
+            allTextures.Add("hunger2");
+            allTextures.Add("hunger3");
+            allTextures.Add("hunger4");
+            allTextures.Add("hunger5");
+            allTextures.Add("hunger6");
+            allTextures.Add("hunger7");
+            allTextures.Add("hunger8");
+            allTextures.Add("hunger9");
+            allTextures.Add("hunger10");
             allTextures.Add("snow1");
             allTextures.Add("snow2");
             allTextures.Add("snow3");

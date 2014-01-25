@@ -40,7 +40,7 @@ namespace Objects
             this.inventory = new Inventory();
             this.health = 10;
             this.maxHealth = 10;
-            this.hunger = 0;
+            this.hunger = 10080;
             this.maxHunger = 10080;
             this.thirst = 0;
             this.maxThirst = 10080;
@@ -58,6 +58,21 @@ namespace Objects
         public int Thirst
         {
             get { return thirst; }
+        }
+
+        public int MaxHealth
+        {
+            get { return maxHealth; }
+        }
+
+        public int MaxHunger
+        {
+            get { return maxHunger; }
+        }
+
+        public int MaxThirst
+        {
+            get { return maxThirst; }
         }
 
         public Inventory Inventory

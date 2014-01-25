@@ -152,7 +152,7 @@ namespace Objects
             while (true)
             {
                 Event leEvent = null;
-                while (outgoingEvents.Count > 0)
+                while (outgoingEvents.Count > 0) 
                 {
                     leEvent = outgoingEvents.Dequeue();
                     byte[] bytes = leEvent.Serialize();

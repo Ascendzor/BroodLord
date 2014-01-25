@@ -35,5 +35,10 @@ namespace Objects
         {
             new RockLoot(leEvent.Id, leEvent.Position);
         }
+
+        public static void HandleEvent(SpawnMeatEvent leEvent)
+        {
+            new MeatLoot(leEvent.Id, leEvent.Position);
+        }
     }
 }

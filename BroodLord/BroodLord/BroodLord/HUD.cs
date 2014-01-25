@@ -30,7 +30,7 @@ namespace BroodLord
             topLeftPosition = new Vector2(-screenWidth / 2, -screenHeight / 2);
             bottomLeftPosition = new Vector2(-screenWidth / 2, screenHeight / 2);
             bottomRightPosition = new Vector2(screenWidth / 2, screenHeight / 2);
-            bottomMiddlePosition = new Vector2(-screenWidth / 4, screenHeight / 2);
+            bottomMiddlePosition = new Vector2(0, screenHeight / 2);
         }
 
         public void Draw(SpriteBatch sb, Vector2 cameraPosition)
@@ -46,12 +46,22 @@ namespace BroodLord
             // Draw Health
             drawPosition = cameraPosition + bottomMiddlePosition;
             drawPosition.Y -= Data.FindTextureSize["health1"].Y;
+            drawPosition.X -= Data.FindTextureSize["health1"].X * (dude.MaxHealth / 2);
             for (int i = 1; i < dude.Health + 1; i++)
             {
                 sb.Draw(Data.FindTexture["health" + i.ToString()], drawPosition, Color.White);
                 drawPosition.X += Data.FindTextureSize["health" + i.ToString()].X;
             }
 
+            // Draw Hunger
+            drawPosition = cameraPosition + bottomMiddlePosition;
+            drawPosition.Y -= Data.FindTextureSize["hunger1"].Y*2;
+            int numberOfSegments = (dude.Hunger / (dude.MaxHunger / 10)) + 1;
+            for (int i = 1; i < numberOfSegments; i++)
+            {
+                sb.Draw(Data.FindTexture["hunger" + i.ToString()], drawPosition, Color.White);
+                drawPosition.X += Data.FindTextureSize["hunger" + i.ToString()].X;
+            }
 
             drawPosition = cameraPosition + bottomLeftPosition;
 

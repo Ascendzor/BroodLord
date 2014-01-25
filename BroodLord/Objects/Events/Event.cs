@@ -47,6 +47,10 @@ namespace Objects
             {
                 leEvent = DroppedItemEvent.Deserialize(bytes);
             }
+            else if (theType == 6)
+            {
+                leEvent = SpawnMeatEvent.Deserialize(bytes);
+            }
 
             return leEvent;
         }
