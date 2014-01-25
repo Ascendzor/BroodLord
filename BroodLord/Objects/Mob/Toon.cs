@@ -228,8 +228,11 @@ namespace Objects
             {
                 if (id.Equals(leEvent.Id))
                 {
-                    textureKey = "evil man medium";
-                    this.origin = new Vector2(Data.GetTextureSize(textureKey).X / 2, Data.GetTextureSize(textureKey).Y * 0.85f);
+                    if (leEvent.Id.Equals(Data.Dude.GetId()))
+                    {
+                        textureKey = "evil man medium";
+                        this.origin = new Vector2(Data.GetTextureSize(textureKey).X / 2, Data.GetTextureSize(textureKey).Y * 0.85f);
+                    }
                 }
             }
         }
