@@ -39,10 +39,7 @@ namespace Objects
             health -= (int)dude.GetAttackDamage();
             if (health < 0)
             {
-                if (!Data.IsServer)
-                {
-                    Sounds.PlaySound(Data.FindSound["WoodFall"]);
-                }
+                if (!Data.IsServer) Sounds.PlaySound(Data.FindSound["WoodFall"]);
                 textureKey = "PalmStump";
 
                 this.isInteractable = false;
