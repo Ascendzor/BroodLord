@@ -41,18 +41,22 @@ namespace Objects
                 {
                     Sounds.PlaySound(Data.FindSound["WoodFall"]);
                 }
-                textureKey = "PalmStump";
 
-                this.isInteractable = false;
                 Console.WriteLine(health);
                 
                 if (Data.IsServer)
                 {
                     Client.SendEvent(new SpawnWoodEvent(Guid.NewGuid(), new Vector2(position.X - 10, position.Y)));
                     Client.SendEvent(new SpawnCoconutEvent(Guid.NewGuid(), new Vector2(position.X + 20, position.Y + 10)));
-                    Console.WriteLine("tesT");
+                    Client.SendEvent(new DeathEvent(id));
                 }
             }
+        }
+
+        public void ReceiveEvent(DeathEvent leEvent)
+        {
+            textureKey = "PalmStump";
+            this.isInteractable = false;
         }
     }
 }
