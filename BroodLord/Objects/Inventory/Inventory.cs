@@ -162,6 +162,16 @@ namespace Objects
             return null;
         }
 
+        public bool ContainsItemType(String type)
+        {
+            foreach (InventorySlot slot in slots)
+            {
+                if (slot.GetType().ToString() == type)
+                    return true;
+            }
+            return false;
+        }
+
         /// <summary>
         /// Draws inventory slots
         /// Image = empty slot or item in bag image
