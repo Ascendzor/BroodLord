@@ -62,6 +62,12 @@ namespace Objects
             
         }
 
+        public void useSlot(Toon dude)
+        {
+            if (items.Count != 0)
+                items.First().Value.Use(dude);
+        }
+
         /// <summary>
         /// Drops all items out of this inventory slot by sending DroppedItemEvent to server
         /// </summary>

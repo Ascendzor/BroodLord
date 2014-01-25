@@ -83,6 +83,7 @@ namespace Objects
             allTextures.Add("hunger8");
             allTextures.Add("hunger9");
             allTextures.Add("hunger10");
+            allTextures.Add("hungerOutline");
             allTextures.Add("hydration1");
             allTextures.Add("hydration2");
             allTextures.Add("hydration3");
@@ -94,6 +95,10 @@ namespace Objects
             allTextures.Add("hydration9");
             allTextures.Add("hydration10");
             allTextures.Add("hydrationOutline");
+            allTextures.Add("FlintBag");
+            allTextures.Add("ClubBag");
+            allTextures.Add("RockBag");
+            allTextures.Add("CoconutBag");
             allTextures.Add("snow1");
             allTextures.Add("snow2");
             allTextures.Add("snow3");

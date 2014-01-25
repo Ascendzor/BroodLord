@@ -27,5 +27,7 @@ namespace Objects
         }
 
         public abstract Loot CreateLoot(Vector2 position);
+
+        public abstract void Use(Toon dude);
     }
 }

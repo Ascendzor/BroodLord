@@ -42,7 +42,7 @@ namespace Objects
             this.maxHealth = 10;
             this.hunger = 10080;
             this.maxHunger = 10080;
-            this.thirst = 0;
+            this.thirst = 10080;
             this.maxThirst = 10080;
             this.isInteractable = true;
 
@@ -86,6 +86,13 @@ namespace Objects
         public int Health
         {
             get { return health; }
+        }
+
+        public void replenishHunger(int amount)
+        {
+            hunger += amount;
+            if (hunger > maxHunger)
+                hunger = maxHunger;
         }
 
         public override void TakeDamage(int damage)

@@ -21,5 +21,10 @@ namespace Objects
             return new WoodLoot(id, position);
         }
 
+        public override void Use(Toon dude)
+        {
+            Console.WriteLine("I used this item");
+        }
+
     }
 }
