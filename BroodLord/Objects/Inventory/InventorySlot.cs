@@ -29,7 +29,10 @@ namespace Objects
 
         public void addItemToSlot(Item item)
         {
-            items.Add(item.Id, item);
+            if(!items.ContainsKey(item.Id))
+            {
+                items.Add(item.Id, item);
+            }
         }
 
         /// <summary>

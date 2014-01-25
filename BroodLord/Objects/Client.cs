@@ -22,8 +22,8 @@ namespace Objects
         public static void Initialize()
         {
             port = 41337;
-            client = new TcpClient("127.0.0.1", port);
-            otherClient = new TcpClient("127.0.0.1", 41338);
+            client = new TcpClient("10.30.152.112", port);
+            otherClient = new TcpClient("10.30.152.112", 41338);
             outgoingEvents = new Queue<Event>();
 
             new Thread(ReceiveEvent).Start();
