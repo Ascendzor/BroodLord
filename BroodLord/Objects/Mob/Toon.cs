@@ -63,7 +63,7 @@ namespace Objects
                 Console.WriteLine("WINRAR");
                 if (Data.Dude.GetId().Equals(id))
                 {
-                    sb.Draw(Data.FindTexture["YOUWON"], position, Color.White);
+                    sb.Draw(Data.FindTexture["YOUWON"], position + new Vector2(-600, -400), Color.White);
                 }
             }
         }
