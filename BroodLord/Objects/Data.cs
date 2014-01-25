@@ -65,6 +65,7 @@ namespace Objects
             allSounds.Add("Eat");
             allSounds.Add("WoodChop");
             allSounds.Add("WoodFall");
+            allSounds.Add("BGMusic");
         }
 
         private static void InitializeAllTextures()
