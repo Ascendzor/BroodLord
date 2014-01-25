@@ -56,7 +56,13 @@ namespace Objects
             Map.InsertGameObject(this);
         }
 
-        
+        public void CheckWinner()
+        {
+            if (position.X > 32000 && position.Y < 2000)
+            {
+                Console.WriteLine("WINRAR");
+            }
+        }
 
         public int Hunger
         {
@@ -266,6 +272,8 @@ namespace Objects
                 }
                 thirst++;
             }
+
+            CheckWinner();
 
             base.Update();
         }
