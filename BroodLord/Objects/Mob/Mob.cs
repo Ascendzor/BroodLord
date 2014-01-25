@@ -64,7 +64,7 @@ namespace Objects
         public virtual void Update()
         {
             animation++;
-            if(animation == (animationTot *5)) animation = 5;
+            if(animation == ((animationTot *5))+1) animation = 5;
             int finanim = animation / 5;
             String temp = textureBase + finanim;
 

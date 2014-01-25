@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 namespace Objects
 {
     [Serializable()]
-    class PassiveMob : Mob
+    public class PassiveMob : Mob
     {
 
         public void Behave()
@@ -19,6 +19,9 @@ namespace Objects
             else if (mobState is IdleMobState)
             {
                 HandleMobState((IdleMobState)mobState);
+            }else if (mobState is WanderMobState)
+            {
+                HandleMobState((WanderMobState)mobState);
             }
         }
 
@@ -36,6 +39,19 @@ namespace Objects
         }
 
         public void HandleMobState(IdleMobState leState)
+        {
+            if (!leState.IsActive)
+            {
+                leState.Activate();
+            }
+            else if (leState.CheckState())
+            {
+                leState.IsActive = false;
+                mobState = leState.NextState;
+            }
+        }
+
+        public void HandleMobState(WanderMobState leState)
         {
             if (!leState.IsActive)
             {

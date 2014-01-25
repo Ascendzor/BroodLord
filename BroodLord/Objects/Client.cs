@@ -24,7 +24,7 @@ namespace Objects
             port = 41337;
             //client = new TcpClient("127.0.0.1", port);
             //otherClient = new TcpClient("127.0.0.1", 41338);
-            string leIp = "127.0.0.1";
+            string leIp = "127.0.0.1 ";
             client = new TcpClient(leIp, port);
             otherClient = new TcpClient(leIp, 41338);
             outgoingEvents = new Queue<Event>();
@@ -56,10 +56,6 @@ namespace Objects
                 {
                     otherStream.Read(bytes, 0, bytes.Length);
                     dynamic leEvent = Event.Deserialize(bytes);
-                    if (leEvent is UpdateNightEvent)
-                    {
-                        EventManager.HandleEvent(leEvent);
-                    }
                     if (leEvent != null && !leEvent.Id.Equals(Guid.Empty))
                     {
                         EventManager.HandleEvent(leEvent);

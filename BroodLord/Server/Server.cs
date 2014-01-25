@@ -181,7 +181,7 @@ namespace Server
                     dudes.Add((Toon)mob);
                 }
             }
-            int leEvilDude = new Random().Next(0, dudes.Count);
+            int leEvilDude = new Random().Next(0, dudes.Count-1);
             Console.WriteLine("you're evil: " + dudes[leEvilDude].GetId());
             Client.SendEvent(new EvilDudeEvent(dudes[leEvilDude].GetId()));
         }
