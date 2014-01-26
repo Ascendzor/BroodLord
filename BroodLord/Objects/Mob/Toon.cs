@@ -172,6 +172,10 @@ namespace Objects
         {
             interactionOffCooldown = DateTime.Now.AddMilliseconds(interactionCooldown); //<--- this allows the interaction to define the cooldown, ie chopping may take longer than attacking
             AttackMob(mob);
+            if (mob is Toon)
+            {
+                Client.SendEvent(new DamageEvent(mob.GetId(), (int)mob.GetAttackDamage()));
+            }
             //base.Interact(tree);
             //Console.WriteLine("Toon chopped");
            // tree.GotChopped(this);
@@ -191,6 +195,11 @@ namespace Objects
         {
             goalPosition = leEvent.Position;
             goalGameObject = null;
+        }
+
+        public void ReceiveEvent(DamageEvent leEvent)
+        {
+            health -= leEvent.damage;
         }
 
         /// <summary>
