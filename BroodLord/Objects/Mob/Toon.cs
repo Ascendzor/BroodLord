@@ -30,10 +30,10 @@ namespace Objects
         {
             Console.WriteLine("new toon getting mayd");
             this.id = id;
-            this.position = position;
+            this.position = new Vector2(5000, 30000);
             this.textureKey = textureKey;
             this.movementSpeed = 5;
-            this.goalPosition = position;
+            this.goalPosition = this.position;
             this.origin = new Vector2(Data.GetTextureSize(textureKey).X / 2, Data.GetTextureSize(textureKey).Y * 0.85f);
             this.interactRange = Data.ToonInteractionRange;
             this.attackDamage = 1;
@@ -65,7 +65,7 @@ namespace Objects
                 Console.WriteLine("WINRAR");
                 if (Data.Dude.GetId().Equals(id))
                 {
-                    sb.Draw(Data.FindTexture["YOUWON"], position + new Vector2(-600, -400), Color.White);
+                    sb.Draw(Data.FindTexture["youWin"], position + new Vector2(-600, -400), Color.White);
                 }
             }
         }

@@ -192,6 +192,7 @@ namespace Objects
             allTextures.Add("Golem3");
             allTextures.Add("Golem4");
             allTextures.Add("Golem5");
+            allTextures.Add("youWin");
         }
 
         public static void Initialize()
