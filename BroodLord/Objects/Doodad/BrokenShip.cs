@@ -15,11 +15,11 @@ namespace Objects
         {
             this.id = id;
             this.position = position;
-            this.textureKey = textureKey;
+            this.textureKey = "leShip04";
             this.collisionWidth = Data.TreeRadius;
             this.origin = new Vector2(Data.GetTextureSize(textureKey).X / 2, Data.GetTextureSize(textureKey).Y * 0.90f);
             this.hitbox = new Rectangle((int)(position.X - origin.X), (int)(position.Y - origin.Y), (int)Data.GetTextureSize(textureKey).X, (int)Data.GetTextureSize(textureKey).Y);
-            this.isInteractable = true;
+            this.isInteractable = false;
 
             Map.InsertGameObject(this);
         }
