@@ -31,6 +31,11 @@ namespace Objects
 
         public void GotChopped(Toon dude)
         {
+           if (!Data.IsServer)
+           {
+                Sounds.PlaySound(Data.FindSound["WoodChop"]);
+           }
+
             health -= (int)dude.GetAttackDamage();
             if (health < 0)
             {

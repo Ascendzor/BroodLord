@@ -91,10 +91,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Lootems\RockLoot.cs" />
     <Compile Include="EventManager.cs" />
+    <Compile Include="Sounds.cs" />
     <Compile Include="Tile.cs" />
     <Compile Include="Mob\Toon.cs" />
     <Compile Include="Doodad\Tree.cs" />
     <Compile Include="Lootems\WoodLoot.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Mob\Drop.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

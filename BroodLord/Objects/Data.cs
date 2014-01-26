@@ -16,8 +16,10 @@ namespace Objects
     public class Data
     {
         private static List<string> allTextures;
+        private static List<string> allSounds;
         public static Dictionary<string, Texture2D> FindTexture;
         public static Dictionary<string, Vector2> FindTextureSize;
+        public static Dictionary<string, SoundEffect> FindSound;
         public static int ToonRadius = 28;
         public static int ToonInteractionRange = 100;
         public static int TreeRadius = 56;
@@ -32,12 +34,19 @@ namespace Objects
         public static void Initialize(ContentManager Content)
         {
             FindTexture = new Dictionary<string, Texture2D>();
+            FindSound = new Dictionary<string, SoundEffect>();
 
             Data.InitializeAllTextures();
+            Data.InitializeAllSounds();
 
             foreach (string textureKey in allTextures)
             {
                 FindTexture.Add(textureKey, Content.Load<Texture2D>(textureKey));
+            }
+
+            foreach (string soundKey in allSounds)
+            {
+                FindSound.Add(soundKey, Content.Load<SoundEffect>(soundKey));
             }
 
             FindTextureSize = new Dictionary<string, Vector2>();
@@ -47,6 +56,18 @@ namespace Objects
             }
 
             IsServer = false;
+        }
+
+        private static void InitializeAllSounds()
+        {
+            allSounds = new List<string>();
+
+            allSounds.Add("Eat");
+            allSounds.Add("WoodChop");
+            allSounds.Add("WoodFall");
+            allSounds.Add("Pickup");
+            allSounds.Add("MobHit");
+            allSounds.Add("Drop");
         }
 
         private static void InitializeAllTextures()
