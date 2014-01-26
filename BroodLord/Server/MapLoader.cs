@@ -68,6 +68,8 @@ namespace Server
             String sand = "Sand";
             String marsh = "Marsh";
             String stone = "Stone";
+            string shallow = "WaterShallow";
+            string deep = "WaterDeep";
             int randomNumber;
 
             if (color.G == 255 && color.R == 0 && color.B == 0)
@@ -115,10 +117,15 @@ namespace Server
             }else if (color.B == 255 && color.R == 0 && color.G == 0)
             {
                 //water
+                randomNumber = ran.Next(3) + 1;
+                Map.SetTileTexture(x, y, deep + randomNumber.ToString());
+
             }
             else if (color.B == 255 && color.R == 0 && color.G == 0)
             {
                 //shallow water
+                randomNumber = ran.Next(3) + 1;
+                Map.SetTileTexture(x, y, shallow + randomNumber.ToString());
             }
             else if (color.R == 255 && color.G == 0 && color.B == 0)
             {

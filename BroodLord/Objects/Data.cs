@@ -149,6 +149,12 @@ namespace Objects
             allTextures.Add("snow6");
             allTextures.Add("snow7");
             allTextures.Add("snow8");
+            allTextures.Add("WaterDeep1");
+            allTextures.Add("WaterDeep2");
+            allTextures.Add("WaterDeep3");
+            allTextures.Add("WaterShallow1");
+            allTextures.Add("WaterShallow2");
+            allTextures.Add("WaterShallow3");
             allTextures.Add("meatPH");
             allTextures.Add("meatBag");
             allTextures.Add("evil man medium");
