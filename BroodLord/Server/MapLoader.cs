@@ -107,7 +107,6 @@ namespace Server
         {
             if (color.R == 0 && color.G == 0 && color.B == 255)
             {
-
                 new Cat(Guid.NewGuid(), new Vector2(x * Data.TileSize, y * Data.TileSize));
             }
         }
@@ -134,15 +133,15 @@ namespace Server
             {
                 new MeatLoot(Guid.NewGuid(), new Vector2(x * Data.TileSize, y * Data.TileSize));
             }
-            else if (color.R == 0 && color.G == 0 && color.B == 254)
+            else if (color.R == 255 && color.G == 0 && color.B == 0)
             {
                 new CoconutLoot(Guid.NewGuid(), new Vector2(x * Data.TileSize, y * Data.TileSize));
             }
-            else if (color.R == 0 && color.G == 0 && color.B == 253)
+            else if (color.R == 255 && color.G == 0 && color.B == 255)
             {
                 new FlintLoot(Guid.NewGuid(), new Vector2(x * Data.TileSize, y * Data.TileSize));
             }
-            else if (color.R == 0 && color.G == 0 && color.B == 252)
+            else if (color.R == 0 && color.G == 255 && color.B == 255)
             {
                 new ClubLoot(Guid.NewGuid(), new Vector2(x * Data.TileSize, y * Data.TileSize));
             }
