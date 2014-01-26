@@ -22,10 +22,7 @@ namespace Objects
         
         public Tile(string textureKey, int positionX, int positionY, bool collidable)
         {
-            if (positionX == 3 && positionY > 3)
-                IsCollidable = true;
-            else
-                this.isCollidable = collidable;
+            this.isCollidable = collidable;
             this.gameObjects = new Dictionary<Guid, GameObject>();
             this.textureKey = textureKey;
             this.area = new Rectangle(positionX * Data.TileSize, positionY * Data.TileSize, Data.TileSize, Data.TileSize);
