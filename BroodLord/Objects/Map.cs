@@ -35,8 +35,7 @@ namespace Objects
             {
                 for (int y = 0; y < tiles.GetLength(1); y++)
                 {
-                    int z = (x + y) / 5 + 1;
-                    tiles[x, y] = new Tile("snow" + z, x, y);
+                    tiles[x, y] = new Tile("snow1", x, y);
                     //to be passed in by the server
                 }
             }
