@@ -185,6 +185,7 @@ namespace Objects
         public void ReceiveEvent(MoveToPositionEvent leEvent)
         {
             goalPosition = leEvent.Position;
+            goalGameObject = null;
         }
 
         /// <summary>
