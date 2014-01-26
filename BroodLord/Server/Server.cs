@@ -38,12 +38,12 @@ namespace Server
 
             while (true)
             {
+                NetworkStream stream = listener.AcceptTcpClient().GetStream();
+                NetworkStream otherStream = otherListener.AcceptTcpClient().GetStream();
                 if (!isAcceptingClients)
                 {
                     return;
                 }
-                NetworkStream stream = listener.AcceptTcpClient().GetStream();
-                NetworkStream otherStream = otherListener.AcceptTcpClient().GetStream();
                 Console.WriteLine("found client");
                 //first thing is to send the map data to the new client
                 SendData(otherStream);
@@ -177,6 +177,13 @@ namespace Server
             }
         }
 
+        public void RefuseConnections()
+        {
+            isAcceptingClients = false;
+            listener.Stop();
+            otherListener.Stop();
+        }
+
         static void Main(string[] args)
         {
             Data.Initialize();
@@ -189,7 +196,6 @@ namespace Server
 
             environment.Play();
             Thread.Sleep(10000);
-            server.isAcceptingClients = false;
         }
     }
 }
