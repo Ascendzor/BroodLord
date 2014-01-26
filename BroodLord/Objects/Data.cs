@@ -178,15 +178,5 @@ namespace Objects
         {
             return FindTextureSize[textureKey];
         }
-
-        /*
-         * 
-         * Some Notes
-         * 
-         * We do not want to check for other players collision but we may still nee to do tile checking on them if we want to draw
-         * 
-         * 
-         * 
-         */
     }
 }
