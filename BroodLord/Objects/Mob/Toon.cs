@@ -194,6 +194,7 @@ namespace Objects
                     hungerCounter = 0;
                     health--;
                 }
+                hunger++;
             }
 
             if (thirst < 0)
@@ -204,6 +205,7 @@ namespace Objects
                     thirstCounter = 0;
                     health--;
                 }
+                thirst++;
             }
 
             base.Update();

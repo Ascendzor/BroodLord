@@ -38,10 +38,7 @@ Content\hunger6.xnb
 Content\hunger7.xnb
 Content\hunger8.xnb
 Content\hunger9.xnb
-Content\TestFont.xnb
 Content\meatPH.xnb
-Content\healthBarOutline.xnb
-Content\hydration1.xnb
 Content\hydration10.xnb
 Content\hydration2.xnb
 Content\hydration3.xnb
@@ -51,4 +48,5 @@ Content\hydration6.xnb
 Content\hydration7.xnb
 Content\hydration8.xnb
 Content\hydration9.xnb
-Content\hydrationOutline.xnb
+Content\TestFont.xnb
+Content\healthBarOutline.xnb
