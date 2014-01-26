@@ -158,7 +158,7 @@ namespace Objects
                 {
                     leEvent = outgoingEvents.Dequeue();
                     byte[] bytes = leEvent.Serialize();
-                    stream.Write(bytes, 0, bytes.Length);
+                      stream.Write(bytes, 0, bytes.Length);
                     Thread.Sleep(30);
                 }
             }
