@@ -121,7 +121,7 @@ namespace Server
                 Map.SetTileTexture(x, y, deep + randomNumber.ToString());
 
             }
-            else if (color.B == 255 && color.R == 0 && color.G == 0)
+            else if (color.B == 128 && color.R == 0 && color.G == 0)
             {
                 //shallow water
                 randomNumber = ran.Next(3) + 1;
