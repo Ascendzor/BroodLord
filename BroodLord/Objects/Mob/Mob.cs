@@ -22,7 +22,7 @@ namespace Objects
         protected Inventory inventory;
         protected int health;
         protected MobState mobState;
-
+        protected Vector2 oldPosition;
 
         public GameObject GoalGameObject
         {

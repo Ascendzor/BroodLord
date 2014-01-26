@@ -21,6 +21,7 @@ namespace Objects
 
         public Tile(string textureKey, int positionX, int positionY)
         {
+            
             gameObjects = new Dictionary<Guid, GameObject>();
             this.textureKey = textureKey;
             this.area = new Rectangle(positionX * Data.TileSize, positionY * Data.TileSize, Data.TileSize, Data.TileSize);
@@ -31,7 +32,7 @@ namespace Objects
             //got index out of range error here (dont know what caused)
             foreach (GameObject go in gameObjects.Values.ToList())
             {
-                if (go is Mob) //<-- this entire if might go and we might end up just updating GameObject, we'll see -Troy
+                if (go is Mob && !(go is Toon)) //<-- this entire if might go and we might end up just updating GameObject, we'll see -Troy
                 {
                     ((Mob)go).Update();
                     if (go is HostileMob)
