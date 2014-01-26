@@ -44,11 +44,14 @@ namespace Objects
             this.maxHunger = 10080;
             this.thirst = 0;
             this.maxThirst = 10080;
+            this.isInteractable = true;
 
             interactionOffCooldown = DateTime.Now;
 
             Map.InsertGameObject(this);
         }
+
+        
 
         public int Hunger
         {
