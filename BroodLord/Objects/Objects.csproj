@@ -88,6 +88,7 @@
     <Compile Include="MobStates\MoveToGameObjectMobState.cs" />
     <Compile Include="MobStates\MoveToPostionMobState.cs" />
     <Compile Include="Mob\CatPink.cs" />
+    <Compile Include="Mob\Golem.cs" />
     <Compile Include="Mob\SpideyBaby.cs" />
     <Compile Include="Mob\PassiveMob.cs" />
     <Compile Include="Mob\Swampert.cs" />
