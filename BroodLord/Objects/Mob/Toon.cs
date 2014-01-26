@@ -279,7 +279,10 @@ namespace Objects
             {
                 if (id.Equals(leEvent.Id))
                 {
-                    textureKey = "Evil1";
+                    if(id.Equals(Data.Dude.GetId()))
+                    {
+                        textureKey = "Evil1";
+                    }
                 }
             }
         }
