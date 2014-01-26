@@ -143,6 +143,9 @@ namespace Objects
             allTextures.Add("Evil3");
             allTextures.Add("Evil4");
             allTextures.Add("Evil5");
+            allTextures.Add("Night_Dark");
+            allTextures.Add("Night_Light");
+            allTextures.Add("Night_Medium");
         }
 
         public static void Initialize()

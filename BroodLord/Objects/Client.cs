@@ -56,6 +56,10 @@ namespace Objects
                 {
                     otherStream.Read(bytes, 0, bytes.Length);
                     dynamic leEvent = Event.Deserialize(bytes);
+                    if (leEvent is UpdateNightEvent)
+                    {
+                        EventManager.HandleEvent(leEvent);
+                    }
                     if (leEvent != null && !leEvent.Id.Equals(Guid.Empty))
                     {
                         EventManager.HandleEvent(leEvent);

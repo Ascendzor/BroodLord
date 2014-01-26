@@ -67,6 +67,10 @@ namespace Objects
             {
                 leEvent = EvilDudeEvent.Deserialize(bytes);
             }
+            else if (theType == 11)
+            {
+                leEvent = UpdateNightEvent.Deserialize(bytes);
+            }
 
             return leEvent;
         }

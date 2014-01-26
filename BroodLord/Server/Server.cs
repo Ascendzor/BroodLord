@@ -186,6 +186,23 @@ namespace Server
             Client.SendEvent(new EvilDudeEvent(dudes[leEvilDude].GetId()));
         }
 
+        public void UpdateNight()
+        {
+            Thread.Sleep(1000);
+            while (true)
+            {
+                Console.WriteLine("updated night");
+                Client.SendEvent(new UpdateNightEvent(1));
+                Thread.Sleep(10000);
+                Client.SendEvent(new UpdateNightEvent(2));
+                Thread.Sleep(10000);
+                Client.SendEvent(new UpdateNightEvent(1));
+                Thread.Sleep(10000);
+                Client.SendEvent(new UpdateNightEvent(0));
+                Thread.Sleep(10000);
+            }
+        }
+
         static void Main(string[] args)
         {
             Data.Initialize();
@@ -196,10 +213,12 @@ namespace Server
 
             Client.Initialize();
 
-            Thread.Sleep(50000);
+            Thread.Sleep(30000);
             server.MakeEvilDude();
-            environment.Play();
 
+            new Thread(server.UpdateNight).Start();
+
+            environment.Play();
         }
     }
 }

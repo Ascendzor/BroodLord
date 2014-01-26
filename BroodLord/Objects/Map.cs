@@ -22,10 +22,12 @@ namespace Objects
         private static Dictionary<Guid, GameObject> allGameObjects;
         private static Dictionary<Guid, Mob> allMobs;
         private static Dictionary<Guid, Toon> allToons;
+        private static string vignette;
 
         public static void Initialize(int _renderWidth)
         {
             renderWidth = _renderWidth;
+            vignette = "Night_Light";
 
             tiles = new Tile[Data.MapSize, Data.MapSize];
 
@@ -92,6 +94,25 @@ namespace Objects
             foreach (Tile tile in tilesToRender)
             {
                 tile.Draw(sb);
+            }
+
+            sb.Draw(Data.FindTexture[vignette], new Vector2(Data.Dude.Position.X-960, Data.Dude.Position.Y-540), Color.White);
+        }
+
+        public static void UpdateNight(UpdateNightEvent leEvent)
+        {
+            Console.WriteLine("RECEIVED UPDATENIGHT ON MAP");
+            if (leEvent.Nightness == 0)
+            {
+                vignette = "Night_Light";
+            }
+            else if (leEvent.Nightness == 1)
+            {
+                vignette = "Night_Medium";
+            }
+            else if (leEvent.Nightness == 2)
+            {
+                vignette = "Night_Dark";
             }
         }
 

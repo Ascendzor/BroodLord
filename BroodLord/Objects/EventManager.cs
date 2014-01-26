@@ -11,6 +11,7 @@ namespace Objects
     {
         public static void HandleEvent(Event leEvent)
         {
+            Console.WriteLine("DAFUQ? " + leEvent);
             dynamic go = Map.GetGameObject(leEvent.Id);
             if (go != null)
             {
@@ -44,6 +45,11 @@ namespace Objects
         public static void HandleEvent(SpawnCoconutEvent leEvent)
         {
             new CoconutLoot(leEvent.Id, leEvent.Position);
+        }
+
+        public static void HandleEvent(UpdateNightEvent leEvent)
+        {
+            Map.UpdateNight(leEvent);
         }
     }
 }
