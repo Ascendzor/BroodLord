@@ -273,14 +273,14 @@ namespace Objects
             Console.WriteLine("RECEIVED EVIL DUDE EVENT");
             Console.WriteLine("given guid: " + leEvent.Id);
             Console.WriteLine("my guid: " + Data.Dude);
-           textureBase = "Evil";
-           this.animationTot = 5;
             if (Data.Dude != null)
             {
                 if (id.Equals(leEvent.Id))
                 {
                     if(leEvent.Id.Equals(Data.Dude.GetId()))
                     {
+                        this.animationTot = 5;
+                        textureBase = "Evil";
                         textureKey = "Evil1";
                     }
                 }
