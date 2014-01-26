@@ -51,6 +51,10 @@ namespace Objects
             {
                 leEvent = SpawnMeatEvent.Deserialize(bytes);
             }
+            else if (theType == 7)
+            {
+                leEvent = DeathEvent.Deserialize(bytes);
+            }
 
             return leEvent;
         }

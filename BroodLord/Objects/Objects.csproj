@@ -49,6 +49,7 @@
     <Compile Include="Data.cs" />
     <Compile Include="Doodad\Doodad.cs" />
     <Compile Include="Doodad\PalmTree.cs" />
+    <Compile Include="Events\DeathEvent.cs" />
     <Compile Include="Events\SpawnMeatEvent.cs" />
     <Compile Include="Events\DroppedItemEvent.cs" />
     <Compile Include="Events\SpawnRockEvent.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="MobStates\MobState.cs" />
     <Compile Include="MobStates\MoveToGameObjectMobState.cs" />
     <Compile Include="MobStates\MoveToPostionMobState.cs" />
+    <Compile Include="Mob\HostileMob.cs" />
     <Compile Include="Mob\Cat.cs" />
     <Compile Include="Mob\Mob.cs" />
     <Compile Include="Events\MoveToGameObjectEvent.cs" />

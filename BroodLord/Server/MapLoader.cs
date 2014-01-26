@@ -102,6 +102,7 @@ namespace Server
         {
             if (color.R == 0 && color.G == 0 && color.B == 255)
             {
+
                 new Cat(Guid.NewGuid(), new Vector2(x * Data.TileSize, y * Data.TileSize));
             }
         }

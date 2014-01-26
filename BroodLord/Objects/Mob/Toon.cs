@@ -85,6 +85,11 @@ namespace Objects
             get { return health; }
         }
 
+        
+
+        
+
+
         protected override void Interact(GameObject gameObject)
         {
             if (DateTime.Now.CompareTo(interactionOffCooldown) == -1)
