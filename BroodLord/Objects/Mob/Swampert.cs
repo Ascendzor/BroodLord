@@ -12,10 +12,12 @@ namespace Objects
         
         public Swampert(Guid id, Vector2 position)
         {
-            
+            this.animation = 5;
+            this.textureBase = "swampMonster";
+            this.animationTot = 2;
             this.id = id;
             this.position = position;
-            this.textureKey = "cat";
+            this.textureKey = "swampMonster1";
             this.origin = new Vector2(Data.GetTextureSize(textureKey).X / 2, Data.GetTextureSize(textureKey).Y * 0.85f);
             this.movementSpeed = 2;
             this.interactRange = 100;
