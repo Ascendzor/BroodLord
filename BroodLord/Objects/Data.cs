@@ -24,7 +24,7 @@ namespace Objects
         public static int ToonInteractionRange = 100;
         public static int TreeRadius = 56;
         public static int TileSize = 84;
-        public static int MapSize = 100;
+        public static int MapSize = 400;
         public static bool IsServer;
         public static Toon Dude;
 
