@@ -16,11 +16,8 @@ Content\snow7.xnb
 Content\snow8.xnb
 Content\InventorySlot.xnb
 Content\EmptyInventorySlot.xnb
-Content\meatPH.xnb
-
 Content\tree.xnb
 Content\meatPH.xnb
-
 Content\health1.xnb
 Content\health10.xnb
 Content\health2.xnb
@@ -61,12 +58,10 @@ Content\PalmTree.xnb
 Content\Club.xnb
 Content\coconut.xnb
 Content\Flint.xnb
-Content\tree.xnb
-Content\PalmStump.xnb
-Content\evil man medium.xnb
 Content\TestFont.xnb
+Content\evil man medium.xnb
+Content\PalmStump.xnb
+Content\WoodBag.xnb
 Content\WoodChop.xnb
 Content\WoodFall.xnb
-Content\TestFont.xnb
-Content\evil man medium.xnb
-Content\WoodBag.xnb
+Content\Eat.xnb
