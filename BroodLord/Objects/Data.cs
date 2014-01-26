@@ -174,6 +174,7 @@ namespace Objects
             allTextures.Add("Cet3");
             allTextures.Add("Cet4");
             allTextures.Add("YOUWON");
+            allTextures.Add("leShip04");
         }
 
         public static void Initialize()
