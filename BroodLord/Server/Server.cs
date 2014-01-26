@@ -17,6 +17,7 @@ namespace Server
         private List<NetworkStream> streams;
         private TcpListener listener;
         private TcpListener otherListener;
+        private bool isAcceptingClients;
 
         public Server()
         {
@@ -24,6 +25,7 @@ namespace Server
             listener = new TcpListener(port);
             otherListener = new TcpListener(41338);
             streams = new List<NetworkStream>();
+            this.isAcceptingClients = true;
         }
 
         /// <summary>
@@ -36,6 +38,10 @@ namespace Server
 
             while (true)
             {
+                if (!isAcceptingClients)
+                {
+                    return;
+                }
                 NetworkStream stream = listener.AcceptTcpClient().GetStream();
                 NetworkStream otherStream = otherListener.AcceptTcpClient().GetStream();
                 Console.WriteLine("found client");
@@ -182,6 +188,8 @@ namespace Server
             Client.Initialize();
 
             environment.Play();
+            Thread.Sleep(10000);
+            server.isAcceptingClients = false;
         }
     }
 }
