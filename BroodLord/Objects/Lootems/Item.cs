@@ -14,11 +14,17 @@ namespace Objects
         protected string textureKey;
         protected Vector2 origin;
         protected Rectangle hitbox;
+        protected string name;
 
         public string TextureKey
         {
             get { return textureKey; }
             set { textureKey = value; }
+        }
+
+        public string Name
+        {
+            get { return name; }
         }
 
         public Guid Id

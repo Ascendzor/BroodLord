@@ -149,6 +149,12 @@ namespace Objects
             allTextures.Add("snow6");
             allTextures.Add("snow7");
             allTextures.Add("snow8");
+            allTextures.Add("WaterDeep1");
+            allTextures.Add("WaterDeep2");
+            allTextures.Add("WaterDeep3");
+            allTextures.Add("WaterShallow1");
+            allTextures.Add("WaterShallow2");
+            allTextures.Add("WaterShallow3");
             allTextures.Add("meatPH");
             allTextures.Add("meatBag");
             allTextures.Add("evil man medium");
@@ -173,7 +179,14 @@ namespace Objects
             allTextures.Add("Cet2");
             allTextures.Add("Cet3");
             allTextures.Add("Cet4");
+            allTextures.Add("Cit1");
+            allTextures.Add("Cit2");
+            allTextures.Add("Cit3");
+            allTextures.Add("Cit4");
+            allTextures.Add("swampMonster1");
+            allTextures.Add("swampMonster2");
             allTextures.Add("YOUWON");
+            allTextures.Add("leShip04");
         }
 
         public static void Initialize()

@@ -68,6 +68,8 @@ namespace Server
             String sand = "Sand";
             String marsh = "Marsh";
             String stone = "Stone";
+            string shallow = "WaterShallow";
+            string deep = "WaterDeep";
             int randomNumber;
 
             if (color.G == 255 && color.R == 0 && color.B == 0)
@@ -115,48 +117,20 @@ namespace Server
             }else if (color.B == 255 && color.R == 0 && color.G == 0)
             {
                 //water
+                randomNumber = ran.Next(3) + 1;
+                Map.SetTileTexture(x, y, deep + randomNumber.ToString());
+
             }
             else if (color.B == 255 && color.R == 0 && color.G == 0)
             {
                 //shallow water
+                randomNumber = ran.Next(3) + 1;
+                Map.SetTileTexture(x, y, shallow + randomNumber.ToString());
             }
             else if (color.R == 255 && color.G == 0 && color.B == 0)
             {
                 //cliff
             }
-            ////load terrain here
-            //if (color.R == 255 && color.G == 0 && color.B == 0)
-            //{
-            //    Map.SetTileTexture(x, y, "Grass1");
-            //}
-            //else if (color.R == 0 && color.G == 255 && color.B == 0)
-            //{
-            //    Map.SetTileTexture(x, y, "snow2");
-            //}
-            //else if (color.R == 0 && color.G == 0 && color.B == 255)
-            //{
-            //    Map.SetTileTexture(x, y, "snow3");
-            //}
-            //else if (color.R == 0 && color.G == 0 && color.B == 0)
-            //{
-            //    Map.SetTileTexture(x, y, "snow4");
-            //}
-            //else if (color.R == 0 && color.G == 0 && color.B == 0)
-            //{
-            //    Map.SetTileTexture(x, y, "snow5");
-            //}
-            //else if (color.R == 0 && color.G == 0 && color.B == 0)
-            //{
-            //    Map.SetTileTexture(x, y, "snow6");
-            //}
-            //else if (color.R == 0 && color.G == 0 && color.B == 0)
-            //{
-            //    Map.SetTileTexture(x, y, "snow7");
-            //}
-            //else
-            //{
-            //    Map.SetTileTexture(x, y, "snow8");
-            //}
         }
 
         public static void LoadMobs(int x, int y, System.Drawing.Color color)
@@ -166,9 +140,19 @@ namespace Server
                 new Cat(Guid.NewGuid(), new Vector2(x * Data.TileSize, y * Data.TileSize));
             }
 
+            if (color.R == 255 && color.G == 0 && color.B == 0)
+            {
+                new CatPink(Guid.NewGuid(), new Vector2(x * Data.TileSize, y * Data.TileSize));
+            }
+
             if (color.R == 0 && color.G == 255 && color.B == 0)
             {
                 new SpideyBaby(Guid.NewGuid(), new Vector2(x * Data.TileSize, y * Data.TileSize));
+            }
+
+            if (color.R == 255 && color.G == 255 && color.B == 0)
+            {
+                new Swampert(Guid.NewGuid(), new Vector2(x * Data.TileSize, y * Data.TileSize));
             }
         }
 
