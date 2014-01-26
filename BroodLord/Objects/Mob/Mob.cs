@@ -116,6 +116,15 @@ namespace Objects
                     }
                 }
             }
+
+            foreach (Tile tile in Map.GetSurroundingTiles((int)newPos.X, (int)newPos.Y))
+            {
+                if (tile != null && tile.IsCollidable)
+                {
+                    newPos = tile.CheckCollision(this, newPos);
+                }
+            }
+
             return newPos;
         }
 

@@ -78,10 +78,13 @@
     <Compile Include="Lootems\Item.cs" />
     <Compile Include="Lootems\Loot.cs" />
     <Compile Include="Map.cs" />
+    <Compile Include="MobStates\WanderMobState.cs" />
     <Compile Include="MobStates\IdleMobState.cs" />
     <Compile Include="MobStates\MobState.cs" />
     <Compile Include="MobStates\MoveToGameObjectMobState.cs" />
     <Compile Include="MobStates\MoveToPostionMobState.cs" />
+    <Compile Include="Mob\SpideyBaby.cs" />
+    <Compile Include="Mob\PassiveMob.cs" />
     <Compile Include="Mob\Swampert.cs" />
     <Compile Include="Mob\HostileMob.cs" />
     <Compile Include="Mob\Cat.cs" />

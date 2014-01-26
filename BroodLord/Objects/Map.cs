@@ -39,7 +39,7 @@ namespace Objects
             {
                 for (int y = 0; y < tiles.GetLength(1); y++)
                 {
-                    tiles[x, y] = new Tile("snow1", x, y);
+                    tiles[x, y] = new Tile("snow1", x, y,false);
                     //to be passed in by the server
                 }
             }
@@ -203,6 +203,21 @@ namespace Objects
                 return null;
             }
             return tiles[x, y];
+        }
+
+        public static List<Tile> GetSurroundingTiles(int x, int y)
+        {
+            x = x / Data.TileSize;
+            y = y / Data.TileSize;
+            List<Tile> surroundingTiles = new List<Tile>();
+            for (int xTile = -1; xTile < 2; xTile++)
+            {
+                for (int yTile = -1; yTile < 2; yTile++)
+                {
+                    surroundingTiles.Add(GetTile(xTile + x,yTile+y));
+                }
+            }
+            return surroundingTiles;
         }
 
         public static int GetMapSize()

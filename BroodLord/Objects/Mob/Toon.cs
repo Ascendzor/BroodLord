@@ -48,8 +48,8 @@ namespace Objects
             this.maxThirst = 10080;
             this.isInteractable = true;
             this.animation = 5;
-            this.textureBase = "Link";
-            this.animationTot = 5;
+            this.textureBase = "Stoneer";
+            this.animationTot = 6;
 
             interactionOffCooldown = DateTime.Now;
 
@@ -230,6 +230,7 @@ namespace Objects
             Console.WriteLine("given guid: " + leEvent.Id);
             Console.WriteLine("my guid: " + Data.Dude);
            textureBase = "Evil";
+           this.animationTot = 5;
             if (Data.Dude != null)
             {
                 if (id.Equals(leEvent.Id))

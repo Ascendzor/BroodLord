@@ -65,6 +65,7 @@ namespace Objects
             allSounds.Add("Eat");
             allSounds.Add("WoodChop");
             allSounds.Add("WoodFall");
+            allSounds.Add("BGMusic");
         }
 
         private static void InitializeAllTextures()
@@ -146,6 +147,12 @@ namespace Objects
             allTextures.Add("Night_Dark");
             allTextures.Add("Night_Light");
             allTextures.Add("Night_Medium");
+            allTextures.Add("Stoneer1");
+            allTextures.Add("Stoneer2");
+            allTextures.Add("Stoneer3");
+            allTextures.Add("Stoneer4");
+            allTextures.Add("Stoneer5");
+            allTextures.Add("Stoneer6");
         }
 
         public static void Initialize()

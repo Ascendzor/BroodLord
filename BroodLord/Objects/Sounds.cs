@@ -15,12 +15,17 @@ namespace Objects
 {
     public static class Sounds
     {
+        static int check = 0;
         public static void PlaySound(SoundEffect Sound)
         {
-            SoundEffectInstance soundEngineInstance;
+            Sound.Play();
+        }
 
-            soundEngineInstance = Sound.CreateInstance();
-            soundEngineInstance.Play();
+        public static void PlayBGSound(SoundEffect Sound)
+        {
+            if (check == 0) Sound.Play();
+            check++;
+            if (check == 5500) check = 0;
         }
     }
 }
