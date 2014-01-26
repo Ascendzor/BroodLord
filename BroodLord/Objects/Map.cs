@@ -19,12 +19,17 @@ namespace Objects
     {
         private static Tile[,] tiles; //I wonder if there should be a TileManager class who we ask for everything tile-related¿ -Troy
         private static int renderWidth;
+        private static Dictionary<Guid, GameObject> allGameObjects;
+        private static Dictionary<Guid, Mob> allMobs;
 
         public static void Initialize(int _renderWidth)
         {
             renderWidth = _renderWidth;
 
             tiles = new Tile[Data.MapSize, Data.MapSize];
+
+            allGameObjects = new Dictionary<Guid, GameObject>();
+            allMobs = new Dictionary<Guid, Mob>();
 
             for (int x = 0; x < tiles.GetLength(0); x++)
             {
@@ -54,6 +59,18 @@ namespace Objects
                 go.Position = new Vector2(100, 100); //looks and feels horrible
             }
             tiles[(int)(go.Position.X / Data.TileSize), (int)(go.Position.Y / Data.TileSize)].InsertGameObject(go);
+            if (!allGameObjects.ContainsKey(go.GetId()))
+            {
+                allGameObjects.Add(go.GetId(), go);
+            }
+
+            if (go is Mob)
+            {
+                if (!allMobs.ContainsKey(go.GetId()))
+                {
+                    allMobs.Add(go.GetId(), (Mob)go);
+                }
+            }
         }
 
         public static void Draw(SpriteBatch sb, Vector2 dudesPosition)
@@ -68,17 +85,16 @@ namespace Objects
         public static void RemoveGameObject(GameObject gameObject)
         {
             GetTile((int)gameObject.Position.X / Data.TileSize, (int)gameObject.Position.Y / Data.TileSize).RemoveObject(gameObject);
+            allGameObjects.Remove(gameObject.GetId());
+            if (gameObject is Mob)
+            {
+                allMobs.Remove(gameObject.GetId());
+            }
         }
 
         public static void RemoveGameObject(Guid id)
         {
-            foreach (Tile tile in tiles)
-            {
-                if (tile.GetGameObject(id) != null)
-                {
-                    RemoveGameObject(tile.GetGameObject(id));
-                }
-            }
+            RemoveGameObject(GetGameObject(id));
         }
 
         public static void SetTileTexture(int x, int y, string textureKey)
@@ -144,12 +160,9 @@ namespace Objects
 
         public static GameObject GetGameObject(Guid id)
         {
-            foreach (Tile tile in tiles)
+            if (allGameObjects.ContainsKey(id))
             {
-                if (tile.GetGameObject(id) != null)
-                {
-                    return tile.GetGameObject(id);
-                }
+                return allGameObjects[id];
             }
             return null;
         }
@@ -170,16 +183,7 @@ namespace Objects
 
         public static List<Mob> GetMobs()
         {
-            List<Mob> allMobs = new List<Mob>();
-            foreach (Tile tile in tiles)
-            {
-                foreach (Mob mob in tile.GetMobs())
-                {
-                    allMobs.Add(mob);
-                }
-            }
-
-            return allMobs;
+            return allMobs.Values.ToList();
         }
 
         public static List<Cat> GetCats()

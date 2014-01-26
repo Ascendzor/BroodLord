@@ -47,9 +47,11 @@ namespace BroodLord
             drawPosition = cameraPosition + bottomMiddlePosition;
             drawPosition.Y -= Data.FindTextureSize["health1"].Y;
             drawPosition.X -= Data.FindTextureSize["health1"].X * (dude.MaxHealth / 2);
+            sb.Draw(Data.FindTexture["healthBarOutline"], drawPosition, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.0002f);
+            drawPosition.X += 15;
             for (int i = 1; i < dude.Health + 1; i++)
             {
-                sb.Draw(Data.FindTexture["health" + i.ToString()], drawPosition, Color.White);
+                sb.Draw(Data.FindTexture["health" + i.ToString()], drawPosition, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.0001f);
                 drawPosition.X += Data.FindTextureSize["health" + i.ToString()].X;
             }
 
@@ -61,6 +63,19 @@ namespace BroodLord
             {
                 sb.Draw(Data.FindTexture["hunger" + i.ToString()], drawPosition, Color.White);
                 drawPosition.X += Data.FindTextureSize["hunger" + i.ToString()].X;
+            }
+
+            // Draw Hunger
+            drawPosition = cameraPosition + bottomMiddlePosition;
+            drawPosition.Y -= Data.FindTextureSize["hydration1"].Y * 2;
+            drawPosition.X -= Data.FindTextureSize["hydration1"].Y * 2;
+            sb.Draw(Data.FindTexture["hydrationOutline"], drawPosition, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.0002f);
+            drawPosition.X += 10;
+            numberOfSegments = (dude.Hunger / (dude.MaxHunger / 10)) + 1;
+            for (int i = 1; i < numberOfSegments; i++)
+            {
+                sb.Draw(Data.FindTexture["hydration" + i.ToString()], drawPosition, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.0001f);
+                drawPosition.X += Data.FindTextureSize["hydration" + i.ToString()].X;
             }
 
             drawPosition = cameraPosition + bottomLeftPosition;

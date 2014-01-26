@@ -22,7 +22,7 @@ namespace Objects
         public static int ToonInteractionRange = 100;
         public static int TreeRadius = 56;
         public static int TileSize = 84;
-        public static int MapSize = 40;
+        public static int MapSize = 100;
         public static bool IsServer;
 
         //This should probably be in GameDataSizeMessage
@@ -72,6 +72,7 @@ namespace Objects
             allTextures.Add("health8");
             allTextures.Add("health9");
             allTextures.Add("health10");
+            allTextures.Add("healthBarOutline");
             allTextures.Add("hunger1");
             allTextures.Add("hunger2");
             allTextures.Add("hunger3");
@@ -82,6 +83,17 @@ namespace Objects
             allTextures.Add("hunger8");
             allTextures.Add("hunger9");
             allTextures.Add("hunger10");
+            allTextures.Add("hydration1");
+            allTextures.Add("hydration2");
+            allTextures.Add("hydration3");
+            allTextures.Add("hydration4");
+            allTextures.Add("hydration5");
+            allTextures.Add("hydration6");
+            allTextures.Add("hydration7");
+            allTextures.Add("hydration8");
+            allTextures.Add("hydration9");
+            allTextures.Add("hydration10");
+            allTextures.Add("hydrationOutline");
             allTextures.Add("snow1");
             allTextures.Add("snow2");
             allTextures.Add("snow3");
@@ -90,6 +102,7 @@ namespace Objects
             allTextures.Add("snow6");
             allTextures.Add("snow7");
             allTextures.Add("snow8");
+            allTextures.Add("meatPH");
         }
 
         public static void Initialize()

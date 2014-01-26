@@ -168,9 +168,6 @@ namespace Objects
         {
             return;
         }
-
-        
-
         
         public override void Update()
         {

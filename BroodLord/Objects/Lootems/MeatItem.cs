@@ -13,7 +13,7 @@ namespace Objects
         public MeatItem(Guid id) : base()
         {
             this.id = id;
-            this.textureKey = "InventorySlot";
+            this.textureKey = "meatPH";
             this.origin = new Vector2(Data.GetTextureSize(textureKey).X / 2, Data.GetTextureSize(textureKey).Y * 0.85f);
             this.hitbox = new Rectangle(0, 0, 0, 0); //set this when going to click on the item
         }
