@@ -15,38 +15,19 @@ namespace Objects
     class WanderMobState : MobState
     {
         Vector2 position;
-        int count;
 
-        public WanderMobState(Vector2 position, Mob mob)
+        public WanderMobState(Mob mob, Vector2 position)
         {
             this.position = position;
             this.mob = mob;
-            this.count = 5;
-        }
-
-
-
-        public Vector2 Position
-        {
-            get { return position; }
-            set { position = value; }
         }
 
         public override bool CheckState()
         {
             if (mob.AtGoalPosition())
             {
-                if (count == 0)
-                {
-                    Console.WriteLine("Cat Changing State");
-                    return true;
-                }
-                else
-                {
-                    
-                    count--;
-                    return false;
-                }
+                Console.WriteLine("Cat Changing State");
+                return true;
             }
             else
             {
@@ -54,16 +35,24 @@ namespace Objects
             }
         }
 
-        public void ChangePosition()
-        {
-
-        }
-
         public void Activate()
         {
             IsActive = true;
-            mob.SetGoalPosition(position);
-            Client.SendEvent(new MoveToPositionEvent(mob.GetId(), Position));
+            Random random = new Random();
+
+            int  x = random.Next(500) ;
+            int xdir = random.Next(0, 1);
+            if (xdir == 0)
+                xdir = -1;
+
+            int y = random.Next(500);
+            int ydir = random.Next(0, 1);
+            if (ydir == 0)
+                ydir = -1;
+
+            Vector2 newPos = new Vector2(position.X + x * xdir, position.Y + y * ydir);
+            mob.SetGoalPosition(newPos);
+            Client.SendEvent(new MoveToPositionEvent(mob.GetId(), newPos));
         }
     }
 }
