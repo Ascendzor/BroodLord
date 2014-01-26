@@ -151,12 +151,12 @@ namespace Objects
 
         public void AttackMob(Mob mob)
         {
-            mob.TakeDamage(this);
+            mob.TakeDamage((int)GetAttackDamage());
         }
 
-        public virtual void TakeDamage(Mob mob)
+        public virtual void TakeDamage(int mobDamage)
         {
-            health -= (int)mob.GetAttackDamage();
+            health -= mobDamage;
         }
 
         public override void Draw(SpriteBatch sb)
