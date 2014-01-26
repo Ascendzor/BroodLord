@@ -54,7 +54,6 @@ namespace Objects
         {
             goalGameObject = Map.GetGameObject(leEvent.GoalGameObject);
         }
-
         
         //All non-event behaviour is handled in Update.
         //This means basically only Moving is handled in Update.
