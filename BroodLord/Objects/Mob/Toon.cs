@@ -88,9 +88,9 @@ namespace Objects
             get { return health; }
         }
 
-        public override void TakeDamage(Mob mob)
+        public override void TakeDamage(int damage)
         {
-            base.TakeDamage(mob);
+            base.TakeDamage(damage);
 
             if (Data.IsServer)
             {
