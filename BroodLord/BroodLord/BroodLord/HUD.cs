@@ -49,7 +49,7 @@ namespace BroodLord
             sb.Draw(Data.FindTexture["hydrationOutline"], drawPosition, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.0002f);
             drawPosition.X += 10;
             int numberOfSegments = (dude.Thirst / (dude.MaxThirst / 10)) + 1;
-            for (int i = 1; i < numberOfSegments; i++)
+            for (int i = 1; i < numberOfSegments + 1; i++)
             {
                 sb.Draw(Data.FindTexture["hydration" + i.ToString()], drawPosition, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.0001f);
                 drawPosition.X += Data.FindTextureSize["hydration" + i.ToString()].X;
@@ -62,7 +62,7 @@ namespace BroodLord
             sb.Draw(Data.FindTexture["hungerOutline"], drawPosition, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.0002f);
             drawPosition.X += 10;
             numberOfSegments = (dude.Hunger / (dude.MaxHunger / 10)) + 1;
-            for (int i = 1; i < numberOfSegments; i++)
+            for (int i = 1; i < numberOfSegments + 1; i++)
             {
                 sb.Draw(Data.FindTexture["hunger" + i.ToString()], drawPosition, Color.White);
                 drawPosition.X += Data.FindTextureSize["hunger" + i.ToString()].X;

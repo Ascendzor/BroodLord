@@ -55,6 +55,7 @@ namespace Objects
 
             allTextures.Add("link");
             allTextures.Add("tree");
+            allTextures.Add("PalmTree");
             allTextures.Add("Rock");
             allTextures.Add("Flint");
             allTextures.Add("Club");

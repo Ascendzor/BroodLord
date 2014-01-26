@@ -41,7 +41,8 @@ namespace Objects
                 if (Data.IsServer)
                 {
                     Client.SendEvent(new SpawnWoodEvent(Guid.NewGuid(), new Vector2(position.X - 10, position.Y)));
-                    Client.SendEvent(new SpawnWoodEvent(Guid.NewGuid(), new Vector2(position.X + 20, position.Y + 10)));
+                    Client.SendEvent(new SpawnCoconutEvent(Guid.NewGuid(), new Vector2(position.X + 20, position.Y + 10)));
+                    Console.WriteLine("tesT");
                 }
             }
         }

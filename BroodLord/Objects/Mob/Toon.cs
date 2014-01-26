@@ -125,6 +125,10 @@ namespace Objects
             {
                 InteractWithObject((Tree)gameObject);
             }
+            else if (gameObject is PalmTree)
+            {
+                InteractWithObject((PalmTree)gameObject);
+            }
             else if (gameObject is Loot)
             {
                 InteractWithObject((Loot)gameObject);
@@ -137,6 +141,14 @@ namespace Objects
         }
         
         private void InteractWithObject(Tree tree)
+        {
+            interactionOffCooldown = DateTime.Now.AddMilliseconds(interactionCooldown); //<--- this allows the interaction to define the cooldown, ie chopping may take longer than attacking
+            base.Interact(tree);
+            Console.WriteLine("Toon chopped");
+            tree.GotChopped(this);
+        }
+
+        private void InteractWithObject(PalmTree tree)
         {
             interactionOffCooldown = DateTime.Now.AddMilliseconds(interactionCooldown); //<--- this allows the interaction to define the cooldown, ie chopping may take longer than attacking
             base.Interact(tree);
