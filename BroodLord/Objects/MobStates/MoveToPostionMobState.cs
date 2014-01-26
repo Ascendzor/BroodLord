@@ -33,7 +33,7 @@ namespace Objects
         {
             if (mob.AtGoalPosition())
             {
-                Console.WriteLine("Cat Changing State");
+                Console.WriteLine("Mob Changing State");
                 return true;
             }
             else
@@ -46,7 +46,6 @@ namespace Objects
         {
             IsActive = true;
             mob.SetGoalPosition(position);
-            Client.SendEvent(new MoveToPositionEvent(mob.GetId(), Position));
         }
     }
 }

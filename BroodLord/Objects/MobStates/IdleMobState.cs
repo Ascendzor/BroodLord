@@ -29,7 +29,7 @@ namespace Objects
         {
             if ((DateTime.Now - start).TotalSeconds > lengthTime)//stopWatch.ElapsedMilliseconds/100 > lengthTime)
             {
-                Console.WriteLine("Cat Changing State");
+                Console.WriteLine("Mob Changing State");
                 return true;
             }
             else

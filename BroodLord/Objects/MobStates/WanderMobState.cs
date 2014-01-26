@@ -28,7 +28,8 @@ namespace Objects
         {
             if (mob.AtGoalPosition())
             {
-                Console.WriteLine("Cat Changing State");
+                Console.WriteLine("Mob Changing State");
+                //Client.SendEvent(new SetToPositionEvent(mob.GetId(), mob.Position));
                 return true;
             }
             else
@@ -55,6 +56,7 @@ namespace Objects
             Vector2 newPos = new Vector2(position.X + x * xdir, position.Y + y * ydir);
             mob.SetGoalPosition(newPos);
             Client.SendEvent(new MoveToPositionEvent(mob.GetId(), newPos));
+            
         }
     }
 }

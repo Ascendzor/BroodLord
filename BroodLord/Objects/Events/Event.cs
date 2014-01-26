@@ -71,6 +71,10 @@ namespace Objects
             {
                 leEvent = UpdateNightEvent.Deserialize(bytes);
             }
+            else if (theType == 12)
+            {
+                leEvent = SetToPositionEvent.Deserialize(bytes);
+            }
 
             return leEvent;
         }

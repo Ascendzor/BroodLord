@@ -33,6 +33,8 @@ namespace Objects
         {
             if (mob.GetGoalGameObject() == null)
             {
+                Console.WriteLine("Mob Changing State");
+                //Client.SendEvent(new SetToPositionEvent(mob.GetId(), mob.Position));
                 return true;
             }
             else
@@ -44,7 +46,7 @@ namespace Objects
         public void Activate()
         {
             IsActive = true;
-            
+            Client.SendEvent(new SetToPositionEvent(gameObject.GetId(),gameObject.Position));
         }
     }
 }

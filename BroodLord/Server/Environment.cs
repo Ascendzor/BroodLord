@@ -11,8 +11,10 @@ namespace Server
 {
     class Environment
     {
+        bool delayThread;
         public Environment()
         {
+            delayThread = false;
             MapLoader.LoadMap(@"Assets/TerrainMap.bmp", @"Assets/MobMap.bmp", @"Assets/DoodadMap.bmp", @"Assets/LootMap.bmp");
         }
 
@@ -23,7 +25,11 @@ namespace Server
             while (true)
             {
                 Map.Update();
-                Thread.Sleep(16); //something like 62.5 fps
+                if (delayThread)
+                    Thread.Sleep(17); //something like 62.5 fps
+                else
+                    Thread.Sleep(16);
+                delayThread = !delayThread;
             }
         }
 
@@ -41,5 +47,7 @@ namespace Server
                 }
             }
         }
+
+        
     }
 }
