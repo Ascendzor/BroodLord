@@ -18,13 +18,24 @@ namespace Objects
         private Dictionary<Guid, GameObject> gameObjects;
         private string textureKey;
         private Rectangle area;
-
-        public Tile(string textureKey, int positionX, int positionY)
+        private bool isCollidable;
+        
+        public Tile(string textureKey, int positionX, int positionY, bool collidable)
         {
-            
-            gameObjects = new Dictionary<Guid, GameObject>();
+            if (positionX == 3 && positionY > 3)
+                IsCollidable = true;
+            else
+                this.isCollidable = collidable;
+            this.gameObjects = new Dictionary<Guid, GameObject>();
             this.textureKey = textureKey;
             this.area = new Rectangle(positionX * Data.TileSize, positionY * Data.TileSize, Data.TileSize, Data.TileSize);
+            
+        }
+
+        public bool IsCollidable
+        {
+            get { return isCollidable; }
+            set { isCollidable = value; }
         }
 
         public void Update()
@@ -138,6 +149,20 @@ namespace Objects
         public void RemoveObject(GameObject gameObject)
         {
             gameObjects.Remove(gameObject.GetId());
+        }
+
+        public Vector2 CheckCollision(Mob mob, Vector2 newPos)
+        {
+            Vector2 center = new Vector2(area.Center.X,area.Center.Y);
+            double length = Math.Sqrt((double)(2 * ((Data.TileSize * .5) * (Data.TileSize * .5))));
+            if ((center - newPos).Length() < length)
+            {
+                Vector2 moveDir = newPos - center;
+                moveDir.Normalize();
+
+                newPos += moveDir * ((float)length -(center - newPos).Length());
+            }
+            return newPos;
         }
     }
 }

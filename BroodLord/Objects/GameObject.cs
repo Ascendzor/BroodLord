@@ -20,8 +20,6 @@ namespace Objects
         protected Guid id;
         protected Vector2 origin;
         protected Rectangle hitbox;
-        protected int xTileCoord; 
-        protected int yTileCoord;
         protected bool isInteractable;
 
         public bool IsInteractable
@@ -50,16 +48,6 @@ namespace Objects
         public virtual Rectangle GetHitBox()
         {
             return hitbox;
-        }
-
-        public int GetGridCoordX()
-        {
-            return xTileCoord;
-        }
-
-        public int GetGridCoordY()
-        {
-            return yTileCoord;
         }
 
         public Guid GetId()
