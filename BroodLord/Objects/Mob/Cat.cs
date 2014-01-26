@@ -20,7 +20,7 @@ namespace Objects
             this.movementSpeed = 2;
             this.interactRange = 100;
             this.interactionCooldown = 5000;
-            this.attackDamage = 60;
+            this.attackDamage = 1;
             this.health = 100;
             this.mobState = mobState;
             isInteractable = true;

@@ -117,7 +117,7 @@ namespace Objects
                 if (leSize == -1)
                 {
                     break;
-                }
+                } 
 
                 MemoryStream stream = new MemoryStream();
                 messageData = new byte[leSize];

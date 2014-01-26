@@ -85,6 +85,19 @@ namespace Objects
             get { return health; }
         }
 
+        public override void TakeDamage(Mob mob)
+        {
+            base.TakeDamage(mob);
+
+            if (Data.IsServer)
+            {
+                if (health <= 0)
+                {
+                    Client.SendEvent(new DeathEvent(GetId()));
+                }
+            }
+        }
+
         protected override void Interact(GameObject gameObject)
         {
             if (DateTime.Now.CompareTo(interactionOffCooldown) == -1)
@@ -155,6 +168,11 @@ namespace Objects
             item.CreateLoot(position);
         }
 
+        public void ReceiveEvent(DeathEvent leEvent)
+        {
+            Map.RemoveGameObject(leEvent.Id);
+        }
+
         /// <summary>
         /// When you publish a SpawnToonEvent your dude will receive it and this is you telling it to fuck off -Troy
         /// </summary>
@@ -176,6 +194,7 @@ namespace Objects
                     hungerCounter = 0;
                     health--;
                 }
+                hunger++;
             }
 
             if (thirst < 0)
@@ -186,6 +205,7 @@ namespace Objects
                     thirstCounter = 0;
                     health--;
                 }
+                thirst++;
             }
 
             base.Update();
