@@ -131,39 +131,6 @@ namespace Server
             {
                 //cliff
             }
-            ////load terrain here
-            //if (color.R == 255 && color.G == 0 && color.B == 0)
-            //{
-            //    Map.SetTileTexture(x, y, "Grass1");
-            //}
-            //else if (color.R == 0 && color.G == 255 && color.B == 0)
-            //{
-            //    Map.SetTileTexture(x, y, "snow2");
-            //}
-            //else if (color.R == 0 && color.G == 0 && color.B == 255)
-            //{
-            //    Map.SetTileTexture(x, y, "snow3");
-            //}
-            //else if (color.R == 0 && color.G == 0 && color.B == 0)
-            //{
-            //    Map.SetTileTexture(x, y, "snow4");
-            //}
-            //else if (color.R == 0 && color.G == 0 && color.B == 0)
-            //{
-            //    Map.SetTileTexture(x, y, "snow5");
-            //}
-            //else if (color.R == 0 && color.G == 0 && color.B == 0)
-            //{
-            //    Map.SetTileTexture(x, y, "snow6");
-            //}
-            //else if (color.R == 0 && color.G == 0 && color.B == 0)
-            //{
-            //    Map.SetTileTexture(x, y, "snow7");
-            //}
-            //else
-            //{
-            //    Map.SetTileTexture(x, y, "snow8");
-            //}
         }
 
         public static void LoadMobs(int x, int y, System.Drawing.Color color)
@@ -181,6 +148,11 @@ namespace Server
             if (color.R == 0 && color.G == 255 && color.B == 0)
             {
                 new SpideyBaby(Guid.NewGuid(), new Vector2(x * Data.TileSize, y * Data.TileSize));
+            }
+
+            if (color.R == 255 && color.G == 255 && color.B == 0)
+            {
+                new Swampert(Guid.NewGuid(), new Vector2(x * Data.TileSize, y * Data.TileSize));
             }
         }
 
