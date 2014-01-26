@@ -65,6 +65,7 @@ namespace Objects
             allSounds.Add("Eat");
             allSounds.Add("WoodChop");
             allSounds.Add("WoodFall");
+            allSounds.Add("BGMusic");
         }
 
         private static void InitializeAllTextures()
@@ -138,6 +139,17 @@ namespace Objects
             allTextures.Add("snow8");
             allTextures.Add("meatPH");
             allTextures.Add("evil man medium");
+            allTextures.Add("Evil1");
+            allTextures.Add("Evil2");
+            allTextures.Add("Evil3");
+            allTextures.Add("Evil4");
+            allTextures.Add("Evil5");
+            allTextures.Add("Stoneer1");
+            allTextures.Add("Stoneer2");
+            allTextures.Add("Stoneer3");
+            allTextures.Add("Stoneer4");
+            allTextures.Add("Stoneer5");
+            allTextures.Add("Stoneer6");
         }
 
         public static void Initialize()

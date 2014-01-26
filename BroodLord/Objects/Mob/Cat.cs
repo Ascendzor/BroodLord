@@ -1,3 +1,4 @@
+
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,8 @@ namespace Objects
         
         public Cat(Guid id, Vector2 position)
         {
-            
+            this.textureBase = "Cat";
+            this.animation = 5;
             this.id = id;
             this.position = position;
             this.textureKey = "cat";
@@ -26,6 +28,7 @@ namespace Objects
             this.health = 100;
             this.mobState = mobState;
             this.oldPosition = position;
+            this.animationTot = 1;
             isInteractable = true;
             
             Map.InsertGameObject(this);

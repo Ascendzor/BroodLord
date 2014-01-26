@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
@@ -23,6 +23,8 @@ namespace Objects
 
         protected int hungerCounter = 0;
         protected int thirstCounter = 0;
+
+
         
         public Toon(Guid id, Vector2 position, string textureKey)
         {
@@ -45,6 +47,9 @@ namespace Objects
             this.thirst = 10080;
             this.maxThirst = 10080;
             this.isInteractable = true;
+            this.animation = 5;
+            this.textureBase = "Stoneer";
+            this.animationTot = 6;
 
             interactionOffCooldown = DateTime.Now;
 
@@ -224,15 +229,13 @@ namespace Objects
             Console.WriteLine("RECEIVED EVIL DUDE EVENT");
             Console.WriteLine("given guid: " + leEvent.Id);
             Console.WriteLine("my guid: " + Data.Dude);
+           textureBase = "Evil";
+           this.animationTot = 5;
             if (Data.Dude != null)
             {
                 if (id.Equals(leEvent.Id))
                 {
-                    if (leEvent.Id.Equals(Data.Dude.GetId()))
-                    {
-                        textureKey = "evil man medium";
-                        this.origin = new Vector2(Data.GetTextureSize(textureKey).X / 2, Data.GetTextureSize(textureKey).Y * 0.85f);
-                    }
+                    textureKey = "Evil1";
                 }
             }
         }

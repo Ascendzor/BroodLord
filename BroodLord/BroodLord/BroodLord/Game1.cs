@@ -65,7 +65,7 @@ namespace BroodLord
         protected override void Update(GameTime gameTime)
         {
             input.Update();
-
+            Sounds.PlayBGSound(Data.FindSound["BGMusic"]);
             Map.Update();
             camera.update(dude.Position);
             base.Update(gameTime);
