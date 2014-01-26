@@ -65,3 +65,6 @@ Content\WoodBag.xnb
 Content\WoodChop.xnb
 Content\WoodFall.xnb
 Content\Eat.xnb
+Content\Pickup.xnb
+Content\Drop.xnb
+Content\MobHit.xnb

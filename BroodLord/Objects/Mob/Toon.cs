@@ -108,6 +108,7 @@ namespace Objects
 
             if (Data.IsServer)
             {
+                if (!Data.IsServer) Sounds.PlaySound(Data.FindSound["MobHit"]);
                 if (health <= 0)
                 {
                     Client.SendEvent(new DeathEvent(GetId()));
@@ -179,7 +180,10 @@ namespace Objects
         private void InteractWithObject(Loot loot)
         {
             if (inventory.addToInventory(loot.CreateItem(loot), loot.Stackable))
+            {
+                if (!Data.IsServer) Sounds.PlaySound(Data.FindSound["Pickup"]);
                 Map.RemoveGameObject(loot.GetId());
+            }
         }
 
         public void ReceiveEvent(MoveToPositionEvent leEvent)
@@ -196,7 +200,10 @@ namespace Objects
         {
             Item item = inventory.removeItem(leEvent.ItemId);
             if (item != null)
+            {
+                if (!Data.IsServer) Sounds.PlaySound(Data.FindSound["Drop"]);
                 item.CreateLoot(position);
+            }
         }
 
         public void ReceiveEvent(DestroyItemEvent leEvent)
