@@ -154,6 +154,11 @@ namespace Server
             {
                 new Swampert(Guid.NewGuid(), new Vector2(x * Data.TileSize, y * Data.TileSize));
             }
+            if (color.R == 255 && color.G == 0 && color.B == 255)
+            {
+                new Golem(Guid.NewGuid(), new Vector2(x * Data.TileSize, y * Data.TileSize));
+            }
+
         }
 
         public static void LoadDoodads(int x, int y, System.Drawing.Color color)
