@@ -48,6 +48,16 @@ namespace Objects
                     return null;
             }
         }
+        public string Name
+        {
+            get
+            {
+                if (items.Count > 0)
+                    return items.Values.ToList<Item>()[0].Name;
+                else
+                    return "";
+            }
+        }
 
         /// <summary>
         /// Gets item texture or empty slot texture if no items in slot
