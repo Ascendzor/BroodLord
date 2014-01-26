@@ -19,9 +19,9 @@ namespace BroodLord
         {
             camPos = camPos_;
             patterns = new List<Pattern>();
-            patterns.Add(new Pattern(new List<String>(new String[]{"RockItem", "WoodItem"}), "HammerItem"));
-            patterns.Add(new Pattern(new List<String>(new String[] { "RockItem", "WoodItem", "FlintItem" }), "AxeItem"));
-            patterns.Add(new Pattern(new List<String>(new String[] { "FlintItem", "CoconutItem" }), "OpenCoconutItem"));
+            patterns.Add(new Pattern(new List<String>(new String[]{"Rock", "Wood"}), "HammerItem"));
+            patterns.Add(new Pattern(new List<String>(new String[] { "Rock", "Wood", "FlintItem" }), "AxeItem"));
+            patterns.Add(new Pattern(new List<String>(new String[] { "Flint", "Coconut" }), "OpenCoconutItem"));
             boundsOnScreen = new Rectangle(0, 0, (int)Data.FindTextureSize["EmptyInventorySlot"].X, (int)Data.FindTextureSize["EmptyInventorySlot"].Y * patterns.Count);
         }
 
@@ -50,6 +50,11 @@ namespace BroodLord
             if (patterns[clickedPattern].HaveIngredients(dude.Inventory))
             {
                 Console.WriteLine("Crafted " + patterns[clickedPattern].item);
+                //remove the items from inventory
+                //Client.SendEvent(new DestroyItemEvent(dude.GetId(), items.First().Value.Id));
+                //add new intem to inventory
+                Loot temp = new MeatLoot(Guid.NewGuid(), new Vector2(0,0));
+                dude.Inventory.addToInventory(temp.CreateItem(temp), temp.Stackable);              
             }
 
             

@@ -162,12 +162,13 @@ namespace Objects
             return null;
         }
 
-        public bool ContainsItemType(String type)
+        public bool ContainsItemType(string type)
         {
             foreach (InventorySlot slot in slots)
             {
-                if (slot.GetType().ToString() == type)
-                    return true;
+                    if (slot.Name != "")Console.WriteLine(slot.Name + " compare " + type);
+                    if (slot.Name == type)
+                        return true;
             }
             return false;
         }
