@@ -42,7 +42,7 @@ namespace Objects
             this.maxHealth = 10;
             this.hunger = 10080;
             this.maxHunger = 10080;
-            this.thirst = 0;
+            this.thirst = 10080;
             this.maxThirst = 10080;
 
             interactionOffCooldown = DateTime.Now;
@@ -163,9 +163,6 @@ namespace Objects
         {
             return;
         }
-
-        
-
         
         public override void Update()
         {
