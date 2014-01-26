@@ -13,11 +13,12 @@ namespace Objects
         
         public Cat(Guid id, Vector2 position)
         {
-            this.textureBase = "Cat";
             this.animation = 5;
+            this.textureBase = "Cet";
+            this.animationTot = 4;
+            this.textureKey = "Cet1";
             this.id = id;
             this.position = position;
-            this.textureKey = "cat";
             this.origin = new Vector2(Data.GetTextureSize(textureKey).X / 2, Data.GetTextureSize(textureKey).Y * 0.85f);
             this.movementSpeed = 2;
             this.interactRange = 100;
@@ -28,7 +29,7 @@ namespace Objects
             this.health = 5;
             this.mobState = mobState;
             this.oldPosition = position;
-            this.animationTot = 1;
+            
             isInteractable = true;
             
             Map.InsertGameObject(this);

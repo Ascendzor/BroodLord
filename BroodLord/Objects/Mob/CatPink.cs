@@ -1,3 +1,4 @@
+
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,24 +8,27 @@ using Microsoft.Xna.Framework;
 namespace Objects
 {
     [Serializable()]
-    public class Swampert : HostileMob
+    public class CatPink : HostileMob
     {
-        
-        public Swampert(Guid id, Vector2 position)
+
+        public CatPink(Guid id, Vector2 position)
         {
+            this.textureBase = "Cit";
             this.animation = 5;
-            this.textureBase = "swampMonster";
-            this.animationTot = 2;
             this.id = id;
             this.position = position;
-            this.textureKey = "swampMonster1";
+            this.textureKey = "Cit1";
             this.origin = new Vector2(Data.GetTextureSize(textureKey).X / 2, Data.GetTextureSize(textureKey).Y * 0.85f);
-            this.movementSpeed = 2;
+            this.movementSpeed = 4;
             this.interactRange = 100;
+            this.interactionCooldown = 3000;
+            this.attackDamage = 2;
             this.interactionCooldown = 5000;
-            this.attackDamage = 6;
-            this.health = 100;
+            this.attackDamage = 3;
+            this.health = 8;
             this.mobState = mobState;
+            this.oldPosition = position;
+            this.animationTot = 1;
             isInteractable = true;
             
             Map.InsertGameObject(this);
@@ -39,11 +43,6 @@ namespace Objects
         
         }
 
-        public override Rectangle GetHitBox()
-        {
-            return new Rectangle((int)(position.X - origin.X), (int)(position.Y - origin.Y), (int)Data.GetTextureSize(textureKey).X, (int)Data.GetTextureSize(textureKey).Y);
-        }
-
         public override void TakeDamage(int damage)
         {
             base.TakeDamage(damage);
@@ -54,8 +53,7 @@ namespace Objects
                 Client.SendEvent(new DeathEvent(GetId()));
                 Client.SendEvent(new SpawnMeatEvent(Guid.NewGuid(), new Vector2(position.X - 50, position.Y)));
                 Client.SendEvent(new SpawnMeatEvent(Guid.NewGuid(), new Vector2(position.X + 50, position.Y)));
-                Client.SendEvent(new SpawnMeatEvent(Guid.NewGuid(), new Vector2(position.X + 50, position.Y)));
-                Client.SendEvent(new SpawnMeatEvent(Guid.NewGuid(), new Vector2(position.X + 50, position.Y)));
+                Client.SendEvent(new SpawnMeatEvent(Guid.NewGuid(), new Vector2(position.X, position.Y+50)));
             }
         }
     }
