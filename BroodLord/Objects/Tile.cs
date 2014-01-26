@@ -76,6 +76,7 @@ namespace Objects
 
         public void InsertGameObject(GameObject go)
         {
+
             if(gameObjects.ContainsKey(go.GetId()))
             {
                 return;
@@ -85,6 +86,18 @@ namespace Objects
 
         public void SetTextureKey(string textureKey)
         {
+            if (textureKey == "WaterDeep1")
+            {
+                isCollidable = true;
+            }
+            if (textureKey == "WaterDeep2")
+            {
+                isCollidable = true;
+            }
+            if (textureKey == "WaterDeep3")
+            {
+                isCollidable = true;
+            }
             this.textureKey = textureKey;
         }
 
