@@ -55,6 +55,10 @@ namespace Objects
             {
                 leEvent = DeathEvent.Deserialize(bytes);
             }
+            else if (theType == 8)
+            {
+                leEvent = EvildeDudeEvent.Deserialize(bytes);
+            }
 
             return leEvent;
         }

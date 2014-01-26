@@ -9,7 +9,7 @@ namespace Objects
     {
         public EvildeDudeEvent(Guid Id)
         {
-            this.Type = 7;
+            this.Type = 8;
             this.Id = Id;
         }
 
