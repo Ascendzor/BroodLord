@@ -61,7 +61,6 @@ namespace Objects
             }
             catch (NullReferenceException e)
             {
-                throw e;
                 Console.WriteLine(e);
                 Console.WriteLine("something died :( Client=>ReceiveEvent)");
             }
