@@ -33,9 +33,9 @@ namespace Objects
         {
 
         }*/
-        public void ReceiveEvent(DeathEvent leEvent)
+        public virtual void ReceiveEvent(DeathEvent leEvent)
         {
-             Map.RemoveGameObject(this);
+            Map.ErradicateGameObject(leEvent.Id);
         }
 
 

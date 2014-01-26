@@ -168,9 +168,9 @@ namespace Objects
             item.CreateLoot(position);
         }
 
-        public void ReceiveEvent(DeathEvent leEvent)
+        public override void ReceiveEvent(DeathEvent leEvent)
         {
-            Map.RemoveGameObject(leEvent.Id);
+            Map.ErradicateGameObject(leEvent.Id);
         }
 
         /// <summary>
