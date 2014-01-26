@@ -61,13 +61,10 @@ Content\tree.xnb
 Content\PalmStump.xnb
 Content\WoodBag.xnb
 Content\evil man medium.xnb
-<<<<<<< HEAD
-=======
 Content\TestFont.xnb
 Content\WoodChop.xnb
 Content\WoodFall.xnb
 Content\Eat.xnb
->>>>>>> f6ce3f29398251071abc8858b520f5242d843482
 Content\Grass1.xnb
 Content\Grass2.xnb
 Content\Grass3.xnb
@@ -79,16 +76,6 @@ Content\Evil4.xnb
 Content\Evil5.xnb
 Content\Spidey1.xnb
 Content\Spidey2.xnb
-<<<<<<< HEAD
-Content\Night_Bright.xnb
-Content\Night_Dark.xnb
-Content\Night_Light.xnb
-Content\Night_Medium.xnb
-Content\TestFont.xnb
-Content\WoodChop.xnb
-Content\WoodFall.xnb
-Content\Eat.xnb
-=======
 Content\Stoneer1.xnb
 Content\Stoneer2.xnb
 Content\Stoneer3.xnb
@@ -96,4 +83,7 @@ Content\Stoneer4.xnb
 Content\Stoneer5.xnb
 Content\Stoneer6.xnb
 Content\BGMusic.xnb
->>>>>>> f6ce3f29398251071abc8858b520f5242d843482
+Content\Night_Bright.xnb
+Content\Night_Dark.xnb
+Content\Night_Light.xnb
+Content\Night_Medium.xnb

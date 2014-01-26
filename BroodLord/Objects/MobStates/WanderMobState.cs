@@ -12,12 +12,14 @@ using System.Diagnostics;
 
 namespace Objects
 {
-    class WanderMobState : MobState
+    [Serializable()]
+    public class WanderMobState : MobState
     {
         Vector2 position;
 
         public WanderMobState(Mob mob, Vector2 position)
         {
+            this.IsActive = false;
             this.position = position;
             this.mob = mob;
         }

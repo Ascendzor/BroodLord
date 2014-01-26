@@ -6,7 +6,8 @@ using Microsoft.Xna.Framework;
 
 namespace Objects
 {
-    class SpideyBaby : PassiveMob
+    [Serializable()]
+    public class SpideyBaby : PassiveMob
     {
         public SpideyBaby(Guid id, Vector2 position)
         {
@@ -31,11 +32,11 @@ namespace Objects
             
             Map.InsertGameObject(this);
 
-            MoveToPostionMobState MovPosState = new MoveToPostionMobState(new Vector2(position.X, position.Y), this);
+            MoveToPostionMobState MovPosState = new MoveToPostionMobState(position, this);
             WanderMobState wanderState = new WanderMobState(this, position);
             MovPosState.NextState=wanderState;
             wanderState.NextState=MovPosState;
-            mobState = MovPosState;
+            mobState = wanderState;
         
         }
 
@@ -47,8 +48,6 @@ namespace Objects
             {
                 
                 Client.SendEvent(new DeathEvent(GetId()));
-                Client.SendEvent(new SpawnMeatEvent(Guid.NewGuid(), new Vector2(position.X - 50, position.Y)));
-                Client.SendEvent(new SpawnMeatEvent(Guid.NewGuid(), new Vector2(position.X + 50, position.Y)));
             }
         }
     }

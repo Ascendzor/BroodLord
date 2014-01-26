@@ -47,6 +47,10 @@ namespace Objects
                     {
                         ((HostileMob)go).Behave();
                     }
+                    else if (go is PassiveMob)
+                    {
+                        ((PassiveMob)go).Behave();
+                    }
                 }
             }
 
