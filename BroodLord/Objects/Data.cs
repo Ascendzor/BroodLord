@@ -173,6 +173,7 @@ namespace Objects
             allTextures.Add("Cet2");
             allTextures.Add("Cet3");
             allTextures.Add("Cet4");
+            allTextures.Add("YOUWON");
         }
 
         public static void Initialize()

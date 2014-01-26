@@ -587,6 +587,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="YOUWON.png">
+      <Name>YOUWON</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <Compile Include="Marsh1.png">
       <Name>Marsh1</Name>
       <Importer>TextureImporter</Importer>
