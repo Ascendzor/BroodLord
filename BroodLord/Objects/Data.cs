@@ -183,6 +183,8 @@ namespace Objects
             allTextures.Add("Cit2");
             allTextures.Add("Cit3");
             allTextures.Add("Cit4");
+            allTextures.Add("swampMonster1");
+            allTextures.Add("swampMonster2");
             allTextures.Add("YOUWON");
             allTextures.Add("leShip04");
         }
