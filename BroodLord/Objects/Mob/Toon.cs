@@ -32,7 +32,7 @@ namespace Objects
             this.id = id;
             this.position = position;
             this.textureKey = textureKey;
-            this.movementSpeed = 10;
+            this.movementSpeed = 5;
             this.goalPosition = position;
             this.origin = new Vector2(Data.GetTextureSize(textureKey).X / 2, Data.GetTextureSize(textureKey).Y * 0.85f);
             this.interactRange = Data.ToonInteractionRange;
