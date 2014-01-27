@@ -73,21 +73,26 @@ Content\Evil5.xnb
 Content\Spidey1.xnb
 Content\Spidey2.xnb
 Content\Night_Bright.xnb
+Content\Night_Dark.xnb
+Content\Night_Light.xnb
+Content\Night_Medium.xnb
 Content\Stoneer1.xnb
 Content\Stoneer2.xnb
 Content\Stoneer3.xnb
 Content\Stoneer4.xnb
 Content\Stoneer5.xnb
 Content\Stoneer6.xnb
-Content\Night_Dark.xnb
-Content\Night_Light.xnb
-Content\Night_Medium.xnb
+Content\TestFont.xnb
+Content\WoodChop.xnb
+Content\WoodFall.xnb
+Content\Eat.xnb
+Content\BGMusic.xnb
+Content\DeathSound.xnb
 Content\sand1.xnb
 Content\sand2.xnb
 Content\sand3.xnb
 Content\meatBag.xnb
 Content\Sand4.xnb
-Content\YOUWON.xnb
 Content\Marsh1.xnb
 Content\Marsh2.xnb
 Content\Marsh3.xnb
@@ -101,6 +106,7 @@ Content\Cet3.xnb
 Content\Cet4.xnb
 Content\swampMonster1.xnb
 Content\swampMonster2.xnb
+<<<<<<< HEAD
 Content\Cit1.xnb
 Content\Cit2.xnb
 Content\Cit3.xnb
@@ -111,6 +117,9 @@ Content\WoodFall.xnb
 Content\Eat.xnb
 Content\BGMusic.xnb
 Content\DeathSound.xnb
+=======
+Content\YOUWON.xnb
+>>>>>>> 64f7272ab0a32bce8db33765a1898e7b8a0cd8ab
 Content\leShip04.xnb
 Content\WaterDeep1.xnb
 Content\WaterDeep2.xnb
@@ -118,3 +127,8 @@ Content\WaterDeep3.xnb
 Content\WaterShallow1.xnb
 Content\WaterShallow2.xnb
 Content\WaterShallow3.xnb
+Content\Golem1.xnb
+Content\Golem2.xnb
+Content\Golem3.xnb
+Content\Golem4.xnb
+Content\Golem5.xnb

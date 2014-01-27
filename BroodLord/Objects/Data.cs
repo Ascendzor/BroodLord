@@ -187,6 +187,11 @@ namespace Objects
             allTextures.Add("swampMonster2");
             allTextures.Add("YOUWON");
             allTextures.Add("leShip04");
+            allTextures.Add("Golem1");
+            allTextures.Add("Golem2");
+            allTextures.Add("Golem3");
+            allTextures.Add("Golem4");
+            allTextures.Add("Golem5");
         }
 
         public static void Initialize()
