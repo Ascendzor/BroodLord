@@ -58,8 +58,10 @@ namespace Objects
 
         public void CheckWinner(SpriteBatch sb)
         {
-            if (position.X > 32000 && position.Y < 2000)
+            Vector2 testWin = new Vector2(400 * 84, 0) - position;
+            if (testWin.Length() < 4000)
             {
+                
                 Console.WriteLine("WINRAR");
                 if (Data.Dude.GetId().Equals(id))
                 {
