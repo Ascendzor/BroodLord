@@ -175,6 +175,11 @@ namespace Server
             {
                 new SpideyBaby(Guid.NewGuid(), new Vector2(x * Data.TileSize, y * Data.TileSize));
             }
+
+            if (color.R == 255 && color.G == 255 && color.B == 0)
+            {
+                new Swampert(Guid.NewGuid(), new Vector2(x * Data.TileSize, y * Data.TileSize));
+            }
         }
 
         public static void LoadDoodads(int x, int y, System.Drawing.Color color)
