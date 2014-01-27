@@ -173,6 +173,10 @@ namespace Objects
             allTextures.Add("Cet2");
             allTextures.Add("Cet3");
             allTextures.Add("Cet4");
+            allTextures.Add("Cit1");
+            allTextures.Add("Cit2");
+            allTextures.Add("Cit3");
+            allTextures.Add("Cit4");
             allTextures.Add("YOUWON");
         }
 

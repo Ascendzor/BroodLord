@@ -166,6 +166,11 @@ namespace Server
                 new Cat(Guid.NewGuid(), new Vector2(x * Data.TileSize, y * Data.TileSize));
             }
 
+            if (color.R == 255 && color.G == 0 && color.B == 0)
+            {
+                new CatPink(Guid.NewGuid(), new Vector2(x * Data.TileSize, y * Data.TileSize));
+            }
+
             if (color.R == 0 && color.G == 255 && color.B == 0)
             {
                 new SpideyBaby(Guid.NewGuid(), new Vector2(x * Data.TileSize, y * Data.TileSize));
